@@ -1,0 +1,22 @@
+{% extends "base/app.html" %}
+{% block title %}{% if mode == 'create' %}Nouveau projet{% else %}Modifier {{ project.name }}{% endif %} · PIVOT{% endblock %}
+{% block eyebrow %}Gestion des projets{% endblock %}
+{% block breadcrumbs %}<a class="hover:text-pivot-600" href="{% url 'projects:list' %}">Projets</a> <span class="mx-2">/</span> <span>{% if mode == 'create' %}Nouveau{% else %}Modifier{% endif %}</span>{% endblock %}
+{% block content %}
+<header class="mb-6 flex flex-col gap-3 border-b border-slate-200 pb-6 sm:flex-row sm:items-center sm:justify-between"><div><h1 class="text-2xl font-black">{% if mode == 'create' %}Nouveau projet{% else %}Modifier le projet{% endif %}</h1><p class="mt-1 text-sm text-slate-500">Renseignez les informations principales du chantier.</p></div><a class="text-sm font-bold text-slate-500 hover:text-pivot-600" href="{% if project %}{% url 'projects:detail' project.pk %}{% else %}{% url 'projects:list' %}{% endif %}">Annuler</a></header>
+<form method="post" enctype="multipart/form-data" class="grid gap-6 xl:grid-cols-[minmax(0,1fr)_20rem]" novalidate>
+    {% csrf_token %}
+    <section class="rounded-2xl border border-slate-200 bg-white shadow-sm">
+        <div class="border-b border-slate-100 px-6 py-4"><h2 class="font-black">Informations générales</h2></div>
+        <div class="grid gap-5 p-6 sm:grid-cols-2 [&_input]:mt-2 [&_input]:w-full [&_input]:rounded-lg [&_input]:border [&_input]:border-slate-300 [&_input]:bg-slate-50 [&_input]:px-3.5 [&_input]:py-2.5 [&_select]:mt-2 [&_select]:w-full [&_select]:rounded-lg [&_select]:border [&_select]:border-slate-300 [&_select]:bg-slate-50 [&_select]:px-3.5 [&_select]:py-2.5 [&_textarea]:mt-2 [&_textarea]:w-full [&_textarea]:rounded-lg [&_textarea]:border [&_textarea]:border-slate-300 [&_textarea]:bg-slate-50 [&_textarea]:px-3.5 [&_textarea]:py-2.5 focus:[&_input]:border-pivot-500 focus:[&_input]:ring-3 focus:[&_input]:ring-pivot-500/10 focus:[&_select]:border-pivot-500 focus:[&_textarea]:border-pivot-500">
+            {% if form.non_field_errors %}<div class="sm:col-span-2 rounded-lg bg-red-50 p-4 text-sm text-red-700">{{ form.non_field_errors }}</div>{% endif %}
+            {% for field in form %}<div class="{% if field.name == 'name' or field.name == 'description' or field.name == 'cover_image' %}sm:col-span-2{% endif %}"><label class="text-sm font-bold text-slate-700" for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}{% if field.name == 'budget_amount' %}<p class="mt-1 text-xs text-slate-400">Montant en XAF, sans décimales.</p>{% elif field.name == 'cover_image' %}<p class="mt-1 text-xs text-slate-400">PNG, JPG ou WebP — 5 Mo maximum.</p>{% endif %}{% if field.errors %}<div class="mt-2 text-sm font-medium text-red-600">{{ field.errors }}</div>{% endif %}</div>{% endfor %}
+        </div>
+    </section>
+    <aside class="space-y-5">
+        <section class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"><p class="text-xs font-bold uppercase tracking-wider text-slate-400">Organisation</p><p class="mt-2 font-black">{{ request.user.organization.name }}</p><p class="mt-1 text-xs text-slate-500">Le projet sera isolé dans cet espace.</p></section>
+        <section class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"><p class="text-xs font-bold uppercase tracking-wider text-slate-400">Responsable</p><div class="mt-3 flex items-center gap-3"><span class="grid size-10 place-items-center rounded-full bg-pivot-100 font-black text-pivot-700">{{ request.user.username|first|upper }}</span><div><p class="text-sm font-bold">{{ request.user.get_full_name|default:request.user.username }}</p><p class="text-xs text-slate-500">Ingénieur</p></div></div></section>
+        <button class="w-full rounded-lg bg-pivot-600 px-5 py-3 text-sm font-black text-white shadow-md hover:bg-pivot-700" type="submit">{% if mode == 'create' %}Créer le projet{% else %}Enregistrer{% endif %}</button>
+    </aside>
+</form>
+{% endblock %}

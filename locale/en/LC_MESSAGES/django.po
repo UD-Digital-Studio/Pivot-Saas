@@ -1,0 +1,385 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PIVOT-SASS 1.0\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Aller au contenu"
+msgstr "Skip to content"
+
+msgid "Espace de travail"
+msgstr "Workspace"
+
+msgid "Tableau de bord"
+msgstr "Dashboard"
+
+msgid "Projets"
+msgstr "Projects"
+
+msgid "Calendrier"
+msgstr "Calendar"
+
+msgid "Rapports"
+msgstr "Reports"
+
+msgid "Langue"
+msgstr "Language"
+
+msgid "Déconnexion"
+msgstr "Log out"
+
+msgid "Bienvenue !"
+msgstr "Welcome!"
+
+msgid "La plateforme de gestion de vos chantiers"
+msgstr "Your construction site management platform"
+
+msgid "Connexion"
+msgstr "Sign in"
+
+msgid "Accédez à votre espace de travail."
+msgstr "Access your workspace."
+
+msgid "Mot de passe oublié ?"
+msgstr "Forgot your password?"
+
+msgid "Se connecter"
+msgstr "Sign in"
+
+msgid "ou"
+msgstr "or"
+
+msgid "Créer un compte :"
+msgstr "Create an account:"
+
+msgid "Ingénieur"
+msgstr "Engineer"
+
+msgid "Client"
+msgstr "Client"
+
+msgid "Créer un compte ingénieur"
+msgstr "Create an engineer account"
+
+msgid "Demande d’inscription : renseignez les informations de votre entreprise."
+msgstr "Registration request: enter your company information."
+
+msgid "Créer mon espace ingénieur"
+msgstr "Create my engineer workspace"
+
+msgid "Vous êtes client ?"
+msgstr "Are you a client?"
+
+msgid "Créer un compte client"
+msgstr "Create a client account"
+
+msgid "Déjà inscrit ?"
+msgstr "Already registered?"
+
+msgid "Rejoignez l’espace de votre entreprise de construction."
+msgstr "Join your construction company's workspace."
+
+msgid "Créer mon compte client"
+msgstr "Create my client account"
+
+msgid "Vous êtes ingénieur ?"
+msgstr "Are you an engineer?"
+
+msgid "Identifiant ou mot de passe incorrect."
+msgstr "Incorrect username or password."
+
+msgid "Nom de l'entreprise"
+msgstr "Company name"
+
+msgid "Cette entreprise constituera votre espace de travail isolé."
+msgstr "This company will be your private workspace."
+
+msgid "Adresse e-mail"
+msgstr "Email address"
+
+msgid "Entreprise / organisation"
+msgstr "Company / organization"
+
+msgid "Sélectionnez l’organisation qui gère votre projet"
+msgstr "Select the organization managing your project"
+
+msgid "Vue opérationnelle de votre organisation."
+msgstr "Operational overview of your organization."
+
+msgid "Inviter"
+msgstr "Invite"
+
+msgid "Nouveau projet"
+msgstr "New project"
+
+msgid "Répartition des projets"
+msgstr "Project distribution"
+
+msgid "Vue globale par statut"
+msgstr "Overview by status"
+
+msgid "Projets récents"
+msgstr "Recent projects"
+
+msgid "Derniers chantiers mis à jour"
+msgstr "Recently updated construction sites"
+
+msgid "Rechercher un projet"
+msgstr "Search for a project"
+
+msgid "Filtres"
+msgstr "Filters"
+
+msgid "En attente"
+msgstr "Pending"
+
+msgid "En cours"
+msgstr "In progress"
+
+msgid "Terminés"
+msgstr "Completed"
+
+msgid "Nombre de projets"
+msgstr "Number of projects"
+
+msgid "Total projets"
+msgstr "Total projects"
+
+msgid "Tous les projets accessibles"
+msgstr "All accessible projects"
+
+msgid "Chantiers actuellement actifs"
+msgstr "Currently active construction sites"
+
+msgid "Projets clôturés"
+msgstr "Completed projects"
+
+msgid "Budget suivi"
+msgstr "Tracked budget"
+
+msgid "Montant cumulé des projets"
+msgstr "Combined project amount"
+
+msgid "Responsable de chantier"
+msgstr "Site manager"
+
+msgid "Administrateur"
+msgstr "Administrator"
+
+msgid "Terminé"
+msgstr "Completed"
+
+msgid "Active"
+msgstr "Active"
+
+msgid "Terminée"
+msgstr "Completed"
+
+msgid "Vérifié"
+msgstr "Verified"
+
+msgid "Approuvé"
+msgstr "Approved"
+
+msgid "Réussi"
+msgstr "Successful"
+
+msgid "Échoué"
+msgstr "Failed"
+
+msgid "Expiré"
+msgstr "Expired"
+
+msgid "Comptabilisé"
+msgstr "Accounted"
+
+msgid "Rejeté"
+msgstr "Rejected"
+
+msgid "Aperçu"
+msgstr "Overview"
+
+msgid "Finances"
+msgstr "Finance"
+
+msgid "Étapes"
+msgstr "Stages"
+
+msgid "Stock"
+msgstr "Inventory"
+
+msgid "Documents"
+msgstr "Documents"
+
+msgid "Photos"
+msgstr "Photos"
+
+msgid "Commentaires"
+msgstr "Comments"
+
+msgid "Portefeuille de projets"
+msgstr "Project portfolio"
+
+msgid "Consultez et pilotez vos chantiers."
+msgstr "View and manage your construction sites."
+
+msgid "Rechercher"
+msgstr "Search"
+
+msgid "Nom ou localisation"
+msgstr "Name or location"
+
+msgid "Tous les statuts"
+msgstr "All statuses"
+
+msgid "Filtrer"
+msgstr "Filter"
+
+msgid "Projet"
+msgstr "Project"
+
+msgid "Statut"
+msgstr "Status"
+
+msgid "Date"
+msgstr "Date"
+
+msgid "Budget"
+msgstr "Budget"
+
+msgid "Responsable"
+msgstr "Manager"
+
+msgid "Action"
+msgstr "Action"
+
+msgid "Ouvrir"
+msgstr "Open"
+
+msgid "Aucun projet trouvé"
+msgstr "No project found"
+
+msgid "Créez un projet ou modifiez les filtres."
+msgstr "Create a project or change the filters."
+
+msgid "Aucun projet ne vous est accessible."
+msgstr "No project is available to you."
+
+msgid "Page %(current)s sur %(total)s"
+msgstr "Page %(current)s of %(total)s"
+
+msgid "Précédent"
+msgstr "Previous"
+
+msgid "Suivant"
+msgstr "Next"
+
+msgid "Analyse"
+msgstr "Analytics"
+
+msgid "Centre de rapports"
+msgstr "Report center"
+
+msgid "Générez un PDF lisible ou un export CSV depuis vos projets accessibles."
+msgstr "Generate a readable PDF or CSV export from your accessible projects."
+
+msgid "Du"
+msgstr "From"
+
+msgid "Au"
+msgstr "To"
+
+msgid "Télécharger PDF"
+msgstr "Download PDF"
+
+msgid "Exporter CSV"
+msgstr "Export CSV"
+
+msgid "Aucun projet accessible"
+msgstr "No accessible project"
+
+msgid "Un projet affecté apparaîtra ici."
+msgstr "An assigned project will appear here."
+
+msgid "Mes paiements réussis"
+msgstr "My successful payments"
+
+msgid "Vos paiements comptabilisés sur les projets accessibles"
+msgstr "Your accounted payments on accessible projects"
+
+msgid "Étapes actives"
+msgstr "Active stages"
+
+msgid "Étapes actuellement en exécution"
+msgstr "Stages currently in progress"
+
+msgid "Modifiez votre recherche ou vos filtres."
+msgstr "Change your search or filters."
+
+msgid "Pagination des projets"
+msgstr "Project pagination"
+
+msgid "Notifications"
+msgstr "Notifications"
+
+msgid "Activité"
+msgstr "Activity"
+
+msgid "Retrouvez les événements importants de vos projets."
+msgstr "Find the important events from your projects."
+
+msgid "Tout marquer comme lu"
+msgstr "Mark all as read"
+
+msgid "Filtres des notifications"
+msgstr "Notification filters"
+
+msgid "Toutes"
+msgstr "All"
+
+msgid "Non lues"
+msgstr "Unread"
+
+msgid "Nouveau"
+msgstr "New"
+
+msgid "Voir"
+msgstr "View"
+
+msgid "Marquer comme lue"
+msgstr "Mark as read"
+
+msgid "Aucune notification"
+msgstr "No notifications"
+
+msgid "Vous êtes à jour."
+msgstr "You're all caught up."
+
+msgid "%(count)s notification non lue"
+msgid_plural "%(count)s notifications non lues"
+msgstr[0] "%(count)s unread notification"
+msgstr[1] "%(count)s unread notifications"
+
+msgid "Trier les projets"
+msgstr "Sort projects"
+
+msgid "Modifiés récemment"
+msgstr "Recently updated"
+
+msgid "Modifiés anciennement"
+msgstr "Least recently updated"
+
+msgid "Nom A–Z"
+msgstr "Name A–Z"
+
+msgid "Nom Z–A"
+msgstr "Name Z–A"
+
+msgid "Date la plus récente"
+msgstr "Newest date"
+
+msgid "Budget le plus élevé"
+msgstr "Highest budget"

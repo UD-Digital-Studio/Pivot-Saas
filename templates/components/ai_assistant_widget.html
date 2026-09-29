@@ -1,0 +1,111 @@
+{% load i18n %}
+{% if request.user.is_authenticated %}
+<div id="pivot-ai-widget" class="fixed bottom-5 right-4 z-[70] sm:right-6" data-panel-url="{% url 'ai_assistant:conversation-panel' %}" data-message-url="{% url 'ai_assistant:send-message' %}" data-archive-url="{% url 'ai_assistant:archive' %}">
+    <section data-ai-panel class="fixed bottom-24 right-4 hidden h-[min(72vh,38rem)] w-[min(calc(100vw-2rem),24rem)] flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl dark:border-slate-700 dark:bg-slate-900 sm:right-6" aria-labelledby="pivot-ai-title" aria-hidden="true">
+        <header class="flex items-center gap-3 border-b border-slate-200 bg-pivot-600 px-4 py-3.5 text-white dark:border-slate-700">
+            <span class="grid size-10 shrink-0 place-items-center rounded-xl bg-white/15 ring-1 ring-white/20"><svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 9.8 8.8 4 11l5.8 2.2L12 19l2.2-5.8L20 11l-5.8-2.2L12 3Z"/><path d="m19 3-.7 1.8L16.5 5.5l1.8.7L19 8l.7-1.8 1.8-.7-1.8-.7L19 3Z"/></svg></span>
+            <div class="min-w-0 flex-1"><h2 id="pivot-ai-title" class="font-black">Assistant PIVOT</h2><p data-ai-status class="truncate text-[11px] text-blue-100">{% translate "Prêt à vous aider" %}</p></div>
+            <button data-ai-new type="button" class="grid size-9 place-items-center rounded-lg text-white/80 hover:bg-white/10 hover:text-white" title="{% translate 'Nouvelle conversation' %}" aria-label="{% translate 'Nouvelle conversation' %}"><svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4Z"/></svg></button>
+            <button data-ai-close type="button" class="grid size-9 place-items-center rounded-lg text-2xl text-white/80 hover:bg-white/10 hover:text-white" aria-label="{% translate 'Fermer' %}">×</button>
+        </header>
+        <div data-ai-messages class="flex-1 space-y-3 overflow-y-auto bg-slate-50/70 px-4 py-4 dark:bg-slate-950/50" aria-live="polite">
+            <div data-ai-welcome class="mx-auto max-w-[18rem] py-8 text-center"><span class="mx-auto grid size-12 place-items-center rounded-2xl bg-pivot-50 text-pivot-700 dark:bg-pivot-950 dark:text-blue-200"><svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3 9.8 8.8 4 11l5.8 2.2L12 19l2.2-5.8L20 11l-5.8-2.2L12 3Z"/></svg></span><h3 class="mt-3 text-sm font-black text-slate-900 dark:text-white">{% translate "Comment puis-je vous aider ?" %}</h3><p class="mt-1.5 text-xs leading-5 text-slate-500 dark:text-slate-400">{% translate "Posez votre question à l’assistant PIVOT." %}</p></div>
+        </div>
+        <div data-ai-error class="hidden border-t border-red-100 bg-red-50 px-4 py-2 text-xs font-semibold text-red-700" role="alert"></div>
+        <form data-ai-form class="border-t border-slate-200 bg-white p-3 dark:border-slate-700 dark:bg-slate-900">
+            <div class="flex items-end gap-2 rounded-xl border border-slate-300 bg-slate-50 p-1.5 focus-within:border-pivot-600 focus-within:ring-4 focus-within:ring-pivot-600/10 dark:border-slate-600 dark:bg-slate-800"><label class="sr-only" for="pivot-ai-input">{% translate "Votre message" %}</label><textarea id="pivot-ai-input" data-ai-input rows="1" maxlength="8000" class="max-h-28 min-h-10 flex-1 resize-none bg-transparent px-2 py-2 text-sm text-slate-900 outline-none placeholder:text-slate-400 dark:text-white" placeholder="{% translate 'Écrivez votre message…' %}"></textarea><button data-ai-send type="submit" class="grid size-10 shrink-0 place-items-center rounded-lg bg-pivot-600 text-white shadow-sm hover:bg-pivot-700 disabled:cursor-not-allowed disabled:opacity-50" aria-label="{% translate 'Envoyer' %}"><svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg></button></div>
+            <p class="mt-2 text-center text-[10px] text-slate-400">{% translate "L’assistant peut commettre des erreurs. Vérifiez les informations importantes." %}</p>
+        </form>
+    </section>
+    <button data-ai-open type="button" class="grid size-14 place-items-center rounded-2xl bg-pivot-600 text-white shadow-xl shadow-pivot-950/25 ring-4 ring-white/80 transition hover:-translate-y-0.5 hover:bg-pivot-700 dark:ring-slate-900" aria-label="{% translate 'Ouvrir l’assistant PIVOT' %}" aria-expanded="false"><svg class="size-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 9.8 8.8 4 11l5.8 2.2L12 19l2.2-5.8L20 11l-5.8-2.2L12 3Z"/><path d="m19 3-.7 1.8L16.5 5.5l1.8.7L19 8l.7-1.8 1.8-.7-1.8-.7L19 3Z"/></svg></button>
+</div>
+<script>
+(() => {
+    const root = document.getElementById('pivot-ai-widget');
+    if (!root || root.dataset.ready) return;
+    root.dataset.ready = 'true';
+    const panel = root.querySelector('[data-ai-panel]');
+    const openButton = root.querySelector('[data-ai-open]');
+    const closeButton = root.querySelector('[data-ai-close]');
+    const newButton = root.querySelector('[data-ai-new]');
+    const form = root.querySelector('[data-ai-form]');
+    const input = root.querySelector('[data-ai-input]');
+    const sendButton = root.querySelector('[data-ai-send]');
+    const messages = root.querySelector('[data-ai-messages]');
+    const errorBox = root.querySelector('[data-ai-error]');
+    const status = root.querySelector('[data-ai-status]');
+    let conversationId = null;
+    let loaded = false;
+
+    const csrfToken = () => document.cookie.split('; ').find(row => row.startsWith('csrftoken='))?.split('=')[1] || '';
+    const showError = (message = '') => { errorBox.textContent = message; errorBox.classList.toggle('hidden', !message); };
+    const scrollBottom = () => { messages.scrollTop = messages.scrollHeight; };
+    const clearMessages = () => { messages.innerHTML = ''; };
+    const addMessage = (message) => {
+        messages.querySelector('[data-ai-welcome]')?.remove();
+        const wrapper = document.createElement('div');
+        wrapper.className = message.role === 'user' ? 'flex justify-end' : 'flex justify-start';
+        const bubble = document.createElement('div');
+        bubble.className = message.role === 'user'
+            ? 'max-w-[85%] whitespace-pre-wrap rounded-2xl rounded-br-md bg-pivot-600 px-3.5 py-2.5 text-sm leading-5 text-white'
+            : `max-w-[88%] whitespace-pre-wrap rounded-2xl rounded-bl-md border px-3.5 py-2.5 text-sm leading-5 ${message.status === 'failed' ? 'border-red-200 bg-red-50 text-red-700' : 'border-slate-200 bg-white text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200'}`;
+        bubble.textContent = message.content;
+        wrapper.appendChild(bubble); messages.appendChild(wrapper); scrollBottom();
+    };
+    const setLoading = (active) => {
+        input.disabled = active; sendButton.disabled = active;
+        status.textContent = active ? 'L’assistant réfléchit…' : 'Prêt à vous aider';
+    };
+    const loadConversation = async () => {
+        if (loaded) return;
+        setLoading(true); showError();
+        try {
+            const response = await fetch(root.dataset.panelUrl, {headers: {'Accept': 'application/json'}});
+            const data = await response.json();
+            if (!response.ok) throw new Error(data.error || 'Impossible de charger la conversation.');
+            conversationId = data.conversation?.id || null;
+            if (data.conversation?.messages?.length) {
+                clearMessages(); data.conversation.messages.forEach(addMessage);
+            }
+            if (!data.enabled) status.textContent = 'Configuration OpenRouter requise';
+            loaded = true;
+        } catch (error) { showError(error.message); }
+        finally { setLoading(false); }
+    };
+    const openPanel = () => {
+        panel.classList.remove('hidden'); panel.classList.add('flex'); panel.setAttribute('aria-hidden', 'false');
+        openButton.setAttribute('aria-expanded', 'true'); loadConversation(); setTimeout(() => input.focus(), 50);
+    };
+    const closePanel = () => {
+        panel.classList.add('hidden'); panel.classList.remove('flex'); panel.setAttribute('aria-hidden', 'true'); openButton.setAttribute('aria-expanded', 'false'); openButton.focus();
+    };
+    openButton.addEventListener('click', () => panel.classList.contains('hidden') ? openPanel() : closePanel());
+    closeButton.addEventListener('click', closePanel);
+    document.addEventListener('keydown', event => { if (event.key === 'Escape' && !panel.classList.contains('hidden')) closePanel(); });
+    input.addEventListener('keydown', event => { if (event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); form.requestSubmit(); } });
+    form.addEventListener('submit', async event => {
+        event.preventDefault(); const content = input.value.trim(); if (!content || sendButton.disabled) return;
+        showError(); addMessage({role: 'user', status: 'completed', content}); input.value = ''; setLoading(true);
+        try {
+            const response = await fetch(root.dataset.messageUrl, {method: 'POST', headers: {'Accept': 'application/json', 'Content-Type': 'application/json', 'X-CSRFToken': csrfToken()}, body: JSON.stringify({conversation_id: conversationId, message: content})});
+            const data = await response.json(); conversationId = data.conversation_id || conversationId;
+            if (data.assistant_message) addMessage(data.assistant_message);
+            if (!response.ok && !data.assistant_message) throw new Error(data.error || 'Impossible d’envoyer le message.');
+        } catch (error) { showError(error.message); }
+        finally { setLoading(false); input.focus(); }
+    });
+    newButton.addEventListener('click', async () => {
+        showError();
+        if (conversationId) {
+            try {
+                const response = await fetch(root.dataset.archiveUrl, {method: 'POST', headers: {'Accept': 'application/json', 'Content-Type': 'application/json', 'X-CSRFToken': csrfToken()}, body: JSON.stringify({conversation_id: conversationId})});
+                if (!response.ok) throw new Error('Impossible de fermer la conversation actuelle.');
+            } catch (error) { showError(error.message); return; }
+        }
+        conversationId = null; clearMessages();
+        messages.innerHTML = '<div data-ai-welcome class="mx-auto max-w-[18rem] py-8 text-center"><h3 class="text-sm font-black text-slate-900 dark:text-white">Nouvelle conversation</h3><p class="mt-1.5 text-xs text-slate-500">Posez votre question à l’assistant PIVOT.</p></div>';
+        input.focus();
+    });
+})();
+</script>
+{% endif %}

@@ -1,0 +1,9 @@
+{{ title }}
+
+Bonjour {{ user.get_full_name|default:user.username }},
+{{ message }}
+Forfait : {{ subscription.plan.name }}
+Gérer l’abonnement : {{ action_url }}
+
+English
+This notification concerns your {{ subscription.plan.name }} subscription. Review its status and deadline here: {{ action_url }}

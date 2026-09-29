@@ -1,0 +1,111 @@
+<section class="mt-6 space-y-5">
+  <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+    <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+      <div>
+        <p class="text-xs font-black uppercase tracking-widest text-pivot-600">Progression terrain</p>
+        <h2 class="mt-1 text-lg font-black">Une vue simple, étape par étape</h2>
+        <p class="mt-1 text-sm text-slate-500">La progression déclarée vient du terrain. La progression vérifiée est celle confirmée après contrôle.</p>
+      </div>
+      <div class="grid grid-cols-2 gap-3 sm:min-w-80">
+        <div class="rounded-xl bg-amber-50 px-4 py-3">
+          <p class="text-[11px] font-black uppercase text-amber-800">Déclarée</p>
+          <p class="mt-1 text-2xl font-black text-slate-950">{{ declared_project_progress|default_if_none:"—" }}{% if declared_project_progress is not None %} %{% endif %}</p>
+        </div>
+        <div class="rounded-xl bg-emerald-50 px-4 py-3">
+          <p class="text-[11px] font-black uppercase text-emerald-800">Vérifiée</p>
+          <p class="mt-1 text-2xl font-black text-slate-950">{{ verified_project_progress|default_if_none:"—" }}{% if verified_project_progress is not None %} %{% endif %}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="space-y-4">
+    {% for stage in stages %}
+      <article class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+        <div class="p-5">
+          <div class="flex flex-col gap-4 xl:flex-row xl:items-start xl:justify-between">
+            <div class="flex min-w-0 items-start gap-4">
+              {% if stage.image %}
+                <img src="{{ stage.image.url }}" alt="" class="size-14 shrink-0 rounded-xl object-cover">
+              {% else %}
+                <span class="grid size-12 shrink-0 place-items-center rounded-xl {% if stage.status == 'complete' %}bg-emerald-100 text-emerald-700{% elif stage.status == 'active' %}bg-amber-100 text-amber-700{% else %}bg-slate-100 text-slate-500{% endif %} font-black">{{ forloop.counter }}</span>
+              {% endif %}
+              <div class="min-w-0">
+                <div class="flex flex-wrap items-center gap-2">
+                  <h3 class="text-lg font-black">{{ stage.title }}</h3>
+                  <span class="rounded-full px-2.5 py-1 text-xs font-bold {% if stage.status == 'active' %}bg-amber-50 text-amber-700{% elif stage.status == 'complete' %}bg-emerald-50 text-emerald-700{% else %}bg-slate-100 text-slate-600{% endif %}">{{ stage.get_status_display }}</span>
+                  <span class="rounded-full bg-pivot-50 px-2.5 py-1 text-xs font-black text-pivot-700">Avancement {{ stage.progress_percent }} %</span>
+                  {% if stage.is_overdue %}<span class="rounded-full bg-red-50 px-2.5 py-1 text-xs font-black text-red-700">En retard</span>{% endif %}
+                </div>
+                <p class="mt-1 text-sm text-slate-500">{{ stage.start_date|date:"d/m/Y" }} → {{ stage.end_date|date:"d/m/Y" }} · {{ stage.get_stage_type_display }}</p>
+                {% if stage.description %}<p class="mt-2 line-clamp-2 text-sm text-slate-600">{{ stage.description }}</p>{% endif %}
+              </div>
+            </div>
+
+            <div class="flex flex-wrap gap-2 xl:justify-end">
+              {% if stage.declaration_form %}<button type="button" data-modal-open="modal-progress-declare-{{ stage.pk }}" class="rounded-lg bg-pivot-600 px-4 py-2.5 text-sm font-black text-white">Nouvelle déclaration</button>{% endif %}
+              {% if stage.technical_review_form %}<button type="button" data-modal-open="modal-progress-review-{{ stage.pk }}" class="rounded-lg bg-pivot-600 px-4 py-2.5 text-sm font-black text-white">Rendre l’avis</button>{% endif %}
+              {% if stage.verification_form %}<button type="button" data-modal-open="modal-progress-verify-{{ stage.pk }}" class="rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-black text-white">Vérifier</button>{% endif %}
+              {% if can_manage_stages %}<button type="button" data-modal-open="modal-stage-{{ stage.pk }}" class="rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-bold text-slate-700">Modifier</button>{% endif %}
+            </div>
+          </div>
+
+          <div class="mt-5 grid gap-4 md:grid-cols-2">
+            <div>
+              <div class="mb-1.5 flex justify-between text-xs font-bold text-slate-600"><span>Progression déclarée</span><span>{{ stage.declared_progress_percent|default_if_none:"—" }}{% if stage.declared_progress_percent is not None %} %{% endif %}</span></div>
+              <div class="h-2.5 overflow-hidden rounded-full bg-slate-100"><div class="h-full rounded-full bg-amber-500" style="width: {{ stage.declared_progress_percent|default:0 }}%"></div></div>
+            </div>
+            <div>
+              <div class="mb-1.5 flex justify-between text-xs font-bold text-slate-600"><span>Progression vérifiée</span><span>{{ stage.verified_progress_percent|default_if_none:"—" }}{% if stage.verified_progress_percent is not None %} %{% endif %}</span></div>
+              <div class="h-2.5 overflow-hidden rounded-full bg-slate-100"><div class="h-full rounded-full bg-emerald-500" style="width: {{ stage.verified_progress_percent|default:0 }}%"></div></div>
+            </div>
+          </div>
+
+          <div class="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-slate-500">
+            <span>Estimé : <strong class="text-slate-700">{{ stage.estimated_cost }} XAF</strong></span>
+            <span>Réel : <strong class="text-slate-700">{{ stage.actual_cost }} XAF</strong></span>
+            {% with declaration=stage.latest_declared_progress %}{% if declaration %}<span>Dernière déclaration : <strong class="text-slate-700">{{ declaration.created_at|date:"d/m/Y H:i" }}</strong></span>{% endif %}{% endwith %}
+          </div>
+        </div>
+
+        <details class="group border-t border-slate-100">
+          <summary class="flex cursor-pointer list-none items-center justify-between px-5 py-3 text-sm font-black text-pivot-700 hover:bg-slate-50">
+            <span>Voir les contrôles, visites et détails</span><span class="text-lg transition group-open:rotate-180">⌄</span>
+          </summary>
+          <div class="space-y-4 border-t border-slate-100 bg-slate-50/60 p-5">
+            {% with declaration=stage.latest_declared_progress %}
+              <section class="rounded-xl border border-slate-200 bg-white p-4">
+                <div class="flex flex-wrap items-center justify-between gap-3"><h4 class="font-black">Déclaration et contrôle numérique</h4>{% if declaration and declaration.digital_verification %}<span class="rounded-full px-2 py-1 text-xs font-black {% if declaration.digital_verification.result == 'passed' %}bg-emerald-100 text-emerald-800{% else %}bg-red-100 text-red-800{% endif %}">{{ declaration.digital_verification.get_result_display }}</span>{% elif stage.pending_digital_declaration %}<button type="button" data-modal-open="modal-digital-{{ stage.pk }}" class="rounded-lg bg-pivot-600 px-3 py-2 text-xs font-black text-white">Lancer le contrôle</button>{% else %}<span class="text-xs font-bold text-slate-500">Aucun contrôle à lancer</span>{% endif %}</div>
+                {% if declaration %}<p class="mt-2 text-xs text-slate-500">{{ declaration.author.get_username }} · {{ declaration.created_at|date:"d/m/Y H:i" }}{% if declaration.evidence %} · preuve : {{ declaration.evidence.title }}{% endif %}</p>{% if declaration.technical_review %}<p class="mt-2 text-xs"><strong>Avis technique :</strong> {{ declaration.technical_review.get_decision_display }} · {{ declaration.technical_review.reason }}</p>{% else %}<p class="mt-2 text-xs font-bold text-amber-700">Avis technique en attente</p>{% endif %}{% else %}<p class="mt-2 text-xs text-slate-500">Aucune déclaration enregistrée.</p>{% endif %}
+              </section>
+            {% endwith %}
+
+            {% with verification=stage.latest_verified_progress %}
+              <section class="rounded-xl border border-slate-200 bg-white p-4">
+                <div class="flex flex-wrap items-center justify-between gap-3"><h4 class="font-black">Vérification technique</h4>{% if verification %}<span class="rounded-full bg-emerald-100 px-2 py-1 text-xs font-black text-emerald-800">{{ verification.percent }} % vérifié</span>{% else %}<span class="text-xs font-bold text-slate-500">Non vérifiée</span>{% endif %}</div>
+                {% if verification %}<p class="mt-2 text-xs text-slate-500">Signée par {{ verification.author.get_username }} · {{ verification.signed_at|date:"d/m/Y H:i" }}</p><p class="mt-2 text-xs text-slate-600">Quantités : {{ verification.quantities|length }} · Réserves : {{ verification.reservations|length }}</p>{% if verification.declaration_id and verification.digital_verification_id %}<a href="{% url 'reporting:stage-verification-pdf' project.pk stage.pk %}" class="mt-3 inline-flex rounded-lg border border-pivot-200 px-3 py-2 text-xs font-black text-pivot-700">Télécharger le rapport PDF</a>{% endif %}{% else %}<p class="mt-2 text-xs text-slate-500">Aucune vérification technique enregistrée.</p>{% endif %}
+              </section>
+            {% endwith %}
+
+            <section class="rounded-xl border border-slate-200 bg-white p-4">
+              <div class="flex flex-wrap items-center justify-between gap-3"><div><h4 class="font-black">Inspection terrain</h4><p class="mt-1 text-xs text-slate-500">{{ stage.site_visits.count }} visite{{ stage.site_visits.count|pluralize }} enregistrée{{ stage.site_visits.count|pluralize }}</p></div><div class="flex flex-wrap gap-2">{% if stage.can_evaluate_risk %}<form method="post" action="{% url 'planning:stage-inspection-risk-evaluate' project.pk stage.pk %}">{% csrf_token %}<button class="rounded-lg border border-amber-300 px-3 py-2 text-xs font-black text-amber-800">Évaluer le risque</button></form>{% endif %}{% if stage.site_visit_form %}<button type="button" data-modal-open="modal-site-visit-{{ stage.pk }}" class="rounded-lg border border-pivot-200 px-3 py-2 text-xs font-black text-pivot-700">Enregistrer une visite</button>{% endif %}</div></div>
+              {% if stage.risk_assessment %}<div class="mt-3 rounded-lg {% if stage.risk_assessment.inspection_required %}bg-amber-50 text-amber-900{% else %}bg-emerald-50 text-emerald-900{% endif %} p-3 text-xs"><strong>Risque :</strong> {% if stage.risk_assessment.inspection_required %}inspection requise{% else %}inspection non requise{% endif %}{% if stage.risk_assessment.override %} · dérogation par {{ stage.risk_assessment.override.actor.get_username }}{% elif stage.risk_override_form %}<button type="button" data-modal-open="modal-risk-override-{{ stage.pk }}" class="ml-2 font-black underline">Déroger</button>{% endif %}</div>{% endif %}
+              <div class="mt-3 space-y-2">{% for visit in stage.site_visits.all %}<div class="rounded-lg bg-slate-50 p-3 text-xs"><div class="flex flex-wrap justify-between gap-2"><span><strong>{{ visit.visited_at|date:"d/m/Y H:i" }}</strong> · {{ visit.inspector.get_username }}</span><span>{{ visit.location_label|default:"Position GPS" }}</span></div>{% if visit.verification %}<p class="mt-2 font-bold {% if visit.verification.result == 'passed' %}text-emerald-700{% elif visit.verification.result == 'failed' %}text-red-700{% else %}text-amber-700{% endif %}">{{ visit.verification.get_result_display }}</p>{% elif stage.pending_site_visit.pk == visit.pk %}<button type="button" data-modal-open="modal-site-verify-{{ stage.pk }}" class="mt-2 rounded-lg bg-pivot-600 px-3 py-2 font-black text-white">Conclure l’inspection</button>{% else %}<p class="mt-2 font-bold text-amber-700">Conclusion en attente</p>{% endif %}</div>{% empty %}<p class="text-xs text-slate-500">Aucune visite terrain.</p>{% endfor %}</div>
+            </section>
+          </div>
+        </details>
+
+        {% if stage.declaration_form %}{% include "projects/project_stage_progress_modal.html" with form=stage.declaration_form mode="declare" %}{% endif %}
+        {% if stage.verification_form %}{% include "projects/project_stage_progress_modal.html" with form=stage.verification_form mode="verify" %}{% endif %}
+        {% if stage.technical_review_form %}{% include "projects/project_stage_technical_review_modal.html" %}{% endif %}
+        {% if stage.pending_digital_declaration %}<dialog id="modal-digital-{{ stage.pk }}" data-app-modal class="m-auto w-[min(94vw,30rem)] rounded-2xl bg-white p-0 shadow-2xl backdrop:bg-slate-950/55"><form method="post" action="{% url 'planning:stage-progress-digital-verify' project.pk stage.pk stage.pending_digital_declaration.pk %}">{% csrf_token %}<header class="border-b px-5 py-4"><h3 class="font-black">Lancer le contrôle numérique</h3></header><div class="p-5 text-sm text-slate-600"><p>PIVOT contrôlera automatiquement la preuve, sa chronologie, ses acteurs et sa cohérence avec l’étape.</p><p class="mt-3 font-bold">Le résultat sera définitif pour cette déclaration.</p></div><footer class="flex justify-end gap-2 border-t bg-slate-50 p-4"><button type="button" data-modal-close class="rounded-lg border px-4 py-2 text-sm font-bold">Annuler</button><button class="rounded-lg bg-pivot-600 px-4 py-2 text-sm font-black text-white">Contrôler</button></footer></form></dialog>{% endif %}
+        {% if stage.site_visit_form %}{% include "projects/project_stage_site_visit_modal.html" %}{% endif %}
+        {% if stage.site_verification_form %}{% include "projects/project_stage_site_verification_modal.html" %}{% endif %}
+      </article>
+    {% empty %}
+      <div class="rounded-2xl border border-dashed border-slate-300 bg-white px-6 py-14 text-center"><p class="font-black">Aucune étape planifiée</p><p class="mt-1 text-sm text-slate-500">{% if can_manage_stages %}Créez la première étape du chantier.{% else %}La planification n’a pas encore commencé.{% endif %}</p></div>
+    {% endfor %}
+  </div>
+
+  {% if inspection_risk_rule_form %}<div class="flex justify-end"><button type="button" data-modal-open="modal-risk-rule" class="rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-black">Configurer la règle d’inspection</button></div>{% include "projects/project_stage_risk_rule_modal.html" %}{% endif %}
+</section>

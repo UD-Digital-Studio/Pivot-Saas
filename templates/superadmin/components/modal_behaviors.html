@@ -1,0 +1,43 @@
+{% load i18n %}
+<template data-admin-modal-policy-template>
+  <div data-modal-policy class="mx-5 mb-5 flex items-start gap-3 rounded-xl border border-blue-100 bg-blue-50 p-3 text-xs leading-5 text-blue-900 dark:border-blue-900 dark:bg-blue-950 dark:text-blue-100">
+    <span aria-hidden="true" class="mt-0.5 font-black">i</span>
+    <div><strong data-modal-reversibility>{% translate "Action contrôlée" %}</strong><p>{% translate "Vérifiez la cible et les conséquences avant de confirmer. L’opération sera journalisée." %}</p></div>
+  </div>
+</template>
+<script>
+window.PivotAdminModal=(()=>{
+  const busyText="{% translate 'Traitement…' %}";
+  const reversibleText="{% translate 'Action traçable : une correction ultérieure reste possible selon l’état des données.' %}";
+  const irreversibleText="{% translate 'Action irréversible : les données supprimées ne pourront pas être restaurées.' %}";
+  const lock=form=>{
+    if(form.dataset.submitting==='true')return false;
+    form.dataset.submitting='true';form.setAttribute('aria-busy','true');
+    form.querySelectorAll('button').forEach(button=>{button.disabled=true;button.classList.add('cursor-wait','opacity-60')});
+    const submitter=form.querySelector('button[type="submit"],button:not([type])');
+    if(submitter){submitter.dataset.originalText=submitter.textContent;submitter.textContent=busyText}
+    return true;
+  };
+  const unlock=form=>{delete form.dataset.submitting;form.removeAttribute('aria-busy');form.querySelectorAll('button').forEach(button=>{button.disabled=false;button.classList.remove('cursor-wait','opacity-60');if(button.dataset.originalText){button.textContent=button.dataset.originalText;delete button.dataset.originalText}})};
+  document.querySelectorAll('dialog').forEach((dialog,index)=>{
+    dialog.setAttribute('role','dialog');dialog.setAttribute('aria-modal','true');
+    dialog.classList.add('max-h-[92vh]','max-w-[calc(100vw-1rem)]','overflow-y-auto');
+    const heading=dialog.querySelector('h1,h2,h3');if(heading){heading.id=heading.id||`admin-modal-title-${index}`;dialog.setAttribute('aria-labelledby',heading.id)}
+    const form=dialog.querySelector('form');
+    if(form&&!dialog.querySelector('[data-modal-policy]')){
+      const policy=document.querySelector('[data-admin-modal-policy-template]').content.cloneNode(true);
+      const destructive=/supprimer définitivement|irréversible/i.test(dialog.textContent)||Boolean(dialog.querySelector('.bg-red-600'));
+      policy.querySelector('[data-modal-reversibility]').textContent=destructive?irreversibleText:reversibleText;
+      const footer=dialog.querySelector('footer');footer?.before(policy);
+    }
+    dialog.addEventListener('click',event=>{if(event.target===dialog){dialog.close()}});
+    dialog.addEventListener('close',()=>{if(form)unlock(form)});
+    form?.addEventListener('submit',event=>{if(!form.reportValidity()||!lock(form)){event.preventDefault()}});
+  });
+  const nativeSubmit=HTMLFormElement.prototype.submit;
+  HTMLFormElement.prototype.submit=function(){const managed=this.closest('dialog')||this.querySelector('[name="confirmed"]');if(!managed||lock(this))nativeSubmit.call(this)};
+  const nativeShow=HTMLDialogElement.prototype.showModal;
+  HTMLDialogElement.prototype.showModal=function(){nativeShow.call(this);setTimeout(()=>{const focusable=this.querySelector('[autofocus],input:not([type="hidden"]),select,textarea,button');focusable?.focus()},0)};
+  return{lock,unlock};
+})();
+</script>

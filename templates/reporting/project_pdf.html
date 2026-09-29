@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<style>
+    @page { size: a4; margin: 1.25cm 1.3cm 1.55cm; @frame footer_frame { -pdf-frame-content: report-footer; left: 1.3cm; right: 1.3cm; bottom: .45cm; height: .55cm; } }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Helvetica, Arial, sans-serif; color: #172033; font-size: 9pt; line-height: 1.45; }
+    .header { background: #00157f; color: white; padding: 22px 24px 20px; border-radius: 9px; }
+    .brand-table, .meta-table, .kpi-table, .data-table, .summary-table { width: 100%; border-collapse: collapse; }
+    .brand-table td { padding: 0; }
+    .brand-logo-panel { width: 170px; padding: 8px 10px; background: white; border-radius: 7px; }
+    .brand-logo { display: block; width: 150px; height: auto; }
+    .report-label { text-align: right; color: #c7d2fe; font-size: 7.5pt; text-transform: uppercase; letter-spacing: 1.2px; }
+    .report-number { text-align: right; font-weight: bold; font-size: 9pt; padding-top: 3px; }
+    .hero-title { margin: 25px 0 5px; font-size: 25pt; line-height: 1.15; font-weight: bold; }
+    .hero-subtitle { color: #dbe3ff; font-size: 9pt; }
+    .accent-line { width: 48px; height: 4px; margin-top: 17px; background: #f5b700; }
+    .meta-table { margin: 15px 0 6px; background: #f6f7fb; border: 1px solid #e2e8f0; }
+    .meta-table td { width: 25%; padding: 10px 12px; border-right: 1px solid #e2e8f0; }
+    .meta-label { color: #64748b; font-size: 6.5pt; text-transform: uppercase; letter-spacing: .8px; }
+    .meta-value { margin-top: 3px; font-size: 9pt; font-weight: bold; color: #0f172a; }
+    .section { margin-top: 19px; page-break-inside: avoid; }
+    .section-title { margin: 0 0 8px; padding-bottom: 5px; border-bottom: 2px solid #00157f; color: #00157f; font-size: 12.5pt; font-weight: bold; }
+    .section-index { color: #f5b700; padding-right: 7px; }
+    .kpi-table { border-spacing: 6px; margin-left: -6px; width: 102%; }
+    .kpi-table td { width: 25%; padding: 11px 10px; vertical-align: top; background: #f8fafc; border: 1px solid #dfe3ee; }
+    .kpi-blue { border-top: 4px solid #00157f !important; }
+    .kpi-gold { border-top: 4px solid #f5b700 !important; }
+    .kpi-green { border-top: 4px solid #169b62 !important; }
+    .kpi-label { color: #64748b; font-size: 6.5pt; text-transform: uppercase; letter-spacing: .65px; }
+    .kpi-value { margin-top: 5px; color: #0f172a; font-size: 13pt; font-weight: bold; }
+    .kpi-note { margin-top: 3px; color: #94a3b8; font-size: 6.5pt; }
+    .progress-track { width: 100%; height: 7px; margin-top: 7px; background: #e2e8f0; }
+    .progress-fill { height: 7px; background: #00157f; }
+    .data-table { margin-top: 7px; }
+    .data-table th { padding: 7px 8px; background: #00157f; color: white; border: 1px solid #001064; font-size: 7pt; text-align: left; text-transform: uppercase; letter-spacing: .35px; }
+    .data-table td { padding: 7px 8px; border: 1px solid #e2e8f0; vertical-align: top; }
+    .data-table tr:nth-child(even) td { background: #f8fafc; }
+    .right { text-align: right !important; }
+    .center { text-align: center !important; }
+    .strong { font-weight: bold; color: #0f172a; }
+    .muted { color: #64748b; }
+    .empty { padding: 15px !important; color: #94a3b8; text-align: center; font-style: italic; }
+    .status { padding: 3px 6px; border-radius: 8px; background: #eef0ff; color: #00157f; font-size: 7pt; font-weight: bold; }
+    .comment { margin: 7px 0; padding: 9px 11px; border-left: 3px solid #00157f; background: #f8fafc; }
+    .comment-meta { color: #00157f; font-size: 7pt; font-weight: bold; }
+    .comment-text { margin-top: 4px; color: #334155; }
+    .footer { color: #64748b; font-size: 7pt; border-top: 1px solid #cbd5e1; padding-top: 5px; }
+    .footer-right { text-align: right; }
+</style>
+</head>
+<body>
+<div class="header">
+    <table class="brand-table"><tr><td style="width:190px"><div class="brand-logo-panel"><img class="brand-logo" src="{{ logo_data_uri }}" alt="PIVOT Engineering"></div></td><td><div class="report-label">Rapport de chantier</div><div class="report-number">{{ generated_at|date:"Ymd" }}-{{ project.pk|stringformat:"s"|slice:":8" }}</div></td></tr></table>
+    <div class="hero-title">{{ project.name }}</div>
+    <div class="hero-subtitle">Rapport consolidé de suivi opérationnel et financier</div>
+    <div class="accent-line"></div>
+</div>
+
+<table class="meta-table"><tr><td><div class="meta-label">Localisation</div><div class="meta-value">{{ project.location|default:"Non renseignée" }}</div></td><td><div class="meta-label">Responsable</div><div class="meta-value">{% if project.engineer %}{{ project.engineer.get_full_name|default:project.engineer.username }}{% else %}À désigner{% endif %}</div></td><td><div class="meta-label">Statut</div><div class="meta-value">{{ project.get_status_display }}</div></td><td><div class="meta-label">Période analysée</div><div class="meta-value">{{ date_from|date:"d/m/Y"|default:"Origine" }} — {{ date_to|date:"d/m/Y"|default:"Aujourd’hui" }}</div></td></tr></table>
+
+<div class="section"><div class="section-title"><span class="section-index">01</span>Synthèse exécutive</div>
+<table class="kpi-table"><tr><td class="kpi-blue"><div class="kpi-label">Budget du projet</div><div class="kpi-value">{{ totals.budget }} XAF</div><div class="kpi-note">Enveloppe globale</div></td><td class="kpi-green"><div class="kpi-label">Total payé</div><div class="kpi-value">{{ totals.paid }} XAF</div><div class="kpi-note">Paiements confirmés</div></td><td class="kpi-gold"><div class="kpi-label">Solde disponible</div><div class="kpi-value">{{ totals.available }} XAF</div><div class="kpi-note">Après décaissements</div></td><td class="kpi-blue"><div class="kpi-label">Avancement global</div><div class="kpi-value">{{ stage_progress }} %</div><div class="progress-track"><div class="progress-fill" style="width:{{ stage_progress }}%"></div></div><div class="kpi-note">{{ completed_stage_count }}/{{ stage_count }} étape(s) terminée(s)</div></td></tr></table></div>
+
+<div class="section"><div class="section-title"><span class="section-index">02</span>Planification et avancement sourcé</div><table class="data-table"><thead><tr><th>Étape</th><th>Planification</th><th class="center">Déclarée</th><th class="center">Vérifiée</th><th>Acteurs et preuves</th></tr></thead><tbody>{% for stage in stages %}<tr><td class="strong">{{ stage.title }}</td><td>{{ stage.get_status_display }}<br><span class="muted">{{ stage.start_date|date:"d/m/Y" }} au {{ stage.end_date|date:"d/m/Y" }}</span></td><td class="center">{{ stage.declared_progress_percent|default_if_none:"—" }}{% if stage.declared_progress_percent is not None %} %{% endif %}</td><td class="center">{{ stage.verified_progress_percent|default_if_none:"—" }}{% if stage.verified_progress_percent is not None %} %{% endif %}</td><td>{% with d=stage.latest_declared_progress v=stage.latest_verified_progress %}{% if d %}Déclaré : {{ d.author.get_username }} · {{ d.created_at|date:"d/m/Y H:i" }}{% if d.evidence %} · {{ d.evidence.title }}{% endif %}{% endif %}{% if v %}<br>Vérifié : {{ v.author.get_username }} · {{ v.created_at|date:"d/m/Y H:i" }}{% if v.evidence %} · {{ v.evidence.title }}{% endif %}{% endif %}{% endwith %}</td></tr>{% empty %}<tr><td colspan="5" class="empty">Aucune étape planifiée.</td></tr>{% endfor %}</tbody></table></div>
+
+<div class="section"><div class="section-title"><span class="section-index">03</span>Situation du stock</div><table class="kpi-table"><tr><td class="kpi-gold"><div class="kpi-label">Valeur totale du stock</div><div class="kpi-value">{{ stock_value }} XAF</div><div class="kpi-note">{{ stock|length }} article(s) suivi(s)</div></td><td colspan="3"><div class="kpi-label">Lecture</div><div class="kpi-value" style="font-size:10pt">Matériaux et équipements enregistrés sur le chantier</div><div class="kpi-note">Les quantités correspondent à l’état du stock au moment de la génération.</div></td></tr></table><table class="data-table"><thead><tr><th>Article</th><th class="center">Quantité</th><th class="right">Prix unitaire</th><th class="right">Valeur</th><th>Statut</th></tr></thead><tbody>{% for item in stock %}<tr><td class="strong">{{ item.name }}</td><td class="center">{{ item.quantity }} {{ item.unit }}</td><td class="right">{{ item.unit_price }} XAF</td><td class="right strong">{{ item.total_price }} XAF</td><td>{{ item.get_status_display }}</td></tr>{% empty %}<tr><td colspan="5" class="empty">Aucun article en stock.</td></tr>{% endfor %}</tbody></table></div>
+
+<div class="section"><div class="section-title"><span class="section-index">04</span>Cycle financier traçable</div>
+<table class="data-table"><thead><tr><th>Phase</th><th>Date</th><th>Dossier / référence</th><th class="right">Montant</th><th>Statut</th></tr></thead><tbody>
+{% for expense in expense_requests %}<tr><td class="strong">Demande</td><td>{{ expense.created_at|date:"d/m/Y H:i" }}</td><td>{{ expense.purpose|truncatechars:55 }} · v{{ expense.status_version }}</td><td class="right strong">{{ expense.amount }} {{ expense.currency }}</td><td>{{ expense.get_status_display }}</td></tr>{% endfor %}
+{% for decision in expense_authorizations %}<tr><td class="strong">Autorisation</td><td>{{ decision.created_at|date:"d/m/Y H:i" }}</td><td>{{ decision.owner.get_full_name|default:decision.owner.username }} · v{{ decision.decided_status_version }}</td><td class="right">{{ decision.request.amount }} {{ decision.request.currency }}</td><td>{{ decision.get_decision_display }}</td></tr>{% endfor %}
+{% for tx in payment_attempts %}<tr><td class="strong">Tentative</td><td>{{ tx.requested_at|date:"d/m/Y H:i" }}</td><td>PIVOT {{ tx.pivot_reference }}</td><td class="right">{{ tx.amount }} {{ tx.currency }}</td><td>{{ tx.get_status_display }}</td></tr>{% endfor %}
+{% for tx in accounted_payments %}<tr><td class="strong">Succès comptabilisé</td><td>{{ tx.completed_at|date:"d/m/Y H:i" }}</td><td>MeSomb {{ tx.provider_reference|default:tx.pivot_reference }}</td><td class="right strong">{{ tx.amount }} {{ tx.currency }}</td><td>{{ tx.get_status_display }}</td></tr>{% empty %}{% if not expense_requests and not payment_attempts %}<tr><td colspan="5" class="empty">Aucun cycle de dépense sur la période.</td></tr>{% endif %}{% endfor %}
+</tbody></table></div>
+<div class="section"><div class="section-title"><span class="section-index">05</span>Autres mouvements</div><table class="data-table"><thead><tr><th>Type</th><th>Date</th><th>Référence / motif</th><th class="right">Montant</th><th>Statut</th></tr></thead><tbody>{% for tx in payments %}{% if not tx.expense_request_id %}<tr><td class="strong">Paiement chantier</td><td>{{ tx.requested_at|date:"d/m/Y H:i" }}</td><td>{{ tx.provider_reference|default:tx.operator }}</td><td class="right strong">+ {{ tx.amount }} XAF</td><td>{{ tx.get_status_display }}</td></tr>{% endif %}{% endfor %}{% for withdrawal in withdrawals %}<tr><td class="strong">Retrait</td><td>{{ withdrawal.requested_at|date:"d/m/Y H:i" }}</td><td>{{ withdrawal.reason|truncatechars:65 }}</td><td class="right strong">− {{ withdrawal.amount }} XAF</td><td>{{ withdrawal.get_status_display }}</td></tr>{% empty %}{% if not payments %}<tr><td colspan="5" class="empty">Aucun autre mouvement financier sur la période.</td></tr>{% endif %}{% endfor %}</tbody></table></div>
+
+<div class="section"><div class="section-title"><span class="section-index">05</span>Observations et échanges</div>{% for comment in comments %}<div class="comment"><div class="comment-meta">{{ comment.author.get_full_name|default:comment.author.username }} · {{ comment.created_at|date:"d/m/Y H:i" }}</div><div class="comment-text">{{ comment.content|linebreaksbr }}</div></div>{% empty %}<div class="empty">Aucune observation enregistrée sur la période.</div>{% endfor %}</div>
+
+<div class="section"><div class="section-title"><span class="section-index">06</span>Registre des preuves</div><table class="data-table"><thead><tr><th>Preuve</th><th>Version utilisée</th><th>Statut</th><th>Horodatage</th></tr></thead><tbody>{% for evidence in evidence_records %}<tr><td>{{ evidence.title }}{% if evidence.correction_reason %}<br><small>Correction : {{ evidence.correction_reason }}</small>{% endif %}</td><td>v{{ evidence.version }}{% if evidence.previous_version %} · remplace v{{ evidence.previous_version.version }}{% endif %}</td><td>{{ evidence.get_status_display }}</td><td>{{ evidence.captured_at|date:"d/m/Y H:i" }}</td></tr>{% empty %}<tr><td colspan="4">Aucune preuve sur la période.</td></tr>{% endfor %}</tbody></table></div>
+
+<div id="report-footer"><table class="footer"><tr><td>PIVOT Engineering · Rapport confidentiel généré le {{ generated_at|date:"d/m/Y à H:i" }}</td><td class="footer-right">Page <pdf:pagenumber> / <pdf:pagecount></td></tr></table></div>
+</body></html>

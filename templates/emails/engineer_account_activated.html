@@ -1,0 +1,6 @@
+{% extends "emails/base.html" %}{% block content %}
+<p style="margin:0 0 10px;color:#00157f;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;">Compte activé</p>
+<h1 style="margin:0 0 16px;font-size:29px;line-height:1.25;color:#111a31;">Bienvenue sur PIVOT</h1>
+<p style="margin:0 0 24px;color:#55627a;font-size:16px;line-height:1.7;">Bonjour {{ user.get_full_name|default:user.username }}, votre compte ingénieur est maintenant actif. Vous pouvez accéder à votre espace avec les identifiants choisis lors de l’inscription.</p>
+<table role="presentation" cellspacing="0" cellpadding="0" width="100%"><tr><td align="center" style="padding:4px 0 24px;"><a href="{{ action_url }}" style="display:block;background:#00157f;color:#fff;text-decoration:none;font-size:16px;font-weight:700;padding:16px 24px;border-radius:10px;">Se connecter à PIVOT</a></td></tr></table>
+{% endblock %}

@@ -1,0 +1,70 @@
+{
+  "mode": "applied",
+  "database_vendor": "sqlite",
+  "generated_at": "2026-09-04T14:06:17.253139+00:00",
+  "before": {
+    "projects": 5,
+    "documents": 13,
+    "files": 13,
+    "photos": 6,
+    "transactions": 8,
+    "status_history": 1,
+    "ownership_history": 0
+  },
+  "after": {
+    "projects": 5,
+    "documents": 13,
+    "files": 13,
+    "photos": 6,
+    "transactions": 8,
+    "status_history": 1,
+    "ownership_history": 0
+  },
+  "preserved": true,
+  "summary": {
+    "owner_assigned": 5,
+    "manual_review": 0
+  },
+  "projects": [
+    {
+      "project_id": "2bc49507-4e65-4d6a-8728-f3e529965ba3",
+      "project": "Projet1",
+      "client_candidates": [
+        2
+      ],
+      "outcome": "owner_assigned"
+    },
+    {
+      "project_id": "4fa29429-1672-4f47-850d-0a03af5a90ad",
+      "project": "Réhabilitation école primaire",
+      "client_candidates": [
+        2
+      ],
+      "outcome": "owner_assigned"
+    },
+    {
+      "project_id": "67f915c9-31d9-46e2-b1c8-8a949b918cfd",
+      "project": "Centre commercial Akwa",
+      "client_candidates": [
+        2
+      ],
+      "outcome": "owner_assigned"
+    },
+    {
+      "project_id": "b7695f98-6b6e-4f4f-ab6c-8ec88eb08f7f",
+      "project": "Villa contemporaine Bastos",
+      "client_candidates": [
+        2
+      ],
+      "outcome": "owner_assigned"
+    },
+    {
+      "project_id": "d45ab0cb-5d08-4f13-bcf0-d7a06dc2660c",
+      "project": "Résidence Bonapriso",
+      "client_candidates": [
+        2
+      ],
+      "outcome": "owner_assigned"
+    }
+  ]
+}

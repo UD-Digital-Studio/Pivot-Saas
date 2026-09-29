@@ -1,0 +1,11 @@
+{% extends "superadmin/base.html" %}
+{% block title %}Onboarding concierge · PIVOT{% endblock %}
+{% block breadcrumb %}<a href="{% url 'superadmin:project-list' %}">Projets</a> / Onboarding PIVOT{% endblock %}
+{% block content %}
+<header class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"><div><p class="text-xs font-black uppercase tracking-[.2em] text-pivot-600">Route PIVOT-led</p><h1 class="mt-2 text-3xl font-black">Préparer un dossier concierge</h1><p class="mt-2 text-sm text-slate-500">PIVOT prépare le dossier. Le client conservera seul la confirmation et l’activation.</p></div><a href="{% url 'superadmin:project-list' %}" class="rounded-xl border px-4 py-2.5 text-sm font-bold">Retour aux projets</a></header>
+<form method="post" enctype="multipart/form-data" class="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">{% csrf_token %}
+{% if form.non_field_errors %}<div class="m-5 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">{{ form.non_field_errors }}</div>{% endif %}
+<div class="grid gap-5 p-6 md:grid-cols-2 [&_input]:mt-2 [&_input]:h-11 [&_input]:w-full [&_input]:rounded-xl [&_input]:border [&_input]:px-3 [&_select]:mt-2 [&_select]:h-11 [&_select]:w-full [&_select]:rounded-xl [&_select]:border [&_select]:px-3 [&_textarea]:mt-2 [&_textarea]:w-full [&_textarea]:rounded-xl [&_textarea]:border [&_textarea]:p-3">
+{% for field in form %}<label class="text-sm font-bold {% if field.name == 'description' or field.name == 'financial_conditions' %}md:col-span-2{% endif %}">{{ field.label }}{{ field }}{% if field.help_text %}<span class="mt-1 block text-xs font-normal text-slate-500">{{ field.help_text }}</span>{% endif %}{% for error in field.errors %}<span class="mt-1 block text-xs text-red-600">{{ error }}</span>{% endfor %}</label>{% endfor %}
+</div><footer class="flex justify-end gap-3 border-t bg-slate-50 px-6 py-4 dark:bg-slate-800"><a href="{% url 'superadmin:project-list' %}" class="rounded-xl border px-5 py-3 text-sm font-bold">Annuler</a><button class="rounded-xl bg-pivot-600 px-5 py-3 text-sm font-black text-white">Créer le dossier préliminaire</button></footer></form>
+{% endblock %}

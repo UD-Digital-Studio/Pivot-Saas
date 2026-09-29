@@ -1,0 +1,58 @@
+<dialog id="modal-progress-{{ mode }}-{{ stage.pk }}" data-app-modal class="m-auto w-[min(94vw,42rem)] rounded-2xl bg-white p-0 shadow-2xl backdrop:bg-slate-950/55">
+  <form method="post" action="{% if mode == 'verify' %}{% url 'planning:stage-progress-verify' project.pk stage.pk %}{% else %}{% url 'planning:stage-progress-declare' project.pk stage.pk %}{% endif %}"{% if mode == 'verify' %} data-structured-verification{% endif %}>
+    {% csrf_token %}
+    <header class="border-b px-5 py-4">
+      <h3 class="font-black">{% if mode == 'verify' %}Vérification technique{% else %}Déclarer{% endif %} · {{ stage.title }}</h3>
+      {% if mode == 'verify' %}<p class="mt-1 text-xs text-slate-500">La progression, les quantités et les réserves seront signées et conservées.</p>{% endif %}
+    </header>
+    <div class="grid max-h-[65vh] gap-4 overflow-y-auto p-5">
+      {% for field in stage.declaration_form %}
+        {% if mode == 'declare' %}<label class="grid gap-1.5 text-sm font-bold">{{ field.label }}{{ field }}{% if field.help_text %}<span class="text-xs font-normal text-slate-500">{{ field.help_text }}</span>{% endif %}</label>{% endif %}
+      {% endfor %}
+      {% if mode == 'verify' %}
+        {% for field in stage.verification_form %}
+          {% if field.name == 'quantities' %}
+            <section class="rounded-xl border border-slate-200 p-4" data-quantity-section>
+              {{ field.as_hidden }}
+              <div class="flex items-center justify-between gap-3"><div><h4 class="text-sm font-black">Quantités constatées</h4><p class="mt-1 text-xs text-slate-500">Ajoutez chaque ouvrage ou matériau contrôlé.</p></div><button type="button" data-add-quantity class="rounded-lg border border-pivot-200 px-3 py-2 text-xs font-black text-pivot-700">＋ Ajouter</button></div>
+              <div class="mt-3 grid gap-3" data-quantity-rows></div>
+            </section>
+          {% elif field.name == 'reservations' %}
+            <section class="rounded-xl border border-slate-200 p-4" data-reservation-section>
+              {{ field.as_hidden }}
+              <div class="flex items-center justify-between gap-3"><div><h4 class="text-sm font-black">Réserves techniques</h4><p class="mt-1 text-xs text-slate-500">Signalez les corrections ou points de vigilance.</p></div><button type="button" data-add-reservation class="rounded-lg border border-pivot-200 px-3 py-2 text-xs font-black text-pivot-700">＋ Ajouter</button></div>
+              <div class="mt-3 grid gap-3" data-reservation-rows></div>
+            </section>
+          {% else %}
+            <label class="grid gap-1.5 text-sm font-bold">{{ field.label }}{{ field }}{% if field.help_text %}<span class="text-xs font-normal text-slate-500">{{ field.help_text }}</span>{% endif %}</label>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    </div>
+    <footer class="flex justify-end gap-2 border-t bg-slate-50 p-4"><button type="button" data-modal-close class="rounded-lg border px-4 py-2 text-sm font-bold">Annuler</button><button class="rounded-lg bg-pivot-600 px-4 py-2 text-sm font-black text-white">{% if mode == 'verify' %}Signer la vérification{% else %}Enregistrer{% endif %}</button></footer>
+  </form>
+</dialog>
+{% if mode == 'verify' %}
+<script>
+(()=>{
+  const dialog=document.getElementById('modal-progress-verify-{{ stage.pk }}');
+  const form=dialog?.querySelector('[data-structured-verification]');
+  if(!form)return;
+  const quantityInput=form.querySelector('input[name="quantities"]');
+  const reservationInput=form.querySelector('input[name="reservations"]');
+  const quantityRows=form.querySelector('[data-quantity-rows]');
+  const reservationRows=form.querySelector('[data-reservation-rows]');
+  const parse=(input)=>{try{return JSON.parse(input.value||'[]')}catch(_){return[]}};
+  const quantityRow=(item={})=>{const row=document.createElement('div');row.className='grid gap-2 rounded-xl bg-slate-50 p-3 sm:grid-cols-[1fr_7rem_7rem_auto]';row.innerHTML=`<label class="grid gap-1 text-xs font-bold">Désignation<input data-key="label" value="${escapeHtml(item.label||'')}" placeholder="Ex. Béton coulé"></label><label class="grid gap-1 text-xs font-bold">Quantité<input data-key="quantity" type="number" min="0" step="0.01" value="${escapeHtml(item.quantity??'')}"></label><label class="grid gap-1 text-xs font-bold">Unité<input data-key="unit" value="${escapeHtml(item.unit||'')}" placeholder="m³, kg…"></label><button type="button" data-remove class="self-end rounded-lg border border-red-200 px-3 py-2 text-xs font-black text-red-700">Retirer</button>`;row.querySelector('[data-remove]').onclick=()=>row.remove();quantityRows.append(row)};
+  const reservationRow=(item={})=>{const row=document.createElement('div');row.className='grid gap-2 rounded-xl bg-slate-50 p-3 sm:grid-cols-[1fr_10rem_auto]';row.innerHTML=`<label class="grid gap-1 text-xs font-bold">Réserve<input data-key="description" value="${escapeHtml(item.description||'')}" placeholder="Correction à réaliser"></label><label class="grid gap-1 text-xs font-bold">Statut<select data-key="status"><option value="open">À corriger</option><option value="resolved">Résolue</option></select></label><button type="button" data-remove class="self-end rounded-lg border border-red-200 px-3 py-2 text-xs font-black text-red-700">Retirer</button>`;row.querySelector('select').value=item.status||'open';row.querySelector('[data-remove]').onclick=()=>row.remove();reservationRows.append(row)};
+  const escapeHtml=(value)=>String(value).replace(/[&<>'"]/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
+  parse(quantityInput).forEach(quantityRow);parse(reservationInput).forEach(reservationRow);
+  form.querySelector('[data-add-quantity]').onclick=()=>quantityRow();
+  form.querySelector('[data-add-reservation]').onclick=()=>reservationRow();
+  form.addEventListener('submit',()=>{
+    quantityInput.value=JSON.stringify([...quantityRows.children].map(row=>({label:row.querySelector('[data-key="label"]').value.trim(),quantity:Number(row.querySelector('[data-key="quantity"]').value),unit:row.querySelector('[data-key="unit"]').value.trim()})).filter(item=>item.label&&item.quantity>=0&&item.unit));
+    reservationInput.value=JSON.stringify([...reservationRows.children].map(row=>({description:row.querySelector('[data-key="description"]').value.trim(),status:row.querySelector('[data-key="status"]').value})).filter(item=>item.description));
+  });
+})();
+</script>
+{% endif %}

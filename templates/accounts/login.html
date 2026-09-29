@@ -1,0 +1,21 @@
+{% extends "base/auth.html" %}{% load i18n %}
+{% block title %}Connexion · PIVOT{% endblock %}
+{% block content %}
+<section class="auth-compact mx-auto grid w-full max-w-4xl overflow-hidden rounded-2xl shadow-auth lg:grid-cols-[.82fr_1.18fr]" aria-labelledby="login-title">
+    {% include "components/auth_brand_panel.html" %}
+    <div class="auth-glass flex flex-col justify-center p-6 sm:p-7 lg:p-8">
+        <h1 id="login-title" class="text-2xl font-black tracking-tight">{% translate "Connexion" %}</h1>
+        <p class="mt-1 text-slate-600">{% translate "Accédez à votre espace de travail." %}</p>
+        <form method="post" class="mt-8 space-y-5 [&_input]:mt-2 [&_input]:w-full [&_input]:rounded-lg [&_input]:border [&_input]:border-white/70 [&_input]:bg-white/40 [&_input]:px-4 [&_input]:py-3 [&_input]:outline-none [&_input]:ring-1 [&_input]:ring-slate-400/40 focus:[&_input]:border-pivot-600 focus:[&_input]:bg-white/60 focus:[&_input]:ring-2 focus:[&_input]:ring-pivot-600/20" novalidate>
+            {% csrf_token %}{% if form.non_field_errors %}<div class="rounded-lg bg-red-50 p-3 text-sm font-semibold text-red-700">{{ form.non_field_errors }}</div>{% endif %}
+            {% for field in form %}<div><label class="text-sm font-semibold text-slate-700" for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}{% if field.errors %}<div class="mt-2 text-sm text-red-600">{{ field.errors }}</div>{% endif %}</div>{% endfor %}
+            {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
+            <div class="text-right"><a class="text-sm font-semibold text-pivot-600 hover:underline" href="{% url 'accounts:password-reset' %}">{% translate "Mot de passe oublié ?" %}</a></div>
+            <button class="w-full rounded-lg bg-pivot-600 px-5 py-3.5 text-sm font-black text-white shadow-lg shadow-pivot-600/25 transition hover:bg-pivot-700" type="submit">{% translate "Se connecter" %}</button>
+        </form>
+        <div class="my-6 flex items-center gap-3 text-xs text-slate-400"><span class="h-px flex-1 bg-slate-300"></span>{% translate "ou" %}<span class="h-px flex-1 bg-slate-300"></span></div>
+        <p class="text-center text-sm text-slate-600">{% translate "Créer un compte :" %} <a class="font-bold text-pivot-600 hover:underline" href="{% url 'accounts:engineer-registration' %}">{% translate "Ingénieur" %}</a><span class="mx-2 text-slate-300">|</span><a class="font-bold text-pivot-600 hover:underline" href="{% url 'accounts:client-registration' %}">{% translate "Client" %}</a></p>
+        <p class="mt-3 text-center text-xs text-slate-500"><a class="font-bold text-pivot-600 hover:underline" href="{% url 'subscriptions:pricing' %}">{% translate "Comparer les forfaits et l’essai de 3 mois" %}</a></p>
+    </div>
+</section>
+{% endblock %}

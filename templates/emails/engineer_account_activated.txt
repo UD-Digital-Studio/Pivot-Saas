@@ -1,0 +1,4 @@
+Bonjour {{ user.get_full_name|default:user.username }},
+
+Votre compte ingénieur PIVOT est maintenant actif.
+Connexion : {{ action_url }}

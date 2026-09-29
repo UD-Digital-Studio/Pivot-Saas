@@ -1,0 +1,30 @@
+<dialog id="modal-site-verify-{{ stage.pk }}" data-app-modal class="m-auto w-[min(94vw,42rem)] rounded-2xl bg-white p-0 shadow-2xl backdrop:bg-slate-950/55">
+  <form method="post" action="{% url 'planning:stage-site-verification-create' project.pk stage.pk stage.pending_site_visit.pk %}" data-site-verification-form>
+    {% csrf_token %}
+    <header class="border-b px-5 py-4"><h3 class="font-black">PIVOT Site Verified · {{ stage.title }}</h3><p class="mt-1 text-xs text-slate-500">Conclusion de la visite du {{ stage.pending_site_visit.visited_at|date:"d/m/Y H:i" }}.</p></header>
+    <div class="grid max-h-[65vh] gap-4 overflow-y-auto p-5">
+      {% for field in stage.site_verification_form %}
+        {% if field.name == 'checklist' %}
+          <section class="rounded-xl border border-slate-200 p-4" data-checklist-section>{{ field.as_hidden }}<div class="flex items-center justify-between gap-3"><div><h4 class="text-sm font-black">Points de contrôle</h4><p class="mt-1 text-xs text-slate-500">Indiquez le résultat de chaque élément inspecté.</p></div><button type="button" data-add-check class="rounded-lg border border-pivot-200 px-3 py-2 text-xs font-black text-pivot-700">＋ Ajouter</button></div><div class="mt-3 grid gap-3" data-check-rows></div></section>
+        {% elif field.name == 'reservations' %}
+          <section class="rounded-xl border border-slate-200 p-4" data-reservations-section>{{ field.as_hidden }}<div class="flex items-center justify-between gap-3"><div><h4 class="text-sm font-black">Réserves de l’inspection</h4><p class="mt-1 text-xs text-slate-500">Ajoutez uniquement les corrections ou vigilances constatées.</p></div><button type="button" data-add-reserve class="rounded-lg border border-pivot-200 px-3 py-2 text-xs font-black text-pivot-700">＋ Ajouter</button></div><div class="mt-3 grid gap-3" data-reserve-rows></div></section>
+        {% else %}<label class="grid gap-1.5 text-sm font-bold">{{ field.label }}{{ field }}</label>{% endif %}
+      {% endfor %}
+    </div>
+    <footer class="flex justify-end gap-2 border-t bg-slate-50 p-4"><button type="button" data-modal-close class="rounded-lg border px-4 py-2 text-sm font-bold">Annuler</button><button class="rounded-lg bg-pivot-600 px-4 py-2 text-sm font-black text-white">Enregistrer la conclusion</button></footer>
+  </form>
+</dialog>
+<script>
+(()=>{
+  const form=document.querySelector('#modal-site-verify-{{ stage.pk }} [data-site-verification-form]');if(!form)return;
+  const checks=form.querySelector('input[name="checklist"]'),reserves=form.querySelector('input[name="reservations"]');
+  const checkRows=form.querySelector('[data-check-rows]'),reserveRows=form.querySelector('[data-reserve-rows]');
+  const parse=input=>{try{return JSON.parse(input.value||'[]')}catch(_){return[]}};
+  const esc=value=>String(value).replace(/[&<>'"]/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
+  const addCheck=(item={})=>{const row=document.createElement('div');row.className='grid gap-2 rounded-xl bg-slate-50 p-3 sm:grid-cols-[1fr_9rem_1fr_auto]';row.innerHTML=`<label class="grid gap-1 text-xs font-bold">Point contrôlé<input data-key="item" value="${esc(item.item||'')}" placeholder="Ex. Fondations"></label><label class="grid gap-1 text-xs font-bold">Résultat<select data-key="result"><option value="ok">Conforme</option><option value="warning">À surveiller</option><option value="failed">Non conforme</option></select></label><label class="grid gap-1 text-xs font-bold">Commentaire<input data-key="comment" value="${esc(item.comment||'')}" placeholder="Observation"></label><button type="button" data-remove class="self-end rounded-lg border border-red-200 px-3 py-2 text-xs font-black text-red-700">Retirer</button>`;row.querySelector('select').value=item.result||'ok';row.querySelector('[data-remove]').onclick=()=>row.remove();checkRows.append(row)};
+  const addReserve=(item={})=>{const row=document.createElement('div');row.className='grid gap-2 rounded-xl bg-slate-50 p-3 sm:grid-cols-[1fr_10rem_auto]';row.innerHTML=`<label class="grid gap-1 text-xs font-bold">Réserve<input data-key="description" value="${esc(item.description||'')}" placeholder="Correction à réaliser"></label><label class="grid gap-1 text-xs font-bold">Statut<select data-key="status"><option value="open">À corriger</option><option value="resolved">Résolue</option></select></label><button type="button" data-remove class="self-end rounded-lg border border-red-200 px-3 py-2 text-xs font-black text-red-700">Retirer</button>`;row.querySelector('select').value=item.status||'open';row.querySelector('[data-remove]').onclick=()=>row.remove();reserveRows.append(row)};
+  parse(checks).forEach(addCheck);parse(reserves).forEach(addReserve);if(!checkRows.children.length)addCheck();
+  form.querySelector('[data-add-check]').onclick=()=>addCheck();form.querySelector('[data-add-reserve]').onclick=()=>addReserve();
+  form.addEventListener('submit',()=>{checks.value=JSON.stringify([...checkRows.children].map(row=>({item:row.querySelector('[data-key="item"]').value.trim(),result:row.querySelector('[data-key="result"]').value,comment:row.querySelector('[data-key="comment"]').value.trim()})).filter(item=>item.item));reserves.value=JSON.stringify([...reserveRows.children].map(row=>({description:row.querySelector('[data-key="description"]').value.trim(),status:row.querySelector('[data-key="status"]').value})).filter(item=>item.description))});
+})();
+</script>

@@ -1,0 +1,37 @@
+{% extends "base/app.html" %}
+{% block title %}Calendrier · PIVOT{% endblock %}{% block eyebrow %}Planification{% endblock %}{% block breadcrumbs %}Calendrier{% endblock %}
+{% block content %}
+<header class="flex flex-col gap-3 border-b border-slate-200 pb-6 sm:flex-row sm:items-end sm:justify-between"><div><h1 class="text-2xl font-black">Calendrier des chantiers</h1><p class="mt-1 text-sm text-slate-500">Projets et étapes auxquels vous avez accès.</p></div><span class="rounded-lg bg-white px-3 py-2 text-xs font-bold text-slate-600 ring-1 ring-slate-200">{{ projects|length }} projet{{ projects|length|pluralize }} · {{ stages|length }} étape{{ stages|length|pluralize }}</span></header>
+<section class="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm" data-calendar data-events-url="{% url 'planning:calendar-events' %}"><header class="flex items-center justify-between border-b border-slate-200 px-4 py-4 sm:px-5"><button type="button" data-calendar-prev class="grid size-10 place-items-center rounded-lg border border-slate-300 font-black hover:bg-slate-50" aria-label="Mois précédent">‹</button><h2 data-calendar-title class="text-center text-lg font-black capitalize">Calendrier</h2><button type="button" data-calendar-next class="grid size-10 place-items-center rounded-lg border border-slate-300 font-black hover:bg-slate-50" aria-label="Mois suivant">›</button></header><div class="grid grid-cols-7 border-b border-slate-200 bg-slate-50 text-center text-[10px] font-black uppercase tracking-wider text-slate-500"><span class="py-3">Lun</span><span class="py-3">Mar</span><span class="py-3">Mer</span><span class="py-3">Jeu</span><span class="py-3">Ven</span><span class="py-3">Sam</span><span class="py-3">Dim</span></div><div data-calendar-grid class="grid min-h-[32rem] grid-cols-7 bg-slate-200 gap-px"></div></section>
+<section class="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"><div class="border-b border-slate-200 px-5 py-4"><h2 class="font-black">Liste chronologique accessible</h2><p class="mt-1 text-xs text-slate-500">Tous les projets et leurs étapes restent consultables sans utiliser la grille.</p></div><div class="grid grid-cols-[7rem_minmax(0,1fr)] border-b border-slate-200 bg-slate-50 px-5 py-3 text-xs font-black uppercase tracking-wider text-slate-500"><span>Date</span><span>Événement</span></div><div class="divide-y divide-slate-100">{% for project in projects %}<a href="{{ project.get_absolute_url }}" class="grid grid-cols-[7rem_minmax(0,1fr)] gap-3 bg-pivot-50/40 px-5 py-4 hover:bg-pivot-50"><time class="text-sm font-black text-pivot-700">{{ project.project_date|date:"d/m/Y" }}</time><div><strong class="text-sm">{{ project.name }}</strong><p class="mt-1 text-xs text-slate-500">Projet · {{ project.location }} · {{ project.get_status_display }}</p></div></a>{% endfor %}{% for stage in stages %}<a href="{{ stage.project.get_absolute_url }}?tab=stages" class="grid grid-cols-[7rem_minmax(0,1fr)] gap-3 px-5 py-4 hover:bg-slate-50"><time class="text-sm font-black text-pivot-700">{{ stage.start_date|date:"d/m/Y" }}</time><div class="min-w-0"><div class="flex flex-wrap items-center gap-2"><strong class="truncate text-sm">{{ stage.title }}</strong><span class="rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-bold">{{ stage.get_status_display }}</span></div><p class="mt-1 truncate text-xs text-slate-500">Étape · {{ stage.project.name }} · jusqu’au {{ stage.end_date|date:"d/m/Y" }}</p></div></a>{% empty %}{% if not projects %}<div class="px-6 py-16 text-center"><p class="font-bold">Aucun événement planifié</p></div>{% endif %}{% endfor %}</div></section>
+<script>
+(() => {
+    const calendar = document.querySelector('[data-calendar]');
+    if (!calendar) return;
+    const grid = calendar.querySelector('[data-calendar-grid]');
+    const title = calendar.querySelector('[data-calendar-title]');
+    let cursor = new Date(); cursor.setDate(1);
+    let events = [];
+    const iso = (date) => `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+    const render = () => {
+        title.textContent = cursor.toLocaleDateString('fr-FR', {month: 'long', year: 'numeric'});
+        const first = new Date(cursor); const offset = (first.getDay() + 6) % 7;
+        const start = new Date(first); start.setDate(1 - offset); grid.innerHTML = '';
+        for (let index = 0; index < 42; index += 1) {
+            const day = new Date(start); day.setDate(start.getDate() + index); const key = iso(day);
+            const cell = document.createElement('div');
+            cell.className = `min-h-20 bg-white p-1.5 sm:min-h-28 sm:p-2 ${day.getMonth() !== cursor.getMonth() ? 'text-slate-300' : ''}`;
+            cell.innerHTML = `<span class="text-xs font-bold">${day.getDate()}</span><div class="mt-1 space-y-1"></div>`;
+            events.filter(event => event.start <= key && event.end >= key).slice(0, 3).forEach(event => {
+                const link = document.createElement('a'); link.href = event.url; link.title = `${event.project.name} · ${event.title}`;
+                link.className = 'block truncate rounded bg-pivot-50 px-1.5 py-1 text-[9px] font-bold text-pivot-700 hover:bg-pivot-100 sm:text-[10px]'; link.textContent = event.title;
+                cell.lastElementChild.appendChild(link);
+            }); grid.appendChild(cell);
+        }
+    };
+    calendar.querySelector('[data-calendar-prev]').addEventListener('click', () => { cursor.setMonth(cursor.getMonth() - 1); render(); });
+    calendar.querySelector('[data-calendar-next]').addEventListener('click', () => { cursor.setMonth(cursor.getMonth() + 1); render(); });
+    fetch(calendar.dataset.eventsUrl, {headers: {'Accept': 'application/json'}}).then(response => response.json()).then(data => { events = data.events; render(); }).catch(render);
+})();
+</script>
+{% endblock %}

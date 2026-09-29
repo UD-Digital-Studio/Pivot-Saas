@@ -1,0 +1,17 @@
+{% extends "base/auth.html" %}{% load i18n %}
+{% block title %}Inscription client · PIVOT{% endblock %}
+{% block content %}
+<section class="auth-compact mx-auto grid w-full max-w-4xl overflow-hidden rounded-2xl shadow-auth lg:grid-cols-[.68fr_1.32fr]">
+    {% include "components/auth_brand_panel.html" %}
+    <div class="auth-glass p-5 sm:p-7 lg:p-8">
+        <h1 class="text-2xl font-black tracking-tight">{% translate "Créer un compte client" %}</h1><p class="mt-2 text-sm text-slate-600">{% translate "Rejoignez l’espace de votre entreprise de construction." %}</p>
+        <form method="post" class="mt-7 grid gap-4 sm:grid-cols-2 [&_input]:mt-2 [&_input]:w-full [&_input]:rounded-lg [&_input]:border [&_input]:border-white/70 [&_input]:bg-white/40 [&_input]:px-4 [&_input]:py-3 [&_select]:mt-2 [&_select]:w-full [&_select]:rounded-lg [&_select]:border [&_select]:border-white/70 [&_select]:bg-white/40 [&_select]:px-4 [&_select]:py-3 [&_input]:outline-none [&_select]:outline-none focus:[&_input]:border-pivot-600 focus:[&_select]:border-pivot-600 focus:[&_input]:bg-white/60 focus:[&_select]:bg-white/60 focus:[&_input]:ring-2 focus:[&_select]:ring-2 focus:[&_input]:ring-pivot-600/15 focus:[&_select]:ring-pivot-600/15" novalidate>
+            {% csrf_token %}{% if form.non_field_errors %}<div class="sm:col-span-2 rounded-lg bg-red-50 p-3 text-sm text-red-700">{{ form.non_field_errors }}</div>{% endif %}
+            {% for field in form %}<div class="{% if field.name == 'organization' or field.name == 'email' or field.name == 'username' %}sm:col-span-2{% endif %}"><label class="text-sm font-semibold text-slate-700" for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}{% if field.help_text %}<div class="mt-1 text-xs leading-5 text-slate-400 [&_ul]:space-y-1">{{ field.help_text|safe }}</div>{% endif %}{% if field.errors %}<div class="mt-1 text-sm text-red-600">{{ field.errors }}</div>{% endif %}</div>{% endfor %}
+            <button class="sm:col-span-2 rounded-lg bg-pivot-600 px-5 py-3.5 text-sm font-black text-white hover:bg-pivot-700" type="submit">{% translate "Créer mon compte client" %}</button>
+        </form>
+        <p class="mt-5 text-center text-sm text-slate-600">{% translate "Vous êtes ingénieur ?" %} <a class="font-bold text-pivot-600" href="{% url 'accounts:engineer-registration' %}">{% translate "Créer un compte ingénieur" %}</a></p>
+        <p class="mt-2 text-center text-sm text-slate-600">{% translate "Déjà inscrit ?" %} <a class="font-bold text-pivot-600" href="{% url 'accounts:login' %}">{% translate "Se connecter" %}</a></p>
+    </div>
+</section>
+{% endblock %}

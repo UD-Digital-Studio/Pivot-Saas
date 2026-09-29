@@ -1,0 +1,69 @@
+<dialog id="modal-project-create" data-app-modal class="m-auto w-[min(94vw,48rem)] rounded-2xl bg-white p-0 text-slate-900 shadow-2xl backdrop:bg-slate-950/60 backdrop:backdrop-blur-sm">
+    <form method="post" action="{% url 'projects:create' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <header class="flex items-center justify-between border-b border-slate-200 px-5 py-4 sm:px-6"><div><h2 class="text-lg font-black">Nouveau projet</h2><p class="mt-0.5 text-xs text-slate-500">Créer un chantier dans {{ request.user.organization.name }}</p></div><button type="button" data-modal-close class="grid size-9 place-items-center rounded-lg text-xl text-slate-400 hover:bg-slate-100 hover:text-slate-700" aria-label="Fermer">×</button></header>
+        <div class="grid max-h-[70vh] gap-4 overflow-y-auto p-5 sm:grid-cols-2 sm:p-6 [&_input]:mt-1.5 [&_input]:w-full [&_input]:rounded-lg [&_input]:border [&_input]:border-slate-300 [&_input]:bg-slate-50 [&_input]:px-3 [&_input]:py-2.5 [&_select]:mt-1.5 [&_select]:w-full [&_select]:rounded-lg [&_select]:border [&_select]:border-slate-300 [&_select]:bg-slate-50 [&_select]:px-3 [&_select]:py-2.5 [&_textarea]:mt-1.5 [&_textarea]:w-full [&_textarea]:rounded-lg [&_textarea]:border [&_textarea]:border-slate-300 [&_textarea]:bg-slate-50 [&_textarea]:px-3 [&_textarea]:py-2.5 focus:[&_input]:border-pivot-500 focus:[&_select]:border-pivot-500 focus:[&_textarea]:border-pivot-500">
+            {% for field in project_form %}<div class="{% if field.name == 'name' or field.name == 'description' or field.name == 'cover_image' or field.name == 'members' %}sm:col-span-2{% endif %}"><label class="text-sm font-bold text-slate-700" for="{% if field.name == 'members' %}project-member-search{% else %}{{ field.id_for_label }}{% endif %}">{{ field.label }}</label>{% if field.name == 'members' %}<div data-member-picker data-search-url="{% url 'projects:member-search' %}" class="relative mt-2"><div data-member-selected class="mb-2 flex flex-wrap gap-2"></div><input id="project-member-search" data-member-query type="search" autocomplete="off" placeholder="Rechercher un client ou un chef de chantier…" class="!mt-0"><div data-member-results class="absolute z-20 mt-1 hidden max-h-56 w-full overflow-y-auto rounded-xl border border-slate-200 bg-white p-1 shadow-xl"></div><div data-member-inputs>{{ field }}</div><p data-member-hint class="mt-2 text-xs text-slate-400">Saisissez au moins 2 caractères. Vous pouvez sélectionner plusieurs utilisateurs.</p></div>{% else %}{{ field }}{% endif %}{% if field.help_text %}<p class="mt-1 text-xs text-slate-400">{{ field.help_text }}</p>{% endif %}{% if field.name == 'budget_amount' %}<p class="mt-1 text-xs text-slate-400">Montant en XAF.</p>{% endif %}{% for error in field.errors %}<p class="mt-1 text-xs font-bold text-red-600">{{ error }}</p>{% endfor %}</div>{% endfor %}
+        </div>
+        <footer class="flex justify-end gap-2 border-t border-slate-200 bg-slate-50 px-5 py-4 sm:px-6"><button type="button" data-modal-close class="rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-bold text-slate-600">Annuler</button><button type="submit" class="rounded-lg bg-pivot-600 px-4 py-2.5 text-sm font-black text-white hover:bg-pivot-700">Créer le projet</button></footer>
+    </form>
+</dialog>
+<script>
+(() => {
+    const picker = document.querySelector('[data-member-picker]');
+    if (!picker || picker.dataset.ready) return;
+    picker.dataset.ready = 'true';
+    const query = picker.querySelector('[data-member-query]');
+    const results = picker.querySelector('[data-member-results]');
+    const selectedBox = picker.querySelector('[data-member-selected]');
+    const inputs = picker.querySelector('[data-member-inputs]');
+    const selected = new Map();
+    let timer;
+
+    const renderSelected = () => {
+        selectedBox.innerHTML = '';
+        inputs.innerHTML = '';
+        selected.forEach((user, id) => {
+            const hidden = document.createElement('input');
+            hidden.type = 'hidden'; hidden.name = 'members'; hidden.value = id;
+            inputs.appendChild(hidden);
+            const chip = document.createElement('button');
+            chip.type = 'button';
+            chip.className = 'inline-flex items-center gap-2 rounded-full bg-pivot-50 px-3 py-1.5 text-xs font-bold text-pivot-700 ring-1 ring-pivot-100';
+            const chipLabel = document.createElement('span'); chipLabel.textContent = `${user.label} · ${user.role}`;
+            const chipClose = document.createElement('span'); chipClose.textContent = '×'; chipClose.setAttribute('aria-hidden', 'true');
+            chip.append(chipLabel, chipClose);
+            chip.setAttribute('aria-label', `Retirer ${user.label}`);
+            chip.addEventListener('click', () => { selected.delete(id); renderSelected(); });
+            selectedBox.appendChild(chip);
+        });
+    };
+    const showResults = (users) => {
+        results.innerHTML = '';
+        users.filter(user => !selected.has(user.id)).forEach(user => {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-left hover:bg-slate-50';
+            const identity = document.createElement('span');
+            const name = document.createElement('strong'); name.className = 'block text-sm'; name.textContent = user.label;
+            const username = document.createElement('small'); username.className = 'text-slate-400'; username.textContent = `@${user.username}`;
+            identity.append(name, username);
+            const role = document.createElement('span'); role.className = 'text-xs font-bold text-pivot-600'; role.textContent = user.role;
+            button.append(identity, role);
+            button.addEventListener('click', () => { selected.set(user.id, user); renderSelected(); query.value = ''; results.classList.add('hidden'); query.focus(); });
+            results.appendChild(button);
+        });
+        if (!results.children.length) results.innerHTML = '<p class="px-3 py-4 text-center text-xs text-slate-500">Aucun utilisateur trouvé.</p>';
+        results.classList.remove('hidden');
+    };
+    query.addEventListener('input', () => {
+        clearTimeout(timer); const value = query.value.trim();
+        if (value.length < 2) { results.classList.add('hidden'); return; }
+        timer = setTimeout(async () => {
+            const response = await fetch(`${picker.dataset.searchUrl}?q=${encodeURIComponent(value)}`, {headers: {'Accept': 'application/json'}});
+            if (response.ok) showResults((await response.json()).results);
+        }, 250);
+    });
+    document.addEventListener('click', event => { if (!picker.contains(event.target)) results.classList.add('hidden'); });
+})();
+</script>

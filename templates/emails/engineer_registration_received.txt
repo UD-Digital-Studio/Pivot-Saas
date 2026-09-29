@@ -1,0 +1,4 @@
+Bonjour {{ user.get_full_name|default:user.username }},
+
+Votre demande de compte ingénieur pour {{ user.organization.name }} a bien été enregistrée.
+Un responsable de la plateforme a été averti. Vous recevrez un second e-mail après activation.

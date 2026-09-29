@@ -1,0 +1,26 @@
+{% extends "base/auth.html" %}{% load i18n %}
+{% block title %}{% translate "Accepter l’invitation" %} · PIVOT{% endblock %}
+{% block content %}
+<section class="auth-compact mx-auto grid w-full max-w-4xl overflow-hidden rounded-2xl shadow-auth lg:grid-cols-[.82fr_1.18fr]" aria-labelledby="invitation-title">
+    {% include "components/auth_brand_panel.html" %}
+    <div class="auth-glass flex flex-col justify-center p-6 sm:p-7 lg:p-8">
+        <div class="flex items-start justify-between gap-4">
+            <div><p class="text-xs font-bold uppercase tracking-wider text-pivot-600">{% translate "Invitation sécurisée" %}</p><h1 id="invitation-title" class="mt-1 text-2xl font-black tracking-tight">{% translate "Rejoindre l’équipe" %}</h1></div>
+            <span class="grid size-10 shrink-0 place-items-center rounded-xl bg-pivot-50 text-pivot-700"><svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6m3-3h-6"/></svg></span>
+        </div>
+        <p class="mt-2 text-sm text-slate-600">{{ invitation.organization.name }} vous invite comme <strong>{{ invitation.get_role_display }}</strong>.</p>
+
+        <form method="post" class="mt-7 grid gap-4 sm:grid-cols-2 [&_input]:mt-2 [&_input]:w-full [&_input]:rounded-lg [&_input]:border [&_input]:border-white/70 [&_input]:bg-white/40 [&_input]:px-4 [&_input]:py-3 [&_input]:outline-none focus:[&_input]:border-pivot-600 focus:[&_input]:bg-white/60 focus:[&_input]:ring-2 focus:[&_input]:ring-pivot-600/15" novalidate>
+            {% csrf_token %}
+            <div class="sm:col-span-2 rounded-lg border border-white/60 bg-white/35 px-4 py-3 text-sm text-slate-600"><span class="font-semibold text-slate-700">{% translate "Adresse e-mail" %}</span><span class="mx-2 text-slate-300">·</span>{{ invitation.email }}</div>
+            {% if existing_account %}<div class="sm:col-span-2 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">Votre compte PIVOT existe déjà. Confirmez simplement votre participation à ce chantier.</div>{% endif %}
+            {% if form.non_field_errors %}<div class="sm:col-span-2 rounded-lg bg-red-50 p-3 text-sm font-semibold text-red-700">{{ form.non_field_errors|striptags }}</div>{% endif %}
+            {% for field in form %}
+                <div class="{% if field.name == 'username' %}sm:col-span-2{% endif %}"><label class="text-sm font-semibold text-slate-700" for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}{% if field.errors %}<div class="mt-1 text-sm text-red-600">{{ field.errors|striptags }}</div>{% endif %}</div>
+            {% endfor %}
+            <button class="sm:col-span-2 w-full rounded-lg bg-pivot-600 px-5 py-3.5 text-sm font-black text-white shadow-lg shadow-pivot-600/25 transition hover:bg-pivot-700" type="submit">{% if existing_account %}Accepter l’invitation{% else %}{% translate "Créer mon compte" %}{% endif %}</button>
+        </form>
+        {% if not existing_account %}<p class="mt-5 text-center text-sm text-slate-600">{% translate "Vous avez déjà un compte ?" %} <a class="font-bold text-pivot-600 hover:underline" href="{% url 'accounts:login' %}?next={{ request.path|urlencode }}">{% translate "Se connecter" %}</a></p>{% endif %}
+    </div>
+</section>
+{% endblock %}

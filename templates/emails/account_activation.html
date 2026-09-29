@@ -1,0 +1,7 @@
+{% extends "emails/base.html" %}{% block content %}
+<p style="margin:0 0 10px;color:#00157f;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;">Bienvenue sur PIVOT</p>
+<h1 style="margin:0 0 16px;font-size:29px;line-height:1.25;color:#111a31;">Votre compte est prêt</h1>
+<p style="margin:0 0 25px;color:#55627a;font-size:16px;line-height:1.7;">Bonjour{% if user.first_name %} {{ user.first_name }}{% endif %}, votre espace PIVOT vient d’être créé. Définissez maintenant votre mot de passe pour accéder à la plateforme.</p>
+<table role="presentation" cellspacing="0" cellpadding="0" width="100%"><tr><td align="center" style="padding:4px 0 24px;"><a href="{{ action_url }}" style="display:block;background:#00157f;color:#fff;text-decoration:none;font-size:16px;font-weight:700;padding:16px 24px;border-radius:10px;">Activer mon compte</a></td></tr></table>
+<p style="margin:0;padding:14px 16px;background:#f4f6fc;border-radius:10px;color:#68748c;font-size:13px;line-height:1.6;">Ce lien est confidentiel. Si vous n’attendiez pas la création de ce compte, ignorez cet e-mail.</p>
+{% endblock %}

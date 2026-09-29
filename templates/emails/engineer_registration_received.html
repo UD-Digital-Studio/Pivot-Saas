@@ -1,0 +1,7 @@
+{% extends "emails/base.html" %}{% block content %}
+<p style="margin:0 0 10px;color:#00157f;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;">Demande reçue</p>
+<h1 style="margin:0 0 16px;font-size:29px;line-height:1.25;color:#111a31;">Votre inscription est en cours de validation</h1>
+<p style="margin:0 0 18px;color:#55627a;font-size:16px;line-height:1.7;">Bonjour {{ user.get_full_name|default:user.username }}, votre demande de compte ingénieur pour <strong>{{ user.organization.name }}</strong> a bien été enregistrée.</p>
+<p style="margin:0 0 24px;color:#55627a;font-size:16px;line-height:1.7;">Un responsable de la plateforme a été averti. Vous recevrez un second e-mail dès que votre compte sera activé.</p>
+<p style="margin:0;padding:14px 16px;background:#f4f6fc;border-radius:10px;color:#68748c;font-size:13px;line-height:1.6;">Vous ne pouvez pas encore vous connecter. Aucune nouvelle inscription n’est nécessaire.</p>
+{% endblock %}

@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+pytest-cache-files-*/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Environnements et secrets
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+
+# Django
+db.sqlite3
+db.sqlite3-journal
+pivot.sqlite3
+pivot.sqlite3-journal
+media/
+staticfiles/
+
+# IDE et système
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Répertoires temporaires créés par les tests et exports
+tmp*/

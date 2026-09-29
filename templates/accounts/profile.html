@@ -1,0 +1,50 @@
+{% extends "base/app.html" %}
+{% block title %}Mon profil · PIVOT-SASS{% endblock %}
+{% block eyebrow %}Paramètres du compte{% endblock %}
+{% block breadcrumbs %}<a class="hover:text-pivot-600" href="{% url 'accounts:dashboard' role=request.user.role %}">Tableau de bord</a> <span class="mx-2">/</span> <span>Mon profil</span>{% endblock %}
+
+{% block content %}
+<header class="mb-8">
+    <h1 class="text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">Mon profil</h1>
+    <p class="mt-2 text-slate-500">Gérez vos informations personnelles et votre identité dans PIVOT.</p>
+</header>
+
+<form method="post" enctype="multipart/form-data" class="grid gap-6 xl:grid-cols-[20rem_1fr]" novalidate>
+    {% csrf_token %}
+    <aside class="space-y-6">
+        <section class="rounded-3xl border border-slate-200 bg-white p-6 text-center shadow-sm">
+            {% if request.user.profile.avatar %}
+                <img class="mx-auto size-28 rounded-3xl object-cover shadow-lg ring-4 ring-slate-100" src="{{ request.user.profile.avatar.url }}" alt="Photo de {{ request.user.username }}">
+            {% else %}
+                <div class="mx-auto grid size-28 place-items-center rounded-3xl bg-gradient-to-br from-pivot-600 to-cyan-400 text-4xl font-black text-white shadow-lg ring-4 ring-pivot-50">{{ request.user.username|first|upper }}</div>
+            {% endif %}
+            <h2 class="mt-5 text-xl font-black">{{ request.user.get_full_name|default:request.user.username }}</h2>
+            <p class="mt-1 text-sm text-slate-500">{{ request.user.get_role_display }}</p>
+            <span class="mt-4 inline-flex rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-700 ring-1 ring-emerald-200">Compte actif</span>
+        </section>
+        <section class="rounded-3xl bg-slate-950 p-6 text-white shadow-soft">
+            <p class="text-xs font-bold uppercase tracking-widest text-slate-400">Organisation</p>
+            <p class="mt-2 text-lg font-black">{{ request.user.organization.name|default:"Administration PIVOT" }}</p>
+            <p class="mt-3 text-sm leading-6 text-slate-400">Vos données sont rattachées à cet espace sécurisé.</p>
+        </section>
+    </aside>
+
+    <div class="space-y-6">
+        <section class="rounded-3xl border border-slate-200 bg-white shadow-sm">
+            <div class="border-b border-slate-100 px-6 py-5 sm:px-8"><h2 class="text-lg font-black">Informations du compte</h2><p class="mt-1 text-sm text-slate-500">Informations utilisées pour vous identifier.</p></div>
+            <div class="grid gap-5 p-6 sm:grid-cols-2 sm:p-8 [&_input]:mt-2 [&_input]:w-full [&_input]:rounded-xl [&_input]:border [&_input]:border-slate-300 [&_input]:bg-slate-50 [&_input]:px-4 [&_input]:py-3 [&_input]:outline-none focus:[&_input]:border-pivot-500 focus:[&_input]:bg-white focus:[&_input]:ring-4 focus:[&_input]:ring-pivot-500/10">
+                {% for field in account_form %}<div class="{% if field.name == 'email' or field.name == 'username' %}sm:col-span-2{% endif %}"><label class="text-sm font-bold text-slate-700" for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}{% if field.errors %}<div class="mt-2 text-sm font-medium text-red-600">{{ field.errors }}</div>{% endif %}</div>{% endfor %}
+            </div>
+        </section>
+
+        <section class="rounded-3xl border border-slate-200 bg-white shadow-sm">
+            <div class="border-b border-slate-100 px-6 py-5 sm:px-8"><h2 class="text-lg font-black">Détails personnels</h2><p class="mt-1 text-sm text-slate-500">Complétez votre profil professionnel.</p></div>
+            <div class="grid gap-5 p-6 sm:grid-cols-2 sm:p-8 [&_input]:mt-2 [&_input]:w-full [&_input]:rounded-xl [&_input]:border [&_input]:border-slate-300 [&_input]:bg-slate-50 [&_input]:px-4 [&_input]:py-3 [&_textarea]:mt-2 [&_textarea]:w-full [&_textarea]:rounded-xl [&_textarea]:border [&_textarea]:border-slate-300 [&_textarea]:bg-slate-50 [&_textarea]:px-4 [&_textarea]:py-3 focus:[&_input]:border-pivot-500 focus:[&_input]:ring-4 focus:[&_input]:ring-pivot-500/10 focus:[&_textarea]:border-pivot-500 focus:[&_textarea]:ring-4 focus:[&_textarea]:ring-pivot-500/10">
+                {% for field in profile_form %}<div class="{% if field.name == 'bio' or field.name == 'avatar' %}sm:col-span-2{% endif %}"><label class="text-sm font-bold text-slate-700" for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}{% if field.name == 'avatar' %}<p class="mt-2 text-xs text-slate-400">PNG, JPG ou WebP — 3 Mo maximum.</p>{% endif %}{% if field.errors %}<div class="mt-2 text-sm font-medium text-red-600">{{ field.errors }}</div>{% endif %}</div>{% endfor %}
+            </div>
+        </section>
+
+        <div class="flex justify-end"><button class="rounded-xl bg-pivot-600 px-6 py-3.5 text-sm font-black text-white shadow-lg shadow-pivot-600/20 transition hover:-translate-y-0.5 hover:bg-pivot-700" type="submit">Enregistrer les modifications</button></div>
+    </div>
+</form>
+{% endblock %}

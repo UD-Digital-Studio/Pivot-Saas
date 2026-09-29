@@ -1,0 +1,15 @@
+<dialog id="modal-invitation" data-app-modal class="m-auto w-[min(94vw,32rem)] rounded-2xl bg-white p-0 text-slate-900 shadow-2xl backdrop:bg-slate-950/60 backdrop:backdrop-blur-sm">
+    <form method="post" action="{% url 'accounts:invite-member' %}">
+        {% csrf_token %}
+        <header class="flex items-center justify-between border-b border-slate-200 px-5 py-4 sm:px-6">
+            <div class="flex items-center gap-3"><span class="grid size-10 place-items-center rounded-xl bg-pivot-50 text-pivot-700"><svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6m3-3h-6"/></svg></span><div><h2 class="text-lg font-black">Inviter un membre</h2><p class="mt-0.5 text-xs text-slate-500">Ajoutez un collaborateur à votre organisation</p></div></div>
+            <button type="button" data-modal-close class="grid size-9 place-items-center rounded-lg text-xl text-slate-400 hover:bg-slate-100" aria-label="Fermer">×</button>
+        </header>
+        <div class="space-y-4 p-5 sm:p-6 [&_input]:mt-1.5 [&_input]:w-full [&_input]:rounded-lg [&_input]:border [&_input]:border-slate-300 [&_input]:bg-slate-50 [&_input]:px-3.5 [&_input]:py-2.5 [&_input]:text-sm [&_input]:outline-none [&_select]:mt-1.5 [&_select]:w-full [&_select]:rounded-lg [&_select]:border [&_select]:border-slate-300 [&_select]:bg-slate-50 [&_select]:px-3.5 [&_select]:py-2.5 [&_select]:text-sm focus:[&_input]:border-pivot-600 focus:[&_input]:ring-4 focus:[&_input]:ring-pivot-600/10 focus:[&_select]:border-pivot-600 focus:[&_select]:ring-4 focus:[&_select]:ring-pivot-600/10">
+            {% if invitation_form.non_field_errors %}<div class="rounded-lg border border-red-200 bg-red-50 p-3 text-sm font-semibold text-red-700">{{ invitation_form.non_field_errors|striptags }}</div>{% endif %}
+            {% for field in invitation_form %}<div><label class="text-sm font-bold text-slate-700" for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}{% if field.errors %}<p class="mt-1.5 text-xs font-semibold text-red-600">{{ field.errors|striptags }}</p>{% endif %}</div>{% endfor %}
+            <div class="flex gap-3 rounded-xl border border-pivot-100 bg-pivot-50 p-3.5 text-xs leading-5 text-pivot-700"><svg class="mt-0.5 size-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><p>Un e-mail contenant un lien sécurisé valable pendant 7 jours sera envoyé à cette adresse.</p></div>
+        </div>
+        <footer class="flex justify-end gap-2 border-t border-slate-200 bg-slate-50 px-5 py-4 sm:px-6"><button type="button" data-modal-close class="rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-bold text-slate-600 hover:bg-slate-100">Annuler</button><button type="submit" class="rounded-lg bg-pivot-600 px-4 py-2.5 text-sm font-black text-white shadow-md shadow-pivot-600/20 hover:bg-pivot-700">Envoyer l’invitation</button></footer>
+    </form>
+</dialog>

@@ -1,0 +1,170 @@
+project: PIVOT-SASS
+generated: 2026-08-14
+database_initial: sqlite3
+overall_status: ready
+readiness_gate: PASS
+current_epic: E9
+current_story: E9-S1
+
+status_definitions:
+  backlog: story not started
+  ready-for-dev: story clarified and unblocked
+  in-progress: implementation active
+  review: implementation complete and under review
+  done: acceptance criteria verified
+
+epics:
+  E1:
+    title: Socle Django exploitable
+    status: done
+    stories:
+      E1-S1: done
+      E1-S2: done
+      E1-S3: done
+      E1-S4: done
+      E1-S5: done
+  E2:
+    title: Organisations comptes et accès
+    status: done
+    stories:
+      E2-S1: done
+      E2-S2: done
+      E2-S3: done
+      E2-S4: done
+      E2-S5: done
+      E2-S6: done
+  E3:
+    title: Projets et affectations
+    status: done
+    stories:
+      E3-S1: done
+      E3-S2: done
+      E3-S3: done
+      E3-S4: done
+      E3-S5: done
+  E4:
+    title: Étapes et calendrier
+    status: done
+    stories:
+      E4-S1: done
+      E4-S2: done
+      E4-S3: done
+      E4-S4: done
+  E5:
+    title: Stock traçable
+    status: done
+    stories:
+      E5-S1: done
+      E5-S2: done
+      E5-S3: done
+      E5-S4: done
+      E5-S5: done
+  E6:
+    title: Collaboration de chantier
+    status: done
+    stories:
+      E6-S1: done
+      E6-S2: done
+      E6-S3: done
+      E6-S4: done
+      E6-S5: done
+  E7:
+    title: Finances et paiements
+    status: done
+    stories:
+      E7-S1: done
+      E7-S2: done
+      E7-S3: done
+      E7-S4: done
+      E7-S5: done
+      E7-S6: done
+  E8:
+    title: Rapports et exports
+    status: done
+    stories:
+      E8-S1: done
+      E8-S2: done
+      E8-S3: done
+      E8-S4: done
+  E9:
+    title: Administration audit et préparation production
+    status: done
+    stories:
+      E9-S1: ready-for-dev
+      E9-S2: backlog
+      E9-S3: backlog
+      E9-S4: backlog
+      E9-S5: backlog
+  E10:
+    title: Finition fonctionnelle et expérience utilisateur
+    status: done
+    stories:
+      E10-S1: in-progress
+      E10-S2: in-progress
+      E10-S3: done
+      E10-S4: done
+      E10-S5: done
+      E10-S6: done
+      E10-S7: done
+  E11:
+    title: Super-administration de la plateforme
+    status: done
+    stories:
+      E11-S1: done
+      E11-S2: done
+      E11-S3: done
+      E11-S4: done
+      E11-S5: done
+      E11-S6: done
+      E11-S7: done
+  E12:
+    title: Administration opérationnelle et actions contrôlées
+    status: done
+    stories:
+      E12-S1: done
+      E12-S2: done
+      E12-S3: done
+      E12-S4: done
+      E12-S5: done
+      E12-S6: done
+      E12-S7: done
+  E13:
+    title: Assistant IA contextuel sécurisé et piloté par les rôles
+    status: done
+    stories:
+      E13-S1: done
+      E13-S2: done
+      E13-S3: done
+      E13-S4: done
+      E13-S5: done
+      E13-S6: done
+      E13-S7: done
+      E13-S8: done
+  E14:
+    title: Routage sémantique fiable et réponses métier garanties
+    status: done
+    stories:
+      E14-S1: done
+      E14-S2: done
+      E14-S3: done
+      E14-S4: done
+      E14-S5: done
+  E15:
+    title: Abonnements pricing et contrôle d'accès SaaS
+    status: in-progress
+    stories:
+      E15-S1: done
+      E15-S2: done
+      E15-S3: done
+      E15-S4: done
+      E15-S5: done
+      E15-S6: done
+      E15-S7: done
+      E15-S8: done
+      E15-S9: done
+
+open_blockers: []
+known_concerns:
+  - Le workflow final de recours des retraits reste configurable après E7-S5.
+  - Les règles de remboursement MeSomb restent hors du périmètre de collecte E7-S4.
+  - SQLite3 must be replaced or validated against PostgreSQL before SaaS production.

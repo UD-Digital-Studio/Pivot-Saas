@@ -1,0 +1,4 @@
+Nouvelle demande ingénieur
+
+{{ engineer.get_full_name|default:engineer.username }} demande l’activation d’un compte pour {{ organization.name }}.
+Examiner la demande : {{ action_url }}

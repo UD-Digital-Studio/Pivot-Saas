@@ -1,0 +1,5 @@
+Vous êtes invité(e) à rejoindre {{ organization_name }} comme {{ role_name }}.
+
+Acceptez l'invitation : {{ action_url }}
+
+Ce lien expire dans {{ expiration_days }} jours. Si vous n'attendiez pas cette invitation, ignorez cet e-mail.

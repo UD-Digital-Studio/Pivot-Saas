@@ -1,0 +1,6 @@
+Bonjour{% if user.first_name %} {{ user.first_name }}{% endif %},
+
+Votre espace PIVOT a été créé. Définissez votre mot de passe avec ce lien :
+{{ action_url }}
+
+Si vous n'attendiez pas ce message, ignorez-le.
