@@ -34,3 +34,15 @@ class ClientRegistrationTests(TestCase):
         )
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, reverse("accounts:post-login"))
+
+    def test_independent_client_sidebar_does_not_show_administration(self):
+        self.client.post(reverse("accounts:client-registration"), self.data)
+        user = get_user_model().objects.get(username="nouveau-client")
+        self.client.force_login(user)
+
+        response = self.client.get(
+            reverse("accounts:dashboard", kwargs={"role": user.Role.CLIENT})
+        )
+
+        self.assertContains(response, "Compte client indépendant")
+        self.assertNotContains(response, ">Administration<")
