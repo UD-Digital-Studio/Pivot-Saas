@@ -18,7 +18,7 @@ def stage_image_path(instance, filename):
 
 def validate_stage_image_size(file):
     if file.size > 5 * 1024 * 1024:
-        raise ValidationError("L'image ne doit pas dépasser 5 Mo.")
+        raise ValidationError(_("L'image ne doit pas dépasser 5 Mo."))
 
 
 def verification_report_reference():
@@ -93,7 +93,7 @@ class ProjectStage(models.Model):
         if self.end_date and self.start_date and self.end_date < self.start_date:
             raise ValidationError({"end_date": "La date de fin doit être postérieure au début."})
         if self.project_id and self.organization_id != self.project.organization_id:
-            raise ValidationError("L'étape doit appartenir à l'organisation du projet.")
+            raise ValidationError(_("L'étape doit appartenir à l'organisation du projet."))
         if self.created_by_id and not self.created_by.is_superuser:
             from apps.projects.models import ProjectMembership
 
@@ -105,7 +105,7 @@ class ProjectStage(models.Model):
                     ProjectMembership.Role.SITE_MANAGER,
                 ),
             ).exists():
-                raise ValidationError("Le créateur doit pouvoir gérer les étapes de ce projet.")
+                raise ValidationError(_("Le créateur doit pouvoir gérer les étapes de ce projet."))
 
     def __str__(self):
         return f"{self.project} · {self.title}"
@@ -158,13 +158,13 @@ class StageProgressRecord(models.Model):
     def clean(self):
         super().clean()
         if self.stage_id and self.organization_id != self.stage.organization_id:
-            raise ValidationError("La progression doit appartenir à l'organisation de l'étape.")
+            raise ValidationError(_("La progression doit appartenir à l'organisation de l'étape."))
         if self.evidence_id and (
             self.evidence.organization_id != self.organization_id
             or self.evidence.project_id != self.stage.project_id
             or (self.evidence.stage_id and self.evidence.stage_id != self.stage_id)
         ):
-            raise ValidationError("La preuve doit appartenir au même projet et à la même étape.")
+            raise ValidationError(_("La preuve doit appartenir au même projet et à la même étape."))
 
     def save(self, *args, **kwargs):
         self.full_clean()
@@ -205,9 +205,9 @@ class StageProgressVerification(StageProgressRecord):
         if any(not required_reservation_keys.issubset(item) for item in self.reservations):
             raise ValidationError({"reservations": "Chaque réserve exige une description et un statut."})
         if self.declaration_id and self.declaration.stage_id != self.stage_id:
-            raise ValidationError("La déclaration technique doit appartenir à la même étape.")
+            raise ValidationError(_("La déclaration technique doit appartenir à la même étape."))
         if self.digital_verification_id and self.digital_verification.declaration_id != self.declaration_id:
-            raise ValidationError("Digital Verified ne correspond pas à cette déclaration.")
+            raise ValidationError(_("Digital Verified ne correspond pas à cette déclaration."))
 
 
 class StageTechnicalReview(models.Model):
@@ -235,7 +235,7 @@ class StageTechnicalReview(models.Model):
     def clean(self):
         super().clean()
         if self.declaration_id and self.organization_id != self.declaration.organization_id:
-            raise ValidationError("L'avis doit appartenir à l'organisation de la déclaration.")
+            raise ValidationError(_("L'avis doit appartenir à l'organisation de la déclaration."))
         if not self.reason.strip():
             raise ValidationError({"reason": "Le motif de la décision est obligatoire."})
         if self.decision in {self.Decision.CONDITIONAL, self.Decision.REJECTED} and not self.corrective_actions.strip():
@@ -270,7 +270,7 @@ class StageDigitalVerification(models.Model):
     def clean(self):
         super().clean()
         if self.declaration_id and self.organization_id != self.declaration.organization_id:
-            raise ValidationError("La vérification doit appartenir à l'organisation de la déclaration.")
+            raise ValidationError(_("La vérification doit appartenir à l'organisation de la déclaration."))
 
     def save(self, *args, **kwargs):
         self.full_clean()
@@ -295,11 +295,11 @@ class StageSiteVisit(models.Model):
     def clean(self):
         super().clean()
         if self.stage_id and self.organization_id != self.stage.organization_id:
-            raise ValidationError("La visite doit appartenir à l'organisation de l'étape.")
+            raise ValidationError(_("La visite doit appartenir à l'organisation de l'étape."))
         if (self.latitude is None) != (self.longitude is None):
-            raise ValidationError("Latitude et longitude doivent être fournies ensemble.")
+            raise ValidationError(_("Latitude et longitude doivent être fournies ensemble."))
         if not self.location_label.strip() and self.latitude is None:
-            raise ValidationError("Une localisation textuelle ou GPS est obligatoire.")
+            raise ValidationError(_("Une localisation textuelle ou GPS est obligatoire."))
         if self.visited_at and self.visited_at > timezone.now():
             raise ValidationError({"visited_at": "Une visite réalisée ne peut pas être datée dans le futur."})
 
@@ -333,9 +333,9 @@ class StageSiteVerification(models.Model):
     def clean(self):
         super().clean()
         if self.visit_id and self.organization_id != self.visit.organization_id:
-            raise ValidationError("L'inspection doit appartenir à l'organisation de la visite.")
+            raise ValidationError(_("L'inspection doit appartenir à l'organisation de la visite."))
         if self.technical_verification_id and self.visit_id and self.technical_verification.stage_id != self.visit.stage_id:
-            raise ValidationError("La vérification technique doit appartenir à l'étape visitée.")
+            raise ValidationError(_("La vérification technique doit appartenir à l'étape visitée."))
         if not isinstance(self.checklist, list) or not self.checklist or any(
             not isinstance(item, dict) or not {"item", "result"}.issubset(item) for item in self.checklist
         ):
@@ -374,7 +374,7 @@ class StageVerificationReport(models.Model):
             self.technical_verification_id
             and self.organization_id != self.technical_verification.organization_id
         ):
-            raise ValidationError("Le rapport doit appartenir à l'organisation de la vérification.")
+            raise ValidationError(_("Le rapport doit appartenir à l'organisation de la vérification."))
 
     def save(self, *args, **kwargs):
         self.full_clean()

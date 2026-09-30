@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 from django import forms
 from django.contrib.auth import get_user_model
 from apps.collaboration.models import EvidenceRecord
@@ -12,19 +13,19 @@ from apps.projects.models import ProjectDispute, ProjectDisputeObservation
 
 class PivotOnboardingForm(forms.ModelForm):
     organization = forms.ModelChoiceField(
-        label="Organisation", queryset=Organization.objects.order_by("name")
+        label=_("Organisation"), queryset=Organization.objects.order_by("name")
     )
     financial_conditions = forms.CharField(
-        label="Conditions financières proposées", max_length=3000,
+        label=_("Conditions financières proposées"), max_length=3000,
         widget=forms.Textarea(attrs={"rows": 3}),
     )
-    owner_email = forms.EmailField(label="E-mail du propriétaire", required=False)
-    stage_title = forms.CharField(label="Premier jalon", max_length=200)
-    stage_start_date = forms.DateField(label="Début du jalon", widget=forms.DateInput(attrs={"type": "date"}))
-    stage_end_date = forms.DateField(label="Fin du jalon", widget=forms.DateInput(attrs={"type": "date"}))
-    stage_estimated_cost = forms.DecimalField(label="Budget du jalon", min_value=0, decimal_places=0)
-    document_title = forms.CharField(label="Titre du document", max_length=200, required=False)
-    document_file = forms.FileField(label="Document initial", required=False)
+    owner_email = forms.EmailField(label=_("E-mail du propriétaire"), required=False)
+    stage_title = forms.CharField(label=_("Premier jalon"), max_length=200)
+    stage_start_date = forms.DateField(label=_("Début du jalon"), widget=forms.DateInput(attrs={"type": "date"}))
+    stage_end_date = forms.DateField(label=_("Fin du jalon"), widget=forms.DateInput(attrs={"type": "date"}))
+    stage_estimated_cost = forms.DecimalField(label=_("Budget du jalon"), min_value=0, decimal_places=0)
+    document_title = forms.CharField(label=_("Titre du document"), max_length=200, required=False)
+    document_file = forms.FileField(label=_("Document initial"), required=False)
 
     class Meta:
         model = Project
@@ -39,14 +40,14 @@ class PivotOnboardingForm(forms.ModelForm):
         if data.get("stage_start_date") and data.get("stage_end_date") and data["stage_end_date"] < data["stage_start_date"]:
             self.add_error("stage_end_date", "La fin du jalon doit suivre son début.")
         if bool(data.get("document_title")) != bool(data.get("document_file")):
-            raise forms.ValidationError("Le titre et le fichier du document doivent être renseignés ensemble.")
+            raise forms.ValidationError(_("Le titre et le fichier du document doivent être renseignés ensemble."))
         return data
 
 
 class PivotProjectInvitationForm(forms.Form):
-    email = forms.EmailField(label="Adresse e-mail")
+    email = forms.EmailField(label=_("Adresse e-mail"))
     role = forms.ChoiceField(
-        label="Rôle",
+        label=_("Rôle"),
         choices=(
             ("client", "Client propriétaire"),
             ("contractor", "Entrepreneur"),
@@ -58,7 +59,7 @@ class PivotProjectInvitationForm(forms.Form):
 
 class PivotReviewerAssignmentForm(forms.Form):
     reviewer = forms.ModelChoiceField(
-        label="Vérificateur PIVOT",
+        label=_("Vérificateur PIVOT"),
         queryset=get_user_model().objects.none(),
         widget=forms.Select(attrs={"class": "h-11 w-full rounded-xl border border-slate-300 bg-white px-3 text-sm"}),
     )
@@ -103,7 +104,7 @@ class ProjectConciergeFollowUpForm(forms.ModelForm):
 
 
 class ProjectDisputeForm(forms.Form):
-    target = forms.ChoiceField(label="Objet contesté")
+    target = forms.ChoiceField(label=_("Objet contesté"))
     subject = forms.CharField(max_length=200)
     reason = forms.CharField(max_length=3000, widget=forms.Textarea(attrs={"rows": 3}))
     freezes_decision = forms.BooleanField(required=False)
@@ -194,39 +195,39 @@ class PilotReviewDecisionForm(forms.ModelForm):
 
 
 class OrganizationCreateForm(forms.Form):
-    name = forms.CharField(label="Nom de l’organisation", max_length=160)
-    slug = forms.SlugField(label="Identifiant technique", max_length=180)
-    first_username = forms.CharField(label="Username du responsable", max_length=150)
-    first_email = forms.EmailField(label="E-mail du responsable")
-    first_name = forms.CharField(label="Prénom", max_length=150, required=False)
-    last_name = forms.CharField(label="Nom", max_length=150, required=False)
+    name = forms.CharField(label=_("Nom de l’organisation"), max_length=160)
+    slug = forms.SlugField(label=_("Identifiant technique"), max_length=180)
+    first_username = forms.CharField(label=_("Username du responsable"), max_length=150)
+    first_email = forms.EmailField(label=_("E-mail du responsable"))
+    first_name = forms.CharField(label=_("Prénom"), max_length=150, required=False)
+    last_name = forms.CharField(label=_("Nom"), max_length=150, required=False)
     first_role = forms.ChoiceField(
-        label="Rôle initial",
+        label=_("Rôle initial"),
         choices=(("admin", "Administrateur"), ("engineer", "Ingénieur")),
     )
 
     def clean_name(self):
         value = self.cleaned_data["name"].strip()
         if Organization.objects.filter(name__iexact=value).exists():
-            raise forms.ValidationError("Une organisation utilise déjà ce nom.")
+            raise forms.ValidationError(_("Une organisation utilise déjà ce nom."))
         return value
 
     def clean_slug(self):
         value = self.cleaned_data["slug"].strip().lower()
         if Organization.objects.filter(slug__iexact=value).exists():
-            raise forms.ValidationError("Cet identifiant est déjà utilisé.")
+            raise forms.ValidationError(_("Cet identifiant est déjà utilisé."))
         return value
 
     def clean_first_username(self):
         value = self.cleaned_data["first_username"].strip()
         if get_user_model().objects.filter(username__iexact=value).exists():
-            raise forms.ValidationError("Ce username est déjà utilisé.")
+            raise forms.ValidationError(_("Ce username est déjà utilisé."))
         return value
 
     def clean_first_email(self):
         value = self.cleaned_data["first_email"].strip().lower()
         if get_user_model().objects.filter(email__iexact=value).exists():
-            raise forms.ValidationError("Cette adresse e-mail est déjà utilisée.")
+            raise forms.ValidationError(_("Cette adresse e-mail est déjà utilisée."))
         return value
 
 
@@ -238,13 +239,13 @@ class OrganizationUpdateForm(forms.ModelForm):
     def clean_name(self):
         value = self.cleaned_data["name"].strip()
         if Organization.objects.filter(name__iexact=value).exclude(pk=self.instance.pk).exists():
-            raise forms.ValidationError("Une organisation utilise déjà ce nom.")
+            raise forms.ValidationError(_("Une organisation utilise déjà ce nom."))
         return value
 
     def clean_slug(self):
         value = self.cleaned_data["slug"].strip().lower()
         if Organization.objects.filter(slug__iexact=value).exclude(pk=self.instance.pk).exists():
-            raise forms.ValidationError("Cet identifiant est déjà utilisé.")
+            raise forms.ValidationError(_("Cet identifiant est déjà utilisé."))
         return value
 
 
@@ -265,13 +266,13 @@ class PlatformUserCreateForm(forms.Form):
     def clean_username(self):
         value = self.cleaned_data["username"].strip()
         if get_user_model().objects.filter(username__iexact=value).exists():
-            raise forms.ValidationError("Ce username est déjà utilisé.")
+            raise forms.ValidationError(_("Ce username est déjà utilisé."))
         return value
 
     def clean_email(self):
         value = self.cleaned_data["email"].strip().lower()
         if get_user_model().objects.filter(email__iexact=value).exists():
-            raise forms.ValidationError("Cette adresse e-mail est déjà utilisée.")
+            raise forms.ValidationError(_("Cette adresse e-mail est déjà utilisée."))
         return value
 
 
@@ -283,28 +284,28 @@ class PlatformUserUpdateForm(forms.ModelForm):
     def clean_username(self):
         value = self.cleaned_data["username"].strip()
         if get_user_model().objects.filter(username__iexact=value).exclude(pk=self.instance.pk).exists():
-            raise forms.ValidationError("Ce username est déjà utilisé.")
+            raise forms.ValidationError(_("Ce username est déjà utilisé."))
         return value
 
     def clean_email(self):
         value = self.cleaned_data["email"].strip().lower()
         if get_user_model().objects.filter(email__iexact=value).exclude(pk=self.instance.pk).exists():
-            raise forms.ValidationError("Cette adresse e-mail est déjà utilisée.")
+            raise forms.ValidationError(_("Cette adresse e-mail est déjà utilisée."))
         return value
 
     def clean_role(self):
         role = self.cleaned_data["role"]
         user = self.instance
         if user.is_superuser and role != user.role:
-            raise forms.ValidationError("Le rôle d’un super-administrateur ne se modifie pas ici.")
+            raise forms.ValidationError(_("Le rôle d’un super-administrateur ne se modifie pas ici."))
         if user.managed_projects.exists() and role != get_user_model().Role.ENGINEER:
             raise forms.ValidationError(
-                "Cet utilisateur gère des projets et doit rester ingénieur avant leur réaffectation."
+                _("Cet utilisateur gère des projets et doit rester ingénieur avant leur réaffectation.")
             )
         membership_roles = set(user.project_memberships.values_list("project_role", flat=True))
         if membership_roles and membership_roles != {role}:
             raise forms.ValidationError(
-                "Le rôle est incompatible avec les affectations projet existantes."
+                _("Le rôle est incompatible avec les affectations projet existantes.")
             )
         return role
 
@@ -339,7 +340,7 @@ class PlatformUserTransferForm(forms.Form):
     def clean(self):
         data = super().clean()
         if self.user.is_superuser or self.user.organization_id is None:
-            raise forms.ValidationError("Un super-administrateur ne peut pas être transféré.")
+            raise forms.ValidationError(_("Un super-administrateur ne peut pas être transféré."))
         engineering_memberships = self.user.project_memberships.filter(
             project_role=ProjectMembership.Role.ENGINEER
         )
@@ -361,17 +362,17 @@ class PlatformUserTransferForm(forms.Form):
 
 class ProjectInterventionForm(forms.ModelForm):
     members = forms.ModelMultipleChoiceField(
-        label="Clients et responsables de chantier",
+        label=_("Clients et responsables de chantier"),
         queryset=get_user_model().objects.none(),
         required=False,
     )
     engineers = forms.ModelMultipleChoiceField(
-        label="Ingénieurs affectés",
+        label=_("Ingénieurs affectés"),
         queryset=get_user_model().objects.none(),
         required=False,
     )
     reason = forms.CharField(
-        label="Motif obligatoire", max_length=500, widget=forms.Textarea
+        label=_("Motif obligatoire"), max_length=500, widget=forms.Textarea
     )
 
     class Meta:
@@ -396,7 +397,7 @@ class ProjectInterventionForm(forms.ModelForm):
         self.fields["engineer"].queryset = users.filter(
             role=get_user_model().Role.ENGINEER
         ).order_by("username")
-        self.fields["engineer"].label = "Ingénieur principal (ancienne donnée)"
+        self.fields["engineer"].label = _("Ingénieur principal (ancienne donnée)")
         self.fields["engineers"].queryset = get_user_model().objects.filter(
             role=get_user_model().Role.ENGINEER,
             is_active=True,
@@ -413,7 +414,7 @@ class ProjectInterventionForm(forms.ModelForm):
     def clean_reason(self):
         value = self.cleaned_data["reason"].strip()
         if not value:
-            raise forms.ValidationError("Le motif de l’intervention est obligatoire.")
+            raise forms.ValidationError(_("Le motif de l’intervention est obligatoire."))
         return value
 
     def clean_project_date(self):
@@ -421,7 +422,7 @@ class ProjectInterventionForm(forms.ModelForm):
         first_stage = self.instance.stages.order_by("start_date").first()
         if first_stage and value > first_stage.start_date:
             raise forms.ValidationError(
-                "La date du projet ne peut pas être postérieure au début de la première étape."
+                _("La date du projet ne peut pas être postérieure au début de la première étape.")
             )
         return value
 
@@ -442,7 +443,7 @@ class PlatformConfigurationForm(forms.ModelForm):
     def clean_platform_name(self):
         value = self.cleaned_data["platform_name"].strip()
         if not value:
-            raise forms.ValidationError("Le nom de la plateforme est obligatoire.")
+            raise forms.ValidationError(_("Le nom de la plateforme est obligatoire."))
         return value
 
     def clean_platform_notice(self):

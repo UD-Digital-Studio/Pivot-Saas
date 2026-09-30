@@ -1,7 +1,8 @@
-{% extends "emails/base.html" %}{% block content %}
-<p style="margin:0 0 10px;color:#00157f;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;">Invitation</p>
-<h1 style="margin:0 0 16px;font-size:29px;line-height:1.25;color:#111a31;">Rejoignez {{ organization_name }}</h1>
-<p style="margin:0 0 25px;color:#55627a;font-size:16px;line-height:1.7;">Vous avez été invité(e) à rejoindre l’espace de travail <strong style="color:#111a31;">{{ organization_name }}</strong> en tant que <strong style="color:#111a31;">{{ role_name }}</strong>.</p>
-<table role="presentation" cellspacing="0" cellpadding="0" width="100%"><tr><td align="center" style="padding:4px 0 24px;"><a href="{{ action_url }}" style="display:block;background:#00157f;color:#fff;text-decoration:none;font-size:16px;font-weight:700;padding:16px 24px;border-radius:10px;">Accepter l’invitation</a></td></tr></table>
-<p style="margin:0;padding:14px 16px;background:#f4f6fc;border-radius:10px;color:#68748c;font-size:13px;line-height:1.6;">Ce lien personnel expire dans {{ expiration_days }} jours. Si vous n’attendiez pas cette invitation, vous pouvez ignorer cet e-mail.</p>
+{% extends "emails/base.html" %}{% load i18n %}
+{% block content %}
+<p style="margin:0 0 10px;color:#00157f;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;">{% translate "Invitation" %}</p>
+<h1 style="margin:0 0 16px;font-size:29px;line-height:1.25;color:#111a31;">{% translate "Rejoignez" %} {{ organization_name }}</h1>
+<p style="margin:0 0 25px;color:#55627a;font-size:16px;line-height:1.7;">{% translate "Vous avez été invité(e) à rejoindre l’espace de travail" %} <strong style="color:#111a31;">{{ organization_name }}</strong> {% translate "en tant que" %} <strong style="color:#111a31;">{{ role_name }}</strong>.</p>
+<table role="presentation" cellspacing="0" cellpadding="0" width="100%"><tr><td align="center" style="padding:4px 0 24px;"><a href="{{ action_url }}" style="display:block;background:#00157f;color:#fff;text-decoration:none;font-size:16px;font-weight:700;padding:16px 24px;border-radius:10px;">{% translate "Accepter l’invitation" %}</a></td></tr></table>
+<p style="margin:0;padding:14px 16px;background:#f4f6fc;border-radius:10px;color:#68748c;font-size:13px;line-height:1.6;">{% translate "Ce lien personnel expire dans" %} {{ expiration_days }} {% translate "jours. Si vous n’attendiez pas cette invitation, vous pouvez ignorer cet e-mail." %}</p>
 {% endblock %}

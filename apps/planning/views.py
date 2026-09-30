@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 import csv
 
 from django.contrib import messages
@@ -28,9 +29,9 @@ def stage_create(request, project_pk):
         stage.created_by = request.user
         stage.full_clean()
         stage.save()
-        messages.success(request, "L'étape a été créée.")
+        messages.success(request, _("L'étape a été créée."))
     else:
-        messages.error(request, "L'étape n'a pas pu être créée. Vérifiez les informations.")
+        messages.error(request, _("L'étape n'a pas pu être créée. Vérifiez les informations."))
     return redirect(f"{project.get_absolute_url()}?tab=stages")
 
 
@@ -52,9 +53,9 @@ def stage_update(request, project_pk, pk):
         updated_stage.created_by = stage.created_by
         updated_stage.full_clean()
         updated_stage.save()
-        messages.success(request, "L'étape a été mise à jour.")
+        messages.success(request, _("L'étape a été mise à jour."))
     else:
-        messages.error(request, "L'étape n'a pas pu être modifiée. Vérifiez les informations.")
+        messages.error(request, _("L'étape n'a pas pu être modifiée. Vérifiez les informations."))
     return redirect(f"{project.get_absolute_url()}?tab=stages")
 
 
@@ -67,9 +68,9 @@ def stage_progress_declare(request, project_pk, pk):
     form = StageProgressDeclarationForm(request.POST, stage=stage)
     if form.is_valid():
         declare_stage_progress(actor=request.user, stage=stage, **form.cleaned_data)
-        messages.success(request, "La progression déclarée a été enregistrée sans être présentée comme vérifiée.")
+        messages.success(request, _("La progression déclarée a été enregistrée sans être présentée comme vérifiée."))
     else:
-        messages.error(request, "La déclaration de progression est invalide.")
+        messages.error(request, _("La déclaration de progression est invalide."))
     return redirect(f"{project.get_absolute_url()}?tab=stages")
 
 
@@ -83,11 +84,11 @@ def stage_progress_verify(request, project_pk, pk):
     if form.is_valid():
         try:
             verify_stage_progress(actor=request.user, stage=stage, **form.cleaned_data)
-            messages.success(request, "La progression vérifiée a été enregistrée.")
+            messages.success(request, _("La progression vérifiée a été enregistrée."))
         except ValidationError as error:
             messages.error(request, error.messages[0])
     else:
-        messages.error(request, "La vérification de progression est invalide.")
+        messages.error(request, _("La vérification de progression est invalide."))
     return redirect(f"{project.get_absolute_url()}?tab=stages")
 
 
@@ -102,11 +103,11 @@ def stage_progress_review(request, project_pk, pk, declaration_pk):
     if form.is_valid():
         try:
             review_stage_progress(actor=request.user, declaration=declaration, **form.cleaned_data)
-            messages.success(request, "La décision technique a été enregistrée.")
+            messages.success(request, _("La décision technique a été enregistrée."))
         except ValidationError as error:
             messages.error(request, error.messages[0])
     else:
-        messages.error(request, "Le motif et les actions correctives requises doivent être renseignés.")
+        messages.error(request, _("Le motif et les actions correctives requises doivent être renseignés."))
     return redirect(f"{project.get_absolute_url()}?tab=stages")
 
 
@@ -120,9 +121,9 @@ def stage_progress_digital_verify(request, project_pk, pk, declaration_pk):
     try:
         result = run_stage_digital_verification(actor=request.user, declaration=declaration)
         if result.result == result.Result.PASSED:
-            messages.success(request, "Digital Verified : tous les contrôles numériques sont conformes.")
+            messages.success(request, _("Digital Verified : tous les contrôles numériques sont conformes."))
         else:
-            messages.error(request, "Digital Verified a échoué. Consultez les contrôles du dossier.")
+            messages.error(request, _("Digital Verified a échoué. Consultez les contrôles du dossier."))
     except ValidationError as error:
         messages.error(request, error.messages[0])
     return redirect(f"{project.get_absolute_url()}?tab=stages")
@@ -137,9 +138,9 @@ def stage_site_visit_create(request, project_pk, pk):
     form = StageSiteVisitForm(request.POST)
     if form.is_valid():
         record_stage_site_visit(actor=request.user, stage=stage, **form.cleaned_data)
-        messages.success(request, "La visite terrain a été enregistrée.")
+        messages.success(request, _("La visite terrain a été enregistrée."))
     else:
-        messages.error(request, "La date et la localisation de la visite sont obligatoires.")
+        messages.error(request, _("La date et la localisation de la visite sont obligatoires."))
     return redirect(f"{project.get_absolute_url()}?tab=stages")
 
 
@@ -158,11 +159,11 @@ def stage_site_verification_create(request, project_pk, pk, visit_pk):
                 actor=request.user, visit=visit, technical_verification=technical,
                 **form.cleaned_data,
             )
-            messages.success(request, "PIVOT Site Verified a été enregistré.")
+            messages.success(request, _("PIVOT Site Verified a été enregistré."))
         except ValidationError as error:
             messages.error(request, error.messages[0])
     else:
-        messages.error(request, "Une vérification technique signée, une checklist et une preuve sont obligatoires.")
+        messages.error(request, _("Une vérification technique signée, une checklist et une preuve sont obligatoires."))
     return redirect(f"{project.get_absolute_url()}?tab=stages")
 
 
@@ -174,9 +175,9 @@ def inspection_risk_rule_create(request, project_pk):
     form = StageInspectionRiskRuleForm(request.POST)
     if form.is_valid():
         create_inspection_risk_rule(actor=request.user, organization=project.organization, data=form.cleaned_data)
-        messages.success(request, "Une nouvelle version de la règle de risque est active.")
+        messages.success(request, _("Une nouvelle version de la règle de risque est active."))
     else:
-        messages.error(request, "La règle de risque est invalide.")
+        messages.error(request, _("La règle de risque est invalide."))
     return redirect(f"{project.get_absolute_url()}?tab=stages")
 
 
@@ -188,7 +189,7 @@ def stage_inspection_risk_evaluate(request, project_pk, pk):
         raise PermissionDenied
     try:
         assessment = evaluate_stage_inspection_risk(actor=request.user, technical_verification=stage.latest_verified_progress)
-        messages.success(request, "Inspection imposée." if assessment.inspection_required else "Aucune inspection imposée par cette règle.")
+        messages.success(request, _("Inspection imposée.") if assessment.inspection_required else "Aucune inspection imposée par cette règle.")
     except ValidationError as error:
         messages.error(request, error.messages[0])
     return redirect(f"{project.get_absolute_url()}?tab=stages")

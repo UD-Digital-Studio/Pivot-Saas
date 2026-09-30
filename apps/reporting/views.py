@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 import csv
 import base64
 from io import BytesIO
@@ -49,7 +50,7 @@ def audit_report_evidence_export(request, data, export_format):
 @login_required
 def project_pdf(request, pk):
     if not subscription_feature_enabled(request.user.organization, "advanced_reports_enabled"):
-        messages.error(request, "Votre forfait n’inclut pas les rapports avancés.")
+        messages.error(request, _("Votre forfait n’inclut pas les rapports avancés."))
         return center(request)
     try:
         data = selected(request, pk)
@@ -72,7 +73,7 @@ def project_pdf(request, pk):
 @login_required
 def project_csv(request, pk):
     if not subscription_feature_enabled(request.user.organization, "advanced_reports_enabled"):
-        messages.error(request, "Votre forfait n’inclut pas les rapports avancés.")
+        messages.error(request, _("Votre forfait n’inclut pas les rapports avancés."))
         return center(request)
     data = selected(request, pk)
     audit_report_evidence_export(request, data, "csv")

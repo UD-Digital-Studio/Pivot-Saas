@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 import csv
 import mimetypes
 import os
@@ -124,7 +125,7 @@ def dashboard(request):
         },
         "acquisition_routes": {
             route: projects.filter(onboarding__route=route).count()
-            for route, _ in ProjectOnboarding.Route.choices
+            for route, route_label in ProjectOnboarding.Route.choices
         },
         "payment_totals": payment_totals,
         "pending_withdrawal_total": pending_withdrawals.aggregate(total=Sum("amount"))["total"]
@@ -223,7 +224,7 @@ def _send_initial_account_link(request, user):
 def organization_create(request):
     form = OrganizationCreateForm(request.POST)
     if request.POST.get("confirmed") != "yes":
-        messages.error(request, "La confirmation de création est obligatoire.")
+        messages.error(request, _("La confirmation de création est obligatoire."))
     elif form.is_valid():
         with transaction.atomic():
             organization = Organization.objects.create(
@@ -251,7 +252,7 @@ def organization_create(request):
                 metadata={"first_user_role": role},
             )
             transaction.on_commit(lambda: _send_initial_account_link(request, first_user))
-        messages.success(request, "L’organisation et son premier responsable ont été créés.")
+        messages.success(request, _("L’organisation et son premier responsable ont été créés."))
         return redirect("superadmin:organization-detail", pk=organization.pk)
     else:
         errors = " ".join(error for values in form.errors.values() for error in values)
@@ -266,7 +267,7 @@ def organization_update(request, pk):
     previous = {"name": organization.name, "slug": organization.slug}
     form = OrganizationUpdateForm(request.POST, instance=organization)
     if request.POST.get("confirmed") != "yes":
-        messages.error(request, "La confirmation de modification est obligatoire.")
+        messages.error(request, _("La confirmation de modification est obligatoire."))
     elif form.is_valid():
         with transaction.atomic():
             updated = form.save()
@@ -282,7 +283,7 @@ def organization_update(request, pk):
                     target_id=str(updated.pk),
                     metadata={"changed_fields": changed_fields},
                 )
-        messages.success(request, "Les informations de l’organisation ont été modifiées.")
+        messages.success(request, _("Les informations de l’organisation ont été modifiées."))
     else:
         errors = " ".join(error for values in form.errors.values() for error in values)
         messages.error(request, errors or "Les informations de modification sont invalides.")
@@ -352,13 +353,13 @@ def _organization_dependency_counts(organization):
 def organization_lifecycle(request, pk):
     action = request.POST.get("action", "")
     if request.POST.get("confirmed") != "yes":
-        messages.error(request, "La confirmation de l’opération est obligatoire.")
+        messages.error(request, _("La confirmation de l’opération est obligatoire."))
         return redirect("superadmin:organization-detail", pk=pk)
     with transaction.atomic():
         organization = get_object_or_404(Organization.objects.select_for_update(), pk=pk)
         if action == "archive":
             if organization.status == Organization.Status.ARCHIVED:
-                messages.info(request, "Cette organisation est déjà archivée.")
+                messages.info(request, _("Cette organisation est déjà archivée."))
             else:
                 previous_status = organization.status
                 organization.status = Organization.Status.ARCHIVED
@@ -372,12 +373,12 @@ def organization_lifecycle(request, pk):
                     metadata={"previous_status": previous_status},
                 )
                 messages.success(
-                    request, "L’organisation a été archivée et ses accès sont bloqués."
+                    request, _("L’organisation a été archivée et ses accès sont bloqués.")
                 )
             return redirect("superadmin:organization-detail", pk=pk)
         if action == "restore":
             if organization.status != Organization.Status.ARCHIVED:
-                messages.error(request, "Seule une organisation archivée peut être restaurée.")
+                messages.error(request, _("Seule une organisation archivée peut être restaurée."))
             else:
                 organization.status = Organization.Status.ACTIVE
                 organization.save(update_fields=("status", "updated_at"))
@@ -389,17 +390,16 @@ def organization_lifecycle(request, pk):
                     target_id=str(organization.pk),
                     metadata={"new_status": Organization.Status.ACTIVE},
                 )
-                messages.success(request, "L’organisation a été restaurée.")
+                messages.success(request, _("L’organisation a été restaurée."))
             return redirect("superadmin:organization-detail", pk=pk)
         if action == "delete":
             if request.POST.get("confirmation_name", "").strip() != organization.name:
-                messages.error(request, "Le nom de confirmation ne correspond pas.")
+                messages.error(request, _("Le nom de confirmation ne correspond pas."))
                 return redirect("superadmin:organization-detail", pk=pk)
             if any(_organization_dependency_counts(organization).values()):
                 messages.error(
                     request,
-                    "Cette organisation possède un historique et doit être archivée "
-                    "plutôt que supprimée.",
+                    _("Cette organisation possède un historique et doit être archivée plutôt que supprimée."),
                 )
                 return redirect("superadmin:organization-detail", pk=pk)
             organization_id = organization.pk
@@ -411,9 +411,9 @@ def organization_lifecycle(request, pk):
                 target_id=str(organization_id),
                 metadata={},
             )
-            messages.success(request, "L’organisation vide a été supprimée définitivement.")
+            messages.success(request, _("L’organisation vide a été supprimée définitivement."))
             return redirect("superadmin:organization-list")
-    messages.error(request, "L’opération demandée est invalide.")
+    messages.error(request, _("L’opération demandée est invalide."))
     return redirect("superadmin:organization-detail", pk=pk)
 
 
@@ -422,13 +422,13 @@ def organization_lifecycle(request, pk):
 def organization_status(request, pk):
     requested_status = request.POST.get("status", "")
     if requested_status not in {Organization.Status.ACTIVE, Organization.Status.SUSPENDED}:
-        messages.error(request, "Le statut demandé est invalide.")
+        messages.error(request, _("Le statut demandé est invalide."))
         return redirect("superadmin:organization-detail", pk=pk)
 
     with transaction.atomic():
         organization = get_object_or_404(Organization.objects.select_for_update(), pk=pk)
         if organization.status == Organization.Status.ARCHIVED:
-            messages.error(request, "Restaurez l’organisation avant de modifier son statut.")
+            messages.error(request, _("Restaurez l’organisation avant de modifier son statut."))
             return redirect("superadmin:organization-detail", pk=pk)
         previous_status = organization.status
         if previous_status != requested_status:
@@ -444,12 +444,12 @@ def organization_status(request, pk):
             )
             messages.success(
                 request,
-                "L’organisation a été activée."
+                _("L’organisation a été activée.")
                 if requested_status == Organization.Status.ACTIVE
                 else "L’organisation a été suspendue.",
             )
         else:
-            messages.info(request, "L’organisation possède déjà ce statut.")
+            messages.info(request, _("L’organisation possède déjà ce statut."))
     return redirect("superadmin:organization-detail", pk=pk)
 
 
@@ -585,7 +585,7 @@ def user_detail(request, pk):
 def user_create(request):
     form = PlatformUserCreateForm(request.POST)
     if request.POST.get("confirmed") != "yes":
-        messages.error(request, "La confirmation de création est obligatoire.")
+        messages.error(request, _("La confirmation de création est obligatoire."))
     elif form.is_valid():
         with transaction.atomic():
             role = form.cleaned_data["role"]
@@ -610,7 +610,7 @@ def user_create(request):
                 metadata={"role": role},
             )
             transaction.on_commit(lambda: _send_initial_account_link(request, account))
-        messages.success(request, "L’utilisateur a été créé et son lien d’activation envoyé.")
+        messages.success(request, _("L’utilisateur a été créé et son lien d’activation envoyé."))
         return redirect("superadmin:user-detail", pk=account.pk)
     else:
         errors = " ".join(error for values in form.errors.values() for error in values)
@@ -626,7 +626,7 @@ def user_update(request, pk):
     previous = {field: getattr(selected_user, field) for field in tracked_fields}
     form = PlatformUserUpdateForm(request.POST, instance=selected_user)
     if request.POST.get("confirmed") != "yes":
-        messages.error(request, "La confirmation de modification est obligatoire.")
+        messages.error(request, _("La confirmation de modification est obligatoire."))
     elif form.is_valid():
         with transaction.atomic():
             updated = form.save(commit=False)
@@ -644,7 +644,7 @@ def user_update(request, pk):
                     target_id=str(updated.pk),
                     metadata={"changed_fields": changed_fields},
                 )
-        messages.success(request, "Les informations utilisateur ont été modifiées.")
+        messages.success(request, _("Les informations utilisateur ont été modifiées."))
     else:
         errors = " ".join(error for values in form.errors.values() for error in values)
         messages.error(request, errors or "La modification est invalide.")
@@ -655,7 +655,7 @@ def user_update(request, pk):
 @superuser_required
 def user_transfer(request, pk):
     if request.POST.get("confirmed") != "yes":
-        messages.error(request, "La confirmation du transfert est obligatoire.")
+        messages.error(request, _("La confirmation du transfert est obligatoire."))
         return redirect("superadmin:user-detail", pk=pk)
 
     with transaction.atomic():
@@ -674,7 +674,7 @@ def user_transfer(request, pk):
         membership_replacement = form.cleaned_data.get("membership_replacement")
         reason = form.cleaned_data["reason"].strip()
         if not reason:
-            messages.error(request, "Le motif du transfert est obligatoire.")
+            messages.error(request, _("Le motif du transfert est obligatoire."))
             return redirect("superadmin:user-detail", pk=pk)
 
         memberships = list(
@@ -731,7 +731,7 @@ def user_transfer(request, pk):
             message=f"Votre compte appartient maintenant à {target_organization.name}.",
             target_url=reverse("accounts:post-login"),
         )
-    messages.success(request, "L’utilisateur et ses dépendances ont été transférés.")
+    messages.success(request, _("L’utilisateur et ses dépendances ont été transférés."))
     return redirect("superadmin:user-detail", pk=pk)
 
 
@@ -740,14 +740,14 @@ def user_transfer(request, pk):
 def user_status(request, pk):
     requested_status = request.POST.get("status", "")
     if requested_status not in {"active", "inactive"}:
-        messages.error(request, "Le statut demandé est invalide.")
+        messages.error(request, _("Le statut demandé est invalide."))
         return redirect("superadmin:user-detail", pk=pk)
 
     with transaction.atomic():
         selected_user = get_object_or_404(User.objects.select_for_update(), pk=pk)
         activate = requested_status == "active"
         if not activate and selected_user.pk == request.user.pk:
-            messages.error(request, "Vous ne pouvez pas suspendre votre propre compte.")
+            messages.error(request, _("Vous ne pouvez pas suspendre votre propre compte."))
             return redirect("superadmin:user-detail", pk=pk)
         if (
             not activate
@@ -757,7 +757,7 @@ def user_status(request, pk):
             .exists()
         ):
             messages.error(
-                request, "Le dernier super-administrateur actif ne peut pas être suspendu."
+                request, _("Le dernier super-administrateur actif ne peut pas être suspendu.")
             )
             return redirect("superadmin:user-detail", pk=pk)
         previous_status = "active" if selected_user.is_active else "inactive"
@@ -777,12 +777,12 @@ def user_status(request, pk):
             )
             messages.success(
                 request,
-                "Le compte utilisateur a été activé."
+                _("Le compte utilisateur a été activé.")
                 if activate
                 else "Le compte utilisateur a été suspendu.",
             )
         else:
-            messages.info(request, "Le compte possède déjà ce statut.")
+            messages.info(request, _("Le compte possède déjà ce statut."))
     return redirect("superadmin:user-detail", pk=pk)
 
 
@@ -795,7 +795,7 @@ def user_password_reset(request, pk):
         or not selected_user.is_active
         or not selected_user.has_usable_password()
     ):
-        messages.error(request, "Ce compte ne peut pas recevoir un lien de réinitialisation.")
+        messages.error(request, _("Ce compte ne peut pas recevoir un lien de réinitialisation."))
         return redirect("superadmin:user-detail", pk=pk)
 
     form = PasswordResetForm({"email": selected_user.email})
@@ -815,7 +815,7 @@ def user_password_reset(request, pk):
             target_id=str(selected_user.pk),
             metadata={},
         )
-        messages.success(request, "Le lien sécurisé de réinitialisation a été envoyé.")
+        messages.success(request, _("Le lien sécurisé de réinitialisation a été envoyé."))
     return redirect("superadmin:user-detail", pk=pk)
 
 
@@ -835,9 +835,9 @@ def pilot_recommendation_create(request):
                 "score": recommendation.score,
             },
         )
-        messages.success(request, "Le score de recommandation a été enregistré.")
+        messages.success(request, _("Le score de recommandation a été enregistré."))
     else:
-        messages.error(request, "La mesure de recommandation est invalide.")
+        messages.error(request, _("La mesure de recommandation est invalide."))
     return redirect("superadmin:project-list")
 
 
@@ -860,9 +860,9 @@ def pilot_pricing_hypothesis_create(request):
                 "status": hypothesis.status,
             },
         )
-        messages.success(request, "L’hypothèse de pricing a été enregistrée.")
+        messages.success(request, _("L’hypothèse de pricing a été enregistrée."))
     else:
-        messages.error(request, "L’hypothèse de pricing est invalide.")
+        messages.error(request, _("L’hypothèse de pricing est invalide."))
     return redirect("superadmin:project-list")
     query = request.GET.get("q", "").strip()
     selected_organization = request.GET.get("organization", "").strip()
@@ -1086,7 +1086,7 @@ def pilot_review_decide(request):
     ).first()
     form = PilotReviewDecisionForm(request.POST, instance=existing)
     if request.POST.get("confirmed") != "yes":
-        messages.error(request, "La confirmation de la décision est obligatoire.")
+        messages.error(request, _("La confirmation de la décision est obligatoire."))
     elif form.is_valid():
         decision = form.save(commit=False)
         decision.horizon_days = horizon_days
@@ -1101,9 +1101,9 @@ def pilot_review_decide(request):
                 "decision": decision.decision, "updated": existing is not None,
             },
         )
-        messages.success(request, "La décision go/no-go a été documentée et auditée.")
+        messages.success(request, _("La décision go/no-go a été documentée et auditée."))
     else:
-        messages.error(request, "La décision est incomplète ou invalide.")
+        messages.error(request, _("La décision est incomplète ou invalide."))
     return redirect(f"{reverse('superadmin:pilot-review')}?horizon={horizon_days}&as_of={as_of_date.isoformat()}")
 
 
@@ -1235,7 +1235,7 @@ def pivot_onboarding_create(request):
                     request=request, project=project,
                     email=form.cleaned_data["owner_email"], role=User.Role.CLIENT,
                 )
-        messages.success(request, "Le dossier concierge PIVOT a été préparé.")
+        messages.success(request, _("Le dossier concierge PIVOT a été préparé."))
         return redirect("superadmin:project-detail", pk=project.pk)
     return render(request, "superadmin/projects/onboarding_form.html", {"form": form})
 
@@ -1256,9 +1256,9 @@ def pivot_project_invite(request, pk):
         except ValidationError as exc:
             messages.error(request, str(exc))
         else:
-            messages.success(request, "L’invitation PIVOT a été envoyée.")
+            messages.success(request, _("L’invitation PIVOT a été envoyée."))
     else:
-        messages.error(request, "Invitation invalide.")
+        messages.error(request, _("Invitation invalide."))
     return redirect("superadmin:project-detail", pk=project.pk)
 
 
@@ -1368,7 +1368,7 @@ def project_pivot_reviewer_assign(request, pk):
     project = get_object_or_404(Project.objects.select_related("organization"), pk=pk)
     form = PivotReviewerAssignmentForm(request.POST, project=project)
     if request.POST.get("confirmed") != "yes" or not form.is_valid():
-        messages.error(request, "Sélectionnez un vérificateur PIVOT et confirmez l’affectation.")
+        messages.error(request, _("Sélectionnez un vérificateur PIVOT et confirmez l’affectation."))
         return redirect("superadmin:project-detail", pk=project.pk)
 
     reviewer = form.cleaned_data["reviewer"]
@@ -1409,7 +1409,7 @@ def project_pivot_reviewer_assign(request, pk):
 @superuser_required
 def project_concierge_update(request, pk):
     if request.POST.get("confirmed") != "yes":
-        messages.error(request, "La confirmation de la mise à jour concierge est obligatoire.")
+        messages.error(request, _("La confirmation de la mise à jour concierge est obligatoire."))
         return redirect("superadmin:project-detail", pk=pk)
     with transaction.atomic():
         project = get_object_or_404(
@@ -1441,7 +1441,7 @@ def project_concierge_update(request, pk):
                 "onboarding_status": project.onboarding.status,
             },
         )
-    messages.success(request, "Le suivi concierge a été mis à jour et audité.")
+    messages.success(request, _("Le suivi concierge a été mis à jour et audité."))
     return redirect("superadmin:project-detail", pk=pk)
 
 
@@ -1463,9 +1463,9 @@ def project_dispute_open(request, pk):
         except (ValidationError, PermissionDenied) as exc:
             messages.error(request, str(exc))
         else:
-            messages.success(request, "La contestation a été ouverte et auditée.")
+            messages.success(request, _("La contestation a été ouverte et auditée."))
     else:
-        messages.error(request, "La contestation et sa confirmation sont invalides.")
+        messages.error(request, _("La contestation et sa confirmation sont invalides."))
     return redirect("superadmin:project-detail", pk=pk)
 
 
@@ -1476,9 +1476,9 @@ def project_dispute_observe(request, pk, dispute_pk):
     form = ProjectDisputeObservationForm(request.POST)
     if form.is_valid():
         add_dispute_observation(actor=request.user, dispute=dispute, **form.cleaned_data)
-        messages.success(request, "L’observation contradictoire a été enregistrée.")
+        messages.success(request, _("L’observation contradictoire a été enregistrée."))
     else:
-        messages.error(request, "L’observation est invalide.")
+        messages.error(request, _("L’observation est invalide."))
     return redirect("superadmin:project-detail", pk=pk)
 
 
@@ -1489,9 +1489,9 @@ def project_dispute_resolve(request, pk, dispute_pk):
     form = ProjectDisputeResolutionForm(request.POST)
     if request.POST.get("confirmed") == "yes" and form.is_valid():
         resolve_dispute(actor=request.user, dispute=dispute, **form.cleaned_data)
-        messages.success(request, "La contestation a été résolue sans supprimer les preuves.")
+        messages.success(request, _("La contestation a été résolue sans supprimer les preuves."))
     else:
-        messages.error(request, "Une résolution motivée et confirmée est obligatoire.")
+        messages.error(request, _("Une résolution motivée et confirmée est obligatoire."))
     return redirect("superadmin:project-detail", pk=pk)
 
 
@@ -1499,7 +1499,7 @@ def project_dispute_resolve(request, pk, dispute_pk):
 @superuser_required
 def onboarding_conflict_resolve(request, pk, conflict_pk):
     if request.POST.get("confirmed") != "yes" or not request.POST.get("resolution_note", "").strip():
-        messages.error(request, "La confirmation et une note de résolution sont obligatoires.")
+        messages.error(request, _("La confirmation et une note de résolution sont obligatoires."))
         return redirect("superadmin:project-detail", pk=pk)
     with transaction.atomic():
         review = get_object_or_404(
@@ -1521,7 +1521,7 @@ def onboarding_conflict_resolve(request, pk, conflict_pk):
                 "automatic_merge": False,
             },
         )
-    messages.success(request, "Le conflit a été examiné sans fusion automatique.")
+    messages.success(request, _("Le conflit a été examiné sans fusion automatique."))
     return redirect("superadmin:project-detail", pk=pk)
 
 
@@ -1529,7 +1529,7 @@ def onboarding_conflict_resolve(request, pk, conflict_pk):
 @superuser_required
 def project_intervene(request, pk):
     if request.POST.get("confirmed") != "yes":
-        messages.error(request, "La confirmation de l’intervention est obligatoire.")
+        messages.error(request, _("La confirmation de l’intervention est obligatoire."))
         return redirect("superadmin:project-detail", pk=pk)
 
     with transaction.atomic():
@@ -1574,7 +1574,7 @@ def project_intervene(request, pk):
         if previous_member_ids != new_member_ids:
             changed_fields.append("members")
         if not changed_fields:
-            messages.info(request, "Aucun changement n’a été détecté.")
+            messages.info(request, _("Aucun changement n’a été détecté."))
             return redirect("superadmin:project-detail", pk=pk)
 
         old_status = previous["status"]
@@ -1655,7 +1655,7 @@ def project_intervene(request, pk):
                 target_url=reverse("projects:detail", kwargs={"pk": updated.pk}),
                 project=updated,
             )
-        messages.success(request, "L’intervention exceptionnelle a été enregistrée et auditée.")
+        messages.success(request, _("L’intervention exceptionnelle a été enregistrée et auditée."))
     return redirect("superadmin:project-detail", pk=pk)
 
 
@@ -1663,11 +1663,11 @@ def project_intervene(request, pk):
 @superuser_required
 def project_content_action(request, pk, target_type, target_pk):
     if request.POST.get("confirmed") != "yes":
-        messages.error(request, "La confirmation de l’intervention est obligatoire.")
+        messages.error(request, _("La confirmation de l’intervention est obligatoire."))
         return redirect("superadmin:project-detail", pk=pk)
     reason = request.POST.get("reason", "").strip()
     if not reason:
-        messages.error(request, "Le motif de l’intervention est obligatoire.")
+        messages.error(request, _("Le motif de l’intervention est obligatoire."))
         return redirect("superadmin:project-detail", pk=pk)
     action = request.POST.get("action", "")
 
@@ -1697,7 +1697,7 @@ def project_content_action(request, pk, target_type, target_pk):
 
         if target_type == "stage" and action == "delete":
             if target.status != ProjectStage.Status.PENDING:
-                messages.error(request, "Seule une étape en attente peut être supprimée.")
+                messages.error(request, _("Seule une étape en attente peut être supprimée."))
                 return redirect("superadmin:project-detail", pk=pk)
             owner, label = target.created_by, target.title
             target.delete()
@@ -1707,7 +1707,7 @@ def project_content_action(request, pk, target_type, target_pk):
             if target.movements.exists():
                 messages.error(
                     request,
-                    "Cet article possède un historique de mouvements et ne peut pas être supprimé.",
+                    _("Cet article possède un historique de mouvements et ne peut pas être supprimé."),
                 )
                 return redirect("superadmin:project-detail", pk=pk)
             owner, label = target.created_by, target.name
@@ -1716,7 +1716,7 @@ def project_content_action(request, pk, target_type, target_pk):
             metadata["label"] = label
         elif target_type == "document" and action in {"approve", "reject"}:
             if target.status != ProjectDocument.Status.VERIFIED:
-                messages.error(request, "Seul un document en attente peut être traité.")
+                messages.error(request, _("Seul un document en attente peut être traité."))
                 return redirect("superadmin:project-detail", pk=pk)
             decision = (
                 ProjectDocument.Status.APPROVED
@@ -1738,7 +1738,7 @@ def project_content_action(request, pk, target_type, target_pk):
             metadata["label"] = label
         elif target_type == "comment" and action == "moderate":
             if target.is_deleted:
-                messages.error(request, "Ce commentaire est déjà supprimé.")
+                messages.error(request, _("Ce commentaire est déjà supprimé."))
                 return redirect("superadmin:project-detail", pk=pk)
             owner = target.author
             target.content = ""
@@ -1751,7 +1751,7 @@ def project_content_action(request, pk, target_type, target_pk):
             audit_action = "project_content.comment_moderated"
         elif target_type == "withdrawal" and action == "reject":
             if target.status != Withdrawal.Status.PENDING:
-                messages.error(request, "Seule une demande en attente peut être rejetée.")
+                messages.error(request, _("Seule une demande en attente peut être rejetée."))
                 return redirect("superadmin:project-detail", pk=pk)
             decide_withdrawal(
                 actor=request.user, withdrawal=target, status=Withdrawal.Status.REJECTED
@@ -1761,13 +1761,12 @@ def project_content_action(request, pk, target_type, target_pk):
         elif target_type == "payment":
             messages.error(
                 request,
-                "Une transaction de paiement est immuable et ne peut pas être modifiée "
-                "ou supprimée.",
+                _("Une transaction de paiement est immuable et ne peut pas être modifiée ou supprimée."),
             )
             return redirect("superadmin:project-detail", pk=pk)
         else:
             messages.error(
-                request, "Cette action n’est pas autorisée pour l’état actuel du contenu."
+                request, _("Cette action n’est pas autorisée pour l’état actuel du contenu.")
             )
             return redirect("superadmin:project-detail", pk=pk)
 
@@ -1789,7 +1788,7 @@ def project_content_action(request, pk, target_type, target_pk):
                 target_url=reverse("projects:detail", kwargs={"pk": project.pk}),
                 project=project,
             )
-        messages.success(request, "L’intervention sur le contenu a été confirmée et auditée.")
+        messages.success(request, _("L’intervention sur le contenu a été confirmée et auditée."))
     return redirect("superadmin:project-detail", pk=pk)
 
 
@@ -1926,7 +1925,7 @@ def validation_queue(request):
 def _decision_reason(request):
     reason = request.POST.get("reason", "").strip()
     if not reason or len(reason) > 500:
-        raise ValidationError("Un motif de 500 caractères maximum est obligatoire.")
+        raise ValidationError(_("Un motif de 500 caractères maximum est obligatoire."))
     return reason
 
 
@@ -1953,7 +1952,7 @@ def validation_document_decide(request, pk):
         decision = request.POST.get("decision", "")
         previewed = set(request.session.get("superadmin_previewed_documents", []))
         if decision == ProjectDocument.Status.APPROVED and str(pk) not in previewed:
-            raise ValidationError("Ouvrez l’aperçu du document avant de l’approuver.")
+            raise ValidationError(_("Ouvrez l’aperçu du document avant de l’approuver."))
         with transaction.atomic():
             document = get_object_or_404(
                 ProjectDocument.objects.select_for_update().select_related(
@@ -1973,7 +1972,7 @@ def validation_document_decide(request, pk):
     except ValidationError as exc:
         messages.error(request, exc.messages[0])
     else:
-        messages.success(request, "La décision sur le document a été enregistrée.")
+        messages.success(request, _("La décision sur le document a été enregistrée."))
     return redirect("superadmin:validation-queue")
 
 
@@ -1997,7 +1996,7 @@ def validation_withdrawal_decide(request, pk):
     except ValidationError as exc:
         messages.error(request, exc.messages[0])
     else:
-        messages.success(request, "La décision sur le retrait a été enregistrée.")
+        messages.success(request, _("La décision sur le retrait a été enregistrée."))
     return redirect("superadmin:validation-queue")
 
 
@@ -2162,7 +2161,7 @@ def platform_settings(request):
     form = PlatformConfigurationForm(request.POST or None, instance=configuration)
     if request.method == "POST":
         if request.POST.get("confirmed") != "yes":
-            messages.error(request, "La confirmation de modification est obligatoire.")
+            messages.error(request, _("La confirmation de modification est obligatoire."))
         elif form.is_valid():
             updated = form.save(commit=False)
             updated.updated_by = request.user
@@ -2179,7 +2178,7 @@ def platform_settings(request):
                     target_id=str(updated.pk),
                     metadata={"changed_fields": changed_fields},
                 )
-            messages.success(request, "Les paramètres de la plateforme ont été enregistrés.")
+            messages.success(request, _("Les paramètres de la plateforme ont été enregistrés."))
             return redirect("superadmin:settings")
     gateway_name = os.environ.get("PAYMENT_GATEWAY", settings.PAYMENT_GATEWAY).lower()
     mesomb_keys_present = all(
@@ -2266,13 +2265,13 @@ def subscription_list(request):
 def subscription_plan_create(request):
     form = SubscriptionPlanForm(request.POST)
     if request.POST.get("confirmed") != "yes":
-        messages.error(request, "La confirmation est obligatoire.")
+        messages.error(request, _("La confirmation est obligatoire."))
     elif form.is_valid():
         plan = form.save()
         AuditEvent.objects.create(actor=request.user, action="subscription_plan.created", target_type="subscription_plan", target_id=str(plan.pk), metadata={"code": plan.code})
-        messages.success(request, "Le forfait a été créé.")
+        messages.success(request, _("Le forfait a été créé."))
     else:
-        messages.error(request, " ".join(error for values in form.errors.values() for error in values))
+        messages.error(request, _(" ").join(error for values in form.errors.values() for error in values))
     return redirect("superadmin:subscription-list")
 
 
@@ -2282,14 +2281,14 @@ def subscription_plan_update(request, pk):
     plan = get_object_or_404(SubscriptionPlan, pk=pk)
     form = SubscriptionPlanForm(request.POST, instance=plan)
     if request.POST.get("confirmed") != "yes":
-        messages.error(request, "La confirmation est obligatoire.")
+        messages.error(request, _("La confirmation est obligatoire."))
     elif form.is_valid():
         before = plan.snapshot()
         plan = form.save()
         AuditEvent.objects.create(actor=request.user, action="subscription_plan.updated", target_type="subscription_plan", target_id=str(plan.pk), metadata={"previous": before, "current": plan.snapshot()})
-        messages.success(request, "Le forfait a été modifié sans altérer les contrats existants.")
+        messages.success(request, _("Le forfait a été modifié sans altérer les contrats existants."))
     else:
-        messages.error(request, " ".join(error for values in form.errors.values() for error in values))
+        messages.error(request, _(" ").join(error for values in form.errors.values() for error in values))
     return redirect("superadmin:subscription-list")
 
 
@@ -2304,7 +2303,7 @@ def subscription_intervene(request, pk):
     with transaction.atomic():
         subscription = get_object_or_404(OrganizationSubscription.objects.select_for_update().select_related("plan", "organization"), pk=pk)
         if form.cleaned_data["expected_updated_at"] != subscription.updated_at.isoformat():
-            messages.error(request, "L’abonnement a changé depuis l’ouverture de la modale. Rechargez la page.")
+            messages.error(request, _("L’abonnement a changé depuis l’ouverture de la modale. Rechargez la page."))
             return redirect("superadmin:subscription-list")
         before = {"status": subscription.status, "plan": subscription.plan.code, "start": subscription.current_period_started_at.isoformat() if subscription.current_period_started_at else None, "end": subscription.current_period_ends_at.isoformat() if subscription.current_period_ends_at else None}
         action = form.cleaned_data["action"]
@@ -2329,5 +2328,5 @@ def subscription_intervene(request, pk):
         metadata = {"action": action, "reason": form.cleaned_data["reason"].strip(), "previous": before}
         SubscriptionEvent.objects.create(subscription=subscription, actor=request.user, event_type=f"subscription.admin_{action}", previous_status=before["status"], new_status=subscription.status, plan_snapshot=subscription.plan_snapshot, metadata=metadata)
         AuditEvent.objects.create(organization=subscription.organization, actor=request.user, action=f"subscription.admin_{action}", target_type="organization_subscription", target_id=str(subscription.pk), metadata=metadata)
-    messages.success(request, "L’intervention sur l’abonnement a été appliquée et auditée.")
+    messages.success(request, _("L’intervention sur l’abonnement a été appliquée et auditée."))
     return redirect("superadmin:subscription-list")

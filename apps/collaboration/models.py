@@ -136,7 +136,7 @@ class EvidenceRecord(models.Model):
     def clean(self):
         super().clean()
         if self.project_id and self.project.organization_id != self.organization_id:
-            raise ValidationError("La preuve doit appartenir à l'organisation du projet.")
+            raise ValidationError(_("La preuve doit appartenir à l'organisation du projet."))
         if self.author_id and not self.author.is_superuser:
             from apps.projects.models import ProjectMembership
 
@@ -150,7 +150,7 @@ class EvidenceRecord(models.Model):
                     ProjectMembership.Role.ENGINEER,
                 ),
             ).exists():
-                raise ValidationError("L'auteur doit être un intervenant autorisé du projet.")
+                raise ValidationError(_("L'auteur doit être un intervenant autorisé du projet."))
         for related, label in ((self.stage, "étape"), (self.document, "document"), (self.image, "photo")):
             if related and (
                 related.organization_id != self.organization_id
@@ -159,23 +159,23 @@ class EvidenceRecord(models.Model):
                 raise ValidationError(f"L'association {label} appartient à un autre projet.")
         if self.previous_version_id:
             if self.previous_version.project_id != self.project_id or self.previous_version.evidence_key != self.evidence_key:
-                raise ValidationError("La version précédente doit appartenir à la même preuve.")
+                raise ValidationError(_("La version précédente doit appartenir à la même preuve."))
             if self.version != self.previous_version.version + 1:
-                raise ValidationError("Le numéro de version doit suivre la version précédente.")
+                raise ValidationError(_("Le numéro de version doit suivre la version précédente."))
         if self.previous_version_id and not self.correction_reason.strip():
-            raise ValidationError("Le motif de correction est obligatoire.")
+            raise ValidationError(_("Le motif de correction est obligatoire."))
         if bool(self.request_type) != bool(self.request_id):
-            raise ValidationError("Le type et l'identifiant de la demande sont indissociables.")
+            raise ValidationError(_("Le type et l'identifiant de la demande sont indissociables."))
         has_coordinates = self.latitude is not None or self.longitude is not None
         if (self.latitude is None) != (self.longitude is None):
-            raise ValidationError("La latitude et la longitude doivent être fournies ensemble.")
+            raise ValidationError(_("La latitude et la longitude doivent être fournies ensemble."))
         if self.location_status == self.LocationStatus.GRANTED:
             if not self.location_consent or not has_coordinates:
-                raise ValidationError("Une position autorisée exige le consentement et des coordonnées.")
+                raise ValidationError(_("Une position autorisée exige le consentement et des coordonnées."))
             if not (-90 <= self.latitude <= 90 and -180 <= self.longitude <= 180):
-                raise ValidationError("Les coordonnées sont hors limites.")
+                raise ValidationError(_("Les coordonnées sont hors limites."))
         elif has_coordinates or self.location_accuracy_m is not None:
-            raise ValidationError("Les coordonnées ne sont conservées que lorsque la localisation est autorisée.")
+            raise ValidationError(_("Les coordonnées ne sont conservées que lorsque la localisation est autorisée."))
 
     def save(self, *args, **kwargs):
         if self.pk:
@@ -189,15 +189,15 @@ class EvidenceRecord(models.Model):
                     "location_consent", "location_status", "latitude", "longitude", "location_accuracy_m",
                 )
                 if any(getattr(original, field) != getattr(self, field) for field in protected):
-                    raise ValidationError("Une preuve validée est immuable. Créez une correction versionnée.")
+                    raise ValidationError(_("Une preuve validée est immuable. Créez une correction versionnée."))
                 if original.status == self.Status.APPROVED and self.status != original.status:
-                    raise ValidationError("Une preuve approuvée est immuable.")
+                    raise ValidationError(_("Une preuve approuvée est immuable."))
         self.full_clean()
         return super().save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
         if self.status in {self.Status.VERIFIED, self.Status.APPROVED}:
-            raise ValidationError("Une preuve validée ne peut pas être supprimée.")
+            raise ValidationError(_("Une preuve validée ne peut pas être supprimée."))
         return super().delete(*args, **kwargs)
 
     def __str__(self):

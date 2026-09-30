@@ -219,7 +219,7 @@ def project_create(request):
                 )
             else:
                 form.save_members(project)
-        messages.success(request, "Le projet a été créé.")
+        messages.success(request, _("Le projet a été créé."))
         return redirect("projects:detail", pk=project.pk)
     return render(request, "projects/project_form.html", {"form": form, "mode": "create"})
 
@@ -677,7 +677,7 @@ def project_members(request, pk):
     )
     if request.method == "POST" and form.is_valid():
         form.save()
-        messages.success(request, "Les affectations du projet ont été mises à jour.")
+        messages.success(request, _("Les affectations du projet ont été mises à jour."))
         return redirect("projects:detail", pk=project.pk)
     return render(request, "projects/project_members.html", {"project": project, "form": form})
 
@@ -689,7 +689,7 @@ def project_ownership_confirm(request, pk):
     form = OwnershipConfirmationForm(request.POST)
     if form.is_valid():
         try:
-            _, created = confirm_project_ownership(
+            ownership, created = confirm_project_ownership(
                 actor=request.user,
                 project=project,
                 terms_accepted=form.cleaned_data["terms_accepted"],
@@ -699,12 +699,12 @@ def project_ownership_confirm(request, pk):
         else:
             messages.success(
                 request,
-                "Votre qualité de propriétaire a été confirmée."
+                _("Votre qualité de propriétaire a été confirmée.")
                 if created
                 else "Votre qualité de propriétaire était déjà confirmée.",
             )
     else:
-        messages.error(request, "Vous devez accepter les conditions avant de confirmer.")
+        messages.error(request, _("Vous devez accepter les conditions avant de confirmer."))
     return redirect(f"{project.get_absolute_url()}?tab=overview")
 
 
@@ -728,10 +728,10 @@ def project_owner_change(request, pk):
         else:
             messages.success(
                 request,
-                "Le nouveau propriétaire doit maintenant confirmer son ownership.",
+                _("Le nouveau propriétaire doit maintenant confirmer son ownership."),
             )
     else:
-        messages.error(request, "Le propriétaire et le motif sont obligatoires.")
+        messages.error(request, _("Le propriétaire et le motif sont obligatoires."))
     return redirect(f"{project.get_absolute_url()}?tab=overview")
 
 
@@ -785,9 +785,9 @@ def project_actor_invite(request, pk):
                     "logo_url": request.build_absolute_uri(static("images/Logo.png")),
                 },
             )
-            messages.success(request, "L’intervenant a été invité au chantier.")
+            messages.success(request, _("L’intervenant a été invité au chantier."))
     else:
-        messages.error(request, "Vérifiez l’adresse e-mail et le rôle sélectionné.")
+        messages.error(request, _("Vérifiez l’adresse e-mail et le rôle sélectionné."))
     return redirect(f"{project.get_absolute_url()}?tab=overview")
 
 
@@ -804,9 +804,9 @@ def contractor_onboarding_confirm(request, pk):
         except (PermissionDenied, ValidationError) as exc:
             messages.error(request, str(exc))
         else:
-            messages.success(request, "Le projet, les acteurs et les conditions sont confirmés.")
+            messages.success(request, _("Le projet, les acteurs et les conditions sont confirmés."))
     else:
-        messages.error(request, "Toutes les confirmations sont obligatoires.")
+        messages.error(request, _("Toutes les confirmations sont obligatoires."))
     return redirect(f"{project.get_absolute_url()}?tab=overview")
 
 
@@ -825,7 +825,7 @@ def actor_confirmation_respond(request, pk):
     except ValidationError as exc:
         messages.error(request, str(exc))
     else:
-        messages.success(request, "Participation acceptée." if accepted else "Participation refusée.")
+        messages.success(request, _("Participation acceptée.") if accepted else "Participation refusée.")
     return redirect(f"{project.get_absolute_url()}?tab=overview")
 
 
@@ -838,9 +838,9 @@ def project_terms_revise(request, pk):
     form = ProjectTermsRevisionForm(request.POST)
     if form.is_valid():
         create_terms_version(actor=request.user, project=project, **form.cleaned_data)
-        messages.success(request, "Une nouvelle version des conditions exige désormais les confirmations ciblées.")
+        messages.success(request, _("Une nouvelle version des conditions exige désormais les confirmations ciblées."))
     else:
-        messages.error(request, "La nouvelle version des conditions est invalide.")
+        messages.error(request, _("La nouvelle version des conditions est invalide."))
     return redirect(f"{project.get_absolute_url()}?tab=overview")
 
 
@@ -853,7 +853,7 @@ def project_onboarding_activate(request, pk):
     except (PermissionDenied, ValidationError) as exc:
         messages.error(request, str(exc))
     else:
-        messages.success(request, "Le chantier est maintenant actif.")
+        messages.success(request, _("Le chantier est maintenant actif."))
     return redirect(f"{project.get_absolute_url()}?tab=overview")
 
 
@@ -871,7 +871,7 @@ def project_update(request, pk):
         updated_project.engineer = project.engineer
         updated_project.full_clean()
         updated_project.save()
-        messages.success(request, "Le projet a été mis à jour.")
+        messages.success(request, _("Le projet a été mis à jour."))
         return redirect("projects:detail", pk=project.pk)
     return render(
         request,
@@ -899,7 +899,7 @@ def project_status_update(request, pk):
         change_project_status(
             actor=request.user, project=project, new_status=form.cleaned_data["status"]
         )
-        messages.success(request, "Le statut du projet a été mis à jour.")
+        messages.success(request, _("Le statut du projet a été mis à jour."))
     else:
-        messages.error(request, "Le changement de statut demandé est invalide.")
+        messages.error(request, _("Le changement de statut demandé est invalide."))
     return redirect("projects:detail", pk=project.pk)

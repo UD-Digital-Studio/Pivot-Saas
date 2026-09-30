@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
@@ -34,11 +35,11 @@ def evidence_create(request, project_pk):
         if is_ajax:
             duplicate = getattr(evidence, "was_duplicate", False)
             return JsonResponse({"ok": True, "duplicate": duplicate, "message": "Ce dépôt avait déjà été enregistré." if duplicate else "Preuve déposée avec succès.", "id": str(evidence.pk)})
-        messages.success(request, "La preuve a été déposée.")
+        messages.success(request, _("La preuve a été déposée."))
         return project_redirect(project, "evidence")
     if is_ajax:
         return JsonResponse({"ok": False, "errors": form.errors.get_json_data()}, status=400)
-    messages.error(request, "Le fichier est invalide. Vérifiez son format et sa taille.")
+    messages.error(request, _("Le fichier est invalide. Vérifiez son format et sa taille."))
     return project_redirect(project, "evidence")
 
 
@@ -101,7 +102,7 @@ def evidence_correct(request, project_pk, pk):
         else:
             messages.success(request, f"Correction enregistrée comme version {evidence.version}.")
     else:
-        messages.error(request, "La correction est invalide. Vérifiez le fichier et le motif.")
+        messages.error(request, _("La correction est invalide. Vérifiez le fichier et le motif."))
     return project_redirect(project, "evidence")
 
 
@@ -118,9 +119,9 @@ def evidence_review(request, project_pk, pk):
         except ValidationError as error:
             messages.error(request, error.messages[0])
         else:
-            messages.success(request, "La décision sur la preuve a été enregistrée.")
+            messages.success(request, _("La décision sur la preuve a été enregistrée."))
     else:
-        messages.error(request, "Décision invalide.")
+        messages.error(request, _("Décision invalide."))
     return project_redirect(project, "evidence")
 
 
@@ -136,9 +137,9 @@ def document_upload(request, project_pk):
         document.project = project
         document.uploaded_by = request.user
         document.save()
-        messages.success(request, "Le document a été déposé et attend une validation.")
+        messages.success(request, _("Le document a été déposé et attend une validation."))
     else:
-        messages.error(request, "PDF invalide ou trop volumineux.")
+        messages.error(request, _("PDF invalide ou trop volumineux."))
     return project_redirect(project, "documents")
 
 
@@ -182,9 +183,9 @@ def document_review(request, project_pk, pk):
     form = DocumentReviewForm(request.POST)
     if form.is_valid():
         review_document(actor=request.user, document=document, **form.cleaned_data)
-        messages.success(request, "La décision a été enregistrée.")
+        messages.success(request, _("La décision a été enregistrée."))
     else:
-        messages.error(request, "La décision ou son motif est invalide.")
+        messages.error(request, _("La décision ou son motif est invalide."))
     return project_redirect(project, "documents")
 
 
@@ -200,9 +201,9 @@ def image_upload(request, project_pk):
         image.project = project
         image.uploaded_by = request.user
         image.save()
-        messages.success(request, "La photo a été ajoutée.")
+        messages.success(request, _("La photo a été ajoutée."))
     else:
-        messages.error(request, "L'image est invalide ou trop volumineuse.")
+        messages.error(request, _("L'image est invalide ou trop volumineuse."))
     return project_redirect(project, "photos")
 
 
@@ -224,7 +225,7 @@ def image_cover(request, project_pk, pk):
     if request.method != "POST":
         raise PermissionDenied
     set_cover(actor=request.user, image=image)
-    messages.success(request, "La couverture a été mise à jour.")
+    messages.success(request, _("La couverture a été mise à jour."))
     return project_redirect(project, "photos")
 
 
@@ -241,7 +242,7 @@ def image_delete(request, project_pk, pk):
     ):
         raise PermissionDenied
     image.delete()
-    messages.success(request, "La photo a été supprimée.")
+    messages.success(request, _("La photo a été supprimée."))
     return project_redirect(project, "photos")
 
 

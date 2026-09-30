@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 from django.core.exceptions import PermissionDenied, ValidationError
 from django.core.files.base import ContentFile
 from django.db import transaction
@@ -68,7 +69,7 @@ def create_evidence(*, actor, project, data):
     existing = EvidenceRecord.objects.filter(submission_id=submission_id).first()
     if existing:
         if existing.project_id != project.pk or existing.author_id != actor.pk:
-            raise ValidationError("Identifiant de dépôt déjà utilisé.")
+            raise ValidationError(_("Identifiant de dépôt déjà utilisé."))
         existing.was_duplicate = True
         return existing
     evidence = EvidenceRecord.objects.create(
@@ -134,9 +135,9 @@ def correct_evidence(*, actor, original, data):
         .first()
     )
     if latest.pk != original.pk:
-        raise ValidationError("Une version plus récente existe déjà.")
+        raise ValidationError(_("Une version plus récente existe déjà."))
     if original.status not in {EvidenceRecord.Status.VERIFIED, EvidenceRecord.Status.APPROVED}:
-        raise ValidationError("Seule une preuve validée peut être corrigée par versionnement.")
+        raise ValidationError(_("Seule une preuve validée peut être corrigée par versionnement."))
     evidence = EvidenceRecord.objects.create(
         evidence_key=original.evidence_key,
         version=original.version + 1,
@@ -173,15 +174,15 @@ def review_evidence(*, actor, evidence, decision, reason=""):
     if actor.is_superuser:
         allowed = {EvidenceRecord.Status.APPROVED, EvidenceRecord.Status.REJECTED}
         if evidence.status != EvidenceRecord.Status.VERIFIED:
-            raise ValidationError("La preuve doit d’abord être vérifiée.")
+            raise ValidationError(_("La preuve doit d’abord être vérifiée."))
     else:
         if not has_project_role(user=actor, project=evidence.project, roles=PROJECT_TECHNICAL_ROLES):
             raise PermissionDenied
         allowed = {EvidenceRecord.Status.VERIFIED, EvidenceRecord.Status.REJECTED}
         if evidence.status != EvidenceRecord.Status.SUBMITTED:
-            raise ValidationError("Cette preuve a déjà été traitée.")
+            raise ValidationError(_("Cette preuve a déjà été traitée."))
     if decision not in allowed:
-        raise ValidationError("Décision non autorisée.")
+        raise ValidationError(_("Décision non autorisée."))
     evidence.status = decision
     evidence.save(update_fields=("status",))
     AuditEvent.objects.create(
@@ -224,7 +225,7 @@ def review_document(*, actor, document, decision, reason):
         raise PermissionDenied
     if actor.is_superuser:
         if document.status != ProjectDocument.Status.VERIFIED:
-            raise ValidationError("Seul un document vérifié par un ingénieur peut être traité.")
+            raise ValidationError(_("Seul un document vérifié par un ingénieur peut être traité."))
         allowed_decisions = {
             ProjectDocument.Status.APPROVED,
             ProjectDocument.Status.REJECTED,
@@ -235,13 +236,13 @@ def review_document(*, actor, document, decision, reason):
         ):
             raise PermissionDenied
         if document.status != ProjectDocument.Status.PENDING:
-            raise ValidationError("Ce document a déjà été vérifié ou traité.")
+            raise ValidationError(_("Ce document a déjà été vérifié ou traité."))
         allowed_decisions = {
             ProjectDocument.Status.VERIFIED,
             ProjectDocument.Status.REJECTED,
         }
     if decision not in allowed_decisions:
-        raise ValidationError("Décision invalide.")
+        raise ValidationError(_("Décision invalide."))
     document.status = decision
     document.review_reason = reason
     document.reviewed_by = actor

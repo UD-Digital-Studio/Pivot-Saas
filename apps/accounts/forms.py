@@ -51,7 +51,7 @@ class EngineerRegistrationForm(UserCreationForm):
     def clean_email(self):
         email = self.cleaned_data["email"].strip().lower()
         if User.objects.filter(email__iexact=email).exists():
-            raise ValidationError("Un compte utilise déjà cette adresse e-mail.")
+            raise ValidationError(_("Un compte utilise déjà cette adresse e-mail."))
         return email
 
     @transaction.atomic
@@ -99,7 +99,7 @@ class ClientRegistrationForm(UserCreationForm):
     def clean_email(self):
         email = self.cleaned_data["email"].strip().lower()
         if User.objects.filter(email__iexact=email).exists():
-            raise ValidationError("Un compte utilise déjà cette adresse e-mail.")
+            raise ValidationError(_("Un compte utilise déjà cette adresse e-mail."))
         return email
 
     @transaction.atomic
@@ -116,9 +116,9 @@ class ClientRegistrationForm(UserCreationForm):
 
 
 class MemberInvitationForm(forms.Form):
-    email = forms.EmailField(label="Adresse e-mail")
+    email = forms.EmailField(label=_("Adresse e-mail"))
     role = forms.ChoiceField(
-        label="Rôle",
+        label=_("Rôle"),
         choices=(
             (User.Role.CLIENT, User.Role.CLIENT.label),
             (User.Role.SITE_MANAGER, User.Role.SITE_MANAGER.label),
@@ -142,9 +142,9 @@ class InvitationAcceptanceForm(UserCreationForm):
 
         invitation = Invitation.objects.select_for_update().get(pk=self.invitation.pk)
         if not invitation.is_usable:
-            raise ValidationError("Cette invitation n'est plus valide.")
+            raise ValidationError(_("Cette invitation n'est plus valide."))
         if User.objects.filter(email__iexact=invitation.email).exists():
-            raise ValidationError("Un compte utilise déjà cette adresse e-mail.")
+            raise ValidationError(_("Un compte utilise déjà cette adresse e-mail."))
 
         from apps.subscriptions.quotas import ensure_internal_member_capacity
 
@@ -181,7 +181,7 @@ class UserAccountForm(forms.ModelForm):
     def clean_email(self):
         email = self.cleaned_data["email"].strip().lower()
         if User.objects.filter(email__iexact=email).exclude(pk=self.instance.pk).exists():
-            raise ValidationError("Un autre compte utilise déjà cette adresse e-mail.")
+            raise ValidationError(_("Un autre compte utilise déjà cette adresse e-mail."))
         return email
 
 

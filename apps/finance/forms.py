@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 import uuid
 
 from django import forms
@@ -37,8 +38,8 @@ class ExpenseTransitionForm(forms.Form):
 
 
 class ExpenseAttachmentForm(forms.Form):
-    document_type = forms.ChoiceField(label="Nature de la pièce", choices=ExpenseRequestAttachment.DocumentType.choices)
-    evidence = forms.ModelChoiceField(label="Preuve existante", queryset=EvidenceRecord.objects.none())
+    document_type = forms.ChoiceField(label=_("Nature de la pièce"), choices=ExpenseRequestAttachment.DocumentType.choices)
+    evidence = forms.ModelChoiceField(label=_("Preuve existante"), queryset=EvidenceRecord.objects.none())
 
     def __init__(self, *args, project, **kwargs):
         super().__init__(*args, **kwargs)
@@ -48,8 +49,8 @@ class ExpenseAttachmentForm(forms.Form):
 
 
 class ExpenseAttachmentDecisionForm(forms.Form):
-    reason = forms.CharField(label="Motif", max_length=500, widget=forms.Textarea(attrs={"rows": 3}))
-    replacement_evidence = forms.ModelChoiceField(label="Nouvelle preuve", queryset=EvidenceRecord.objects.none(), required=False)
+    reason = forms.CharField(label=_("Motif"), max_length=500, widget=forms.Textarea(attrs={"rows": 3}))
+    replacement_evidence = forms.ModelChoiceField(label=_("Nouvelle preuve"), queryset=EvidenceRecord.objects.none(), required=False)
 
     def __init__(self, *args, project, replacement_required=False, **kwargs):
         super().__init__(*args, **kwargs)
@@ -58,9 +59,9 @@ class ExpenseAttachmentDecisionForm(forms.Form):
 
 
 class ExpenseTechnicalOpinionForm(forms.Form):
-    decision = forms.ChoiceField(label="Avis technique", choices=ExpenseTechnicalOpinion.Decision.choices)
+    decision = forms.ChoiceField(label=_("Avis technique"), choices=ExpenseTechnicalOpinion.Decision.choices)
     reason = forms.CharField(
-        label="Motif et observations", max_length=1000,
+        label=_("Motif et observations"), max_length=1000,
         widget=forms.Textarea(attrs={"rows": 4}),
     )
     expected_version = forms.IntegerField(min_value=1, widget=forms.HiddenInput)
@@ -73,13 +74,13 @@ class ExpenseTechnicalOpinionForm(forms.Form):
 
 
 class ExpensePivotVerificationForm(forms.Form):
-    decision = forms.ChoiceField(label="Décision PIVOT", choices=ExpensePivotVerification.Decision.choices)
+    decision = forms.ChoiceField(label=_("Décision PIVOT"), choices=ExpensePivotVerification.Decision.choices)
     reason = forms.CharField(
-        label="Motivation", max_length=1000, widget=forms.Textarea(attrs={"rows": 4})
+        label=_("Motivation"), max_length=1000, widget=forms.Textarea(attrs={"rows": 4})
     )
     expected_version = forms.IntegerField(min_value=1, widget=forms.HiddenInput)
-    is_exceptional = forms.BooleanField(label="Intervention exceptionnelle", required=False)
-    confirmation = forms.CharField(label="Confirmation explicite", max_length=100, required=False)
+    is_exceptional = forms.BooleanField(label=_("Intervention exceptionnelle"), required=False)
+    confirmation = forms.CharField(label=_("Confirmation explicite"), max_length=100, required=False)
 
     def __init__(self, *args, allow_exceptional=False, **kwargs):
         super().__init__(*args, **kwargs)
@@ -97,7 +98,7 @@ class ExpenseOwnerDecisionForm(forms.Form):
         choices=ExpenseOwnerDecision.Decision.choices,
     )
     reason = forms.CharField(
-        label="Motif", max_length=1000, required=False,
+        label=_("Motif"), max_length=1000, required=False,
         widget=forms.Textarea(attrs={"rows": 4}),
     )
     expected_version = forms.IntegerField(min_value=1, widget=forms.HiddenInput)
@@ -119,16 +120,16 @@ class PaymentForm(forms.Form):
         "transition focus:border-pivot-600 focus:ring-4 focus:ring-pivot-600/10"
     )
     amount = forms.DecimalField(
-        label="Montant XAF",
+        label=_("Montant XAF"),
         min_value=1,
         decimal_places=0,
         widget=forms.NumberInput(attrs={"placeholder": "Ex. 250000", "inputmode": "numeric"}),
     )
     operator = forms.ChoiceField(
-        label="Opérateur", choices=(("mtn", "MTN Mobile Money"), ("orange", "Orange Money"))
+        label=_("Opérateur"), choices=(("mtn", "MTN Mobile Money"), ("orange", "Orange Money"))
     )
     phone = forms.RegexField(
-        label="Téléphone payeur",
+        label=_("Téléphone payeur"),
         regex=r"^\+?[0-9]{9,15}$",
         widget=forms.TextInput(
             attrs={"placeholder": "Ex. 670000000", "inputmode": "tel", "autocomplete": "tel"}
@@ -146,10 +147,10 @@ class PaymentForm(forms.Form):
 
 class ExpensePaymentForm(forms.Form):
     operator = forms.ChoiceField(
-        label="Opérateur", choices=(("mtn", "MTN Mobile Money"), ("orange", "Orange Money"))
+        label=_("Opérateur"), choices=(("mtn", "MTN Mobile Money"), ("orange", "Orange Money"))
     )
     phone = forms.RegexField(
-        label="Téléphone du payeur", regex=r"^\+?[0-9]{9,15}$",
+        label=_("Téléphone du payeur"), regex=r"^\+?[0-9]{9,15}$",
         widget=forms.TextInput(attrs={"placeholder": "Ex. 670000000", "inputmode": "tel", "autocomplete": "tel"}),
     )
     idempotency_key = forms.UUIDField(widget=forms.HiddenInput)
@@ -168,13 +169,13 @@ class WithdrawalForm(forms.Form):
         "transition focus:border-pivot-600 focus:ring-4 focus:ring-pivot-600/10"
     )
     amount = forms.DecimalField(
-        label="Montant XAF",
+        label=_("Montant XAF"),
         min_value=1,
         decimal_places=0,
         widget=forms.NumberInput(attrs={"placeholder": "Ex. 150000", "inputmode": "numeric"}),
     )
     reason = forms.CharField(
-        label="Motif",
+        label=_("Motif"),
         max_length=500,
         widget=forms.Textarea(attrs={"rows": 3, "placeholder": "Précisez l’utilisation prévue des fonds"}),
     )

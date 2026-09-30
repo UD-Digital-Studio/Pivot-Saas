@@ -1,5 +1,5 @@
-Vous êtes invité(e) à rejoindre {{ organization_name }} comme {{ role_name }}.
+{% load i18n %}{% blocktranslate %}Vous êtes invité(e) à rejoindre {{ organization_name }} comme {{ role_name }}.{% endblocktranslate %}
 
-Acceptez l'invitation : {{ action_url }}
+{% translate "Acceptez l'invitation :" %} {{ action_url }}
 
-Ce lien expire dans {{ expiration_days }} jours. Si vous n'attendiez pas cette invitation, ignorez cet e-mail.
+{% blocktranslate %}Ce lien expire dans {{ expiration_days }} jours. Si vous n'attendiez pas cette invitation, ignorez cet e-mail.{% endblocktranslate %}

@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 from datetime import date
 from decimal import Decimal
 
@@ -15,9 +16,9 @@ def parse_period(date_from="", date_to=""):
         start = date.fromisoformat(date_from) if date_from else None
         end = date.fromisoformat(date_to) if date_to else None
     except ValueError as error:
-        raise ValidationError("Période invalide") from error
+        raise ValidationError(_("Période invalide")) from error
     if start and end and end < start:
-        raise ValidationError("La fin précède le début")
+        raise ValidationError(_("La fin précède le début"))
     return start, end
 
 
@@ -89,7 +90,7 @@ def project_report_projection(*, project, date_from=None, date_to=None):
 def stage_verification_report_projection(*, actor, stage):
     technical = stage.latest_verified_progress
     if not technical or not technical.declaration_id or not technical.digital_verification_id:
-        raise ValidationError("Les niveaux Digital Verified et Technically Verified sont requis.")
+        raise ValidationError(_("Les niveaux Digital Verified et Technically Verified sont requis."))
 
     site = technical.site_verifications.select_related("visit", "inspector").first()
     candidates = []
@@ -104,7 +105,7 @@ def stage_verification_report_projection(*, actor, stage):
     proofs = [evidence for evidence in candidates if can_access_evidence(
         actor=actor, evidence=evidence, action="export"
     )]
-    report, _ = StageVerificationReport.objects.get_or_create(
+    report, report_created = StageVerificationReport.objects.get_or_create(
         technical_verification=technical,
         defaults={"organization": stage.organization, "generated_by": actor},
     )

@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 import base64
 from io import BytesIO
 
@@ -59,11 +60,11 @@ def pricing(request):
 @login_required
 def pay(request):
     if not settings.SUBSCRIPTIONS_ENABLED:
-        messages.error(request, "Le module commercial est temporairement désactivé.")
+        messages.error(request, _("Le module commercial est temporairement désactivé."))
         return redirect("subscriptions:pricing")
     form = SubscriptionPaymentForm(request.POST)
     if not form.is_valid():
-        messages.error(request, "Vérifiez le forfait, l’opérateur et le numéro de téléphone.")
+        messages.error(request, _("Vérifiez le forfait, l’opérateur et le numéro de téléphone."))
         return redirect("subscriptions:pricing")
     try:
         payment, created = initiate_subscription_payment(
@@ -75,16 +76,16 @@ def pay(request):
         messages.error(request, exc.messages[0])
         return redirect("subscriptions:pricing")
     if not created:
-        messages.warning(request, "Un paiement est déjà en cours. Sa vérification doit se terminer avant une nouvelle tentative.")
+        messages.warning(request, _("Un paiement est déjà en cours. Sa vérification doit se terminer avant une nouvelle tentative."))
     elif payment.status == SubscriptionPayment.Status.SUCCESS:
-        messages.success(request, "Paiement confirmé : votre abonnement est actif.")
+        messages.success(request, _("Paiement confirmé : votre abonnement est actif."))
     elif payment.response_summary.get("error") == "provider_configuration_invalid":
-        messages.error(request, "MeSomb a refusé la configuration de l’application. Vérifiez la clé d’application et redémarrez Django avant de réessayer.")
+        messages.error(request, _("MeSomb a refusé la configuration de l’application. Vérifiez la clé d’application et redémarrez Django avant de réessayer."))
     elif payment.status == SubscriptionPayment.Status.PENDING:
         if payment.response_summary.get("error") == "provider_unavailable":
-            messages.error(request, "MeSomb est momentanément inaccessible. Aucun second paiement ne sera lancé avant la vérification de cette tentative.")
+            messages.error(request, _("MeSomb est momentanément inaccessible. Aucun second paiement ne sera lancé avant la vérification de cette tentative."))
         else:
-            messages.info(request, "Paiement en attente de confirmation par l’opérateur.")
+            messages.info(request, _("Paiement en attente de confirmation par l’opérateur."))
     else:
         messages.error(request, f"Le paiement est {payment.get_status_display().lower()}.")
     return redirect("subscriptions:pricing")
@@ -94,8 +95,8 @@ def pay(request):
 @login_required
 def reconcile(request, pk):
     payment = get_object_or_404(SubscriptionPayment, pk=pk, organization=request.user.organization)
-    payment, _ = reconcile_subscription_payment(actor=request.user, payment=payment)
-    messages.success(request, "Paiement confirmé : votre abonnement est actif.") if payment.status == SubscriptionPayment.Status.SUCCESS else messages.info(request, f"Statut actuel : {payment.get_status_display()}.")
+    payment, payment_changed = reconcile_subscription_payment(actor=request.user, payment=payment)
+    messages.success(request, _("Paiement confirmé : votre abonnement est actif.")) if payment.status == SubscriptionPayment.Status.SUCCESS else messages.info(request, f"Statut actuel : {payment.get_status_display()}.")
     return redirect("subscriptions:pricing")
 
 

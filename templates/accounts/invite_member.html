@@ -1,16 +1,17 @@
 {% extends "base/app.html" %}
+{% load i18n %}
 {% block title %}Inviter un membre · PIVOT-SASS{% endblock %}
 {% block eyebrow %}Gestion de l’équipe{% endblock %}
-{% block breadcrumbs %}<a class="hover:text-pivot-600" href="{% url 'accounts:dashboard' role=request.user.role %}">Tableau de bord</a> <span class="mx-2">/</span> <span>Nouvelle invitation</span>{% endblock %}
+{% block breadcrumbs %}<a class="hover:text-pivot-600" href="{% url 'accounts:dashboard' role=request.user.role %}">{% translate "Tableau de bord" %}</a> <span class="mx-2">/</span> <span>{% translate "Nouvelle invitation" %}</span>{% endblock %}
 {% block content %}
 <div class="mx-auto max-w-3xl">
-    <div class="mb-7"><span class="inline-flex rounded-full bg-pivot-50 px-3 py-1 text-xs font-bold text-pivot-700 ring-1 ring-pivot-100">{{ request.user.organization.name }}</span><h1 class="mt-4 text-3xl font-black tracking-tight sm:text-4xl">Inviter un membre</h1><p class="mt-2 text-slate-500">Ajoutez un client ou un responsable de chantier à votre espace.</p></div>
+    <div class="mb-7"><span class="inline-flex rounded-full bg-pivot-50 px-3 py-1 text-xs font-bold text-pivot-700 ring-1 ring-pivot-100">{{ request.user.organization.name }}</span><h1 class="mt-4 text-3xl font-black tracking-tight sm:text-4xl">{% translate "Inviter un membre" %}</h1><p class="mt-2 text-slate-500">{% translate "Ajoutez un client ou un responsable de chantier à votre espace." %}</p></div>
     <section class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-soft">
-        <div class="border-b border-slate-100 bg-slate-50/80 px-6 py-5 sm:px-8"><div class="flex items-center gap-4"><span class="grid size-11 place-items-center rounded-2xl bg-pivot-100 text-xl text-pivot-700">✉</span><div><h2 class="font-black">Informations du membre</h2><p class="text-sm text-slate-500">Le lien d’invitation expirera après 7 jours.</p></div></div></div>
+        <div class="border-b border-slate-100 bg-slate-50/80 px-6 py-5 sm:px-8"><div class="flex items-center gap-4"><span class="grid size-11 place-items-center rounded-2xl bg-pivot-100 text-xl text-pivot-700">✉</span><div><h2 class="font-black">{% translate "Informations du membre" %}</h2><p class="text-sm text-slate-500">{% translate "Le lien d’invitation expirera après 7 jours." %}</p></div></div></div>
         <form method="post" class="space-y-6 p-6 sm:p-8 [&_input]:mt-2 [&_input]:w-full [&_input]:rounded-xl [&_input]:border [&_input]:border-slate-300 [&_input]:bg-slate-50 [&_input]:px-4 [&_input]:py-3 [&_select]:mt-2 [&_select]:w-full [&_select]:rounded-xl [&_select]:border [&_select]:border-slate-300 [&_select]:bg-slate-50 [&_select]:px-4 [&_select]:py-3 focus:[&_input]:border-pivot-500 focus:[&_input]:ring-4 focus:[&_input]:ring-pivot-500/10 focus:[&_select]:border-pivot-500 focus:[&_select]:ring-4 focus:[&_select]:ring-pivot-500/10" novalidate>
             {% csrf_token %}{% if form.non_field_errors %}<div class="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">{{ form.non_field_errors }}</div>{% endif %}
             {% for field in form %}<div><label class="text-sm font-bold text-slate-700" for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}{% if field.errors %}<div class="mt-2 text-sm font-medium text-red-600">{{ field.errors }}</div>{% endif %}</div>{% endfor %}
-            <div class="flex flex-col-reverse gap-3 pt-2 sm:flex-row sm:justify-end"><a class="rounded-xl border border-slate-200 px-5 py-3 text-center text-sm font-bold text-slate-600 hover:bg-slate-50" href="{% url 'accounts:dashboard' role=request.user.role %}">Annuler</a><button class="rounded-xl bg-pivot-600 px-5 py-3 text-sm font-black text-white shadow-lg shadow-pivot-600/20 hover:bg-pivot-700" type="submit">Envoyer l’invitation</button></div>
+            <div class="flex flex-col-reverse gap-3 pt-2 sm:flex-row sm:justify-end"><a class="rounded-xl border border-slate-200 px-5 py-3 text-center text-sm font-bold text-slate-600 hover:bg-slate-50" href="{% url 'accounts:dashboard' role=request.user.role %}">{% translate "Annuler" %}</a><button class="rounded-xl bg-pivot-600 px-5 py-3 text-sm font-black text-white shadow-lg shadow-pivot-600/20 hover:bg-pivot-700" type="submit">{% translate "Envoyer l’invitation" %}</button></div>
         </form>
     </section>
 </div>

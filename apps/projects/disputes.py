@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 from django.core.exceptions import PermissionDenied, ValidationError
 from django.db import transaction
 from django.utils import timezone
@@ -29,7 +30,7 @@ def ensure_decision_not_frozen(*, project, target_type, target_id):
         project=project, target_type=target_type, target_id=target_id,
         status=ProjectDispute.Status.OPEN, freezes_decision=True,
     ).exists():
-        raise ValidationError("Cette décision est gelée par une contestation ouverte.")
+        raise ValidationError(_("Cette décision est gelée par une contestation ouverte."))
 
 
 @transaction.atomic
@@ -41,7 +42,7 @@ def open_dispute(*, actor, project, target_type, target_id, subject, reason,
     if model is None or not model.objects.filter(
         pk=target_id, project=project, organization=project.organization
     ).exists():
-        raise ValidationError("L’objet contesté n’appartient pas à ce chantier.")
+        raise ValidationError(_("L’objet contesté n’appartient pas à ce chantier."))
     if freezes_decision and not actor.is_superuser:
         raise PermissionDenied("Seul PIVOT peut imposer le gel d’une décision.")
     dispute = ProjectDispute.objects.create(
@@ -51,7 +52,7 @@ def open_dispute(*, actor, project, target_type, target_id, subject, reason,
     )
     for item in evidence:
         if item.project_id != project.pk or item.organization_id != project.organization_id:
-            raise ValidationError("Une preuve jointe appartient à un autre chantier.")
+            raise ValidationError(_("Une preuve jointe appartient à un autre chantier."))
         ProjectDisputeEvidence.objects.create(dispute=dispute, evidence=item, attached_by=actor)
     AuditEvent.objects.create(
         organization=project.organization, actor=actor, action="project.dispute_opened",
@@ -68,9 +69,9 @@ def add_dispute_observation(*, actor, dispute, position, body):
     if not _is_participant(actor, dispute.project):
         raise PermissionDenied
     if dispute.status != ProjectDispute.Status.OPEN:
-        raise ValidationError("Cette contestation est déjà résolue.")
+        raise ValidationError(_("Cette contestation est déjà résolue."))
     if position not in ProjectDisputeObservation.Position.values or not body.strip():
-        raise ValidationError("La position et l’observation sont obligatoires.")
+        raise ValidationError(_("La position et l’observation sont obligatoires."))
     observation = ProjectDisputeObservation.objects.create(
         dispute=dispute, author=actor, position=position, body=body.strip()
     )
@@ -90,7 +91,7 @@ def resolve_dispute(*, actor, dispute, resolution):
     if locked.status == ProjectDispute.Status.RESOLVED:
         return locked
     if not resolution.strip():
-        raise ValidationError("La résolution motivée est obligatoire.")
+        raise ValidationError(_("La résolution motivée est obligatoire."))
     locked.status = ProjectDispute.Status.RESOLVED
     locked.resolution = resolution.strip()
     locked.resolved_by = actor

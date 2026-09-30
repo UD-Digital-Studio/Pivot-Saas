@@ -117,7 +117,7 @@ class StockItem(models.Model):
     def clean(self):
         super().clean()
         if self.project_id and self.organization_id != self.project.organization_id:
-            raise ValidationError("L'article doit appartenir à l'organisation du projet.")
+            raise ValidationError(_("L'article doit appartenir à l'organisation du projet."))
         if self.created_by_id and not self.created_by.is_superuser:
             from apps.projects.models import ProjectMembership
 
@@ -129,7 +129,7 @@ class StockItem(models.Model):
                     ProjectMembership.Role.SITE_MANAGER,
                 ),
             ).exists():
-                raise ValidationError("Le créateur doit pouvoir gérer le stock de ce projet.")
+                raise ValidationError(_("Le créateur doit pouvoir gérer le stock de ce projet."))
 
     def __str__(self):
         return f"{self.project} · {self.name}"
@@ -187,28 +187,28 @@ class StockMovement(models.Model):
         if self.item_id and (
             self.project_id != self.item.project_id or self.organization_id != self.item.organization_id
         ):
-            raise ValidationError("Le mouvement doit appartenir au projet et à l'organisation de l'article.")
+            raise ValidationError(_("Le mouvement doit appartenir au projet et à l'organisation de l'article."))
         if self.evidence_id and (
             self.evidence.project_id != self.project_id
             or self.evidence.organization_id != self.organization_id
         ):
-            raise ValidationError("La pièce justificative doit appartenir au même projet.")
+            raise ValidationError(_("La pièce justificative doit appartenir au même projet."))
         if self.stage_id and (
             self.stage.project_id != self.project_id
             or self.stage.organization_id != self.organization_id
         ):
-            raise ValidationError("L'étape doit appartenir au même projet.")
+            raise ValidationError(_("L'étape doit appartenir au même projet."))
         if self.evidence_id:
             expected = {
                 self.Type.PURCHASED: "invoice",
                 self.Type.DELIVERED: "delivery_note",
             }.get(self.movement_type)
             if expected and self.evidence.evidence_type != expected:
-                raise ValidationError("La nature de la pièce ne correspond pas au mouvement.")
+                raise ValidationError(_("La nature de la pièce ne correspond pas au mouvement."))
         if self.movement_type != self.Type.CORRECTION and self.source_quantity < 0:
             raise ValidationError({"source_quantity": "La quantité source doit être positive."})
         if self.normalized_quantity != abs(self.source_quantity * self.conversion_factor):
-            raise ValidationError("La quantité convertie ne correspond pas à la conversion déclarée.")
+            raise ValidationError(_("La quantité convertie ne correspond pas à la conversion déclarée."))
 
     def __str__(self):
         return f"{self.item} · {self.variation:+}"
@@ -256,9 +256,9 @@ class InventoryExpectedRange(models.Model):
     def clean(self):
         super().clean()
         if self.project_id and self.project.organization_id != self.organization_id:
-            raise ValidationError("La plage doit appartenir à l'organisation du projet.")
+            raise ValidationError(_("La plage doit appartenir à l'organisation du projet."))
         if self.minimum_quantity > self.maximum_quantity:
-            raise ValidationError("La borne minimale ne peut pas dépasser la borne maximale.")
+            raise ValidationError(_("La borne minimale ne peut pas dépasser la borne maximale."))
         if not self.assumptions.strip():
             raise ValidationError({"assumptions": "Les hypothèses techniques sont obligatoires."})
         if self.supersedes_id and (
@@ -267,7 +267,7 @@ class InventoryExpectedRange(models.Model):
             or self.supersedes.unit != self.unit
             or self.version != self.supersedes.version + 1
         ):
-            raise ValidationError("La version précédente doit concerner le même ouvrage et la même unité.")
+            raise ValidationError(_("La version précédente doit concerner le même ouvrage et la même unité."))
 
     def save(self, *args, **kwargs):
         if self.pk:
@@ -278,7 +278,7 @@ class InventoryExpectedRange(models.Model):
                 "out_of_range_action", "version", "supersedes_id", "created_by_id",
             )
             if original and any(getattr(original, field) != getattr(self, field) for field in immutable):
-                raise ValidationError("Une plage publiée est immuable ; créez une nouvelle version.")
+                raise ValidationError(_("Une plage publiée est immuable ; créez une nouvelle version."))
         self.full_clean()
         return super().save(*args, **kwargs)
 
@@ -332,13 +332,13 @@ class InventoryAnomaly(models.Model):
     def clean(self):
         super().clean()
         if self.project_id and self.organization_id != self.project.organization_id:
-            raise ValidationError("L'anomalie doit appartenir à l'organisation du projet.")
+            raise ValidationError(_("L'anomalie doit appartenir à l'organisation du projet."))
         if self.expense_request_id and self.expense_request.project_id != self.project_id:
-            raise ValidationError("La demande de dépense doit appartenir au même projet.")
+            raise ValidationError(_("La demande de dépense doit appartenir au même projet."))
         if self.item_id and self.item.project_id != self.project_id:
-            raise ValidationError("L'article doit appartenir au même projet.")
+            raise ValidationError(_("L'article doit appartenir au même projet."))
         if self.expected_range_id and self.expected_range.project_id != self.project_id:
-            raise ValidationError("La plage attendue doit appartenir au même projet.")
+            raise ValidationError(_("La plage attendue doit appartenir au même projet."))
 
     def save(self, *args, **kwargs):
         if self.pk:
@@ -350,7 +350,7 @@ class InventoryAnomaly(models.Model):
                 "action", "movement_ids", "fingerprint",
             )
             if original and any(getattr(original, field) != getattr(self, field) for field in protected):
-                raise ValidationError("Le constat d'une anomalie est immuable.")
+                raise ValidationError(_("Le constat d'une anomalie est immuable."))
         self.full_clean()
         return super().save(*args, **kwargs)
 
@@ -397,11 +397,11 @@ class InventoryAnomalyResolution(models.Model):
         super().clean()
         if self.responsible_id and self.anomaly_id:
             if not self.responsible.project_memberships.filter(project=self.anomaly.project).exists():
-                raise ValidationError("Le responsable doit être membre du projet.")
+                raise ValidationError(_("Le responsable doit être membre du projet."))
         if not self.reason.strip():
             raise ValidationError({"reason": "Le motif de résolution est obligatoire."})
         if self.status != self.Status.PENDING and (not self.decided_by_id or not self.decision_reason.strip()):
-            raise ValidationError("Une décision exige un validateur et un motif.")
+            raise ValidationError(_("Une décision exige un validateur et un motif."))
 
     def save(self, *args, **kwargs):
         self.full_clean()

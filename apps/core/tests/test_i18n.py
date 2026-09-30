@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.test import TestCase
 from django.urls import reverse
+from django.utils.translation import gettext, override
 
 
 class LanguageSwitchTests(TestCase):
@@ -20,3 +21,20 @@ class LanguageSwitchTests(TestCase):
     def test_french_remains_the_default_language(self):
         response = self.client.get(reverse("accounts:login"))
         self.assertContains(response, "Accédez à votre espace de travail.")
+
+    def test_recent_product_areas_have_english_translations(self):
+        expected = {
+            "Nouvelle étape": "New step",
+            "Progression vérifiée": "Verified progress",
+            "Demander un retrait": "Request a withdrawal",
+            "Enregistrer une visite": "Record a site visit",
+            "Abonnements": "Subscriptions",
+            "Validations et finances": "Validations and Finances",
+            "Nouvelle déclaration": "New progress update",
+            "Dépenses": "Expenses",
+            "Preuves terrain": "Site evidence",
+        }
+        with override("en"):
+            for source, translation in expected.items():
+                with self.subTest(source=source):
+                    self.assertEqual(gettext(source), translation)

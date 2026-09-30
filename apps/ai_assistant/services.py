@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 from django.conf import settings
 from django.core.exceptions import PermissionDenied, ValidationError
 from django.db import transaction
@@ -28,16 +29,16 @@ def add_message(*, user, conversation, role, content, status=None, error_code=""
     if locked.user_id != user.pk:
         raise PermissionDenied("Cette conversation ne vous appartient pas.")
     if locked.status != AssistantConversation.Status.ACTIVE:
-        raise ValidationError("Cette conversation est archivée.")
+        raise ValidationError(_("Cette conversation est archivée."))
     if locked.expires_at <= timezone.now():
-        raise ValidationError("Cette conversation a expiré.")
+        raise ValidationError(_("Cette conversation a expiré."))
     if locked.messages.count() >= settings.AI_CONVERSATION_MAX_MESSAGES:
-        raise ValidationError("Cette conversation a atteint sa limite de messages.")
+        raise ValidationError(_("Cette conversation a atteint sa limite de messages."))
     normalized_content = (content or "").strip()
     if not normalized_content:
-        raise ValidationError("Le message ne peut pas être vide.")
+        raise ValidationError(_("Le message ne peut pas être vide."))
     if len(normalized_content) > settings.AI_MESSAGE_MAX_CHARS:
-        raise ValidationError("Le message est trop long.")
+        raise ValidationError(_("Le message est trop long."))
     message = AssistantMessage(
         conversation=locked,
         role=role,

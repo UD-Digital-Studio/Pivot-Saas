@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 from decimal import Decimal
 import logging
 
@@ -241,7 +242,7 @@ def transition_expense_request(*, actor, expense_request, target_status, expecte
         target_id=locked.pk,
     )
     if locked.status_version != expected_version:
-        raise ValidationError("La demande a changé. Actualisez la page avant de continuer.")
+        raise ValidationError(_("La demande a changé. Actualisez la page avant de continuer."))
     if target_status not in allowed_expense_transitions(actor=actor, expense_request=locked):
         raise PermissionDenied
     if target_status in {
@@ -249,18 +250,18 @@ def transition_expense_request(*, actor, expense_request, target_status, expecte
         ExpenseRequest.Status.VERIFIED,
         ExpenseRequest.Status.AUTHORIZED,
     } and not expense_dossier_is_complete(locked):
-        raise ValidationError("Le dossier est incomplet. Ajoutez toutes les pièces obligatoires.")
+        raise ValidationError(_("Le dossier est incomplet. Ajoutez toutes les pièces obligatoires."))
     if target_status == ExpenseRequest.Status.AUTHORIZED:
         risk = evaluate_expense_risk(locked)
         issues = expense_dossier_inconsistencies(locked)
         if issues:
-            raise ValidationError("Le dossier est incohérent : " + "; ".join(issues) + ".")
+            raise ValidationError(_("Le dossier est incohérent : ") + "; ".join(issues) + ".")
         if risk["required"]:
             verification = locked.pivot_verifications.filter(is_current=True).first()
             if not verification or verification.decision != ExpensePivotVerification.Decision.APPROVED:
-                raise ValidationError("La vérification PIVOT est obligatoire avant l’autorisation.")
+                raise ValidationError(_("La vérification PIVOT est obligatoire avant l’autorisation."))
             if verification.reviewed_status_version != locked.status_version:
-                raise ValidationError("La vérification PIVOT ne correspond plus à la version actuelle du dossier.")
+                raise ValidationError(_("La vérification PIVOT ne correspond plus à la version actuelle du dossier."))
     previous_status = locked.status
     reason = reason.strip() or f"Passage de {locked.get_status_display()} vers {dict(ExpenseRequest.Status.choices)[target_status]}"
     locked.status = target_status
@@ -301,9 +302,9 @@ def _can_manage_expense_dossier(actor, expense_request):
 
 def _validate_attachment_evidence(document_type, evidence, expense_request):
     if evidence.project_id != expense_request.project_id or evidence.organization_id != expense_request.organization_id:
-        raise ValidationError("Cette preuve appartient à un autre projet.")
+        raise ValidationError(_("Cette preuve appartient à un autre projet."))
     if evidence.evidence_type not in EXPENSE_EVIDENCE_TYPES[document_type]:
-        raise ValidationError("Le type de la preuve ne correspond pas à la nature choisie.")
+        raise ValidationError(_("Le type de la preuve ne correspond pas à la nature choisie."))
 
 
 @transaction.atomic
@@ -334,7 +335,7 @@ def reject_expense_attachment(*, actor, attachment, reason):
     if not has_project_role(user=actor, project=attachment.request.project, roles={ProjectMembership.Role.ENGINEER, ProjectMembership.Role.PIVOT_REVIEWER}):
         raise PermissionDenied
     if attachment.status != ExpenseRequestAttachment.Status.ACTIVE or not reason.strip():
-        raise ValidationError("Cette pièce ne peut pas être rejetée sans motif.")
+        raise ValidationError(_("Cette pièce ne peut pas être rejetée sans motif."))
     attachment.status = ExpenseRequestAttachment.Status.REJECTED
     attachment.reason = reason.strip()
     attachment.decided_at = timezone.now()
@@ -356,7 +357,7 @@ def replace_expense_attachment(*, actor, attachment, replacement_evidence, reaso
         ExpenseRequestAttachment.Status.ACTIVE,
         ExpenseRequestAttachment.Status.REJECTED,
     } or not reason.strip():
-        raise ValidationError("Le remplacement exige une pièce active ou rejetée et un motif.")
+        raise ValidationError(_("Le remplacement exige une pièce active ou rejetée et un motif."))
     _validate_attachment_evidence(attachment.document_type, replacement_evidence, attachment.request)
     replacement = ExpenseRequestAttachment.objects.create(
         organization=attachment.organization, request=attachment.request, evidence=replacement_evidence,
@@ -379,17 +380,17 @@ def replace_expense_attachment(*, actor, attachment, replacement_evidence, reaso
 def submit_expense_technical_opinion(*, actor, expense_request, decision, reason, expected_version):
     locked = ExpenseRequest.objects.select_for_update().select_related("project").get(pk=expense_request.pk)
     if locked.status_version != expected_version:
-        raise ValidationError("La demande a changé. Actualisez la page avant de rendre votre avis.")
+        raise ValidationError(_("La demande a changé. Actualisez la page avant de rendre votre avis."))
     if locked.status != ExpenseRequest.Status.REVIEW:
-        raise ValidationError("L’avis technique ne peut être rendu que pendant la revue.")
+        raise ValidationError(_("L’avis technique ne peut être rendu que pendant la revue."))
     if not actor.is_superuser and not has_project_role(
         user=actor, project=locked.project, roles={ProjectMembership.Role.ENGINEER}
     ):
         raise PermissionDenied
     if decision not in ExpenseTechnicalOpinion.Decision.values or not reason.strip():
-        raise ValidationError("La décision et son motif sont obligatoires.")
+        raise ValidationError(_("La décision et son motif sont obligatoires."))
     if not expense_dossier_is_complete(locked):
-        raise ValidationError("Le dossier est incomplet. L’avis technique ne peut pas être rendu.")
+        raise ValidationError(_("Le dossier est incomplet. L’avis technique ne peut pas être rendu."))
 
     ExpenseTechnicalOpinion.objects.filter(request=locked, is_current=True).update(
         is_current=False, superseded_at=timezone.now()
@@ -464,24 +465,24 @@ def submit_expense_pivot_verification(
 ):
     locked = ExpenseRequest.objects.select_for_update().select_related("project").get(pk=expense_request.pk)
     if locked.status_version != expected_version:
-        raise ValidationError("La demande a changé. Actualisez la page avant la vérification PIVOT.")
+        raise ValidationError(_("La demande a changé. Actualisez la page avant la vérification PIVOT."))
     if locked.status != ExpenseRequest.Status.VERIFIED:
-        raise ValidationError("La vérification PIVOT exige un avis technique valide.")
+        raise ValidationError(_("La vérification PIVOT exige un avis technique valide."))
     if not has_project_role(
         user=actor, project=locked.project, roles={ProjectMembership.Role.PIVOT_REVIEWER}
     ):
         raise PermissionDenied
     if decision not in ExpensePivotVerification.Decision.values or not reason.strip():
-        raise ValidationError("La décision PIVOT et sa motivation sont obligatoires.")
+        raise ValidationError(_("La décision PIVOT et sa motivation sont obligatoires."))
     risk = evaluate_expense_risk(locked)
     issues = expense_dossier_inconsistencies(locked)
     if issues:
-        raise ValidationError("Le dossier est incomplet ou incohérent : " + "; ".join(issues) + ".")
+        raise ValidationError(_("Le dossier est incomplet ou incohérent : ") + "; ".join(issues) + ".")
     if is_exceptional:
         if not actor.is_superuser:
             raise PermissionDenied
         if confirmation.strip() != EXCEPTIONAL_PIVOT_CONFIRMATION:
-            raise ValidationError("La confirmation explicite de l’intervention exceptionnelle est incorrecte.")
+            raise ValidationError(_("La confirmation explicite de l’intervention exceptionnelle est incorrecte."))
 
     ExpensePivotVerification.objects.filter(request=locked, is_current=True).update(
         is_current=False, superseded_at=timezone.now()
@@ -527,37 +528,37 @@ def submit_expense_pivot_verification(
 def decide_expense_by_owner(*, actor, expense_request, decision, reason, expected_version):
     locked = ExpenseRequest.objects.select_for_update().select_related("project").get(pk=expense_request.pk)
     if locked.status_version != expected_version:
-        raise ValidationError("La demande a changé. Actualisez la page avant de décider.")
+        raise ValidationError(_("La demande a changé. Actualisez la page avant de décider."))
     if locked.status != ExpenseRequest.Status.VERIFIED:
-        raise ValidationError("Seule une demande vérifiée peut recevoir la décision du propriétaire.")
+        raise ValidationError(_("Seule une demande vérifiée peut recevoir la décision du propriétaire."))
     if not can_authorize_project_finance(user=actor, project=locked.project):
         raise PermissionDenied("Seul le propriétaire confirmé du chantier peut prendre cette décision.")
     if decision not in ExpenseOwnerDecision.Decision.values:
-        raise ValidationError("Décision propriétaire invalide.")
+        raise ValidationError(_("Décision propriétaire invalide."))
     from apps.planning.services import inspection_requirement_is_satisfied
     if decision == ExpenseOwnerDecision.Decision.APPROVED and not inspection_requirement_is_satisfied(locked.milestone):
-        raise ValidationError("Une inspection PIVOT Site Verified est imposée par la règle de risque de cette étape.")
+        raise ValidationError(_("Une inspection PIVOT Site Verified est imposée par la règle de risque de cette étape."))
     reason = reason.strip()
     if decision == ExpenseOwnerDecision.Decision.REJECTED and not reason:
-        raise ValidationError("Le motif du refus est obligatoire.")
+        raise ValidationError(_("Le motif du refus est obligatoire."))
 
     risk = evaluate_expense_risk(locked)
     issues = expense_dossier_inconsistencies(locked)
     if issues:
-        raise ValidationError("Le dossier est incomplet ou incohérent : " + "; ".join(issues) + ".")
+        raise ValidationError(_("Le dossier est incomplet ou incohérent : ") + "; ".join(issues) + ".")
     if (
         decision == ExpenseOwnerDecision.Decision.APPROVED
         and locked.inventory_anomalies.filter(status="open", action="block").exists()
     ):
         raise ValidationError(
-            "L’autorisation est bloquée par une anomalie de consommation non résolue."
+            _("L’autorisation est bloquée par une anomalie de consommation non résolue.")
         )
     if risk["required"]:
         verification = locked.pivot_verifications.filter(is_current=True).first()
         if not verification or verification.decision != ExpensePivotVerification.Decision.APPROVED:
-            raise ValidationError("La vérification PIVOT est obligatoire avant la décision du propriétaire.")
+            raise ValidationError(_("La vérification PIVOT est obligatoire avant la décision du propriétaire."))
         if verification.reviewed_status_version != locked.status_version:
-            raise ValidationError("La vérification PIVOT ne correspond plus à cette version du dossier.")
+            raise ValidationError(_("La vérification PIVOT ne correspond plus à cette version du dossier."))
 
     previous_status = locked.status
     decided_version = locked.status_version
@@ -638,15 +639,15 @@ def initiate_payment(*, actor, project, amount, operator, phone, idempotency_key
         raise PermissionDenied
     if not can_authorize_project_finance(user=actor, project=project):
         raise ValidationError(
-            "Le propriétaire du chantier doit confirmer son ownership avant tout paiement."
+            _("Le propriétaire du chantier doit confirmer son ownership avant tout paiement.")
         )
     if not project_finance_is_unlocked(project):
         raise ValidationError(
-            "Les finances restent verrouillées jusqu'à l'activation du chantier."
+            _("Les finances restent verrouillées jusqu'à l'activation du chantier.")
         )
     amount = Decimal(amount)
     if amount <= 0 or not phone or not operator:
-        raise ValidationError("Paiement invalide")
+        raise ValidationError(_("Paiement invalide"))
     selected_gateway = gateway or configured_gateway()
     provider = getattr(selected_gateway, "provider", "custom")
     if not isinstance(provider, str):
@@ -792,7 +793,7 @@ def initiate_expense_payment(
         blocking = [anomaly for anomaly in findings if anomaly.blocks_payment]
         if blocking:
             raise ValidationError(
-                "Paiement bloqué par une anomalie de stock : "
+                _("Paiement bloqué par une anomalie de stock : ")
                 + ", ".join(anomaly.item.name for anomaly in blocking)
                 + "."
             )
@@ -806,19 +807,19 @@ def initiate_expense_payment(
     with transaction.atomic():
         expense = ExpenseRequest.objects.select_for_update().select_related("project").get(pk=expense_request.pk)
         if expense.status != ExpenseRequest.Status.AUTHORIZED:
-            raise ValidationError("Cette demande de dépense n’est pas autorisée.")
+            raise ValidationError(_("Cette demande de dépense n’est pas autorisée."))
         if not can_authorize_project_finance(user=actor, project=expense.project):
             raise PermissionDenied("Seul le propriétaire confirmé peut exécuter ce paiement.")
         if not project_finance_is_unlocked(expense.project):
-            raise ValidationError("Les finances du chantier ne sont pas encore activées.")
+            raise ValidationError(_("Les finances du chantier ne sont pas encore activées."))
         if not operator or not phone:
-            raise ValidationError("L’opérateur et le téléphone du payeur sont obligatoires.")
+            raise ValidationError(_("L’opérateur et le téléphone du payeur sont obligatoires."))
         decision = expense.owner_decisions.filter(
             decision=ExpenseOwnerDecision.Decision.APPROVED,
             resulting_status_version=expense.status_version,
         ).first()
         if not decision or decision.owner_id != actor.pk:
-            raise ValidationError("L’autorisation propriétaire ne correspond plus à cette version.")
+            raise ValidationError(_("L’autorisation propriétaire ne correspond plus à cette version."))
         existing = PaymentTransaction.objects.filter(idempotency_key=idempotency_key).first()
         if existing:
             return existing, False
@@ -834,7 +835,7 @@ def initiate_expense_payment(
         if PaymentTransaction.objects.filter(
             project=expense.project, user=actor, status=PaymentTransaction.Status.PENDING
         ).exists():
-            raise ValidationError("Un autre paiement incertain est déjà en cours sur ce chantier.")
+            raise ValidationError(_("Un autre paiement incertain est déjà en cours sur ce chantier."))
         tx = PaymentTransaction.objects.create(
             organization=expense.organization, project=expense.project, user=actor,
             expense_request=expense, owner_decision=decision,
@@ -960,7 +961,7 @@ def expire_stale_payment(*, actor, transaction_id, reason, provider_checked=Fals
         return tx, False
     if (tx.provider_reference or tx.operator_reference) and not provider_checked:
         raise ValidationError(
-            "Un paiement disposant d'une référence opérateur doit d'abord être rapproché."
+            _("Un paiement disposant d'une référence opérateur doit d'abord être rapproché.")
         )
     previous_payload = dict(tx.raw_response_redacted or {})
     tx.status = PaymentTransaction.Status.EXPIRED
@@ -1009,12 +1010,12 @@ def close_stale_pending_for_project_user(*, actor, project, gateway):
         return pending
     provider_checked = False
     if pending.provider == "mesomb" and (pending.provider_reference or pending.operator_reference):
-        pending, _ = reconcile_payment(
+        pending, reconciliation_changed = reconcile_payment(
             actor=actor, transaction_id=pending.pk, gateway=gateway
         )
         provider_checked = True
     if pending.status == PaymentTransaction.Status.PENDING:
-        pending, _ = expire_stale_payment(
+        pending, expiration_changed = expire_stale_payment(
             actor=actor,
             transaction_id=pending.pk,
             reason="Délai maximal de paiement en attente dépassé.",
@@ -1028,9 +1029,9 @@ def decide_withdrawal(*, actor, withdrawal, status):
     if not actor.is_superuser and actor.role != User.Role.ADMIN:
         raise PermissionDenied
     if status not in {"accounted", "rejected"}:
-        raise ValidationError("Décision invalide")
+        raise ValidationError(_("Décision invalide"))
     if withdrawal.status != Withdrawal.Status.PENDING:
-        raise ValidationError("Cette demande a déjà été traitée.")
+        raise ValidationError(_("Cette demande a déjà été traitée."))
     withdrawal.status = status
     withdrawal.decided_by = actor
     withdrawal.decided_at = timezone.now()
@@ -1060,11 +1061,11 @@ def request_withdrawal(*, actor, project, amount, reason):
         raise PermissionDenied
     if not project_finance_is_unlocked(project):
         raise ValidationError(
-            "Les demandes financières restent verrouillées jusqu'à l'activation du chantier."
+            _("Les demandes financières restent verrouillées jusqu'à l'activation du chantier.")
         )
     amount = Decimal(amount)
     if amount <= 0 or amount > financial_totals(project)["available"]:
-        raise ValidationError("Montant indisponible")
+        raise ValidationError(_("Montant indisponible"))
     return Withdrawal.objects.create(
         organization=project.organization,
         project=project,

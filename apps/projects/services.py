@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 from datetime import timedelta
 
 from django.core.exceptions import PermissionDenied
@@ -119,8 +120,8 @@ def record_actor_confirmation(*, user, project, project_role, accepted):
     ):
         existing.status = ProjectActorConfirmation.Status.EXPIRED
         existing.save(update_fields=("status",))
-        raise ValidationError("La demande de confirmation a expiré.")
-    confirmation, _ = ProjectActorConfirmation.objects.update_or_create(
+        raise ValidationError(_("La demande de confirmation a expiré."))
+    confirmation, confirmation_created = ProjectActorConfirmation.objects.update_or_create(
         terms_version=terms, user=user, project_role=project_role,
         defaults={
             "project": project, "organization": project.organization,
@@ -191,7 +192,7 @@ def activate_client_led_project(*, actor: User, project: Project):
         return onboarding
     missing = client_led_onboarding_missing(project)
     if missing:
-        raise ValidationError("Onboarding incomplet : " + ", ".join(missing))
+        raise ValidationError(_("Onboarding incomplet : ") + ", ".join(missing))
     onboarding.status = ProjectOnboarding.Status.ACTIVE
     onboarding.activated_by = actor
     onboarding.activated_at = timezone.now()
@@ -222,11 +223,11 @@ def confirm_contractor_led_onboarding(*, actor: User, project: Project, confirma
         ProjectOnboarding.Route.CONTRACTOR_LED,
         ProjectOnboarding.Route.PIVOT_LED,
     }:
-        raise ValidationError("Ce projet ne suit pas un parcours préparé à confirmer.")
+        raise ValidationError(_("Ce projet ne suit pas un parcours préparé à confirmer."))
     required = {"confirm_project", "confirm_ownership", "confirm_contractor", "confirm_conditions"}
     if not all(confirmations.get(key) for key in required):
-        raise ValidationError("Toutes les confirmations sont obligatoires.")
-    ownership, _ = confirm_project_ownership(
+        raise ValidationError(_("Toutes les confirmations sont obligatoires."))
+    ownership, ownership_created = confirm_project_ownership(
         actor=actor, project=project, terms_accepted=True
     )
     onboarding.status = ProjectOnboarding.Status.READY
@@ -249,7 +250,7 @@ def confirm_contractor_led_onboarding(*, actor: User, project: Project, confirma
 @transaction.atomic
 def confirm_project_ownership(*, actor: User, project: Project, terms_accepted: bool):
     if not terms_accepted:
-        raise ValidationError("Vous devez accepter les conditions de propriété du chantier.")
+        raise ValidationError(_("Vous devez accepter les conditions de propriété du chantier."))
     membership = ProjectMembership.objects.select_for_update().filter(
         project=project,
         organization=project.organization,
@@ -258,7 +259,7 @@ def confirm_project_ownership(*, actor: User, project: Project, terms_accepted: 
     ).first()
     if membership is None:
         raise PermissionDenied("Seul le propriétaire désigné peut confirmer l'ownership.")
-    ownership, _ = ProjectOwnership.objects.select_for_update().get_or_create(
+    ownership, ownership_created = ProjectOwnership.objects.select_for_update().get_or_create(
         project=project,
         defaults={"organization": project.organization, "owner": actor},
     )
@@ -299,17 +300,17 @@ def change_project_owner(*, actor: User, project: Project, new_owner: User, reas
         raise PermissionDenied
     reason = reason.strip()
     if not reason:
-        raise ValidationError("Le motif du changement de propriétaire est obligatoire.")
+        raise ValidationError(_("Le motif du changement de propriétaire est obligatoire."))
     if (
         not new_owner.is_active
         or new_owner.organization_id != project.organization_id
         or new_owner.role != User.Role.CLIENT
     ):
-        raise ValidationError("Le nouveau propriétaire doit être un client actif de l'organisation.")
+        raise ValidationError(_("Le nouveau propriétaire doit être un client actif de l'organisation."))
     ownership = ProjectOwnership.objects.select_for_update().filter(project=project).first()
     previous_owner = ownership.owner if ownership else None
     if previous_owner and previous_owner.pk == new_owner.pk:
-        raise ValidationError("Ce client est déjà le propriétaire désigné.")
+        raise ValidationError(_("Ce client est déjà le propriétaire désigné."))
     ProjectMembership.objects.filter(
         project=project, project_role=ProjectMembership.Role.OWNER
     ).delete()
@@ -321,7 +322,7 @@ def change_project_owner(*, actor: User, project: Project, new_owner: User, reas
             "project_role": ProjectMembership.Role.OWNER,
         },
     )
-    ownership, _ = ProjectOwnership.objects.update_or_create(
+    ownership, ownership_created = ProjectOwnership.objects.update_or_create(
         project=project,
         defaults={
             "organization": project.organization,

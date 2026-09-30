@@ -1,11 +1,12 @@
+{% load i18n %}
 {% if selected_tab == 'documents' %}
 <section class="mt-6 overflow-hidden rounded-2xl border bg-white shadow-sm">
     <header class="flex items-center justify-between border-b border-slate-200 px-5 py-4">
         <div>
-            <h2 class="font-black">Documents</h2>
-            <p class="text-xs text-slate-500">Dépôt verrouillé · vérification ingénieur · approbation super-administrateur</p>
+            <h2 class="font-black">{% translate "Documents" %}</h2>
+            <p class="text-xs text-slate-500">{% translate "Dépôt verrouillé · vérification ingénieur · approbation super-administrateur" %}</p>
         </div>
-        <button data-modal-open="modal-document-upload" type="button" class="rounded-lg bg-pivot-600 px-4 py-2.5 text-sm font-black text-white">＋ Déposer</button>
+        <button data-modal-open="modal-document-upload" type="button" class="rounded-lg bg-pivot-600 px-4 py-2.5 text-sm font-black text-white">{% translate "＋ Déposer" %}</button>
     </header>
     <div class="divide-y divide-slate-100">
         {% for document in documents %}
@@ -13,7 +14,7 @@
             <div class="min-w-0 flex-1">
                 <p class="truncate font-bold">{{ document.title }}</p>
                 <p class="text-xs text-slate-500">{{ document.uploaded_by.get_username }} · {{ document.uploaded_at|date:"d/m/Y H:i" }}</p>
-                {% if document.review_reason %}<p class="mt-1 text-xs">Motif : {{ document.review_reason }}</p>{% endif %}
+                {% if document.review_reason %}<p class="mt-1 text-xs">{% translate "Motif :" %} {{ document.review_reason }}</p>{% endif %}
             </div>
             <div class="flex flex-wrap items-center justify-end gap-2">
                 <span class="rounded-full px-2.5 py-1 text-xs font-bold {% if document.status == 'approved' %}bg-emerald-50 text-emerald-700{% elif document.status == 'verified' %}bg-blue-50 text-pivot-700{% elif document.status == 'rejected' %}bg-red-50 text-red-700{% else %}bg-amber-50 text-amber-700{% endif %}">{{ document.get_status_display }}</span>
@@ -21,38 +22,38 @@
                 {% if document.status == 'approved' or document.status == 'verified' or can_verify_documents and document.status == 'pending' %}
                 <a target="_blank" rel="noopener" href="{% url 'collaboration:document-preview' project.pk document.pk %}" class="inline-flex items-center gap-1.5 rounded-lg border border-pivot-200 bg-pivot-50 px-3 py-2 text-sm font-bold text-pivot-700">
                     <svg aria-hidden="true" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="2.5"/></svg>
-                    Aperçu
+                    {% translate "Aperçu" %}
                 </a>
                 {% endif %}
 
                 {% if document.status == 'approved' %}
-                <a href="{% url 'collaboration:document-download' project.pk document.pk %}" class="rounded-lg border px-3 py-2 text-sm font-bold">Télécharger</a>
+                <a href="{% url 'collaboration:document-download' project.pk document.pk %}" class="rounded-lg border px-3 py-2 text-sm font-bold">{% translate "Télécharger" %}</a>
                 {% else %}
                 <span class="inline-flex items-center gap-1.5 rounded-lg bg-slate-100 px-3 py-2 text-xs font-bold text-slate-500">
                     <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
-                    Verrouillé
+                    {% translate "Verrouillé" %}
                 </span>
                 {% endif %}
 
                 {% if can_verify_documents and document.status == 'pending' %}
-                <button data-modal-open="modal-document-review-{{ document.pk }}" type="button" class="rounded-lg border px-3 py-2 text-sm font-bold">Vérifier</button>
+                <button data-modal-open="modal-document-review-{{ document.pk }}" type="button" class="rounded-lg border px-3 py-2 text-sm font-bold">{% translate "Vérifier" %}</button>
                 {% endif %}
             </div>
         </div>
         {% empty %}
-        <p class="px-6 py-16 text-center text-sm text-slate-500">Aucun document visible.</p>
+        <p class="px-6 py-16 text-center text-sm text-slate-500">{% translate "Aucun document visible." %}</p>
         {% endfor %}
     </div>
 </section>
 {% elif selected_tab == 'photos' %}
 <section class="mt-6 overflow-hidden rounded-2xl border bg-white shadow-sm">
-    <header class="flex items-center justify-between border-b px-5 py-4"><div><h2 class="font-black">Photos</h2><p class="text-xs text-slate-500">Galerie du chantier</p></div><button data-modal-open="modal-image-upload" type="button" class="rounded-lg bg-pivot-600 px-4 py-2.5 text-sm font-black text-white">＋ Ajouter</button></header>
-<div class="grid gap-4 p-5 sm:grid-cols-2 xl:grid-cols-3">{% for image in gallery_images %}<article class="overflow-hidden rounded-xl border"><img src="{% url 'collaboration:image-download' project.pk image.pk %}" alt="{{ image.caption|default:'Photo du chantier' }}" class="h-48 w-full object-cover"><div class="p-3"><div class="flex items-start justify-between gap-2"><p class="text-sm font-bold">{{ image.caption|default:'Photo du chantier' }}</p>{% if image.is_cover %}<span class="rounded-full bg-pivot-50 px-2 py-1 text-[10px] font-black text-pivot-700">Couverture</span>{% endif %}</div><p class="mt-1 text-xs text-slate-500">{{ image.uploaded_by.get_username }}</p><div class="mt-3 flex flex-wrap gap-2">{% if can_manage %}<form method="post" action="{% url 'collaboration:image-cover' project.pk image.pk %}">{% csrf_token %}<button class="rounded-lg border px-3 py-2 text-xs font-bold">Définir en couverture</button></form>{% endif %}{% if image.uploaded_by_id == request.user.id or can_manage %}<form method="post" action="{% url 'collaboration:image-delete' project.pk image.pk %}">{% csrf_token %}<button class="rounded-lg border border-red-200 px-3 py-2 text-xs font-bold text-red-700">Supprimer</button></form>{% endif %}</div></div></article>{% empty %}<p class="py-12 text-center text-sm text-slate-500 sm:col-span-2 xl:col-span-3">Aucune photo.</p>{% endfor %}</div>
+    <header class="flex items-center justify-between border-b px-5 py-4"><div><h2 class="font-black">{% translate "Photos" %}</h2><p class="text-xs text-slate-500">{% translate "Galerie du chantier" %}</p></div><button data-modal-open="modal-image-upload" type="button" class="rounded-lg bg-pivot-600 px-4 py-2.5 text-sm font-black text-white">{% translate "＋ Ajouter" %}</button></header>
+<div class="grid gap-4 p-5 sm:grid-cols-2 xl:grid-cols-3">{% for image in gallery_images %}<article class="overflow-hidden rounded-xl border"><img src="{% url 'collaboration:image-download' project.pk image.pk %}" alt="{{ image.caption|default:'Photo du chantier' }}" class="h-48 w-full object-cover"><div class="p-3"><div class="flex items-start justify-between gap-2"><p class="text-sm font-bold">{{ image.caption|default:'Photo du chantier' }}</p>{% if image.is_cover %}<span class="rounded-full bg-pivot-50 px-2 py-1 text-[10px] font-black text-pivot-700">{% translate "Couverture" %}</span>{% endif %}</div><p class="mt-1 text-xs text-slate-500">{{ image.uploaded_by.get_username }}</p><div class="mt-3 flex flex-wrap gap-2">{% if can_manage %}<form method="post" action="{% url 'collaboration:image-cover' project.pk image.pk %}">{% csrf_token %}<button class="rounded-lg border px-3 py-2 text-xs font-bold">{% translate "Définir en couverture" %}</button></form>{% endif %}{% if image.uploaded_by_id == request.user.id or can_manage %}<form method="post" action="{% url 'collaboration:image-delete' project.pk image.pk %}">{% csrf_token %}<button class="rounded-lg border border-red-200 px-3 py-2 text-xs font-bold text-red-700">{% translate "Supprimer" %}</button></form>{% endif %}</div></div></article>{% empty %}<p class="py-12 text-center text-sm text-slate-500 sm:col-span-2 xl:col-span-3">{% translate "Aucune photo." %}</p>{% endfor %}</div>
 </section>
 {% elif selected_tab == 'comments' %}
 <section class="mt-6 overflow-hidden rounded-2xl border bg-white shadow-sm lg:grid lg:grid-cols-[minmax(0,1fr)_23rem] lg:[&>header]:col-span-2 lg:[&>form]:col-start-2 lg:[&>form]:row-start-2 lg:[&>form]:h-fit lg:[&>form]:self-start lg:[&>form]:border-b-0 lg:[&>form]:border-l lg:[&>form]:bg-slate-50 lg:[&>div]:col-start-1 lg:[&>div]:row-start-2">
-    <header class="border-b px-5 py-4"><h2 class="font-black">Commentaires</h2><p class="text-xs text-slate-500">Échanges liés au chantier</p></header>
-    <form method="post" action="{% url 'collaboration:comment-create' project.pk %}" class="border-b p-5">{% csrf_token %}{{ comment_form.content }}<div class="mt-3 flex justify-end"><button class="rounded-lg bg-pivot-600 px-4 py-2.5 text-sm font-black text-white">Publier</button></div></form>
-    <div class="max-h-[34rem] divide-y overflow-y-auto">{% for comment in comment_page %}<article class="px-5 py-4"><div class="flex items-start justify-between gap-3"><div class="min-w-0"><p class="text-sm font-black">{{ comment.author.get_username }}</p><p class="mt-1 whitespace-pre-wrap break-words text-sm text-slate-700">{% if comment.is_deleted %}<em class="text-slate-400">Commentaire supprimé</em>{% else %}{{ comment.content }}{% endif %}</p><time class="mt-2 block text-xs text-slate-400">{{ comment.created_at|date:"d/m/Y H:i" }}</time></div>{% if not comment.is_deleted and comment.author_id == request.user.id %}<div class="flex shrink-0 gap-2"><button data-modal-open="modal-comment-{{ comment.pk }}" type="button" class="rounded-lg border px-3 py-2 text-xs font-bold">Modifier</button><form method="post" action="{% url 'collaboration:comment-delete' project.pk comment.pk %}">{% csrf_token %}<button class="rounded-lg border border-red-200 px-3 py-2 text-xs font-bold text-red-700">Supprimer</button></form></div>{% endif %}</div></article>{% empty %}<p class="px-5 py-12 text-center text-sm text-slate-500">Aucun commentaire.</p>{% endfor %}</div>
+    <header class="border-b px-5 py-4"><h2 class="font-black">{% translate "Commentaires" %}</h2><p class="text-xs text-slate-500">{% translate "Échanges liés au chantier" %}</p></header>
+    <form method="post" action="{% url 'collaboration:comment-create' project.pk %}" class="border-b p-5">{% csrf_token %}{{ comment_form.content }}<div class="mt-3 flex justify-end"><button class="rounded-lg bg-pivot-600 px-4 py-2.5 text-sm font-black text-white">{% translate "Publier" %}</button></div></form>
+    <div class="max-h-[34rem] divide-y overflow-y-auto">{% for comment in comment_page %}<article class="px-5 py-4"><div class="flex items-start justify-between gap-3"><div class="min-w-0"><p class="text-sm font-black">{{ comment.author.get_username }}</p><p class="mt-1 whitespace-pre-wrap break-words text-sm text-slate-700">{% if comment.is_deleted %}<em class="text-slate-400">{% translate "Commentaire supprimé" %}</em>{% else %}{{ comment.content }}{% endif %}</p><time class="mt-2 block text-xs text-slate-400">{{ comment.created_at|date:"d/m/Y H:i" }}</time></div>{% if not comment.is_deleted and comment.author_id == request.user.id %}<div class="flex shrink-0 gap-2"><button data-modal-open="modal-comment-{{ comment.pk }}" type="button" class="rounded-lg border px-3 py-2 text-xs font-bold">{% translate "Modifier" %}</button><form method="post" action="{% url 'collaboration:comment-delete' project.pk comment.pk %}">{% csrf_token %}<button class="rounded-lg border border-red-200 px-3 py-2 text-xs font-bold text-red-700">{% translate "Supprimer" %}</button></form></div>{% endif %}</div></article>{% empty %}<p class="px-5 py-12 text-center text-sm text-slate-500">{% translate "Aucun commentaire." %}</p>{% endfor %}</div>
 </section>
 {% endif %}

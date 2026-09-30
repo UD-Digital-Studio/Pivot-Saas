@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 import uuid
 
 from django import forms
@@ -15,12 +16,12 @@ class EvidenceCaptureForm(forms.Form):
     VIDEO_TYPES = {".mp4": (b"ftyp",), ".mov": (b"ftyp",), ".webm": (b"\x1aE\xdf\xa3",)}
     DOCUMENT_TYPES = {".pdf": (b"%PDF",), ".docx": (b"PK\x03\x04",), ".jpg": (b"\xff\xd8\xff",), ".jpeg": (b"\xff\xd8\xff",), ".png": (b"\x89PNG\r\n\x1a\n",)}
 
-    evidence_type = forms.ChoiceField(label="Type", choices=EvidenceRecord.Type.choices)
-    title = forms.CharField(label="Titre", max_length=200)
-    uploaded_file = forms.FileField(label="Fichier", widget=forms.ClearableFileInput(attrs={"accept": ".jpg,.jpeg,.png,.webp,.mp4,.mov,.webm,.pdf,.docx"}))
-    stage = forms.ModelChoiceField(label="Étape", queryset=None, required=False)
-    description = forms.CharField(label="Description", max_length=3000, required=False, widget=forms.Textarea(attrs={"rows": 3}))
-    location_consent = forms.BooleanField(label="Joindre ma position à cette preuve", required=False)
+    evidence_type = forms.ChoiceField(label=_("Type"), choices=EvidenceRecord.Type.choices)
+    title = forms.CharField(label=_("Titre"), max_length=200)
+    uploaded_file = forms.FileField(label=_("Fichier"), widget=forms.ClearableFileInput(attrs={"accept": ".jpg,.jpeg,.png,.webp,.mp4,.mov,.webm,.pdf,.docx"}))
+    stage = forms.ModelChoiceField(label=_("Étape"), queryset=None, required=False)
+    description = forms.CharField(label=_("Description"), max_length=3000, required=False, widget=forms.Textarea(attrs={"rows": 3}))
+    location_consent = forms.BooleanField(label=_("Joindre ma position à cette preuve"), required=False)
     location_status = forms.ChoiceField(choices=EvidenceRecord.LocationStatus.choices, initial=EvidenceRecord.LocationStatus.NOT_REQUESTED, required=False, widget=forms.HiddenInput)
     latitude = forms.DecimalField(required=False, max_digits=9, decimal_places=6, widget=forms.HiddenInput)
     longitude = forms.DecimalField(required=False, max_digits=9, decimal_places=6, widget=forms.HiddenInput)
@@ -81,7 +82,7 @@ class EvidenceCaptureForm(forms.Form):
 
 
 class EvidenceCorrectionForm(EvidenceCaptureForm):
-    correction_reason = forms.CharField(label="Motif de la correction", max_length=500, widget=forms.Textarea(attrs={"rows": 2}))
+    correction_reason = forms.CharField(label=_("Motif de la correction"), max_length=500, widget=forms.Textarea(attrs={"rows": 2}))
 
     def __init__(self, *args, original, **kwargs):
         super().__init__(*args, **kwargs)
@@ -114,15 +115,15 @@ class DocumentForm(forms.ModelForm):
             not file.name.lower().endswith(".pdf")
             or getattr(file, "content_type", "") != "application/pdf"
         ):
-            raise forms.ValidationError("Seuls les fichiers PDF sont autorisés.")
+            raise forms.ValidationError(_("Seuls les fichiers PDF sont autorisés."))
         if file.size > 10 * 1024 * 1024:
-            raise forms.ValidationError("Le PDF ne doit pas dépasser 10 Mo.")
+            raise forms.ValidationError(_("Le PDF ne doit pas dépasser 10 Mo."))
         return file
 
 
 class DocumentReviewForm(forms.Form):
     decision = forms.ChoiceField(choices=(("verified", "Vérifier"), ("rejected", "Rejeter")))
-    reason = forms.CharField(label="Motif", max_length=500, required=False)
+    reason = forms.CharField(label=_("Motif"), max_length=500, required=False)
 
     def clean(self):
         data = super().clean()
@@ -139,7 +140,7 @@ class ImageForm(forms.ModelForm):
     def clean_image(self):
         image = self.cleaned_data["image"]
         if image.size > 5 * 1024 * 1024:
-            raise forms.ValidationError("L'image ne doit pas dépasser 5 Mo.")
+            raise forms.ValidationError(_("L'image ne doit pas dépasser 5 Mo."))
         return image
 
 

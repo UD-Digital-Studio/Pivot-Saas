@@ -7,308 +7,6056 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "Aller au contenu"
-msgstr "Skip to content"
+msgid "% complété"
+msgstr "% completed"
 
-msgid "Espace de travail"
-msgstr "Workspace"
+msgid "% par"
+msgstr "% by"
 
-msgid "Tableau de bord"
-msgstr "Dashboard"
+msgid "% vérifié"
+msgstr "% verified"
 
-msgid "Projets"
-msgstr "Projects"
+msgid "%% complété"
+msgstr "%% completed"
 
-msgid "Calendrier"
-msgstr "Calendar"
+msgid "%% par"
+msgstr "%% by"
 
-msgid "Rapports"
-msgstr "Reports"
+msgid "%% vérifié"
+msgstr "%% verified"
 
-msgid "Langue"
-msgstr "Language"
+msgid "%(display_name)s demande l’activation d’un compte pour %(organization_name)s."
+msgstr "%(display_name)s requests account activation for %(organization_name)s."
 
-msgid "Déconnexion"
-msgstr "Log out"
+msgid "&nbsp;"
+msgstr "&nbsp;"
 
-msgid "Bienvenue !"
-msgstr "Welcome!"
+msgid "+ 1 jour"
+msgstr "+ 1 day"
 
-msgid "La plateforme de gestion de vos chantiers"
-msgstr "Your construction site management platform"
+msgid "+ 30 jours"
+msgstr "+ 30 days"
 
-msgid "Connexion"
-msgstr "Sign in"
+msgid "+ 7 jours"
+msgstr "+ 7 days"
+
+msgid ", attendu"
+msgstr ", expected"
+
+msgid ", nous avons reçu une demande de modification du mot de passe associé à votre compte PIVOT."
+msgstr ", we have received a request to change the password associated with your PIVOT account."
+
+msgid ", pour"
+msgstr ", for"
+
+msgid ", this notification concerns your"
+msgstr ", this notification concerns your"
+
+msgid ", votre compte ingénieur est maintenant actif. Vous pouvez accéder à votre espace avec les identifiants choisis lors de l’inscription."
+msgstr ", your engineer account is now active. You can access your space with the credentials chosen during registration."
+
+msgid ", votre demande de compte ingénieur pour"
+msgstr ", your engineer account request for"
+
+msgid ", votre espace PIVOT vient d’être créé. Définissez maintenant votre mot de passe pour accéder à la plateforme."
+msgstr ", your PIVOT space has just been created. Please set your password now to access the platform."
+
+msgid ". Cette décision n’exécute pas encore le paiement."
+msgstr ". This decision does not execute the payment yet."
+
+msgid ". Son contenu deviendra immuable."
+msgstr ". Its content will become immutable."
+
+msgid "/ Import"
+msgstr "/ Import"
+
+msgid "/ Onboarding PIVOT"
+msgstr "/ Onboarding PIVOT"
+
+msgid "/100 · niveau"
+msgstr "/100 · level"
+
+msgid "/mois"
+msgstr "/month"
+
+msgid "0 XAF"
+msgstr "0 XAF"
+
+msgid "01 · Digital Verified"
+msgstr "01 · Digital Verified"
+
+msgid "02 · Technically Verified"
+msgstr "02 · Technically Verified"
+
+msgid "03 · PIVOT Site Verified"
+msgstr "03 · PIVOT Site Verified"
+
+msgid "10 domaines"
+msgstr "10 domains"
+
+msgid "500 caractères max."
+msgstr "500 characters max."
+
+msgid "6XXXXXXXX"
+msgstr "6XXXXXXXX"
+
+msgid "[{\"description\":\"Correction\",\"status\":\"open\"}]"
+msgstr "[{\"description\":\"Correction\",\"status\":\"open\"}]"
+
+msgid "[{\"item\":\"Fondations\",\"result\":\"ok\",\"comment\":\"Conforme\"}]"
+msgstr "[{\"item\":\"Foundations\",\"result\":\"ok\",\"comment\":\"Compliant\"}]"
+
+msgid "a bien été enregistrée."
+msgstr "has been successfully registered."
+
+msgid "abonnement"
+msgstr "subscription"
+
+msgid "Abonnement"
+msgstr "Subscription"
+
+msgid "abonnement d’organisation"
+msgstr "organization subscription"
+
+msgid "Abonnement PIVOT · Subscription"
+msgstr "PIVOT Subscription · Subscription"
+
+msgid "Abonnement PIVOT —"
+msgstr "PIVOT Subscription —"
+
+msgid "Abonnements"
+msgstr "Subscriptions"
+
+msgid "abonnements actifs uniquement ; un abonnement annuel est divisé par douze. Essais, grâce, lecture seule et paiements en attente sont exclus."
+msgstr "active subscriptions only; an annual subscription is divided by twelve. Trials, grace periods, read-only, and pending payments are excluded."
+
+msgid "abonnements d’organisation"
+msgstr "organization subscriptions"
+
+msgid "Acceptations enregistrées dans la période"
+msgstr "Acceptances recorded in the period"
+
+msgid "Accepter"
+msgstr "Accept"
+
+msgid "Accepter l’invitation"
+msgstr "Accept the invitation"
+
+msgid "Acceptez l'invitation :"
+msgstr "Accept the invitation:"
+
+msgid "Acceptée"
+msgstr "Accepted"
+
+msgid "Accorder une prolongation"
+msgstr "Grant an extension"
+
+msgid "Accueil PIVOT-SASS"
+msgstr "PIVOT-SASS Home"
+
+msgid "Accès aux preuves"
+msgstr "Access to evidence"
+
+msgid "Accès financier restreint"
+msgstr "Restricted financial access"
+
+msgid "Accès refusé"
+msgstr "Access denied"
+
+msgid "Accéder à mon espace"
+msgstr "Access my space"
 
 msgid "Accédez à votre espace de travail."
 msgstr "Access your workspace."
 
-msgid "Mot de passe oublié ?"
-msgstr "Forgot your password?"
+msgid "Acheté"
+msgstr "Purchased"
 
-msgid "Se connecter"
-msgstr "Sign in"
+msgid "Acheté, livré, consommé et restant — calculés depuis les mouvements"
+msgstr "Purchased, delivered, consumed, and remaining — calculated from movements"
 
-msgid "ou"
-msgstr "or"
+msgid "Acteur"
+msgstr "Actor"
 
-msgid "Créer un compte :"
-msgstr "Create an account:"
+msgid "acteur"
+msgstr "actor"
 
-msgid "Ingénieur"
-msgstr "Engineer"
+msgid "Acteurs et preuves"
+msgstr "Actors and evidence"
 
-msgid "Client"
-msgstr "Client"
+msgid "actif"
+msgstr "active"
 
-msgid "Créer un compte ingénieur"
-msgstr "Create an engineer account"
-
-msgid "Demande d’inscription : renseignez les informations de votre entreprise."
-msgstr "Registration request: enter your company information."
-
-msgid "Créer mon espace ingénieur"
-msgstr "Create my engineer workspace"
-
-msgid "Vous êtes client ?"
-msgstr "Are you a client?"
-
-msgid "Créer un compte client"
-msgstr "Create a client account"
-
-msgid "Déjà inscrit ?"
-msgstr "Already registered?"
-
-msgid "Rejoignez l’espace de votre entreprise de construction."
-msgstr "Join your construction company's workspace."
-
-msgid "Créer mon compte client"
-msgstr "Create my client account"
-
-msgid "Vous êtes ingénieur ?"
-msgstr "Are you an engineer?"
-
-msgid "Identifiant ou mot de passe incorrect."
-msgstr "Incorrect username or password."
-
-msgid "Nom de l'entreprise"
-msgstr "Company name"
-
-msgid "Cette entreprise constituera votre espace de travail isolé."
-msgstr "This company will be your private workspace."
-
-msgid "Adresse e-mail"
-msgstr "Email address"
-
-msgid "Entreprise / organisation"
-msgstr "Company / organization"
-
-msgid "Sélectionnez l’organisation qui gère votre projet"
-msgstr "Select the organization managing your project"
-
-msgid "Vue opérationnelle de votre organisation."
-msgstr "Operational overview of your organization."
-
-msgid "Inviter"
-msgstr "Invite"
-
-msgid "Nouveau projet"
-msgstr "New project"
-
-msgid "Répartition des projets"
-msgstr "Project distribution"
-
-msgid "Vue globale par statut"
-msgstr "Overview by status"
-
-msgid "Projets récents"
-msgstr "Recent projects"
-
-msgid "Derniers chantiers mis à jour"
-msgstr "Recently updated construction sites"
-
-msgid "Rechercher un projet"
-msgstr "Search for a project"
-
-msgid "Filtres"
-msgstr "Filters"
-
-msgid "En attente"
-msgstr "Pending"
-
-msgid "En cours"
-msgstr "In progress"
-
-msgid "Terminés"
-msgstr "Completed"
-
-msgid "Nombre de projets"
-msgstr "Number of projects"
-
-msgid "Total projets"
-msgstr "Total projects"
-
-msgid "Tous les projets accessibles"
-msgstr "All accessible projects"
-
-msgid "Chantiers actuellement actifs"
-msgstr "Currently active construction sites"
-
-msgid "Projets clôturés"
-msgstr "Completed projects"
-
-msgid "Budget suivi"
-msgstr "Tracked budget"
-
-msgid "Montant cumulé des projets"
-msgstr "Combined project amount"
-
-msgid "Responsable de chantier"
-msgstr "Site manager"
-
-msgid "Administrateur"
-msgstr "Administrator"
-
-msgid "Terminé"
-msgstr "Completed"
-
-msgid "Active"
+msgid "Actif"
 msgstr "Active"
 
-msgid "Terminée"
-msgstr "Completed"
+msgid "actifs"
+msgstr "assets"
 
-msgid "Vérifié"
-msgstr "Verified"
-
-msgid "Approuvé"
-msgstr "Approved"
-
-msgid "Réussi"
-msgstr "Successful"
-
-msgid "Échoué"
-msgstr "Failed"
-
-msgid "Expiré"
-msgstr "Expired"
-
-msgid "Comptabilisé"
-msgstr "Accounted"
-
-msgid "Rejeté"
-msgstr "Rejected"
-
-msgid "Aperçu"
-msgstr "Overview"
-
-msgid "Finances"
-msgstr "Finance"
-
-msgid "Étapes"
-msgstr "Stages"
-
-msgid "Stock"
-msgstr "Inventory"
-
-msgid "Documents"
-msgstr "Documents"
-
-msgid "Photos"
-msgstr "Photos"
-
-msgid "Commentaires"
-msgstr "Comments"
-
-msgid "Portefeuille de projets"
-msgstr "Project portfolio"
-
-msgid "Consultez et pilotez vos chantiers."
-msgstr "View and manage your construction sites."
-
-msgid "Rechercher"
-msgstr "Search"
-
-msgid "Nom ou localisation"
-msgstr "Name or location"
-
-msgid "Tous les statuts"
-msgstr "All statuses"
-
-msgid "Filtrer"
-msgstr "Filter"
-
-msgid "Projet"
-msgstr "Project"
-
-msgid "Statut"
-msgstr "Status"
-
-msgid "Date"
-msgstr "Date"
-
-msgid "Budget"
-msgstr "Budget"
-
-msgid "Responsable"
-msgstr "Manager"
+msgid "actifs sur"
+msgstr "active on"
 
 msgid "Action"
 msgstr "Action"
 
-msgid "Ouvrir"
-msgstr "Open"
+msgid "Action contrôlée"
+msgstr "Controlled action"
 
-msgid "Aucun projet trouvé"
-msgstr "No project found"
+msgid "Action en cas d'écart"
+msgstr "Action in case of deviation"
 
-msgid "Créez un projet ou modifiez les filtres."
-msgstr "Create a project or change the filters."
+msgid "Action irréversible : les données supprimées ne pourront pas être restaurées."
+msgstr "Irreversible action: deleted data cannot be restored."
 
-msgid "Aucun projet ne vous est accessible."
-msgstr "No project is available to you."
+msgid "Action traçable : une correction ultérieure reste possible selon l’état des données."
+msgstr "Traceable action: a subsequent correction is possible depending on the state of the data."
 
-msgid "Page %(current)s sur %(total)s"
-msgstr "Page %(current)s of %(total)s"
+msgid "Action, cible, acteur ou organisation"
+msgstr "Action, target, actor, or organization"
 
-msgid "Précédent"
-msgstr "Previous"
+msgid "Actions d’audit réalisées par cet utilisateur"
+msgstr "Audit actions performed by this user"
 
-msgid "Suivant"
-msgstr "Next"
+msgid "Actions rapides du projet"
+msgstr "Quick project actions"
+
+msgid "Activation bloquée"
+msgstr "Activation blocked"
+
+msgid "Activation confirmée dans la période"
+msgstr "Activation confirmed in the period"
+
+msgid "Activation en attente"
+msgstr "Activation pending"
+
+msgid "Active"
+msgstr "Active"
+
+msgid "Activer ce chantier ?"
+msgstr "Activate this site?"
+
+msgid "Activer le chantier"
+msgstr "Activate the site"
+
+msgid "Activer le compte"
+msgstr "Activate the account"
+
+msgid "Activer mon compte"
+msgstr "Activate my account"
+
+msgid "actives"
+msgstr "active"
+
+msgid "Activité"
+msgstr "Activity"
+
+msgid "Activité administrative récente"
+msgstr "Recent administrative activity"
+
+msgid "Activité projet"
+msgstr "Project activity"
+
+msgid "Activité projets"
+msgstr "Project activities"
+
+msgid "Activité récente"
+msgstr "Recent activity"
+
+msgid "Activé"
+msgstr "Activated"
+
+msgid "Actualiser"
+msgstr "Refresh"
+
+msgid "Adhésion"
+msgstr "Membership"
+
+msgid "Administrateur"
+msgstr "Administrator"
+
+msgid "Administration exceptionnelle"
+msgstr "Exceptional Administration"
+
+msgid "Administration plateforme"
+msgstr "Platform Administration"
+
+msgid "Adoption et conversion"
+msgstr "Adoption and Conversion"
+
+msgid "Adresse e-mail"
+msgstr "Email address"
+
+msgid "Affectations"
+msgstr "Assignments"
+
+msgid "Affectations à reprendre"
+msgstr "Assignments to Resume"
+
+msgid "Affecter le vérificateur PIVOT"
+msgstr "Assign the PIVOT Auditor"
+
+msgid "Affecter les membres"
+msgstr "Assign Members"
+
+msgid "Affecter un vérificateur"
+msgstr "Assign a verifier"
+
+msgid "Agent PIVOT"
+msgstr "PIVOT Agent"
+
+msgid "Ajouter"
+msgstr "Add"
+
+msgid "Ajouter une hypothèse de prix"
+msgstr "Add a Price Assumption"
+
+msgid "Ajouter une photo"
+msgstr "Add a Photo"
+
+msgid "Ajoutez chaque ouvrage ou matériau contrôlé."
+msgstr "Add each controlled work or material."
+
+msgid "Ajoutez un article ou importez un fichier CSV."
+msgstr "Add an item or import a CSV file."
+
+msgid "Ajoutez un client ou un responsable de chantier à votre espace."
+msgstr "Add a client or site manager to your space."
+
+msgid "Ajoutez un collaborateur à votre organisation"
+msgstr "Add a collaborator to your organization"
+
+msgid "Ajoutez uniquement les corrections ou vigilances constatées."
+msgstr "Add only the observed corrections or alerts."
+
+msgid "Ajustement autorisé"
+msgstr "Adjustment Allowed"
+
+msgid "Alerte ≥ 80 %"
+msgstr "Alert ≥ 80%"
+
+msgid "Alerte ≥ 80 %%"
+msgstr "Alert ≥ 80 %%"
+
+msgid "Aller au contenu"
+msgstr "Skip to content"
 
 msgid "Analyse"
 msgstr "Analytics"
 
-msgid "Centre de rapports"
-msgstr "Report center"
+msgid "ancien statut"
+msgstr "previous status"
 
-msgid "Générez un PDF lisible ou un export CSV depuis vos projets accessibles."
-msgstr "Generate a readable PDF or CSV export from your accessible projects."
+msgid "Annuel"
+msgstr "Annual"
 
-msgid "Du"
-msgstr "From"
+msgid "Annuler"
+msgstr "Cancel"
+
+msgid "Annuler l’invitation ?"
+msgstr "Cancel the invitation?"
+
+msgid "Annulé"
+msgstr "Cancelled"
+
+msgid "annulé le"
+msgstr "cancelled on"
+
+msgid "Annulée"
+msgstr "Cancelled"
+
+msgid "Anomalie de stock"
+msgstr "Stock Anomaly"
+
+msgid "Anomalie de stock ·"
+msgstr "Stock anomaly ·"
+
+msgid "Anomalies"
+msgstr "Anomalies"
+
+msgid "Aperçu"
+msgstr "Overview"
+
+msgid "Aperçu du document"
+msgstr "Document Preview"
+
+msgid "Aperçu obligatoire"
+msgstr "Mandatory Preview"
+
+msgid "Aperçu sécurisé en lecture seule — aucun téléchargement public."
+msgstr "Secure read-only preview — no public downloads."
+
+msgid "Aperçu ·"
+msgstr "Overview ·"
+
+msgid "Application"
+msgstr "Application"
+
+msgid "Appliquer"
+msgstr "Apply"
+
+msgid "Approuver"
+msgstr "Approve"
+
+msgid "Approuver le document"
+msgstr "Approve the document"
+
+msgid "Approuvé"
+msgstr "Approved"
+
+msgid "Approuvée"
+msgstr "Approved"
+
+msgid "Approuvée sous conditions"
+msgstr "Conditionally Approved"
+
+msgid "Approuvés"
+msgstr "Approved"
+
+msgid "Après décaissements"
+msgstr "After Disbursements"
+
+msgid "Architecture"
+msgstr "Architecture"
+
+msgid "Archiver"
+msgstr "Archive"
+
+msgid "Archiver l’organisation"
+msgstr "Archive the Organization"
+
+msgid "archivées"
+msgstr "archived"
+
+msgid "Article"
+msgstr "Item"
+
+msgid "article"
+msgstr "item"
+
+msgid "article(s) suivi(s)"
+msgstr "tracked item(s)"
+
+msgid "Articles en stock"
+msgstr "Items in Stock"
+
+msgid "Assistant IA"
+msgstr "AI Assistant"
+
+msgid "assistant IA"
+msgstr "AI Assistant"
+
+msgid "Assistant IA PIVOT"
+msgstr "PIVOT AI Assistant"
+
+msgid "Assistant PIVOT"
+msgstr "PIVOT Assistant"
+
+msgid "Attendu :"
+msgstr "Expected:"
+
+msgid "au"
+msgstr "to"
 
 msgid "Au"
 msgstr "To"
 
-msgid "Télécharger PDF"
-msgstr "Download PDF"
+msgid "Au moins une preuve de résolution est obligatoire."
+msgstr "At least one resolution proof is required."
 
-msgid "Exporter CSV"
-msgstr "Export CSV"
+msgid "Au moins une vérification signée"
+msgstr "At least one signed verification"
+
+msgid "Au-dessus de la plage"
+msgstr "Above the range"
+
+msgid "Aucun abonnement correspondant."
+msgstr "No matching subscription."
+
+msgid "Aucun article en stock"
+msgstr "No items in stock"
+
+msgid "Aucun article en stock."
+msgstr "No items in stock."
+
+msgid "Aucun autre membre affecté."
+msgstr "No other member assigned."
+
+msgid "Aucun autre mouvement financier sur la période."
+msgstr "No other financial movement during the period."
+
+msgid "Aucun avis technique rendu."
+msgstr "No technical notice issued."
+
+msgid "Aucun blocage"
+msgstr "No blockage"
+
+msgid "Aucun changement de statut enregistré."
+msgstr "No status change recorded."
+
+msgid "Aucun changement enregistré."
+msgstr "No changes recorded."
+
+msgid "Aucun changement n’a été détecté."
+msgstr "No changes have been detected."
+
+msgid "Aucun client affecté"
+msgstr "No client assigned"
+
+msgid "Aucun client ou responsable actif disponible."
+msgstr "No active client or manager available."
+
+msgid "Aucun commentaire."
+msgstr "No comments."
+
+msgid "Aucun contrôle à lancer"
+msgstr "No control to initiate"
+
+msgid "Aucun cycle de dépense sur la période."
+msgstr "No spending cycle for the period."
+
+msgid "Aucun document visible."
+msgstr "No documents visible."
+
+msgid "Aucun document."
+msgstr "No document."
+
+msgid "Aucun détail de contrôle."
+msgstr "No control details."
+
+msgid "Aucun membre affecté."
+msgstr "No member assigned."
+
+msgid "Aucun membre disponible"
+msgstr "No member available"
+
+msgid "Aucun membre éligible."
+msgstr "No eligible member."
+
+msgid "Aucun mot de passe temporaire ne sera affiché, envoyé en clair ou conservé dans l’audit."
+msgstr "No temporary password will be displayed, sent in plain text, or retained in the audit."
+
+msgid "Aucun mouvement pour cette période."
+msgstr "No transactions for this period."
+
+msgid "Aucun mouvement à rapprocher."
+msgstr "No transactions to reconcile."
+
+msgid "Aucun nouveau statut MeSomb n’est disponible."
+msgstr "No new MeSomb status is available."
+
+msgid "Aucun paiement"
+msgstr "No payment"
+
+msgid "Aucun paiement enregistré."
+msgstr "No payment recorded."
+
+msgid "Aucun paiement ne sera lancé."
+msgstr "No payment will be initiated."
+
+msgid "Aucun paiement réussi."
+msgstr "No payment successful."
+
+msgid "Aucun paiement."
+msgstr "No payment."
 
 msgid "Aucun projet accessible"
 msgstr "No accessible project"
 
-msgid "Un projet affecté apparaîtra ici."
-msgstr "An assigned project will appear here."
+msgid "Aucun projet enregistré."
+msgstr "No project recorded."
+
+msgid "Aucun projet ne correspond aux critères."
+msgstr "No project matches the criteria."
+
+msgid "Aucun projet ne vous est accessible."
+msgstr "No project is available to you."
+
+msgid "Aucun projet trouvé"
+msgstr "No project found"
+
+msgid "Aucun projet."
+msgstr "No project."
+
+msgid "Aucun retrait."
+msgstr "No withdrawal."
+
+msgid "Aucun stock."
+msgstr "No stock."
+
+msgid "Aucun utilisateur ne correspond aux critères."
+msgstr "No user matches the criteria."
+
+msgid "Aucun utilisateur."
+msgstr "No user."
+
+msgid "Aucun vérificateur n’est encore affecté à ce projet."
+msgstr "No verifier has been assigned to this project yet."
+
+msgid "Aucun événement ne correspond aux critères."
+msgstr "No event matches the criteria."
+
+msgid "Aucun événement planifié"
+msgstr "No scheduled event"
+
+msgid "Aucune action administrative enregistrée."
+msgstr "No administrative action recorded."
+
+msgid "Aucune action auditée."
+msgstr "No audited action."
+
+msgid "Aucune activité projet."
+msgstr "No project activity."
+
+msgid "Aucune contestation."
+msgstr "No disputes."
+
+msgid "Aucune demande de dépense"
+msgstr "No expense request"
+
+msgid "Aucune donnée dans cette section"
+msgstr "No data in this section"
+
+msgid "Aucune décision du propriétaire enregistrée."
+msgstr "No owner decision recorded."
+
+msgid "Aucune déclaration enregistrée."
+msgstr "No statement recorded."
+
+msgid "Aucune inspection terrain conclue pour cette vérification technique."
+msgstr "No field inspection concluded for this technical check."
+
+msgid "Aucune intervention concierge enregistrée."
+msgstr "No concierge intervention recorded."
+
+msgid "Aucune notification"
+msgstr "No notifications"
+
+msgid "Aucune observation enregistrée sur la période."
+msgstr "No observations recorded for the period."
+
+msgid "Aucune opération financière."
+msgstr "No financial operation."
+
+msgid "Aucune opération ne correspond aux filtres."
+msgstr "No operation matches the filters."
+
+msgid "Aucune organisation ne correspond aux critères."
+msgstr "No organization matches the criteria."
+
+msgid "Aucune organisation."
+msgstr "No organization."
+
+msgid "Aucune photo."
+msgstr "No photo."
+
+msgid "Aucune pièce liée."
+msgstr "No related document."
+
+msgid "Aucune pièce."
+msgstr "No document."
+
+msgid "Aucune plage sélectionnée."
+msgstr "No range selected."
+
+msgid "Aucune preuve enregistrée."
+msgstr "No evidence recorded."
+
+msgid "Aucune preuve exportable selon vos permissions."
+msgstr "No evidence exportable according to your permissions."
+
+msgid "Aucune preuve sur la période."
+msgstr "No evidence for the period."
+
+msgid "Aucune preuve."
+msgstr "No evidence."
+
+msgid "Aucune quantité structurée."
+msgstr "No structured quantity."
+
+msgid "Aucune règle de risque active n'est configurée pour cette organisation."
+msgstr "No active risk rule is configured for this organization."
+
+msgid "Aucune réserve enregistrée."
+msgstr "No reserve recorded."
+
+msgid "Aucune résolution proposée."
+msgstr "No proposed resolution."
+
+msgid "Aucune transition enregistrée."
+msgstr "No transition recorded."
+
+msgid "Aucune validation en attente."
+msgstr "No pending validation."
+
+msgid "Aucune visite terrain."
+msgstr "No site visit."
+
+msgid "Aucune vérification PIVOT enregistrée."
+msgstr "No PIVOT check recorded."
+
+msgid "Aucune vérification technique enregistrée."
+msgstr "No technical check recorded."
+
+msgid "Aucune étape planifiée"
+msgstr "No planned step"
+
+msgid "Aucune étape planifiée."
+msgstr "No steps planned."
+
+msgid "Aucune étape."
+msgstr "No steps."
+
+msgid "Auteur"
+msgstr "Author"
+
+msgid "Autorisation"
+msgstr "Authorization"
+
+msgid "Autoriser"
+msgstr "Allow"
+
+msgid "Autoriser cette demande de dépense ?"
+msgstr "Allow this expense request?"
+
+msgid "Autoriser les nouveaux comptes"
+msgstr "Allow new accounts"
+
+msgid "Autoriser les nouvelles demandes"
+msgstr "Allow new requests"
+
+msgid "Autorisée"
+msgstr "Authorized"
+
+msgid "Autre"
+msgstr "Other"
+
+msgid "Autre document"
+msgstr "Other document"
+
+msgid "Autres mouvements"
+msgstr "Other transactions"
+
+msgid "Avancement"
+msgstr "Progress"
+
+msgid "Avancement global"
+msgstr "Overall progress"
+
+msgid "avec avis courant positif"
+msgstr "with current positive feedback"
+
+msgid "Avec ou sans blocage"
+msgstr "With or without blockage"
+
+msgid "Avertissement"
+msgstr "Warning"
+
+msgid "Avis indicatif :"
+msgstr "Indicative feedback:"
+
+msgid "Avis technique"
+msgstr "Technical notice"
+
+msgid "Avis technique :"
+msgstr "Technical notice:"
+
+msgid "Avis technique de l’ingénieur"
+msgstr "Engineer’s technical notice"
+
+msgid "Avis technique en attente"
+msgstr "Technical notice pending"
+
+msgid "Avis technique sur la dépense"
+msgstr "Technical notice on the expense"
+
+msgid "Baisse programmée"
+msgstr "Scheduled decrease"
+
+msgid "Base de données"
+msgstr "Database"
+
+msgid "Bienvenue !"
+msgstr "Welcome!"
+
+msgid "Bienvenue sur PIVOT"
+msgstr "Welcome to PIVOT"
+
+msgid "Blocage d’activation"
+msgstr "Activation blockage"
+
+msgid "bloquant"
+msgstr "blocking"
+
+msgid "bloquante"
+msgstr "blocking"
+
+msgid "Bloquer avant paiement"
+msgstr "Block before payment"
+
+msgid "Bloquées"
+msgstr "Blocked"
+
+msgid "Bon de livraison"
+msgstr "Delivery note"
+
+msgid "Bonjour"
+msgstr "Hello"
+
+msgid "Bonjour %(display_name)s,"
+msgstr "Hello %(display_name)s,"
+
+msgid "Brouillon"
+msgstr "Draft"
+
+msgid "budget"
+msgstr "budget"
+
+msgid "Budget"
+msgstr "Budget"
+
+msgid "Budget du jalon"
+msgstr "Milestone budget"
+
+msgid "Budget du projet"
+msgstr "Project budget"
+
+msgid "Budget déclaré"
+msgstr "Declared budget"
+
+msgid "Budget le plus élevé"
+msgstr "Highest budget"
+
+msgid "Budget renseigné"
+msgstr "Provided budget"
+
+msgid "Budget suivi"
+msgstr "Tracked budget"
+
+msgid "Budget XAF"
+msgstr "Budget XAF"
+
+msgid "Bénéficiaire :"
+msgstr "Beneficiary:"
+
+msgid "Calendrier"
+msgstr "Calendar"
+
+msgid "Calendrier des chantiers"
+msgstr "Site schedule"
+
+msgid "Catalogue des forfaits"
+msgstr "Package catalog"
+
+msgid "Ce client est déjà le propriétaire désigné."
+msgstr "This client is already the designated owner."
+
+msgid "Ce commentaire est déjà supprimé."
+msgstr "This comment has already been deleted."
+
+msgid "Ce compte appartient déjà à votre organisation."
+msgstr "This account already belongs to your organization."
+
+msgid "Ce compte est désactivé."
+msgstr "This account is disabled."
+
+msgid "Ce compte ne peut pas recevoir un lien de réinitialisation."
+msgstr "This account cannot receive a reset link."
+
+msgid "Ce document a déjà été vérifié ou traité."
+msgstr "This document has already been verified or processed."
+
+msgid "Ce forfait est disponible uniquement sur devis et ne peut pas être payé directement."
+msgstr "This package is available only on quote and cannot be paid directly."
+
+msgid "Ce lien est confidentiel. Si vous n’attendiez pas la création de ce compte, ignorez cet e-mail."
+msgstr "This link is confidential. If you were not expecting the creation of this account, please ignore this email."
+
+msgid "Ce lien expire dans %(expiration_days)s jours. Si vous n'attendiez pas cette invitation, ignorez cet e-mail."
+msgstr "This link expires in %(expiration_days)s days. If you were not expecting this invitation, please ignore this email."
+
+msgid "Ce lien personnel expire dans"
+msgstr "This personal link expires in"
+
+msgid "Ce projet ne suit pas un parcours préparé à confirmer."
+msgstr "This project does not follow a prepared path to confirm."
+
+msgid "Ce rôle ne peut pas être invité."
+msgstr "This role cannot be invited."
+
+msgid "Ce statut exige une période d’abonnement complète."
+msgstr "This status requires a full subscription period."
+
+msgid "Ce username est déjà utilisé."
+msgstr "This username is already in use."
+
+msgid "Centralisez vos projets, équipes, finances, stocks et rapports de chantier dans un espace clair et sécurisé."
+msgstr "Centralize your projects, teams, finances, inventory, and site reports in a clear and secure space."
+
+msgid "Centre de contrôle"
+msgstr "Control center"
+
+msgid "Centre de rapports"
+msgstr "Report center"
+
+msgid "Ces changements prennent effet immédiatement après confirmation."
+msgstr "These changes take effect immediately upon confirmation."
+
+msgid "Ces conditions resteront préliminaires jusqu'à la confirmation du client."
+msgstr "These terms will remain preliminary until client confirmation."
+
+msgid "Ces valeurs proviennent de la version autorisée et ne sont pas modifiables."
+msgstr "These values come from the authorized version and are not modifiable."
+
+msgid "Cet article possède un historique de mouvements et ne peut pas être supprimé."
+msgstr "This item has a movement history and cannot be deleted."
+
+msgid "Cet avis éclaire le client, mais n’autorise aucun paiement."
+msgstr "This notice informs the client but does not authorize any payment."
+
+msgid "Cet e-mail a été envoyé automatiquement par PIVOT."
+msgstr "This email was sent automatically by PIVOT."
+
+msgid "Cet identifiant est déjà utilisé."
+msgstr "This identifier is already in use."
+
+msgid "Cet utilisateur gère des projets et doit rester ingénieur avant leur réaffectation."
+msgstr "This user manages projects and must remain an engineer before reassignment."
+
+msgid "Cet utilisateur participe déjà à ce chantier."
+msgstr "This user is already participating in this site."
+
+msgid "Cet utilisateur pourra de nouveau se connecter à son espace."
+msgstr "This user will be able to log back into their space."
+
+msgid "Cet utilisateur sera immédiatement empêché de se connecter. Ses données seront conservées."
+msgstr "This user will be immediately prevented from logging in. Their data will be retained."
+
+msgid "Cet écran sert à contrôler la gouvernance, les validations, les risques et l’audit. Le travail quotidien du chantier se fait dans son espace opérationnel."
+msgstr "This screen is used to control governance, validations, risks, and audits. Daily site work is done in its operational space."
+
+msgid "cet événement ne peut être ni modifié ni supprimé depuis l’interface."
+msgstr "This event cannot be modified or deleted from the interface."
+
+msgid "Cette action est irréversible et uniquement autorisée pour une organisation vide."
+msgstr "This action is irreversible and only allowed for an empty organization."
+
+msgid "Cette action est irréversible."
+msgstr "This action is irreversible."
+
+msgid "Cette action n’est pas autorisée pour l’état actuel du contenu."
+msgstr "This action is not allowed for the current state of the content."
+
+msgid "Cette action prend effet immédiatement"
+msgstr "This action takes effect immediately."
+
+msgid "Cette action révoque la confirmation actuelle."
+msgstr "This action revokes the current confirmation."
+
+msgid "Cette adresse e-mail est déjà utilisée."
+msgstr "This email address is already in use."
+
+msgid "Cette contestation est déjà résolue."
+msgstr "This dispute has already been resolved."
+
+msgid "Cette conversation a atteint sa limite de messages."
+msgstr "This conversation has reached its message limit."
+
+msgid "Cette conversation a expiré."
+msgstr "This conversation has expired."
+
+msgid "Cette conversation est archivée."
+msgstr "This conversation is archived."
+
+msgid "Cette demande a déjà été traitée."
+msgstr "This request has already been processed."
+
+msgid "Cette demande de dépense n’est pas autorisée."
+msgstr "This expense request is not authorized."
+
+msgid "Cette demande de paiement a déjà été enregistrée."
+msgstr "This payment request has already been recorded."
+
+msgid "Cette décision est gelée par une contestation ouverte."
+msgstr "This decision is frozen by an open dispute."
+
+msgid "Cette déclaration possède déjà une décision technique."
+msgstr "This statement already has a technical decision."
+
+msgid "Cette déclaration possède déjà une vérification technique signée."
+msgstr "This statement already has a signed technical verification."
+
+msgid "Cette entreprise constituera votre espace de travail isolé."
+msgstr "This company will be your private workspace."
+
+msgid "Cette invitation n'est plus valide."
+msgstr "This invitation is no longer valid."
+
+msgid "Cette invitation n’est plus active."
+msgstr "This invitation is no longer active."
+
+msgid "Cette organisation est archivée : ses données sont conservées et ses accès sont bloqués."
+msgstr "This organization is archived: its data is retained and its access is blocked."
+
+msgid "Cette organisation est déjà archivée."
+msgstr "This organization is already archived."
+
+msgid "Cette organisation possède des dépendances et doit être archivée."
+msgstr "This organization has dependencies and must be archived."
+
+msgid "Cette organisation possède un historique et doit être archivée plutôt que supprimée."
+msgstr "This organization has a history and should be archived rather than deleted."
+
+msgid "Cette personne pourra statuer sur les demandes de dépense à risque."
+msgstr "This person will be able to decide on high-risk expense requests."
+
+msgid "Cette pièce ne peut pas être rejetée sans motif."
+msgstr "This item cannot be rejected without reason."
+
+msgid "Cette plage ne peut pas être appliquée à cet article."
+msgstr "This range cannot be applied to this item."
+
+msgid "Cette preuve a déjà été traitée."
+msgstr "This proof has already been processed."
+
+msgid "Cette preuve appartient à un autre projet."
+msgstr "This proof belongs to another project."
+
+msgid "Cette proposition a déjà reçu une décision."
+msgstr "This proposal has already received a decision."
+
+msgid "Cette version a déjà été contrôlée numériquement."
+msgstr "This version has already been digitally checked."
+
+msgid "Cette visite possède déjà une conclusion."
+msgstr "This visit already has a conclusion."
+
+msgid "Cette étape en attente sera supprimée définitivement."
+msgstr "This pending step will be permanently deleted."
+
+msgid "Changer immédiatement le forfait"
+msgstr "Change the package immediately"
+
+msgid "Changer le propriétaire"
+msgstr "Change the owner"
+
+msgid "Changer le statut"
+msgstr "Change the status"
+
+msgid "Changer le thème"
+msgstr "Change the theme"
+
+msgid "Changer le vérificateur"
+msgstr "Change the verifier"
+
+msgid "Chantiers actuellement actifs"
+msgstr "Currently active construction sites"
+
+msgid "Chaque organisation validée bénéficie d’un essai unique de trois mois. Les clients sont illimités et ne consomment jamais le quota de membres internes."
+msgstr "Each validated organization benefits from a unique three-month trial. Clients are unlimited and never consume the internal member quota."
+
+msgid "chaque prix reste une hypothèse documentée avec son échantillon. Aucune conclusion n’est inventée en l’absence de réponses."
+msgstr "Each price remains a documented assumption with its sample. No conclusion is drawn in the absence of responses."
+
+msgid "Choisir un nouveau mot de passe"
+msgstr "Choose a new password"
+
+msgid "Choisissez un ingénieur de l’organisation actuelle"
+msgstr "Select an engineer from the current organization"
+
+msgid "Choisissez un remplaçant du même rôle"
+msgstr "Choose a replacement for the same role"
+
+msgid "Chronologie du chantier"
+msgstr "Project timeline"
+
+msgid "Client"
+msgstr "Client"
+
+msgid "Client / Entrepreneur / PIVOT"
+msgstr "Client / Contractor / PIVOT"
+
+msgid "Client-led"
+msgstr "Client-led"
+
+msgid "Clients et chefs de chantier"
+msgstr "Clients and site managers"
+
+msgid "Clients et responsables de chantier"
+msgstr "Clients and site supervisors"
+
+msgid "Clients illimités et non comptabilisés"
+msgstr "Unlimited and uncounted clients"
+
+msgid "Clore"
+msgstr "Close"
+
+msgid "Close"
+msgstr "Close"
+
+msgid "Code"
+msgstr "Code"
+
+msgid "code"
+msgstr "code"
+
+msgid "Collaboration autorisée"
+msgstr "Collaboration allowed"
+
+msgid "Commencer l’essai de 3 mois"
+msgstr "Start the 3-month trial"
+
+msgid "Comment puis-je vous aider ?"
+msgstr "How can I help you?"
+
+msgid "Commentaire"
+msgstr "Comment"
+
+msgid "Commentaire supprimé"
+msgstr "Comment deleted"
+
+msgid "Commentaires"
+msgstr "Comments"
+
+msgid "Commentaires actifs"
+msgstr "Active comments"
+
+msgid "Commentaires récents"
+msgstr "Recent comments"
+
+msgid "Comparer les forfaits et l’essai de 3 mois"
+msgstr "Compare plans and the 3-month trial"
+
+msgid "Complétez votre profil professionnel."
+msgstr "Complete your professional profile."
+
+msgid "Comprendre les calculs"
+msgstr "Understand the calculations"
+
+msgid "Comptabiliser"
+msgstr "Account for"
+
+msgid "Comptabilisé"
+msgstr "Accounted"
+
+msgid "Comptabilisés"
+msgstr "Accounted"
+
+msgid "Compte"
+msgstr "Account"
+
+msgid "Compte actif"
+msgstr "Active account"
+
+msgid "Compte activé"
+msgstr "Account activated"
+
+msgid "Compte rendu"
+msgstr "Report"
+
+msgid "comptes actifs"
+msgstr "active accounts"
+
+msgid "Compteurs de collaboration"
+msgstr "Collaboration counters"
+
+msgid "Conclure l’inspection"
+msgstr "Conclude the inspection"
+
+msgid "Conclusion"
+msgstr "Conclusion"
+
+msgid "Conclusion de la visite du"
+msgstr "Conclusion of the visit on"
+
+msgid "Conclusion en attente"
+msgstr "Conclusion pending"
+
+msgid "Conditionnel"
+msgstr "Conditional"
+
+msgid "Conditions définies"
+msgstr "Defined conditions"
+
+msgid "Conditions financières"
+msgstr "Financial terms"
+
+msgid "Conditions financières initiales"
+msgstr "Initial financial terms"
+
+msgid "Conditions financières proposées"
+msgstr "Proposed financial terms"
+
+msgid "Conditions initiales enregistrées"
+msgstr "Initial conditions recorded"
+
+msgid "Conditions proposées"
+msgstr "Proposed conditions"
+
+msgid "Conditions proposées au propriétaire"
+msgstr "Terms proposed to the owner"
+
+msgid "Conditions v"
+msgstr "Conditions v"
+
+msgid "Confiance et valeur contrôlée"
+msgstr "Trust and controlled value"
+
+msgid "Confidentialité des fichiers :"
+msgstr "File confidentiality:"
+
+msgid "Configuration"
+msgstr "Configuration"
+
+msgid "Configurer"
+msgstr "Set up"
+
+msgid "Configurer la règle d’inspection"
+msgstr "Set up the inspection rule"
+
+msgid "Confirmation explicite"
+msgstr "Explicit confirmation"
+
+msgid "Confirmer"
+msgstr "Confirm"
+
+msgid "Confirmer avec MeSomb"
+msgstr "Confirm with MeSomb"
+
+msgid "Confirmer et enregistrer"
+msgstr "Confirm and save"
+
+msgid "Confirmer la"
+msgstr "Confirm the"
+
+msgid "Confirmer la création"
+msgstr "Confirm creation"
+
+msgid "Confirmer la décision"
+msgstr "Confirm decision"
+
+msgid "Confirmer la modification"
+msgstr "Confirm modification"
+
+msgid "Confirmer la suppression"
+msgstr "Confirm deletion"
+
+msgid "Confirmer le changement"
+msgstr "Confirm change"
+
+msgid "Confirmer le changement de statut"
+msgstr "Confirm status change"
+
+msgid "Confirmer le changement d’accès"
+msgstr "Confirm access change"
+
+msgid "Confirmer le changement d’état"
+msgstr "Confirm state change"
+
+msgid "Confirmer le dossier"
+msgstr "Confirm the file"
+
+msgid "Confirmer le dossier préliminaire"
+msgstr "Confirm the preliminary file"
+
+msgid "Confirmer le paiement"
+msgstr "Confirm payment"
+
+msgid "Confirmer le refus"
+msgstr "Confirm rejection"
+
+msgid "Confirmer le transfert"
+msgstr "Confirm transfer"
+
+msgid "Confirmer les paramètres"
+msgstr "Confirm settings"
+
+msgid "Confirmer l’action"
+msgstr "Confirm action"
+
+msgid "Confirmer l’activation"
+msgstr "Confirm activation"
+
+msgid "Confirmer l’affectation"
+msgstr "Confirm assignment"
+
+msgid "Confirmer l’autorisation"
+msgstr "Confirm authorization"
+
+msgid "Confirmer l’intervention"
+msgstr "Confirm intervention"
+
+msgid "Confirmer ma participation"
+msgstr "Confirm my participation"
+
+msgid "Confirmer mon ownership"
+msgstr "Confirm my ownership"
+
+msgid "confirmé"
+msgstr "confirmed"
+
+msgid "Conflit d'ownership"
+msgstr "Ownership conflict"
+
+msgid "Conforme"
+msgstr "Compliant"
+
+msgid "Conforme sous réserves"
+msgstr "Compliant with reservations"
+
+msgid "Connexion"
+msgstr "Sign in"
+
+msgid "Connexion :"
+msgstr "Login:"
+
+msgid "Conserver"
+msgstr "Keep"
+
+msgid "Conservée"
+msgstr "Kept"
+
+msgid "consommation au-dessus de la plage"
+msgstr "consumption above range"
+
+msgid "consommation dans la plage"
+msgstr "consumption within range"
+
+msgid "consommation sous la plage"
+msgstr "consumption below range"
+
+msgid "Consommé"
+msgstr "Consumed"
+
+msgid "Construisez mieux."
+msgstr "Build better."
+
+msgid "Consultation"
+msgstr "Consultation"
+
+msgid "Consulter les finances"
+msgstr "View finances"
+
+msgid "Consultez et pilotez vos chantiers."
+msgstr "View and manage your construction sites."
+
+msgid "Consultez les actions sensibles de la plateforme. Les événements sont immuables."
+msgstr "Review sensitive platform actions. Events are immutable."
+
+msgid "Consultez les pièces et l’avis technique affichés ci-dessus avant de décider."
+msgstr "Review the documents and technical notice displayed above before deciding."
+
+msgid "Consultez l’avancement et utilisez uniquement l’action utile à votre rôle."
+msgstr "Check progress and use only the action relevant to your role."
+
+msgid "Consultez votre messagerie"
+msgstr "Check your messages"
+
+msgid "Contacter l’équipe commerciale"
+msgstr "Contact the sales team"
+
+msgid "Contenus et opérations rattachés"
+msgstr "Related content and operations"
+
+msgid "Contestations"
+msgstr "Disputes"
+
+msgid "Contexte"
+msgstr "Context"
+
+msgid "Continuer vers la décision"
+msgstr "Proceed to decision"
+
+msgid "Contractor-led"
+msgstr "Contractor-led"
+
+msgid "Control room"
+msgstr "Control room"
+
+msgid "Contrôle"
+msgstr "Control"
+
+msgid "Contrôle de risque PIVOT"
+msgstr "PIVOT risk control"
+
+msgid "Contrôle non obligatoire"
+msgstr "Non-mandatory control"
+
+msgid "Contrôler"
+msgstr "Control"
+
+msgid "Contrôles appliqués aux aperçus, téléchargements et informations de localisation."
+msgstr "Controls applied to previews, downloads, and location information."
+
+msgid "contrôles liés"
+msgstr "related controls"
+
+msgid "Conversion entrepreneur → client"
+msgstr "Contractor to client conversion"
+
+msgid "Coordonnées restreintes"
+msgstr "Restricted contact details"
+
+msgid "Correction :"
+msgstr "Correction:"
+
+msgid "Correction administrative"
+msgstr "Administrative correction"
+
+msgid "Correction inventaire"
+msgstr "Inventory correction"
+
+msgid "Correction à réaliser"
+msgstr "Correction to be made"
+
+msgid "Corriger la preuve v"
+msgstr "Correct the proof v"
+
+msgid "Couverture"
+msgstr "Coverage"
+
+msgid "Couverture de"
+msgstr "Coverage of"
+
+msgid "Créer et soumettre"
+msgstr "Create and submit"
+
+msgid "Créer la version"
+msgstr "Create the version"
+
+msgid "Créer le dossier préliminaire"
+msgstr "Create the preliminary file"
+
+msgid "Créer le projet"
+msgstr "Create the project"
+
+msgid "Créer l’étape"
+msgstr "Create the step"
+
+msgid "Créer mon compte"
+msgstr "Create my account"
+
+msgid "Créer mon compte client"
+msgstr "Create my client account"
+
+msgid "Créer mon espace ingénieur"
+msgstr "Create my engineer workspace"
+
+msgid "Créer un chantier dans"
+msgstr "Create a site in"
+
+msgid "Créer un compte :"
+msgstr "Create an account:"
+
+msgid "Créer un compte client"
+msgstr "Create a client account"
+
+msgid "Créer un compte ingénieur"
+msgstr "Create an engineer account"
+
+msgid "Créer un forfait"
+msgstr "Create a package"
+
+msgid "Créer un utilisateur"
+msgstr "Create a user"
+
+msgid "Créer une correction"
+msgstr "Create a correction"
+
+msgid "Créer une entreprise"
+msgstr "Create a company"
+
+msgid "Créer une organisation"
+msgstr "Create an organization"
+
+msgid "Créez la première étape du chantier."
+msgstr "Create the first step of the site."
+
+msgid "Créez simultanément l’espace et son premier responsable."
+msgstr "Simultaneously create the space and its first manager."
+
+msgid "Créez un projet ou modifiez les filtres."
+msgstr "Create a project or change the filters."
+
+msgid "créé"
+msgstr "created"
+
+msgid "créé le"
+msgstr "created on"
+
+msgid "Créé le"
+msgstr "Created on"
+
+msgid "créée le"
+msgstr "created on"
+
+msgid "Créée le"
+msgstr "Created on"
+
+msgid "Créées dans la période"
+msgstr "Created during the period"
+
+msgid "CSV filtré"
+msgstr "Filtered CSV"
+
+msgid "Cycle de vie de l’organisation"
+msgstr "Organization lifecycle"
+
+msgid "Cycle financier traçable"
+msgstr "Traceable financial cycle"
+
+msgid "Dans l’application"
+msgstr "In the application"
+
+msgid "Date"
+msgstr "Date"
+
+msgid "Date :"
+msgstr "Date:"
+
+msgid "Date croissante"
+msgstr "Ascending date"
+
+msgid "Date de confirmation"
+msgstr "Confirmation date"
+
+msgid "Date du projet"
+msgstr "Project date"
+
+msgid "Date décroissante"
+msgstr "Descending date"
+
+msgid "Date et heure"
+msgstr "Date and time"
+
+msgid "Date la plus récente"
+msgstr "Newest date"
+
+msgid "de stockage"
+msgstr "of storage"
+
+msgid "demande"
+msgstr "request"
+
+msgid "Demande"
+msgstr "Request"
+
+msgid "Demande de dépense"
+msgstr "Expense request"
+
+msgid "Demande de retrait créée."
+msgstr "Withdrawal request created."
+
+msgid "Demande d’inscription : renseignez les informations de votre entreprise."
+msgstr "Registration request: enter your company information."
+
+msgid "demande l’activation d’un compte ingénieur pour l’organisation"
+msgstr "request the activation of an engineer account for the organization"
+
+msgid "Demande reçue"
+msgstr "Request received"
+
+msgid "Demander un retrait"
+msgstr "Request a withdrawal"
+
+msgid "Demandes"
+msgstr "Requests"
+
+msgid "Demandes de dépense"
+msgstr "Expense requests"
+
+msgid "Demandeur"
+msgstr "Requester"
+
+msgid "Demandez un nouveau lien de réinitialisation."
+msgstr "Request a new reset link."
+
+msgid "Derniers chantiers mis à jour"
+msgstr "Recently updated construction sites"
+
+msgid "Dernière connexion"
+msgstr "Last login"
+
+msgid "Dernière déclaration :"
+msgstr "Last statement:"
+
+msgid "Dernière modification"
+msgstr "Last modification"
+
+msgid "description"
+msgstr "description"
+
+msgid "Description"
+msgstr "Description"
+
+msgid "Description du projet"
+msgstr "Project description"
+
+msgid "deviendra inutilisable. Vous pourrez lui envoyer une nouvelle invitation plus tard."
+msgstr "will become unusable. You can send a new invitation later."
+
+msgid "Devis"
+msgstr "Quote"
+
+msgid "devise"
+msgstr "currency"
+
+msgid "Devise"
+msgstr "Currency"
+
+msgid "Digital Verified"
+msgstr "Digital Verified"
+
+msgid "Digital Verified : tous les contrôles numériques sont conformes."
+msgstr "Digital Verified: all digital checks are compliant."
+
+msgid "Digital Verified a échoué. Consultez les contrôles du dossier."
+msgstr "Digital Verified failed. Check the file controls."
+
+msgid "Digital Verified ne correspond pas à cette déclaration."
+msgstr "Digital Verified does not match this statement."
+
+msgid "Dim"
+msgstr "Dim"
+
+msgid "Document"
+msgstr "Document"
+
+msgid "Document généré électroniquement à partir d’un paiement confirmé."
+msgstr "Document generated electronically from a confirmed payment."
+
+msgid "Document initial"
+msgstr "Initial document"
+
+msgid "Documentez le segment, le prix proposé et les réponses obtenues."
+msgstr "Document the segment, proposed price, and responses received."
+
+msgid "Documents"
+msgstr "Documents"
+
+msgid "documents"
+msgstr "documents"
+
+msgid "Documents envoyés"
+msgstr "Documents sent"
+
+msgid "Documents et retraits"
+msgstr "Documents and withdrawals"
+
+msgid "Données auditables"
+msgstr "Auditable data"
+
+msgid "Données financières"
+msgstr "Financial data"
+
+msgid "dossier"
+msgstr "file"
+
+msgid "Dossier / référence"
+msgstr "File / reference"
+
+msgid "Dossier bloqué :"
+msgstr "Blocked file:"
+
+msgid "Dossier complet"
+msgstr "Complete file"
+
+msgid "Dossier consultable"
+msgstr "Viewable file"
+
+msgid "Dossier v"
+msgstr "File v"
+
+msgid "Dossier ·"
+msgstr "File ·"
+
+msgid "Doublon probable"
+msgstr "Possible duplicate"
+
+msgid "Du"
+msgstr "From"
+
+msgid "début de la période"
+msgstr "start of the period"
+
+msgid "début de l’essai"
+msgstr "start of the trial"
+
+msgid "Début du jalon"
+msgstr "Start of milestone"
+
+msgid "Décider"
+msgstr "Decide"
+
+msgid "Décider sur la résolution"
+msgstr "Decide on the resolution"
+
+msgid "Décision"
+msgstr "Decision"
+
+msgid "Décision centrale"
+msgstr "Central decision"
+
+msgid "Décision du propriétaire"
+msgstr "Owner's decision"
+
+msgid "Décision gelée"
+msgstr "Frozen decision"
+
+msgid "Décision invalide"
+msgstr "Invalid decision"
+
+msgid "Décision invalide."
+msgstr "Invalid decision."
+
+msgid "Décision non autorisée."
+msgstr "Unauthorized decision."
+
+msgid "Décision par"
+msgstr "Decision by"
+
+msgid "Décision PIVOT"
+msgstr "PIVOT decision"
+
+msgid "Décision propriétaire invalide."
+msgstr "Invalid owner decision."
+
+msgid "Décision technique ·"
+msgstr "Technical decision ·"
+
+msgid "Déclaration de"
+msgstr "Declaration of"
+
+msgid "Déclaration et contrôle numérique"
+msgstr "Digital statement and control"
+
+msgid "Déclarer"
+msgstr "Declare"
+
+msgid "Déclaré :"
+msgstr "Declared:"
+
+msgid "Déclarée"
+msgstr "Declared"
+
+msgid "Déconnexion"
+msgstr "Log out"
+
+msgid "Décrivez l'enveloppe, les modalités et les conditions initiales du chantier."
+msgstr "Describe the envelope, terms, and initial conditions of the site."
+
+msgid "Définir en couverture"
+msgstr "Set in coverage"
+
+msgid "Définissez un mot de passe robuste pour sécuriser votre compte."
+msgstr "Set a strong password to secure your account."
+
+msgid "Définitions des indicateurs"
+msgstr "Indicator definitions"
+
+msgid "Définitions et limites du pilote"
+msgstr "Pilot definitions and limits"
+
+msgid "Déjà inscrit ?"
+msgstr "Already registered?"
+
+msgid "Délai de vérification"
+msgstr "Verification delay"
+
+msgid "Dépenses"
+msgstr "Expenses"
+
+msgid "Dépenses vérifiées"
+msgstr "Verified expenses"
+
+msgid "Déposer"
+msgstr "Submit"
+
+msgid "Déposer un PDF"
+msgstr "Submit a PDF"
+
+msgid "Déposer une preuve"
+msgstr "Submit proof"
+
+msgid "Déposée"
+msgstr "Submitted"
+
+msgid "Dépôt verrouillé · vérification ingénieur · approbation super-administrateur"
+msgstr "Locked deposit · engineer verification · super-admin approval"
+
+msgid "Déroger"
+msgstr "Derogate"
+
+msgid "Désignation"
+msgstr "Designation"
+
+msgid "Désigner un propriétaire"
+msgstr "Assign an owner"
+
+msgid "Détails"
+msgstr "Details"
+
+msgid "Détails personnels"
+msgstr "Personal details"
+
+msgid "Détectée le"
+msgstr "Detected on"
+
+msgid "E-mail"
+msgstr "Email"
+
+msgid "E-mail de support"
+msgstr "Support email"
+
+msgid "E-mail du propriétaire"
+msgstr "Owner's email"
+
+msgid "E-mail du responsable"
+msgstr "Manager's email"
+
+msgid "Effectuer un paiement"
+msgstr "Make a payment"
+
+msgid "En attente"
+msgstr "Pending"
+
+msgid "en attente"
+msgstr "pending"
+
+msgid "En attente de validation"
+msgstr "Pending validation"
+
+msgid "En cas de coupure, utilisez Réessayer : le même dépôt ne sera pas créé deux fois."
+msgstr "In case of interruption, use Retry: the same deposit will not be created twice."
+
+msgid "En cours"
+msgstr "In progress"
+
+msgid "en cours"
+msgstr "in progress"
+
+msgid "En ligne"
+msgstr "Online"
+
+msgid "En preuve"
+msgstr "In proof"
+
+msgid "En retard"
+msgstr "Late"
+
+msgid "En revue"
+msgstr "Under review"
+
+msgid "en tant que"
+msgstr "as"
+
+msgid "En vente"
+msgstr "For sale"
+
+msgid "English"
+msgstr "English"
+
+msgid "Enregistrer"
+msgstr "Save"
+
+msgid "Enregistrer en brouillon"
+msgstr "Save as draft"
+
+msgid "Enregistrer la conclusion"
+msgstr "Save the conclusion"
+
+msgid "Enregistrer la décision"
+msgstr "Save the decision"
+
+msgid "Enregistrer la plage"
+msgstr "Save the range"
+
+msgid "Enregistrer la règle"
+msgstr "Save the rule"
+
+msgid "Enregistrer la visite"
+msgstr "Save the visit"
+
+msgid "Enregistrer la visite ·"
+msgstr "Record visit ·"
+
+msgid "Enregistrer la vérification"
+msgstr "Save the verification"
+
+msgid "Enregistrer le nouveau mot de passe"
+msgstr "Save the new password"
+
+msgid "Enregistrer les affectations"
+msgstr "Save the assignments"
+
+msgid "Enregistrer les modifications"
+msgstr "Save changes"
+
+msgid "Enregistrer les paramètres"
+msgstr "Save settings"
+
+msgid "Enregistrer l’avis"
+msgstr "Save the notice"
+
+msgid "Enregistrer un mouvement ·"
+msgstr "Record movement ·"
+
+msgid "Enregistrer une visite"
+msgstr "Record a site visit"
+
+msgid "enregistrée"
+msgstr "recorded"
+
+msgid "Entrepreneur"
+msgstr "Contractor"
+
+msgid "Entrepreneur affecté"
+msgstr "Assigned contractor"
+
+msgid "Entreprise / organisation"
+msgstr "Company / organization"
+
+msgid "Enveloppe globale"
+msgstr "Overall envelope"
+
+msgid "Envoi…"
+msgstr "Sending..."
+
+msgid "Envoyer"
+msgstr "Send"
+
+msgid "Envoyer en revue"
+msgstr "Send for review"
+
+msgid "Envoyer le lien"
+msgstr "Send the link"
+
+msgid "Envoyer l’invitation"
+msgstr "Send the invitation"
+
+msgid "Envoyer un lien de réinitialisation"
+msgstr "Send a reset link"
+
+msgid "Erreur 403"
+msgstr "Error 403"
+
+msgid "Erreur 404"
+msgstr "Error 404"
+
+msgid "Erreur 500"
+msgstr "Error 500"
+
+msgid "Erreurs"
+msgstr "Errors"
+
+msgid "Espace de travail"
+msgstr "Workspace"
+
+msgid "Essai"
+msgstr "Trial"
+
+msgid "est chargé du contrôle des dossiers à risque."
+msgstr "is responsible for monitoring high-risk files."
+
+msgid "Estimé"
+msgstr "Estimated"
+
+msgid "Estimé :"
+msgstr "Estimated:"
+
+msgid "et"
+msgstr "and"
+
+msgid "Ex. Béton coulé"
+msgstr "Ex. Cast concrete"
+
+msgid "Ex. Fondations"
+msgstr "Ex. Foundations"
+
+msgid "Examiner"
+msgstr "Review"
+
+msgid "Examiner la demande"
+msgstr "Review the request"
+
+msgid "Examiner la demande :"
+msgstr "Review the request:"
+
+msgid "Examiner la résolution"
+msgstr "Review the resolution"
+
+msgid "Exceptionnelle confirmée"
+msgstr "Exceptional confirmed"
+
+msgid "Expiré"
+msgstr "Expired"
+
+msgid "Expirée"
+msgstr "Expired"
+
+msgid "Expliquez clairement la décision…"
+msgstr "Clearly explain the decision..."
+
+msgid "Expliquez la raison du transfert…"
+msgstr "Explain the reason for the transfer..."
+
+msgid "Expliquez pourquoi cette intervention est nécessaire…"
+msgstr "Explain why this intervention is necessary..."
+
+msgid "Exporter CSV"
+msgstr "Export CSV"
+
+msgid "Exporter l’historique"
+msgstr "Export history"
+
+msgid "Exécuter avec MeSomb"
+msgstr "Run with MeSomb"
+
+msgid "Exécuter le paiement autorisé"
+msgstr "Execute authorized payment"
+
+msgid "Facteur vers l'unité de stock"
+msgstr "Factor to stock unit"
+
+msgid "Facturation"
+msgstr "Billing"
+
+msgid "Facturation et historique"
+msgstr "Billing and history"
+
+msgid "Facture"
+msgstr "Invoice"
+
+msgid "Facture ou bon existant"
+msgstr "Existing invoice or voucher"
+
+msgid "Facultatif. Votre navigateur demandera votre autorisation uniquement lors de l’envoi."
+msgstr "Optional. Your browser will only ask for your permission when sending."
+
+msgid "faible"
+msgstr "low"
+
+msgid "fait"
+msgstr "done"
+
+msgid "Fermer"
+msgstr "Close"
+
+msgid "Fermer la visionneuse"
+msgstr "Close viewer"
+
+msgid "Fermer le menu"
+msgstr "Close the menu"
+
+msgid "Fichier"
+msgstr "File"
+
+msgid "Fichier CSV"
+msgstr "CSV file"
+
+msgid "Fil d’Ariane"
+msgstr "Breadcrumb"
+
+msgid "File de validation"
+msgstr "Validation queue"
+
+msgid "Filtrer"
+msgstr "Filter"
+
+msgid "Filtres des notifications"
+msgstr "Notification filters"
+
+msgid "fin de la grâce"
+msgstr "end of grace"
+
+msgid "fin de la période"
+msgstr "end of the period"
+
+msgid "fin de l’essai"
+msgstr "end of the trial"
+
+msgid "Fin du jalon"
+msgstr "End of milestone"
+
+msgid "Finance"
+msgstr "Finance"
+
+msgid "Finances"
+msgstr "Finance"
+
+msgid "Finances du projet"
+msgstr "Project finances"
+
+msgid "Finitions"
+msgstr "Finishes"
+
+msgid "fonctionnalités"
+msgstr "features"
+
+msgid "Fondations"
+msgstr "Foundations"
+
+msgid "Forfait"
+msgstr "Package"
+
+msgid "forfait"
+msgstr "package"
+
+msgid "Forfait :"
+msgstr "Package:"
+
+msgid "Forfait actuel"
+msgstr "Current package"
+
+msgid "Forfait ou périodicité invalide."
+msgstr "Invalid package or frequency."
+
+msgid "forfaits"
+msgstr "packages"
+
+msgid "Forfaits PIVOT"
+msgstr "PIVOT packages"
+
+msgid "Formation réalisée"
+msgstr "Training completed"
+
+msgid "Formats contrôlés et envoi sécurisé."
+msgstr "Controlled formats and secure sending."
+
+msgid "Français"
+msgstr "French"
+
+msgid "Friction actuelle"
+msgstr "Current friction"
+
+msgid "Galerie du chantier"
+msgstr "Site gallery"
+
+msgid "Geler la décision"
+msgstr "Freeze decision"
+
+msgid "genius-btp"
+msgstr "genius-btp"
+
+msgid "Gestion autorisée"
+msgstr "Authorized management"
+
+msgid "Gestion commerciale"
+msgstr "Commercial management"
+
+msgid "Gestion de la plateforme"
+msgstr "Platform management"
+
+msgid "Gestion des accès"
+msgstr "Access management"
+
+msgid "Gouvernance financière"
+msgstr "Financial governance"
+
+msgid "Générer un rapport"
+msgstr "Generate a report"
+
+msgid "Générez un PDF lisible ou un export CSV depuis vos projets accessibles."
+msgstr "Generate a readable PDF or CSV export from your accessible projects."
+
+msgid "Générez une synthèse PDF ou exportez les données structurées."
+msgstr "Generate a PDF summary or export structured data."
+
+msgid "Généré le"
+msgstr "Generated on"
+
+msgid "Gérer"
+msgstr "Manage"
+
+msgid "Gérer le forfait"
+msgstr "Manage the package"
+
+msgid "Gérer les étapes"
+msgstr "Manage the steps"
+
+msgid "Gérer l’abonnement :"
+msgstr "Manage subscription:"
+
+msgid "Gérer l’équipe"
+msgstr "Manage the team"
+
+msgid "Gérer mon abonnement"
+msgstr "Manage my subscription"
+
+msgid "Gérez vos informations personnelles et votre identité dans PIVOT."
+msgstr "Manage your personal information and identity in PIVOT."
+
+msgid "h"
+msgstr "h"
+
+msgid "Hello"
+msgstr "Hello"
+
+msgid "Historique"
+msgstr "History"
+
+msgid "Historique des invitations"
+msgstr "Invitation history"
+
+msgid "Historique des mouvements"
+msgstr "Movement history"
+
+msgid "Historique des périodes et changements"
+msgstr "History of periods and changes"
+
+msgid "Historique des statuts"
+msgstr "Status history"
+
+msgid "Historique du dossier"
+msgstr "File history"
+
+msgid "Historique du statut"
+msgstr "Status history"
+
+msgid "Historique protégé"
+msgstr "Protected history"
+
+msgid "Horodatage"
+msgstr "Timestamp"
+
+msgid "Hors parcours"
+msgstr "Off track"
+
+msgid "Hypothèses :"
+msgstr "Assumptions:"
+
+msgid "Hypothèses techniques"
+msgstr "Technical assumptions"
+
+msgid "Hypothèses validées"
+msgstr "Validated assumptions"
+
+msgid "i"
+msgstr "i"
+
+msgid "Identifiant"
+msgstr "Identifier"
+
+msgid "Identifiant de dépôt déjà utilisé."
+msgstr "Deposit ID already used."
+
+msgid "Identifiant ou mot de passe incorrect."
+msgstr "Incorrect username or password."
+
+msgid "Identifiant technique"
+msgstr "Technical identifier"
+
+msgid "Identifiants"
+msgstr "Identifiers"
+
+msgid "Il rejoindra uniquement le chantier"
+msgstr "He will only join the site"
+
+msgid "Immuable"
+msgstr "Immutable"
+
+msgid "Impact : les quotas et accès suivent le forfait ou le statut choisi. Aucun contenu n’est supprimé et aucun paiement réussi n’est simulé."
+msgstr "Impact: quotas and access follow the chosen package or status. No content is deleted and no successful payment is simulated."
+
+msgid "Importer"
+msgstr "Import"
+
+msgid "Importer le stock"
+msgstr "Import stock"
+
+msgid "Incident"
+msgstr "Incident"
+
+msgid "Indicateurs"
+msgstr "Indicators"
+
+msgid "Indicateurs agrégés des dernières %(hours)s heures, sans contenu de conversation."
+msgstr "Aggregated indicators from the last %(hours)s hours, without conversation content."
+
+msgid "Indicateurs de la période"
+msgstr "Period indicators"
+
+msgid "Indicateurs globaux"
+msgstr "Global indicators"
+
+msgid "Indicateurs vérifiés du chantier"
+msgstr "Verified site indicators"
+
+msgid "Indiquez le résultat de chaque élément inspecté."
+msgstr "Indicate the result of each inspected item."
+
+msgid "Indisponible"
+msgstr "Unavailable"
+
+msgid "Informations"
+msgstr "Information"
+
+msgid "Informations de paiement invalides."
+msgstr "Invalid payment information."
+
+msgid "Informations du compte"
+msgstr "Account information"
+
+msgid "Informations du membre"
+msgstr "Member Information"
+
+msgid "Informations générales"
+msgstr "General Information"
+
+msgid "Informations utilisées pour vous identifier."
+msgstr "Information used to identify you."
+
+msgid "Ingénieur"
+msgstr "Engineer"
+
+msgid "Ingénieur principal (ancienne donnée)"
+msgstr "Lead engineer (old data)"
+
+msgid "Ingénieur reprenant les projets"
+msgstr "Engineer taking over projects"
+
+msgid "Ingénieur responsable"
+msgstr "Responsible Engineer"
+
+msgid "Ingénieurs"
+msgstr "Engineers"
+
+msgid "Ingénieurs affectés"
+msgstr "Assigned engineers"
+
+msgid "Initié"
+msgstr "Initiated"
+
+msgid "Initié par l'entrepreneur"
+msgstr "Initiated by the contractor"
+
+msgid "Initié par le client"
+msgstr "Initiated by the client"
+
+msgid "Initié par PIVOT"
+msgstr "Initiated by PIVOT"
+
+msgid "Inscription"
+msgstr "Registration"
+
+msgid "Inscription client"
+msgstr "Client Registration"
+
+msgid "Inscription entre"
+msgstr "Entry Registration"
+
+msgid "Inscription ingénieur"
+msgstr "Engineer Registration"
+
+msgid "Inspection"
+msgstr "Inspection"
+
+msgid "Inspection imposée."
+msgstr "Inspection required."
+
+msgid "inspection non requise"
+msgstr "inspection not required"
+
+msgid "inspection requise"
+msgstr "inspection required"
+
+msgid "Inspection terrain"
+msgstr "Site Inspection"
+
+msgid "instantané du forfait"
+msgstr "snapshot of the package"
+
+msgid "Instruction contradictoire"
+msgstr "Contradictory Instruction"
+
+msgid "Interface prête"
+msgstr "Interface Ready"
+
+msgid "Intervenir"
+msgstr "Intervene"
+
+msgid "Intervenir sur"
+msgstr "Intervene on"
+
+msgid "Intervention exceptionnelle"
+msgstr "Exceptional Intervention"
+
+msgid "Interventions PIVOT auditées"
+msgstr "Audited PIVOT Interventions"
+
+msgid "Intégrations"
+msgstr "Integrations"
+
+msgid "Invitation"
+msgstr "Invitation"
+
+msgid "Invitation invalide."
+msgstr "Invalid invitation."
+
+msgid "Invitation sécurisée"
+msgstr "Secure Invitation"
+
+msgid "Invitation sécurisée et limitée à ce projet."
+msgstr "Secure invitation limited to this project."
+
+msgid "Invitations acceptées"
+msgstr "Accepted Invitations"
+
+msgid "Invitations acceptées, annulées ou arrivées à expiration"
+msgstr "Accepted, canceled, or expired invitations"
+
+msgid "Invitations en attente"
+msgstr "Pending Invitations"
+
+msgid "Invitations envoyées"
+msgstr "Sent Invitations"
+
+msgid "Inviter"
+msgstr "Invite"
+
+msgid "Inviter le propriétaire"
+msgstr "Invite Owner"
+
+msgid "Inviter un acteur"
+msgstr "Invite Stakeholder"
+
+msgid "Inviter un intervenant"
+msgstr "Invite Participant"
+
+msgid "Inviter un membre"
+msgstr "Invite Member"
+
+msgid "Invitez d’abord un client ou un responsable depuis le tableau de bord."
+msgstr "First invite a client or manager from the dashboard."
+
+msgid "J'accepte les conditions initiales présentées."
+msgstr "I accept the presented initial conditions."
+
+msgid "Jalon :"
+msgstr "Milestone:"
+
+msgid "Jalons nécessitant une inspection"
+msgstr "Milestones requiring inspection"
+
+msgid "Jalons vérifiés"
+msgstr "Verified Milestones"
+
+msgid "Je confirme l'entrepreneur proposé."
+msgstr "I confirm the proposed contractor."
+
+msgid "Je confirme le projet présenté."
+msgstr "I confirm the presented project."
+
+msgid "Je confirme être le propriétaire de ce chantier et disposer de l’autorité financière finale sur ce projet."
+msgstr "I confirm I am the owner of this site and have final financial authority over this project."
+
+msgid "Je confirme être le propriétaire du chantier et accepter les conditions applicables."
+msgstr "I confirm I am the site owner and accept the applicable conditions."
+
+msgid "Je confirme être le propriétaire du chantier."
+msgstr "I confirm I am the site owner."
+
+msgid "Jeu"
+msgstr "Game"
+
+msgid "Joindre ma position à cette preuve"
+msgstr "Attach my position to this proof"
+
+msgid "Journal d’audit"
+msgstr "Audit Log"
+
+msgid "Journal d’audit global"
+msgstr "Global Audit Log"
+
+msgid "jours"
+msgstr "days"
+
+msgid "Jours de prolongation"
+msgstr "Extension Days"
+
+msgid "jours. Si vous n’attendiez pas cette invitation, vous pouvez ignorer cet e-mail."
+msgstr "days. If you were not expecting this invitation, you can ignore this email."
+
+msgid "jusqu’au"
+msgstr "until"
+
+msgid "Justificatif"
+msgstr "Justification"
+
+msgid "Justification et autorisation distinctes des paiements MeSomb."
+msgstr "Justification and separate authorization for MeSomb payments."
+
+msgid "Justifiez clairement cette demande."
+msgstr "Clearly justify this request."
+
+msgid "L'affectation doit appartenir à l'organisation du projet."
+msgstr "The assignment must belong to the project organization."
+
+msgid "L'anomalie doit appartenir à l'organisation du projet."
+msgstr "The anomaly must belong to the project organization."
+
+msgid "L'article a été ajouté au stock."
+msgstr "The item has been added to stock."
+
+msgid "L'article a été vérifié."
+msgstr "The item has been verified."
+
+msgid "L'article doit appartenir au même projet."
+msgstr "The item must belong to the same project."
+
+msgid "L'article doit appartenir à l'organisation du projet."
+msgstr "The item must belong to the project organization."
+
+msgid "L'article est invalide. Vérifiez les valeurs saisies."
+msgstr "The item is invalid. Check the entered values."
+
+msgid "L'auteur doit être un intervenant autorisé du projet."
+msgstr "The author must be an authorized project stakeholder."
+
+msgid "L'avis doit appartenir à l'organisation de la déclaration."
+msgstr "The notice must belong to the statement organization."
+
+msgid "L'image est invalide ou trop volumineuse."
+msgstr "The image is invalid or too large."
+
+msgid "L'image ne doit pas dépasser 5 Mo."
+msgstr "The image must not exceed 5 MB."
+
+msgid "L'inspection doit appartenir à l'organisation de la visite."
+msgstr "The inspection must belong to the visit organization."
+
+msgid "L'invitation a été envoyée."
+msgstr "The invitation has been sent."
+
+msgid "L'ownership doit appartenir à l'organisation du projet."
+msgstr "The ownership must belong to the project organization."
+
+msgid "L'unité de la plage doit correspondre à celle de l'article."
+msgstr "The range unit must match that of the item."
+
+msgid "L'unité doit correspondre à celle de l'article."
+msgstr "The unit must match that of the item."
+
+msgid "L'échec Digital Verified bloque la vérification de progression."
+msgstr "Digital Verified failure blocks progress verification."
+
+msgid "L'étape a été créée."
+msgstr "The step has been created."
+
+msgid "L'étape a été mise à jour."
+msgstr "The step has been updated."
+
+msgid "L'étape doit appartenir au même projet."
+msgstr "The step must belong to the same project."
+
+msgid "L'étape doit appartenir à l'organisation du projet."
+msgstr "The step must belong to the project's organization."
+
+msgid "L'étape n'a pas pu être créée. Vérifiez les informations."
+msgstr "The step could not be created. Check the information."
+
+msgid "L'étape n'a pas pu être modifiée. Vérifiez les informations."
+msgstr "The step could not be modified. Check the information."
+
+msgid "La borne minimale ne peut pas dépasser la borne maximale."
+msgstr "The minimum limit cannot exceed the maximum limit."
+
+msgid "La confirmation de création est obligatoire."
+msgstr "Creation confirmation is required."
+
+msgid "La confirmation de la décision est obligatoire."
+msgstr "Decision confirmation is required."
+
+msgid "La confirmation de la mise à jour concierge est obligatoire."
+msgstr "Concierge update confirmation is required."
+
+msgid "La confirmation de l’intervention est obligatoire."
+msgstr "Intervention confirmation is required."
+
+msgid "La confirmation de l’opération est obligatoire."
+msgstr "Operation confirmation is required."
+
+msgid "La confirmation de modification est obligatoire."
+msgstr "Modification confirmation is required."
+
+msgid "La confirmation du transfert est obligatoire."
+msgstr "Transfer confirmation is required."
+
+msgid "La confirmation est obligatoire pour annuler l’invitation."
+msgstr "Confirmation is required to cancel the invitation."
+
+msgid "La confirmation est obligatoire."
+msgstr "Confirmation is required."
+
+msgid "La confirmation et une note de résolution sont obligatoires."
+msgstr "Confirmation and a resolution note are required."
+
+msgid "La confirmation explicite de l’intervention exceptionnelle est incorrecte."
+msgstr "Explicit confirmation of the exceptional intervention is incorrect."
+
+msgid "La contestation a été ouverte et auditée."
+msgstr "The dispute has been opened and audited."
+
+msgid "La contestation a été résolue sans supprimer les preuves."
+msgstr "The dispute has been resolved without deleting the evidence."
+
+msgid "La contestation doit appartenir à l’organisation du projet."
+msgstr "The dispute must belong to the project's organization."
+
+msgid "La contestation et sa confirmation sont invalides."
+msgstr "The dispute and its confirmation are invalid."
+
+msgid "La correction est invalide. Vérifiez le fichier et le motif."
+msgstr "The correction is invalid. Check the file and the reason."
+
+msgid "La couverture a été mise à jour."
+msgstr "The coverage has been updated."
+
+msgid "La date du projet ne peut pas être postérieure au début de la première étape."
+msgstr "The project date cannot be later than the start of the first step."
+
+msgid "La date et la localisation de la visite sont obligatoires."
+msgstr "The date and location of the visit are required."
+
+msgid "La demande a changé. Actualisez la page avant de continuer."
+msgstr "The request has changed. Refresh the page before continuing."
+
+msgid "La demande a changé. Actualisez la page avant de décider."
+msgstr "The request has changed. Refresh the page before deciding."
+
+msgid "La demande a changé. Actualisez la page avant de rendre votre avis."
+msgstr "The request has changed. Refresh the page before giving your opinion."
+
+msgid "La demande a changé. Actualisez la page avant la vérification PIVOT."
+msgstr "The request has changed. Refresh the page before the PIVOT check."
+
+msgid "La demande de confirmation a expiré."
+msgstr "The confirmation request has expired."
+
+msgid "La demande de dépense doit appartenir au même projet."
+msgstr "The expense request must belong to the same project."
+
+msgid "La demande de dépense est incomplète ou invalide."
+msgstr "The expense request is incomplete or invalid."
+
+msgid "La demande devra être approuvée avant tout décaissement."
+msgstr "The request must be approved before any disbursement."
+
+msgid "La demande doit appartenir à l’organisation du projet."
+msgstr "The request must belong to the project's organization."
+
+msgid "La demande passera de"
+msgstr "The request will move from"
+
+msgid "La demande sera rejetée ; aucune écriture financière ne sera supprimée."
+msgstr "The request will be rejected; no financial entry will be deleted."
+
+msgid "La décision a été enregistrée."
+msgstr "The decision has been recorded."
+
+msgid "La décision doit appartenir à l’organisation de la demande."
+msgstr "The decision must belong to the request's organization."
+
+msgid "La décision est définitive, auditée et notifiée au demandeur."
+msgstr "The decision is final, audited, and notified to the requester."
+
+msgid "La décision est incomplète ou invalide."
+msgstr "The decision is incomplete or invalid."
+
+msgid "La décision et son motif sont obligatoires."
+msgstr "The decision and its reason are required."
+
+msgid "La décision financière restera exclusivement au client."
+msgstr "The financial decision will remain exclusively with the client."
+
+msgid "La décision go/no-go a été documentée et auditée."
+msgstr "The go/no-go decision has been documented and audited."
+
+msgid "La décision ou son motif est invalide."
+msgstr "The decision or its reason is invalid."
+
+msgid "La décision PIVOT et sa motivation sont obligatoires."
+msgstr "The PIVOT decision and its justification are required."
+
+msgid "La décision sur la preuve a été enregistrée."
+msgstr "The decision on the evidence has been recorded."
+
+msgid "La décision sur la résolution a été enregistrée."
+msgstr "The decision on the resolution has been recorded."
+
+msgid "La décision sur le document a été enregistrée."
+msgstr "The decision on the document has been recorded."
+
+msgid "La décision sur le retrait a été enregistrée."
+msgstr "The decision on the withdrawal has been recorded."
+
+msgid "La décision technique a été enregistrée."
+msgstr "The technical decision has been recorded."
+
+msgid "La décision technique et son motif sont obligatoires."
+msgstr "The technical decision and its reason are required."
+
+msgid "La déclaration de progression est invalide."
+msgstr "The progress statement is invalid."
+
+msgid "La déclaration technique doit appartenir à la même étape."
+msgstr "The technical statement must belong to the same step."
+
+msgid "La fin précède le début"
+msgstr "The end precedes the start."
+
+msgid "La latitude et la longitude doivent être fournies ensemble."
+msgstr "Latitude and longitude must be provided together."
+
+msgid "La mesure de recommandation est invalide."
+msgstr "The recommendation measure is invalid."
+
+msgid "La mise à jour sera ajoutée au journal d’audit."
+msgstr "The update will be added to the audit log."
+
+msgid "La modification de l’identifiant technique peut affecter les références externes. Cette action sera auditée."
+msgstr "Changing the technical identifier may affect external references. This action will be audited."
+
+msgid "La nature de la pièce ne correspond pas au mouvement."
+msgstr "The nature of the document does not match the movement."
+
+msgid "La nouvelle pièce remplace l’ancienne, conservée dans l’historique."
+msgstr "The new document replaces the old one, kept in history."
+
+msgid "La nouvelle version des conditions est invalide."
+msgstr "The new version of the terms is invalid."
+
+msgid "La photo a été ajoutée."
+msgstr "The photo has been added."
+
+msgid "La photo a été supprimée."
+msgstr "The photo has been deleted."
+
+msgid "La photo ne doit pas dépasser 3 Mo."
+msgstr "The photo must not exceed 3 MB."
+
+msgid "La pièce a été ajoutée au dossier."
+msgstr "The document has been added to the file."
+
+msgid "La pièce a été rejetée sans supprimer son historique."
+msgstr "The document has been rejected without deleting its history."
+
+msgid "La pièce de remplacement doit appartenir à la même demande."
+msgstr "The replacement document must belong to the same request."
+
+msgid "La pièce doit appartenir à l’organisation de la demande."
+msgstr "The document must belong to the request organization."
+
+msgid "La pièce justificative doit appartenir au même projet."
+msgstr "The supporting document must belong to the same project."
+
+msgid "La pièce sélectionnée est invalide."
+msgstr "The selected document is invalid."
+
+msgid "La plage attendue doit appartenir au même projet."
+msgstr "The expected range must belong to the same project."
+
+msgid "La plage attendue est invalide. Vérifiez l'unité et les bornes."
+msgstr "The expected range is invalid. Check the unit and bounds."
+
+msgid "La plage attendue versionnée a été associée à l'article."
+msgstr "The versioned expected range has been associated with the item."
+
+msgid "La plage doit appartenir à l'organisation du projet."
+msgstr "The range must belong to the project organization."
+
+msgid "La planification n’a pas encore commencé."
+msgstr "Planning has not yet started."
+
+msgid "La plateforme de gestion de vos chantiers"
+msgstr "Your construction site management platform"
+
+msgid "La position et l’observation sont obligatoires."
+msgstr "The position and observation are mandatory."
+
+msgid "La preuve a été déposée."
+msgstr "The evidence has been submitted."
+
+msgid "La preuve de remplacement et le motif sont obligatoires."
+msgstr "The replacement evidence and reason are mandatory."
+
+msgid "La preuve doit appartenir au même projet et à la même étape."
+msgstr "The evidence must belong to the same project and phase."
+
+msgid "La preuve doit appartenir au même projet."
+msgstr "The evidence must belong to the same project."
+
+msgid "La preuve doit appartenir à l'organisation du projet."
+msgstr "The evidence must belong to the project organization."
+
+msgid "La preuve doit d’abord être vérifiée."
+msgstr "The evidence must be verified first."
+
+msgid "La progression doit appartenir à l'organisation de l'étape."
+msgstr "The progress must belong to the phase organization."
+
+msgid "La progression déclarée a été enregistrée sans être présentée comme vérifiée."
+msgstr "The reported progress has been recorded without being marked as verified."
+
+msgid "La progression déclarée vient du terrain. La progression vérifiée est celle confirmée après contrôle."
+msgstr "The reported progress comes from the field. Verified progress is that confirmed after inspection."
+
+msgid "La progression globale est la moyenne des états des étapes : 0 %%, 50 %% ou 100 %%."
+msgstr "Overall progress is the average of the step statuses: 0%%, 50%%, or 100%%."
+
+msgid "La progression globale est la moyenne des états des étapes : 0 %, 50 % ou 100 %."
+msgstr "Overall progress is the average of step statuses: 0%, 50%, or 100%."
+
+msgid "La progression vérifiée a été enregistrée."
+msgstr "The verified progress has been recorded."
+
+msgid "La progression, les quantités et les réserves seront signées et conservées."
+msgstr "Progress, quantities, and reserves will be signed and retained."
+
+msgid "La période de grâce exige une date de fin."
+msgstr "The grace period requires an end date."
+
+msgid "La période et le motif de correction sont obligatoires."
+msgstr "The period and correction reason are mandatory."
+
+msgid "La quantité convertie ne correspond pas à la conversion déclarée."
+msgstr "The converted quantity does not match the reported conversion."
+
+msgid "La quantité et le facteur de conversion doivent être positifs."
+msgstr "The quantity and conversion factor must be positive."
+
+msgid "La quantité initiale ne peut pas être négative."
+msgstr "The initial quantity cannot be negative."
+
+msgid "La quantité résultante ne peut pas être négative."
+msgstr "The resulting quantity cannot be negative."
+
+msgid "La requête est invalide."
+msgstr "The request is invalid."
+
+msgid "La ressource demandée n’existe pas ou n’est plus accessible."
+msgstr "The requested resource does not exist or is no longer accessible."
+
+msgid "La règle de risque est invalide."
+msgstr "The risk rule is invalid."
+
+msgid "La référence de cette photo sera supprimée définitivement."
+msgstr "The reference for this photo will be permanently deleted."
+
+msgid "La résolution a été soumise pour validation."
+msgstr "The resolution has been submitted for validation."
+
+msgid "La résolution motivée est obligatoire."
+msgstr "The reasoned resolution is mandatory."
+
+msgid "La suppression de données, la restauration de sauvegarde, la rotation des secrets et les commandes système ne sont pas exposées comme boutons. Ces opérations nécessitent une procédure technique contrôlée."
+msgstr "Data deletion, backup restoration, secret rotation, and system commands are not exposed as buttons. These operations require a controlled technical procedure."
+
+msgid "La valeur suivie additionne uniquement les versions courantes des budgets dont l’autorité propriétaire a confirmé les conditions sur un chantier actif. Les dépenses en brouillon, soumises, en preuve ou en revue sont exclues. Les jalons exigent une vérification enregistrée. Les délais relient une déclaration à sa vérification. Les anomalies proviennent uniquement du registre persistant et auditable."
+msgstr "The tracked value only sums the current versions of budgets for which the owning authority has confirmed the conditions on an active site. Draft, submitted, proof, or review expenses are excluded. Milestones require a recorded verification. Deadlines link a statement to its verification. Anomalies come solely from the persistent and auditable register."
+
+msgid "La version précédente doit appartenir à la même preuve."
+msgstr "The previous version must belong to the same evidence."
+
+msgid "La version précédente doit concerner le même ouvrage et la même unité."
+msgstr "The previous version must relate to the same work and unit."
+
+msgid "La visite doit appartenir à l'organisation de l'étape."
+msgstr "The visit must belong to the phase organization."
+
+msgid "La visite terrain a été enregistrée."
+msgstr "The site visit has been recorded."
+
+msgid "La vérification de progression est invalide."
+msgstr "The progress verification is invalid."
+
+msgid "La vérification doit appartenir à l'organisation de la déclaration."
+msgstr "The verification must belong to the declaration organization."
+
+msgid "La vérification doit appartenir à l’organisation de la demande."
+msgstr "The verification must belong to the request organization."
+
+msgid "La vérification PIVOT est obligatoire avant la décision du propriétaire."
+msgstr "PIVOT verification is mandatory before the owner's decision."
+
+msgid "La vérification PIVOT est obligatoire avant l’autorisation."
+msgstr "PIVOT verification is mandatory before authorization."
+
+msgid "La vérification PIVOT exige un avis technique valide."
+msgstr "PIVOT verification requires a valid technical opinion."
+
+msgid "La vérification PIVOT ne correspond plus à cette version du dossier."
+msgstr "PIVOT verification no longer matches this version of the file."
+
+msgid "La vérification PIVOT ne correspond plus à la version actuelle du dossier."
+msgstr "PIVOT verification no longer matches the current version of the file."
+
+msgid "La vérification technique doit appartenir à l'étape visitée."
+msgstr "The technical verification must belong to the visited phase."
+
+msgid "Lancer le contrôle"
+msgstr "Start the control"
+
+msgid "Lancer le contrôle numérique"
+msgstr "Start the digital control"
+
+msgid "Langue"
+msgstr "Language"
+
+msgid "Latence moyenne"
+msgstr "Average latency"
+
+msgid "Latitude et longitude doivent être fournies ensemble."
+msgstr "Latitude and longitude must be provided together."
+
+msgid "Le changement de statut demandé est invalide."
+msgstr "The requested status change is invalid."
+
+msgid "Le changement sera enregistré dans le journal d’audit."
+msgstr "The change will be recorded in the audit log."
+
+msgid "Le changement sera horodaté et ajouté au journal d’audit."
+msgstr "The change will be timestamped and added to the audit log."
+
+msgid "Le chantier est maintenant actif."
+msgstr "The site is now active."
+
+msgid "Le compte associé à cette adresse est désactivé."
+msgstr "The account associated with this address is disabled."
+
+msgid "Le compte possède déjà ce statut."
+msgstr "The account already has this status."
+
+msgid "Le compte recevra un lien sécurisé pour définir son mot de passe."
+msgstr "The account will receive a secure link to set its password."
+
+msgid "Le compte utilisateur a été activé."
+msgstr "The user account has been activated."
+
+msgid "Le conflit a été examiné sans fusion automatique."
+msgstr "The conflict has been reviewed without automatic merging."
+
+msgid "Le constat d'une anomalie est immuable."
+msgstr "The finding of an anomaly is immutable."
+
+msgid "Le créateur doit pouvoir gérer le stock de ce projet."
+msgstr "The creator must be able to manage the inventory of this project."
+
+msgid "Le créateur doit pouvoir gérer les étapes de ce projet."
+msgstr "The creator must be able to manage the phases of this project."
+
+msgid "Le dernier super-administrateur actif ne peut pas être suspendu."
+msgstr "The last active super-admin cannot be suspended."
+
+msgid "Le destinataire doit appartenir à une organisation."
+msgstr "The recipient must belong to an organization."
+
+msgid "Le document a été déposé et attend une validation."
+msgstr "The document has been submitted and is awaiting validation."
+
+msgid "Le document deviendra accessible aux utilisateurs autorisés."
+msgstr "The document will become accessible to authorized users."
+
+msgid "Le dossier concierge PIVOT a été préparé."
+msgstr "The PIVOT concierge file has been prepared."
+
+msgid "Le dossier est incohérent :"
+msgstr "The file is inconsistent:"
+
+msgid "Le dossier est incomplet ou incohérent :"
+msgstr "The file is incomplete or inconsistent:"
+
+msgid "Le dossier est incomplet. Ajoutez toutes les pièces obligatoires."
+msgstr "The file is incomplete. Add all required documents."
+
+msgid "Le dossier est incomplet. L’avis technique ne peut pas être rendu."
+msgstr "The file is incomplete. The technical opinion cannot be issued."
+
+msgid "Le fichier doit être au format CSV."
+msgstr "The file must be in CSV format."
+
+msgid "Le fichier est invalide. Vérifiez son format et sa taille."
+msgstr "The file is invalid. Check its format and size."
+
+msgid "Le fichier ne doit pas dépasser 2 Mo."
+msgstr "The file must not exceed 2 MB."
+
+msgid "Le fichier sera conservé mais rendu rejeté et inaccessible."
+msgstr "The file will be retained but marked as rejected and inaccessible."
+
+msgid "Le forfait a été créé."
+msgstr "The package has been created."
+
+msgid "Le forfait a été modifié sans altérer les contrats existants."
+msgstr "The package has been modified without affecting existing contracts."
+
+msgid "Le forfait adapté à votre organisation"
+msgstr "The plan suited for your organization"
+
+msgid "Le forfait d’essai configuré est indisponible."
+msgstr "The configured trial package is unavailable."
+
+msgid "Le jalon doit appartenir au même projet."
+msgstr "The milestone must belong to the same project."
+
+msgid "Le lien d’invitation expirera après 7 jours."
+msgstr "The invitation link will expire after 7 days."
+
+msgid "Le lien envoyé à"
+msgstr "The link sent to"
+
+msgid "Le lien sécurisé de réinitialisation a été envoyé."
+msgstr "The secure reset link has been sent."
+
+msgid "Le message est trop long."
+msgstr "The message is too long."
+
+msgid "Le message ne peut pas être vide."
+msgstr "The message cannot be empty."
+
+msgid "Le minimum ne peut pas dépasser le maximum."
+msgstr "The minimum cannot exceed the maximum."
+
+msgid "Le module"
+msgstr "The module"
+
+msgid "Le module commercial est temporairement désactivé."
+msgstr "The commercial module is temporarily disabled."
+
+msgid "Le montant est calculé par PIVOT. Ne fermez pas la demande Mobile Money avant sa confirmation."
+msgstr "The amount is calculated by PIVOT. Do not close the Mobile Money request before its confirmation."
+
+msgid "Le mot de passe, les jetons et les secrets du compte ne sont jamais affichés."
+msgstr "The password, tokens, and account secrets are never displayed."
+
+msgid "Le motif de correction est obligatoire."
+msgstr "The correction reason is required."
+
+msgid "Le motif de l’intervention est obligatoire."
+msgstr "The intervention reason is required."
+
+msgid "Le motif de rejet est obligatoire."
+msgstr "The rejection reason is required."
+
+msgid "Le motif du changement de propriétaire est obligatoire."
+msgstr "The owner change reason is required."
+
+msgid "Le motif du refus est obligatoire."
+msgstr "The refusal reason is required."
+
+msgid "Le motif du transfert est obligatoire."
+msgstr "The transfer reason is required."
+
+msgid "Le motif et les actions correctives requises doivent être renseignés."
+msgstr "The reason and required corrective actions must be provided."
+
+msgid "Le mouvement de stock a été enregistré."
+msgstr "The stock movement has been recorded."
+
+msgid "Le mouvement demandé est invalide."
+msgstr "The requested movement is invalid."
+
+msgid "Le mouvement doit appartenir au projet et à l'organisation de l'article."
+msgstr "The movement must belong to the project and the item's organization."
+
+msgid "Le nom de confirmation ne correspond pas."
+msgstr "The confirmation name does not match."
+
+msgid "Le nom de la plateforme est obligatoire."
+msgstr "The platform name is required."
+
+msgid "Le nouveau propriétaire doit maintenant confirmer son ownership."
+msgstr "The new owner must now confirm their ownership."
+
+msgid "Le nouveau propriétaire doit être un client actif de l'organisation."
+msgstr "The new owner must be an active client of the organization."
+
+msgid "Le numéro de version doit suivre la version précédente."
+msgstr "The version number must follow the previous version."
+
+msgid "Le paiement a été refusé ou n’a pas abouti."
+msgstr "The payment was declined or did not go through."
+
+msgid "Le paiement n’a pas abouti. Vérifiez le numéro et réessayez."
+msgstr "The payment did not go through. Check the number and try again."
+
+msgid "Le PDF ne doit pas dépasser 10 Mo."
+msgstr "The PDF must not exceed 10 MB."
+
+msgid "Le projet a été créé."
+msgstr "The project has been created."
+
+msgid "Le projet a été mis à jour."
+msgstr "The project has been updated."
+
+msgid "Le projet sera isolé dans cet espace."
+msgstr "The project will be isolated in this space."
+
+msgid "Le projet, les acteurs et les conditions sont confirmés."
+msgstr "The project, stakeholders, and conditions are confirmed."
+
+msgid "Le propriétaire du chantier doit confirmer son ownership avant tout paiement."
+msgstr "The site owner must confirm their ownership before any payment."
+
+msgid "Le propriétaire et le motif sont obligatoires."
+msgstr "The owner and reason are required."
+
+msgid "Le rapport doit appartenir à l'organisation de la vérification."
+msgstr "The report must belong to the auditing organization."
+
+msgid "Le refus de la version"
+msgstr "The version rejection"
+
+msgid "Le refus exige un motif et une version valide du dossier."
+msgstr "The refusal requires a reason and a valid version of the file."
+
+msgid "Le remplacement exige une pièce active ou rejetée et un motif."
+msgstr "The replacement requires an active or rejected item and a reason."
+
+msgid "Le responsable doit être membre du projet."
+msgstr "The responsible person must be a member of the project."
+
+msgid "Le responsable recevra un lien sécurisé pour définir lui-même son mot de passe. Aucun mot de passe temporaire ne sera affiché."
+msgstr "The manager will receive a secure link to set their own password. No temporary password will be displayed."
+
+msgid "Le responsable, le motif et au moins une preuve sont obligatoires."
+msgstr "The responsible person, reason, and at least one proof are required."
+
+msgid "Le résultat sera définitif pour cette déclaration."
+msgstr "The result will be final for this statement."
+
+msgid "Le rôle d’un super-administrateur ne se modifie pas ici."
+msgstr "The role of a super administrator cannot be changed here."
+
+msgid "Le rôle est incompatible avec les affectations projet existantes."
+msgstr "The role is incompatible with existing project assignments."
+
+msgid "Le rôle projet invité est invalide."
+msgstr "The guest project role is invalid."
+
+msgid "Le score de recommandation a été enregistré."
+msgstr "The recommendation score has been recorded."
+
+msgid "Le service n’a pas pu terminer cette action. Réessayez dans quelques instants."
+msgstr "The service could not complete this action. Please try again in a moment."
+
+msgid "Le service reste utilisable jusqu’au"
+msgstr "The service remains usable until"
+
+msgid "Le socle Django répond correctement."
+msgstr "The Django base is responding correctly."
+
+msgid "Le statut demandé est invalide."
+msgstr "The requested status is invalid."
+
+msgid "Le statut du projet a été mis à jour."
+msgstr "The project status has been updated."
+
+msgid "Le stock n’a pas encore été renseigné."
+msgstr "The stock has not yet been entered."
+
+msgid "Le suivi concierge a été mis à jour et audité."
+msgstr "The concierge tracking has been updated and audited."
+
+msgid "Le suivi concierge doit appartenir à l’organisation du projet."
+msgstr "The concierge tracking must belong to the project's organization."
+
+msgid "Le texte sera effacé mais sa trace de modération sera conservée."
+msgstr "The text will be deleted but its moderation trace will be retained."
+
+msgid "Le titre et le fichier du document doivent être renseignés ensemble."
+msgstr "The title and file of the document must be provided together."
+
+msgid "Le type de la preuve ne correspond pas à la nature choisie."
+msgstr "The proof type does not match the chosen nature."
+
+msgid "Le type et l'identifiant de la demande sont indissociables."
+msgstr "The type and request ID are inseparable."
+
+msgid "Lecture"
+msgstr "Reading"
+
+msgid "Lecture seule"
+msgstr "Read-only"
+
+msgid "Lecture seule :"
+msgstr "Read-only:"
+
+msgid "Les abonnements existants conservent leur instantané contractuel."
+msgstr "Existing subscriptions retain their contractual snapshot."
+
+msgid "Les actions proposées dépendent de l’état et conservent les traces métier."
+msgstr "Proposed actions depend on the state and retain business traces."
+
+msgid "Les affectations du projet ont été mises à jour."
+msgstr "The project assignments have been updated."
+
+msgid "les aperçus sont servis par une route sécurisée réservée au super administrateur et restent en lecture seule."
+msgstr "The previews are served by a secure route reserved for the super administrator and remain read-only."
+
+msgid "Les coordonnées ne sont conservées que lorsque la localisation est autorisée."
+msgstr "Contact details are retained only when location is permitted."
+
+msgid "Les coordonnées sont hors limites."
+msgstr "The contact details are out of bounds."
+
+msgid "Les demandes financières restent verrouillées jusqu'à l'activation du chantier."
+msgstr "Financial requests remain locked until the site is activated."
+
+msgid "Les dépenses exigent un statut vérifié, autorisé ou clos et un avis technique courant positif. Un jalon est vérifié dès qu’une vérification de progression est enregistrée. Le délai mesure le temps entre la déclaration et sa vérification. Les écarts proviennent du registre d’anomalies de stock."
+msgstr "Expenses require a verified, authorized, or closed status and a current positive technical notice. A milestone is verified as soon as a progress verification is recorded. The deadline measures the time between the statement and its verification. Discrepancies come from the stock anomaly register."
+
+msgid "Les finances du chantier ne sont pas encore activées."
+msgstr "The site's finances are not yet activated."
+
+msgid "Les finances restent verrouillées jusqu'à l'activation du chantier."
+msgstr "Finances remain locked until the site is activated."
+
+msgid "Les forfaits seront bientôt disponibles."
+msgstr "Plans will be available soon."
+
+msgid "Les informations de l’organisation ont été modifiées."
+msgstr "The organization's information has been modified."
+
+msgid "Les informations utilisateur ont été modifiées."
+msgstr "User information has been modified."
+
+msgid "Les inscriptions client sont temporairement fermées."
+msgstr "Client registrations are temporarily closed."
+
+msgid "Les inscriptions et options fonctionnelles seront actualisées immédiatement. Cette modification sera enregistrée dans le journal d’audit."
+msgstr "Subscriptions and functional options will be updated immediately. This change will be recorded in the audit log."
+
+msgid "Les inscriptions ingénieur sont temporairement fermées."
+msgstr "Engineer registrations are temporarily closed."
+
+msgid "Les jalons, documents et échanges préparatoires sont distincts des fonctions actives. Aucun paiement ni aucune demande financière ne peut être lancé avant l’activation."
+msgstr "Milestones, documents, and preparatory exchanges are separate from active functions. No payment or financial request can be initiated before activation."
+
+msgid "Les mots de passe, jetons, clés, secrets et références de fichiers sont masqués automatiquement."
+msgstr "Passwords, tokens, keys, secrets, and file references are automatically masked."
+
+msgid "Les niveaux Digital Verified et Technically Verified sont requis."
+msgstr "Digital Verified and Technically Verified levels are required."
+
+msgid "Les opérations financières restent verrouillées jusqu’à la confirmation du client propriétaire."
+msgstr "Financial operations remain locked until confirmation from the owning client."
+
+msgid "Les opérations sensibles affichées sur cette page exigent une confirmation et sont journalisées."
+msgstr "Sensitive operations displayed on this page require confirmation and are logged."
+
+msgid "Les paiements seront bloqués jusqu’à la confirmation du nouveau propriétaire."
+msgstr "Payments will be blocked until confirmation from the new owner."
+
+msgid "Les paramètres de la plateforme ont été enregistrés."
+msgstr "The platform settings have been saved."
+
+msgid "Les preuves liées sont conservées et protégées."
+msgstr "Related evidence is retained and protected."
+
+msgid "Les projets et affectations doivent être repris avant le déplacement du compte."
+msgstr "Projects and assignments must be resumed before the account transfer."
+
+msgid "Les projets terminés et les clients ne consomment pas de quota."
+msgstr "Completed projects and clients do not consume quota."
+
+msgid "Les quantités correspondent à l’état du stock au moment de la génération."
+msgstr "Quantities correspond to the stock status at the time of generation."
+
+msgid "Les routes et conversions utilisent la cohorte des onboardings créés pendant la période. Les projets actifs utilisent leur date d’activation. Les invitations envoyées utilisent leur date de création et les acceptations leur date d’acceptation. La conversion contractor→client exige un ownership client confirmé, des conditions acceptées et une affectation propriétaire valide."
+msgstr "Routes and conversions use the cohort of onboardings created during the period. Active projects use their activation date. Sent invitations use their creation date, and acceptances use their acceptance date. The contractor→client conversion requires confirmed client ownership, accepted conditions, and a valid owner assignment."
+
+msgid "Les rôles ciblés devront confirmer cette version."
+msgstr "Targeted roles will need to confirm this version."
+
+msgid "Les secrets ne sont jamais lisibles depuis cette interface. Ils restent gérés par les variables d’environnement du serveur."
+msgstr "Secrets are never readable from this interface. They remain managed by the server's environment variables."
+
+msgid "Les utilisateurs de cette organisation ne pourront plus accéder aux fonctionnalités métier. Les données seront conservées."
+msgstr "Users of this organization will no longer have access to business features. Data will be retained."
+
+msgid "Les utilisateurs de cette organisation pourront à nouveau accéder à leur espace de travail."
+msgstr "Users of this organization will regain access to their workspace."
+
+msgid "Les utilisateurs pourront de nouveau accéder à leur espace."
+msgstr "Users will again be able to access their space."
+
+msgid "Les éléments sans lien restent visibles afin d’être complétés ultérieurement."
+msgstr "Items without links remain visible for later completion."
+
+msgid "Lien invalide ou expiré"
+msgstr "Invalid or expired link"
+
+msgid "Liens envoyés qui n’ont pas encore été utilisés"
+msgstr "Sent links that have not yet been used"
+
+msgid "Lier une pièce au dossier"
+msgstr "Link a document to the file"
+
+msgid "Ligne"
+msgstr "Line"
+
+msgid "Lignes rejetées"
+msgstr "Rejected lines"
+
+msgid "Limite atteinte"
+msgstr "Limit reached"
+
+msgid "Liste chronologique accessible"
+msgstr "Accessible chronological list"
+
+msgid "Liste JSON : [{\"description\":\"Reprise nécessaire\",\"status\":\"open\"}]"
+msgstr "JSON List: [{\"description\":\"Rework needed\",\"status\":\"open\"}]"
+
+msgid "Liste JSON : [{\"label\":\"Béton coulé\",\"quantity\":12,\"unit\":\"m³\"}]"
+msgstr "JSON List: [{\"label\":\"Cast concrete\",\"quantity\":12,\"unit\":\"m³\"}]"
+
+msgid "Livré"
+msgstr "Delivered"
+
+msgid "Local"
+msgstr "Local"
+
+msgid "Localisation"
+msgstr "Location"
+
+msgid "Localisation :"
+msgstr "Location:"
+
+msgid "Lun"
+msgstr "Mon"
+
+msgid "L’abonnement a changé depuis l’ouverture de la modale. Rechargez la page."
+msgstr "The subscription has changed since the modal was opened. Please reload the page."
+
+msgid "L’activité du projet apparaîtra ici dès la première mise à jour."
+msgstr "The project's activity will appear here upon the first update."
+
+msgid "L’archivage conserve l’historique tout en bloquant les accès."
+msgstr "Archiving retains the history while blocking access."
+
+msgid "L’article sans mouvement sera supprimé définitivement."
+msgstr "The item without movement will be permanently deleted."
+
+msgid "L’assistant peut commettre des erreurs. Vérifiez les informations importantes."
+msgstr "The assistant may make mistakes. Verify important information."
+
+msgid "L’auteur doit être un entrepreneur affecté au projet."
+msgstr "The author must be a contractor assigned to the project."
+
+msgid "L’autorisation est bloquée par une anomalie de consommation non résolue."
+msgstr "The authorization is blocked by an unresolved consumption anomaly."
+
+msgid "L’autorisation propriétaire ne correspond plus à cette version."
+msgstr "The owner authorization no longer matches this version."
+
+msgid "L’avis doit appartenir à l’organisation de la demande."
+msgstr "The notice must belong to the requesting organization."
+
+msgid "L’avis technique ne peut être rendu que pendant la revue."
+msgstr "The technical notice can only be issued during the review."
+
+msgid "L’hypothèse de pricing a été enregistrée."
+msgstr "The pricing assumption has been recorded."
+
+msgid "L’hypothèse de pricing est invalide."
+msgstr "The pricing assumption is invalid."
+
+msgid "L’ingénieur doit être affecté à ce projet."
+msgstr "The engineer must be assigned to this project."
+
+msgid "L’intervenant a été invité au chantier."
+msgstr "The participant has been invited to the site."
+
+msgid "L’intervention exceptionnelle a été enregistrée et auditée."
+msgstr "The exceptional intervention has been recorded and audited."
+
+msgid "L’intervention sur le contenu a été confirmée et auditée."
+msgstr "The content intervention has been confirmed and audited."
+
+msgid "L’intervention sur l’abonnement a été appliquée et auditée."
+msgstr "The subscription intervention has been applied and audited."
+
+msgid "L’invitation PIVOT a été envoyée."
+msgstr "The PIVOT invitation has been sent."
+
+msgid "L’objet contesté n’appartient pas à ce chantier."
+msgstr "The contested item does not belong to this site."
+
+msgid "L’observation contradictoire a été enregistrée."
+msgstr "The contradictory observation has been recorded."
+
+msgid "L’observation est invalide."
+msgstr "The observation is invalid."
+
+msgid "L’opérateur et le téléphone du payeur sont obligatoires."
+msgstr "The operator and the payer's phone number are required."
+
+msgid "L’opération demandée est invalide."
+msgstr "The requested operation is invalid."
+
+msgid "L’opération est atomique : si une seule réaffectation échoue, aucun changement ne sera conservé."
+msgstr "The operation is atomic: if a single reassignment fails, no changes will be saved."
+
+msgid "L’opération est atomique et les valeurs modifiées seront inscrites au journal d’audit."
+msgstr "The operation is atomic and modified values will be logged in the audit trail."
+
+msgid "L’organisation a été activée."
+msgstr "The organization has been activated."
+
+msgid "L’organisation a été archivée et ses accès sont bloqués."
+msgstr "The organization has been archived and its access is blocked."
+
+msgid "L’organisation a été restaurée."
+msgstr "The organization has been restored."
+
+msgid "L’organisation et son premier responsable ont été créés."
+msgstr "The organization and its first manager have been created."
+
+msgid "l’organisation possède des utilisateurs, projets ou éléments d’historique. Utilisez l’archivage."
+msgstr "The organization has users, projects, or historical items. Use archiving."
+
+msgid "L’organisation possède déjà ce statut."
+msgstr "The organization already has this status."
+
+msgid "L’organisation se modifie séparément via le workflow sécurisé de transfert."
+msgstr "The organization changes separately through the secure transfer workflow."
+
+msgid "L’organisation vide a été supprimée définitivement."
+msgstr "The empty organization has been permanently deleted."
+
+msgid "L’original restera intact."
+msgstr "The original will remain intact."
+
+msgid "L’utilisateur a été créé et son lien d’activation envoyé."
+msgstr "The user has been created and their activation link has been sent."
+
+msgid "L’utilisateur et ses dépendances ont été transférés."
+msgstr "The user and their dependencies have been transferred."
+
+msgid "m)"
+msgstr "m)"
+
+msgid "Main-d’œuvre"
+msgstr "Labor"
+
+msgid "Maintenance protégée"
+msgstr "Protected maintenance"
+
+msgid "Manage subscription →"
+msgstr "Manage subscription →"
+
+msgid "Mar"
+msgstr "Mar"
+
+msgid "Marquer comme lue"
+msgstr "Mark as read"
+
+msgid "Marquer examiné"
+msgstr "Mark as reviewed"
+
+msgid "Matériaux"
+msgstr "Materials"
+
+msgid "Matériaux et équipements enregistrés sur le chantier"
+msgstr "Materials and equipment recorded on site"
+
+msgid "Maximum attendu"
+msgstr "Expected maximum"
+
+msgid "Membres"
+msgstr "Members"
+
+msgid "Membres affectés"
+msgstr "Assigned members"
+
+msgid "Membres du projet"
+msgstr "Project members"
+
+msgid "membres internes"
+msgstr "internal members"
+
+msgid "Membres internes"
+msgstr "Internal members"
+
+msgid "Membres internes : ingénieurs, responsables de chantier et administrateurs actifs. Les prix et limites peuvent être ajustés par la plateforme avant toute souscription payante."
+msgstr "Internal members: engineers, site managers, and active administrators. Prices and limits can be adjusted by the platform before any paid subscription."
+
+msgid "membres internes actifs"
+msgstr "active internal members"
+
+msgid "Membres internes max"
+msgstr "Max internal members"
+
+msgid "membres internes maximum"
+msgstr "maximum internal members"
+
+msgid "Membres internes personnalisés"
+msgstr "Custom internal members"
+
+msgid "membres ·"
+msgstr "members ·"
+
+msgid "Mensuel"
+msgstr "Monthly"
+
+msgid "Mer"
+msgstr "Mer"
 
 msgid "Mes paiements réussis"
 msgstr "My successful payments"
 
+msgid "MeSomb a refusé la configuration de l’application. Vérifiez la clé d’application et redémarrez Django avant de réessayer."
+msgstr "MeSomb has rejected the application configuration. Check the application key and restart Django before trying again."
+
+msgid "MeSomb est momentanément inaccessible. Aucun second paiement ne sera lancé avant la vérification de cette tentative."
+msgstr "MeSomb is temporarily inaccessible. No second payment will be initiated until this attempt is verified."
+
+msgid "MeSomb · demande"
+msgstr "MeSomb · request"
+
+msgid "Message d’information"
+msgstr "Information message"
+
+msgid "Mesurer"
+msgstr "Measure"
+
+msgid "Mesures observables, sans extrapolation des données manquantes."
+msgstr "Observable measurements, without extrapolating missing data."
+
+msgid "Mettre à jour le stock"
+msgstr "Update stock"
+
+msgid "Mettre à jour le suivi"
+msgstr "Update tracking"
+
+msgid "Mettre à jour le suivi concierge"
+msgstr "Update concierge tracking"
+
+msgid "Minimum attendu"
+msgstr "Expected minimum"
+
+msgid "Mise à jour"
+msgstr "Update"
+
+msgid "Mo"
+msgstr "Mo"
+
+msgid "Mode préliminaire"
+msgstr "Preliminary mode"
+
+msgid "Modification du compte"
+msgstr "Account modification"
+
+msgid "Modifier"
+msgstr "Edit"
+
+msgid "Modifier le commentaire"
+msgstr "Edit comment"
+
+msgid "Modifier le projet"
+msgstr "Edit project"
+
+msgid "Modifier l’organisation"
+msgstr "Edit organization"
+
+msgid "Modifier l’utilisateur"
+msgstr "Edit user"
+
+msgid "Modifier l’étape"
+msgstr "Edit step"
+
+msgid "Modifiez votre recherche ou vos filtres."
+msgstr "Change your search or filters."
+
+msgid "Modifié le"
+msgstr "Modified on"
+
+msgid "modifié le"
+msgstr "modified on"
+
+msgid "Modifiés anciennement"
+msgstr "Least recently updated"
+
+msgid "Modifiés récemment"
+msgstr "Recently updated"
+
+msgid "Modulaire"
+msgstr "Modular"
+
+msgid "Modérer"
+msgstr "Moderate"
+
+msgid "Modérer le commentaire"
+msgstr "Moderate comment"
+
+msgid "Mois précédent"
+msgstr "Previous month"
+
+msgid "Mois suivant"
+msgstr "Next month"
+
+msgid "Mon profil"
+msgstr "My profile"
+
+msgid "Montant"
+msgstr "Amount"
+
+msgid "Montant :"
+msgstr "Amount:"
+
+msgid "Montant cumulé des projets"
+msgstr "Combined project amount"
+
+msgid "Montant en XAF, sans décimales."
+msgstr "Amount in XAF, no decimals."
+
+msgid "Montant en XAF."
+msgstr "Amount in XAF."
+
+msgid "Montant indisponible"
+msgstr "Amount unavailable"
+
+msgid "Montant max."
+msgstr "Max amount."
+
+msgid "Montant min."
+msgstr "Min amount."
+
+msgid "Montant XAF"
+msgstr "Amount XAF"
+
+msgid "Montant à payer"
+msgstr "Amount to pay"
+
+msgid "Montant à retirer"
+msgstr "Amount to withdraw"
+
+msgid "Montée de gamme"
+msgstr "Upgrade"
+
+msgid "Mot de passe modifié"
+msgstr "Password changed"
+
+msgid "Mot de passe oublié ?"
+msgstr "Forgot your password?"
+
+msgid "Motif"
+msgstr "Reason"
+
+msgid "Motif :"
+msgstr "Reason:"
+
+msgid "Motif de la correction"
+msgstr "Reason for correction"
+
+msgid "Motif de la décision"
+msgstr "Reason for decision"
+
+msgid "Motif du changement"
+msgstr "Reason for change"
+
+msgid "Motif du retrait"
+msgstr "Withdrawal reason"
+
+msgid "Motif et actions réalisées"
+msgstr "Reason and actions taken"
+
+msgid "Motif et confirmation obligatoires"
+msgstr "Reason and confirmation required"
+
+msgid "Motif et observations"
+msgstr "Reason and observations"
+
+msgid "Motif obligatoire"
+msgstr "Reason required"
+
+msgid "Motivation"
+msgstr "Motivation"
+
+msgid "Mouvement"
+msgstr "Movement"
+
+msgid "moyen"
+msgstr "average"
+
+msgid "Moyenne de"
+msgstr "Average of"
+
+msgid "MRR :"
+msgstr "MRR:"
+
+msgid "MRR confirmé"
+msgstr "Confirmed MRR"
+
+msgid "ms"
+msgstr "ms"
+
+msgid "MTN Mobile Money"
+msgstr "MTN Mobile Money"
+
+msgid "m³, kg…"
+msgstr "m³, kg…"
+
+msgid "métadonnées"
+msgstr "metadata"
+
+msgid "Métadonnées nettoyées"
+msgstr "Cleaned metadata"
+
+msgid "Même période que les indicateurs d’adoption ci-dessus."
+msgstr "Same period as the adoption indicators above."
+
+msgid "Nature"
+msgstr "Nature"
+
+msgid "Nature de la pièce"
+msgstr "Nature of the item"
+
+msgid "Nature de mouvement inconnue."
+msgstr "Unknown movement type."
+
+msgid "Navigation principale"
+msgstr "Main navigation"
+
+msgid "Navigation super-administrateur"
+msgstr "Super admin navigation"
+
+msgid "Nom"
+msgstr "Name"
+
+msgid "nom"
+msgstr "name"
+
+msgid "Nom A–Z"
+msgstr "Name A–Z"
+
+msgid "Nom de l'entreprise"
+msgstr "Company name"
+
+msgid "Nom de la plateforme"
+msgstr "Platform name"
+
+msgid "Nom de l’organisation"
+msgstr "Organization name"
+
+msgid "Nom du projet"
+msgstr "Project name"
+
+msgid "Nom ou localisation"
+msgstr "Name or location"
+
+msgid "Nom Z–A"
+msgstr "Name Z–A"
+
+msgid "Nom, identifiant, utilisateur ou e-mail"
+msgstr "Name, ID, user, or email"
+
+msgid "Nom, lieu ou description"
+msgstr "Name, location, or description"
+
+msgid "Nom, username ou e-mail"
+msgstr "Name, username, or email"
+
+msgid "Nombre de projets"
+msgstr "Number of projects"
+
+msgid "Non conforme"
+msgstr "Non-compliant"
+
+msgid "Non demandée"
+msgstr "Not requested"
+
+msgid "Non lues"
+msgstr "Unread"
+
+msgid "Non mesuré"
+msgstr "Not measured"
+
+msgid "Non vérifiée"
+msgstr "Not verified"
+
+msgid "Normale"
+msgstr "Normal"
+
+msgid "Note de résolution PIVOT"
+msgstr "PIVOT resolution score"
+
+msgid "Notifications"
+msgstr "Notifications"
+
+msgid "Nouveau"
+msgstr "New"
+
+msgid "Nouveau forfait"
+msgstr "New package"
+
+msgid "Nouveau projet"
+msgstr "New project"
+
+msgid "Nouveau propriétaire"
+msgstr "New owner"
+
+msgid "nouveau statut"
+msgstr "new status"
+
+msgid "Nouveau statut"
+msgstr "New status"
+
+msgid "Nouvel article"
+msgstr "New item"
+
+msgid "Nouvel onboarding PIVOT"
+msgstr "New PIVOT onboarding"
+
+msgid "Nouvel utilisateur"
+msgstr "New user"
+
+msgid "Nouvelle conversation"
+msgstr "New conversation"
+
+msgid "Nouvelle demande"
+msgstr "New request"
+
+msgid "Nouvelle demande de dépense"
+msgstr "New expense request"
+
+msgid "Nouvelle demande ingénieur"
+msgstr "New engineer request"
+
+msgid "Nouvelle déclaration"
+msgstr "New progress update"
+
+msgid "Nouvelle invitation"
+msgstr "New invitation"
+
+msgid "Nouvelle organisation"
+msgstr "New organization"
+
+msgid "Nouvelle preuve"
+msgstr "New evidence"
+
+msgid "Nouvelle version"
+msgstr "New version"
+
+msgid "Nouvelle version des conditions"
+msgstr "New version of terms"
+
+msgid "Nouvelle étape"
+msgstr "New step"
+
+msgid "Nouvelles confirmations requises"
+msgstr "New confirmations required"
+
+msgid "NPS calculé sur des notes explicites de 0 à 10 : promoteurs (9–10) moins détracteurs (0–6)."
+msgstr "NPS calculated from explicit scores of 0 to 10: promoters (9–10) minus detractors (0–6)."
+
+msgid "Objet"
+msgstr "Subject"
+
+msgid "Objet contesté"
+msgstr "Contested item"
+
+msgid "Obligatoire pour une approbation sous conditions ou un rejet."
+msgstr "Required for conditional approval or rejection."
+
+msgid "Observation"
+msgstr "Observation"
+
+msgid "Observation facultative"
+msgstr "Optional observation"
+
+msgid "Observations et échanges"
+msgstr "Observations and exchanges"
+
+msgid "Offre personnalisée : prix, limites et accompagnement définis sur devis."
+msgstr "Custom offer: price, limits, and support defined in the quote."
+
+msgid "Onboarding concierge"
+msgstr "Concierge onboarding"
+
+msgid "Onboarding du chantier"
+msgstr "Site onboarding"
+
+msgid "Onboarding incomplet :"
+msgstr "Incomplete onboarding:"
+
+msgid "Opérateur"
+msgstr "Operator"
+
+msgid "Opérateur Mobile Money"
+msgstr "Mobile Money operator"
+
+msgid "Opérateur ou téléphone invalide."
+msgstr "Invalid operator or phone number."
+
+msgid "Opérationnel"
+msgstr "Operational"
+
+msgid "Opérationnelle"
+msgstr "Operational"
+
+msgid "Opérations financières"
+msgstr "Financial operations"
+
+msgid "Orange Money"
+msgstr "Orange Money"
+
+msgid "Ordre"
+msgstr "Order"
+
+msgid "ordre d’affichage"
+msgstr "display order"
+
+msgid "organisation"
+msgstr "organization"
+
+msgid "Organisation"
+msgstr "Organization"
+
+msgid "Organisation / projet"
+msgstr "Organization / project"
+
+msgid "Organisation cible"
+msgstr "Target organization"
+
+msgid "Organisation en lecture seule."
+msgstr "Read-only organization."
+
+msgid "Organisations"
+msgstr "Organizations"
+
+msgid "Organisations récentes"
+msgstr "Recent organizations"
+
+msgid "Origine, attribution, étape, statut et version des éléments du chantier."
+msgstr "Origin, attribution, stage, status, and version of project elements."
+
+msgid "ou"
+msgstr "or"
+
+msgid "Oui, annuler"
+msgstr "Yes, cancel"
+
+msgid "ouvert"
+msgstr "open"
+
+msgid "Ouverte"
+msgstr "Open"
+
+msgid "ouverte"
+msgstr "opened"
+
+msgid "Ouvrage"
+msgstr "Work"
+
+msgid "Ouvrez l’aperçu du document avant de l’approuver."
+msgstr "Open the document preview before approving it."
+
+msgid "Ouvrir"
+msgstr "Open"
+
+msgid "Ouvrir le centre de rapports"
+msgstr "Open the report center"
+
+msgid "Ouvrir le fichier original de"
+msgstr "Open the original file of"
+
+msgid "Ouvrir le menu"
+msgstr "Open the menu"
+
+msgid "Ouvrir l’assistant PIVOT"
+msgstr "Open the PIVOT assistant"
+
+msgid "Ouvrir l’espace du chantier →"
+msgstr "Open the project space →"
+
+msgid "Ouvrir une contestation"
+msgstr "Open a dispute"
+
+msgid "Ownership à confirmer"
+msgstr "Ownership to be confirmed"
+
+msgid "P"
+msgstr "P"
+
+msgid "Page"
+msgstr "Page"
+
+msgid "Page %(current)s sur %(total)s"
+msgstr "Page %(current)s of %(total)s"
+
+msgid "Page introuvable"
+msgstr "Page not found"
+
+msgid "Pagination des commentaires"
+msgstr "Comment pagination"
+
+msgid "Pagination des projets"
+msgstr "Project pagination"
+
+msgid "Paiement"
+msgstr "Payment"
+
+msgid "Paiement autorisé"
+msgstr "Payment authorized"
+
+msgid "Paiement bloqué par la règle."
+msgstr "Payment blocked by the rule."
+
+msgid "Paiement bloqué par une anomalie de stock :"
+msgstr "Payment blocked by a stock anomaly:"
+
+msgid "Paiement chantier"
+msgstr "Project payment"
+
+msgid "Paiement confirmé : votre abonnement est actif."
+msgstr "Payment confirmed: your subscription is active."
+
+msgid "Paiement confirmé. Ce reçu concerne exclusivement l’abonnement SaaS PIVOT et ne constitue pas un rapport financier de chantier."
+msgstr "Payment confirmed. This receipt pertains solely to the PIVOT SaaS subscription and does not constitute a project financial report."
+
+msgid "Paiement en attente de confirmation par l’opérateur."
+msgstr "Payment pending confirmation by the operator."
+
+msgid "Paiement inaccessible."
+msgstr "Payment inaccessible."
+
+msgid "Paiement invalide"
+msgstr "Invalid payment"
+
+msgid "Paiement MeSomb confirmé et dépense comptabilisée."
+msgstr "MeSomb payment confirmed and expense recorded."
+
+msgid "Paiement MeSomb confirmé."
+msgstr "MeSomb payment confirmed."
+
+msgid "Paiement transmis à MeSomb et en attente de confirmation."
+msgstr "Payment sent to MeSomb and awaiting confirmation."
+
+msgid "Paiement transmis à MeSomb. La dépense ne sera comptabilisée qu’après confirmation."
+msgstr "Payment sent to MeSomb. The expense will only be recorded after confirmation."
+
+msgid "Paiements"
+msgstr "Payments"
+
+msgid "Paiements confirmés"
+msgstr "Confirmed payments"
+
+msgid "Paiements d’abonnement"
+msgstr "Subscription payments"
+
+msgid "Paiements réussis"
+msgstr "Successful payments"
+
+msgid "par an"
+msgstr "per year"
+
+msgid "par mois"
+msgstr "per month"
+
+msgid "Paramètres"
+msgstr "Settings"
+
+msgid "Paramètres de la plateforme"
+msgstr "Platform settings"
+
+msgid "Paramètres et santé"
+msgstr "Settings and health"
+
+msgid "Paramètres et santé de la plateforme"
+msgstr "Platform settings and health"
+
+msgid "Paramètres fonctionnels"
+msgstr "Functional settings"
+
+msgid "parcours avec propriétaire confirmé"
+msgstr "route with confirmed owner"
+
+msgid "Participation :"
+msgstr "Participation:"
+
+msgid "Participation acceptée."
+msgstr "Participation accepted."
+
+msgid "Partie contradictoire"
+msgstr "Contradictory party"
+
+msgid "Pas encore mesurable"
+msgstr "Not yet measurable"
+
+msgid "Passage à"
+msgstr "Switch to"
+
+msgid "Passer en preuve"
+msgstr "Switch to proof"
+
+msgid "Passer à cette offre"
+msgstr "Switch to this offer"
+
+msgid "payante"
+msgstr "paid"
+
+msgid "Payer le forfait"
+msgstr "Pay the package"
+
+msgid "Payer maintenant"
+msgstr "Pay now"
+
+msgid "PDF invalide ou trop volumineux."
+msgstr "Invalid or oversized PDF."
+
+msgid "Phase"
+msgstr "Phase"
+
+msgid "Photo"
+msgstr "Photo"
+
+msgid "Photo de"
+msgstr "Photo of"
+
+msgid "Photo du chantier"
+msgstr "Site photo"
+
+msgid "Photo précédente"
+msgstr "Previous photo"
+
+msgid "Photo suivante"
+msgstr "Next photo"
+
+msgid "Photos"
+msgstr "Photos"
+
+msgid "Photos / commentaires"
+msgstr "Photos / comments"
+
+msgid "Photos : 10 Mo · vidéos : 25 Mo · documents : 10 Mo."
+msgstr "Photos: 10 MB · videos: 25 MB · documents: 10 MB."
+
+msgid "Photos, vidéos et pièces rattachées aux étapes."
+msgstr "Photos, videos, and documents attached to stages."
+
+msgid "Pilotage de chantier"
+msgstr "Site management"
+
+msgid "Pilotage de la plateforme"
+msgstr "Platform management"
+
+msgid "Pilotez chaque détail."
+msgstr "Manage every detail."
+
+msgid "Pilotez uniquement les options fonctionnelles autorisées et surveillez les services essentiels."
+msgstr "Manage only the authorized functional options and monitor essential services."
+
+msgid "PIVOT"
+msgstr "PIVOT"
+
+msgid "PIVOT contrôlera automatiquement la preuve, sa chronologie, ses acteurs et sa cohérence avec l’étape."
+msgstr "PIVOT will automatically check the evidence, its timeline, its actors, and its consistency with the stage."
+
+msgid "PIVOT Engineering"
+msgstr "PIVOT Engineering"
+
+msgid "PIVOT Engineering ·"
+msgstr "PIVOT Engineering ·"
+
+msgid "PIVOT Engineering · Rapport confidentiel généré le"
+msgstr "PIVOT Engineering · Confidential report generated on"
+
+msgid "PIVOT Engineering · Référence unique"
+msgstr "PIVOT Engineering · Unique reference"
+
+msgid "PIVOT PLATFORM"
+msgstr "PIVOT PLATFORM"
+
+msgid "PIVOT prépare le dossier. Le client conservera seul la confirmation et l’activation."
+msgstr "PIVOT is preparing the file. The client will retain confirmation and activation."
+
+msgid "PIVOT Site Verified"
+msgstr "PIVOT Site Verified"
+
+msgid "PIVOT Site Verified a été enregistré."
+msgstr "PIVOT Site Verified has been recorded."
+
+msgid "PIVOT Site Verified ·"
+msgstr "PIVOT Site Verified ·"
+
+msgid "PIVOT Super Admin"
+msgstr "PIVOT Super Admin"
+
+msgid "PIVOT-led"
+msgstr "PIVOT-led"
+
+msgid "PIVOT-SASS"
+msgstr "PIVOT-SASS"
+
+msgid "Pièce non rapprochée"
+msgstr "Unmatched document"
+
+msgid "Pièces manquantes :"
+msgstr "Missing documents:"
+
+msgid "place(s) réservée(s)"
+msgstr "reserved place(s)"
+
+msgid "Plage attendue ·"
+msgstr "Expected range ·"
+
+msgid "Plages attendues"
+msgstr "Expected ranges"
+
+msgid "Planification"
+msgstr "Planning"
+
+msgid "Planification et avancement sourcé"
+msgstr "Sourced planning and progress"
+
+msgid "Planification et progression"
+msgstr "Planning and progress"
+
+msgid "Planifier une étape"
+msgstr "Schedule a stage"
+
+msgid "Plateforme active"
+msgstr "Active platform"
+
+msgid "Plateforme de gestion de vos chantiers"
+msgstr "Platform for managing your projects"
+
+msgid "Plateforme PIVOT"
+msgstr "PIVOT Platform"
+
+msgid "Platform control"
+msgstr "Platform control"
+
+msgid "Plus anciens"
+msgstr "Older"
+
+msgid "Plus de projets"
+msgstr "More projects"
+
+msgid "Plus d’utilisateurs"
+msgstr "More users"
+
+msgid "Plus récentes"
+msgstr "More recent"
+
+msgid "Plus récents"
+msgstr "More recent"
+
+msgid "Plusieurs clients affectés"
+msgstr "Multiple clients affected"
+
+msgid "PNG, JPG ou WebP — 3 Mo maximum."
+msgstr "PNG, JPG or WebP — 3 MB maximum."
+
+msgid "PNG, JPG ou WebP — 5 Mo maximum."
+msgstr "PNG, JPG or WebP — 5 MB maximum."
+
+msgid "Point contrôlé"
+msgstr "Checked point"
+
+msgid "Point inspecté"
+msgstr "Inspected point"
+
+msgid "Points de contrôle"
+msgstr "Checkpoints"
+
+msgid "Portefeuille de projets"
+msgstr "Project portfolio"
+
+msgid "Posez votre question à l’assistant PIVOT."
+msgstr "Ask your question to the PIVOT assistant."
+
+msgid "Premier jalon"
+msgstr "First milestone"
+
+msgid "Premier responsable"
+msgstr "First responsible"
+
+msgid "Prestation"
+msgstr "Service"
+
+msgid "Preuve"
+msgstr "Proof"
+
+msgid "Preuve existante"
+msgstr "Existing proof"
+
+msgid "Preuve terrain"
+msgstr "Field proof"
+
+msgid "Preuves :"
+msgstr "Evidence:"
+
+msgid "Preuves autorisées et réserves"
+msgstr "Authorized proofs and reservations"
+
+msgid "Preuves de résolution"
+msgstr "Resolution proofs"
+
+msgid "Preuves du chantier"
+msgstr "Site proofs"
+
+msgid "Preuves protégées"
+msgstr "Protected evidence"
+
+msgid "Preuves terrain"
+msgstr "Site evidence"
+
+msgid "Pricing :"
+msgstr "Pricing:"
+
+msgid "Prix annuel"
+msgstr "Annual price"
+
+msgid "prix annuel"
+msgstr "annual price"
+
+msgid "prix mensuel"
+msgstr "monthly price"
+
+msgid "Prix mensuel"
+msgstr "Monthly price"
+
+msgid "Prix testé"
+msgstr "Tested price"
+
+msgid "Prix unitaire"
+msgstr "Unit price"
+
+msgid "Prochaine action"
+msgstr "Next action"
+
+msgid "Prochaine échéance"
+msgstr "Next deadline"
+
+msgid "Prochaine étape"
+msgstr "Next step"
+
+msgid "Programmer cette offre"
+msgstr "Schedule this offer"
+
+msgid "Progression des étapes"
+msgstr "Step progression"
+
+msgid "Progression du chantier"
+msgstr "Site progression"
+
+msgid "Progression du dépôt"
+msgstr "Deposit progression"
+
+msgid "Progression déclarée"
+msgstr "Declared progression"
+
+msgid "Progression globale"
+msgstr "Overall progression"
+
+msgid "Progression terrain"
+msgstr "Field progression"
+
+msgid "Progression vérifiée"
+msgstr "Verified progress"
+
+msgid "Projet"
+msgstr "Project"
+
+msgid "projet"
+msgstr "project"
+
+msgid "Projet rapproché :"
+msgstr "Upcoming project:"
+
+msgid "Projet ·"
+msgstr "Project ·"
+
+msgid "Projets"
+msgstr "Projects"
+
+msgid "projets"
+msgstr "projects"
+
+msgid "projets actifs"
+msgstr "active projects"
+
+msgid "Projets actifs"
+msgstr "Active projects"
+
+msgid "Projets actifs max"
+msgstr "max active projects"
+
+msgid "projets actifs maximum"
+msgstr "maximum active projects"
+
+msgid "Projets actifs personnalisés"
+msgstr "custom active projects"
+
+msgid "Projets activés"
+msgstr "Activated projects"
+
+msgid "Projets clôturés"
+msgstr "Completed projects"
+
+msgid "Projets de l’organisation"
+msgstr "Organization projects"
+
+msgid "Projets et étapes auxquels vous avez accès."
+msgstr "Projects and steps you have access to."
+
+msgid "Projets gérés"
+msgstr "Managed projects"
+
+msgid "Projets gérés à réaffecter"
+msgstr "Managed projects to reassign"
+
+msgid "Projets récemment actifs"
+msgstr "Recently active projects"
+
+msgid "Projets récents"
+msgstr "Recent projects"
+
+msgid "projets ·"
+msgstr "projects ·"
+
+msgid "Proposer une résolution"
+msgstr "Propose a resolution"
+
+msgid "Propriétaire"
+msgstr "Owner"
+
+msgid "Propriétaire :"
+msgstr "Owner:"
+
+msgid "Propriétaire confirmé"
+msgstr "Confirmed owner"
+
+msgid "Propriétaire du chantier"
+msgstr "Site owner"
+
+msgid "Propriété confirmée"
+msgstr "Confirmed property"
+
+msgid "Précédent"
+msgstr "Previous"
+
+msgid "Prénom"
+msgstr "First name"
+
+msgid "Préparer un dossier concierge"
+msgstr "Prepare a concierge file"
+
+msgid "prérequis ·"
+msgstr "prerequisites ·"
+
+msgid "Prévisualiser les tarifs"
+msgstr "Preview rates"
+
+msgid "prévu le"
+msgstr "scheduled for"
+
+msgid "prévu à cette date."
+msgstr "scheduled on this date."
+
+msgid "Prêt · activation par le propriétaire"
+msgstr "Ready · activation by owner"
+
+msgid "Prêt à activer"
+msgstr "Ready to activate"
+
+msgid "Prêt à vous aider"
+msgstr "Ready to help"
+
+msgid "Publier"
+msgstr "Publish"
+
+msgid "Période"
+msgstr "Period"
+
+msgid "Période analysée"
+msgstr "Analyzed period"
+
+msgid "Période de grâce"
+msgstr "Grace period"
+
+msgid "Période de grâce en cours."
+msgstr "Current grace period."
+
+msgid "Période invalide"
+msgstr "Invalid period"
+
+msgid "périodicité"
+msgstr "frequency"
+
+msgid "Périodicité"
+msgstr "Frequency"
+
+msgid "Quantité"
+msgstr "Quantity"
+
+msgid "Quantité contrôlée"
+msgstr "Controlled Quantity"
+
+msgid "Quantité source"
+msgstr "Source quantity"
+
+msgid "Quantité stock = quantité source × facteur."
+msgstr "Stock quantity = source quantity × factor."
+
+msgid "Quantités :"
+msgstr "Quantities:"
+
+msgid "Quantités constatées"
+msgstr "Observed Quantities"
+
+msgid "Rapide et prête pour le développement."
+msgstr "Quick and ready for development."
+
+msgid "Rapport consolidé de suivi opérationnel et financier"
+msgstr "Consolidated operational and financial tracking report"
+
+msgid "Rapport de chantier"
+msgstr "Site Report"
+
+msgid "Rapport de vérification"
+msgstr "Verification Report"
+
+msgid "Rapport d’import"
+msgstr "Import Report"
+
+msgid "Rapports"
+msgstr "Reports"
+
+msgid "rapports avancés"
+msgstr "advanced reports"
+
+msgid "Rapports avancés"
+msgstr "Advanced Reports"
+
+msgid "Rapports du projet"
+msgstr "Project Reports"
+
+msgid "Rapprochement des pièces et étapes"
+msgstr "Reconciliation of documents and stages"
+
+msgid "Rechercher"
+msgstr "Search"
+
+msgid "Rechercher un client ou un chef de chantier…"
+msgstr "Search for a client or site manager..."
+
+msgid "Rechercher un document"
+msgstr "Search for a document"
+
+msgid "Rechercher un projet"
+msgstr "Search for a project"
+
+msgid "Recherchez et contrôlez les accès de tous les comptes PIVOT."
+msgstr "Search and manage access for all PIVOT accounts."
+
+msgid "Recommandation :"
+msgstr "Recommendation:"
+
+msgid "Recommandé"
+msgstr "Recommended"
+
+msgid "Refuser"
+msgstr "Reject"
+
+msgid "Refuser cette demande de dépense ?"
+msgstr "Reject this expense request?"
+
+msgid "Refusé"
+msgstr "Rejected"
+
+msgid "Refusée"
+msgstr "Rejected"
+
+msgid "Registre des preuves"
+msgstr "Evidence Log"
+
+msgid "Rejeter"
+msgstr "Deny"
+
+msgid "Rejeter la demande"
+msgstr "Deny the request"
+
+msgid "Rejeter la pièce"
+msgstr "Deny the document"
+
+msgid "Rejeter le document"
+msgstr "Deny the document"
+
+msgid "Rejeté"
+msgstr "Rejected"
+
+msgid "Rejetée"
+msgstr "Denied"
+
+msgid "Rejetés"
+msgstr "Denied"
+
+msgid "Rejoignez"
+msgstr "Join"
+
+msgid "Rejoignez l’espace de votre entreprise de construction."
+msgstr "Join your construction company's workspace."
+
+msgid "Rejoindre l’équipe"
+msgstr "Join the team"
+
+msgid "Remplacer"
+msgstr "Replace"
+
+msgid "Remplacer sans supprimer l’ancienne pièce"
+msgstr "Replace without deleting the old document"
+
+msgid "Remplacée"
+msgstr "Replaced"
+
+msgid "Rendre l’avis"
+msgstr "Give feedback"
+
+msgid "Renouveler cette offre"
+msgstr "Renew this offer"
+
+msgid "Renouveler maintenant"
+msgstr "Renew now"
+
+msgid "Renouvellement"
+msgstr "Renewal"
+
+msgid "Renseignez les informations principales du chantier."
+msgstr "Fill in the main site information."
+
+msgid "Responsable"
+msgstr "Manager"
+
+msgid "Responsable :"
+msgstr "Responsible:"
+
+msgid "Responsable de chantier"
+msgstr "Site manager"
+
+msgid "Ressource"
+msgstr "Resource"
+
+msgid "Restant"
+msgstr "Remaining"
+
+msgid "Restaurer"
+msgstr "Restore"
+
+msgid "Restaurer l’organisation"
+msgstr "Restore the organization"
+
+msgid "Restaurez l’organisation avant de modifier son statut."
+msgstr "Restore the organization before changing its status."
+
+msgid "Reste"
+msgstr "Remaining"
+
+msgid "Retirer"
+msgstr "Remove"
+
+msgid "Retiré"
+msgstr "Withdrawn"
+
+msgid "Retour au stock"
+msgstr "Return to stock"
+
+msgid "Retour au tableau de bord"
+msgstr "Return to dashboard"
+
+msgid "Retour aux projets"
+msgstr "Return to projects"
+
+msgid "Retour à la connexion"
+msgstr "Return to login"
+
+msgid "Retrait"
+msgstr "Withdrawal"
+
+msgid "Retraits"
+msgstr "Withdrawals"
+
+msgid "retraits"
+msgstr "withdrawals"
+
+msgid "Retraits comptabilisés"
+msgstr "Recorded Withdrawals"
+
+msgid "Retraits en attente"
+msgstr "Pending Withdrawals"
+
+msgid "Retraits par statut"
+msgstr "Withdrawals by status"
+
+msgid "Retrouvez les événements importants de vos projets."
+msgstr "Find the important events from your projects."
+
+msgid "Revenez à la page de connexion après avoir reçu la confirmation d’activation."
+msgstr "Return to the login page after receiving activation confirmation."
+
+msgid "Revenir à la connexion"
+msgstr "Return to login"
+
+msgid "Revues de conflits d’onboarding"
+msgstr "Onboarding conflict reviews"
+
+msgid "REÇU DE PAIEMENT"
+msgstr "PAYMENT RECEIPT"
+
+msgid "Risque :"
+msgstr "Risk:"
+
+msgid "Route"
+msgstr "Route"
+
+msgid "Route d’acquisition :"
+msgstr "Acquisition route:"
+
+msgid "Route PIVOT-led"
+msgstr "PIVOT-led Route"
+
+msgid "Routes d’acquisition des projets"
+msgstr "Project Acquisition Routes"
+
+msgid "Routes et activations"
+msgstr "Routes and Activations"
+
+msgid "Routes initiées"
+msgstr "Initiated Routes"
+
+msgid "Réactiver"
+msgstr "Reactivate"
+
+msgid "Réactiver l’abonnement"
+msgstr "Reactivate Subscription"
+
+msgid "Réactiver l’organisation"
+msgstr "Reactivate Organization"
+
+msgid "Réduire la barre latérale"
+msgstr "Reduce Sidebar"
+
+msgid "Réel"
+msgstr "Actual"
+
+msgid "Réel :"
+msgstr "Actual:"
+
+msgid "Référence / motif"
+msgstr "Reference / Reason"
+
+msgid "Référence unique"
+msgstr "Unique Reference"
+
+msgid "Référentiel indicatif : il assiste l’analyse sans valider, bloquer ou décider automatiquement."
+msgstr "Indicative reference: it assists analysis without validating, blocking, or automatically deciding."
+
+msgid "Réinitialiser"
+msgstr "Reset"
+
+msgid "Réinitialiser le mot de passe"
+msgstr "Reset Password"
+
+msgid "Réinitialisez votre mot de passe"
+msgstr "Reset Your Password"
+
+msgid "Répartition des projets"
+msgstr "Project distribution"
+
+msgid "réponse"
+msgstr "response"
+
+msgid "Réponse explicite d’un client ou entrepreneur."
+msgstr "Explicit response from a client or contractor."
+
+msgid "Réserve"
+msgstr "Reserve"
+
+msgid "Réserves consolidées"
+msgstr "Consolidated Reserves"
+
+msgid "Réserves de l’inspection"
+msgstr "Inspection Reserves"
+
+msgid "Réserves techniques"
+msgstr "Technical Reserves"
+
+msgid "Réservée aux corrections justifiées et intégralement auditées."
+msgstr "Reserved for justified and fully audited corrections."
+
+msgid "Résolu"
+msgstr "Resolved"
+
+msgid "résolu"
+msgstr "resolved"
+
+msgid "Résolue"
+msgstr "Resolved"
+
+msgid "résolue"
+msgstr "resolved"
+
+msgid "Résolution :"
+msgstr "Resolution:"
+
+msgid "Résoudre"
+msgstr "Resolve"
+
+msgid "Résultat"
+msgstr "Result"
+
+msgid "Résultats confirmés"
+msgstr "Confirmed Results"
+
+msgid "Rétention :"
+msgstr "Retention:"
+
+msgid "Rétention clients"
+msgstr "Client Retention"
+
+msgid "Rétention des notifications"
+msgstr "Notification Retention"
+
+msgid "Rétention entrepreneurs"
+msgstr "Contractor Retention"
+
+msgid "Rétention, recommandation et revenus"
+msgstr "Retention, Recommendation, and Revenue"
+
+msgid "Réussi"
+msgstr "Successful"
+
+msgid "Rôle"
+msgstr "Role"
+
+msgid "Rôle dans le chantier"
+msgstr "Role on the Site"
+
+msgid "Rôle dans le projet"
+msgstr "Role in the project"
+
+msgid "Rôle initial"
+msgstr "Initial Role"
+
+msgid "Saisir une recommandation"
+msgstr "Enter a Recommendation"
+
+msgid "Saisissez 9 à 15 chiffres, avec l’indicatif si nécessaire."
+msgstr "Enter 9 to 15 digits, including the area code if necessary."
+
+msgid "Saisissez : JE CONFIRME L’INTERVENTION EXCEPTIONNELLE"
+msgstr "Enter: I CONFIRM THE EXCEPTIONAL INTERVENTION"
+
+msgid "Saisissez au moins 2 caractères. Vous pouvez sélectionner plusieurs utilisateurs."
+msgstr "Enter at least 2 characters. You can select multiple users."
+
+msgid "Saisissez l’adresse e-mail associée à votre compte. Nous vous enverrons un lien sécurisé."
+msgstr "Enter the email address associated with your account. We will send you a secure link."
+
+msgid "Saisissez un numéro de téléphone valide."
+msgstr "Enter a valid phone number."
+
+msgid "Sam"
+msgstr "Sat"
+
+msgid "Santé des services"
+msgstr "Service Health"
+
+msgid "Score"
+msgstr "Score"
+
+msgid "Score de recommandation"
+msgstr "Recommendation Score"
+
+msgid "Se connecter"
+msgstr "Sign in"
+
+msgid "Se connecter à PIVOT"
+msgstr "Log in to PIVOT"
+
+msgid "Se déconnecter"
+msgstr "Log out"
+
+msgid "Secrets masqués"
+msgstr "Masked Secrets"
+
+msgid "Section du projet"
+msgstr "Project section"
+
+msgid "Sections du projet"
+msgstr "Project Sections"
+
+msgid "Segment"
+msgstr "Segment"
+
+msgid "Selon les étapes et leur statut"
+msgstr "According to the stages and their status"
+
+msgid "sera alimenté par les stories métier correspondantes. Vos permissions sont déjà appliquées côté serveur."
+msgstr "will be fed by the corresponding business stories. Your permissions are already applied on the server side."
+
+msgid "sera définitif et les acteurs concernés seront notifiés."
+msgstr "will be final and the relevant parties will be notified."
+
+msgid "Seul le client propriétaire confirmé du chantier peut autoriser ou refuser cette dépense."
+msgstr "Only the confirmed owner client of the site can approve or deny this expense."
+
+msgid "Seul un compte ingénieur peut être activé par ce workflow."
+msgstr "Only an engineer account can be activated by this workflow."
+
+msgid "Seul un document en attente peut être traité."
+msgstr "Only a pending document can be processed."
+
+msgid "Seul un document vérifié par un ingénieur peut être traité."
+msgstr "Only a document verified by an engineer can be processed."
+
+msgid "Seul un super-administrateur peut corriger une période."
+msgstr "Only a super administrator can correct a period."
+
+msgid "Seule une demande en attente peut être rejetée."
+msgstr "Only a pending request can be rejected."
+
+msgid "Seule une demande vérifiée peut recevoir la décision du propriétaire."
+msgstr "Only a verified request can receive the owner's decision."
+
+msgid "Seule une organisation archivée peut être restaurée."
+msgstr "Only an archived organization can be restored."
+
+msgid "Seule une preuve validée peut être corrigée par versionnement."
+msgstr "Only a validated proof can be corrected by versioning."
+
+msgid "Seule une étape en attente peut être supprimée."
+msgstr "Only a pending step can be deleted."
+
+msgid "Seuls les comptes actifs et éligibles sont proposés."
+msgstr "Only active and eligible accounts are offered."
+
+msgid "Seuls les fichiers PDF sont autorisés."
+msgstr "Only PDF files are allowed."
+
+msgid "Si un compte correspond à cette adresse, un lien de réinitialisation vient d’être envoyé."
+msgstr "If an account matches this address, a reset link has just been sent."
+
+msgid "Si vous n'attendiez pas ce message, ignorez-le."
+msgstr "If you weren't expecting this message, ignore it."
+
+msgid "Signalement informatif : la décision reste humaine."
+msgstr "Informative report: the decision remains human."
+
+msgid "Signaler sans bloquer"
+msgstr "Report without blocking"
+
+msgid "Signalez les corrections ou points de vigilance."
+msgstr "Report corrections or points of concern."
+
+msgid "Signature logique :"
+msgstr "Logical signature:"
+
+msgid "Signer la vérification"
+msgstr "Sign the verification"
+
+msgid "Signée par"
+msgstr "Signed by"
+
+msgid "Situation du stock"
+msgstr "Stock Status"
+
+msgid "Solde disponible"
+msgstr "Available Balance"
+
+msgid "Soumettre"
+msgstr "Submit"
+
+msgid "Soumettre la demande"
+msgstr "Submit Request"
+
+msgid "Soumise"
+msgstr "Submitted"
+
+msgid "Source / référence"
+msgstr "Source / reference"
+
+msgid "Source :"
+msgstr "Source:"
+
+msgid "Sources et exclusions"
+msgstr "Sources and exclusions"
+
+msgid "Sous la plage"
+msgstr "Under the range"
+
+msgid "SQLite3"
+msgstr "SQLite3"
+
+msgid "Standard"
+msgstr "Standard"
+
+msgid "Statut"
+msgstr "Status"
+
+msgid "statut"
+msgstr "status"
+
+msgid "Statut :"
+msgstr "Status:"
+
+msgid "Statut actuel :"
+msgstr "Current status:"
+
+msgid "Statut onboarding :"
+msgstr "Onboarding status:"
+
+msgid "Stock"
+msgstr "Inventory"
+
+msgid "Stock :"
+msgstr "Stock:"
+
+msgid "Stock du chantier"
+msgstr "Site stock"
+
+msgid "Stock faible · seuil"
+msgstr "Low stock · threshold"
+
+msgid "stockage maximum (Mo)"
+msgstr "maximum storage (MB)"
+
+msgid "Stockage Mo"
+msgstr "Storage MB"
+
+msgid "Stockage personnalisé"
+msgstr "Custom storage"
+
+msgid "Stocks"
+msgstr "Stocks"
+
+msgid "Structure"
+msgstr "Structure"
+
+msgid "subscription. Please open billing to review its status, deadline and applicable restrictions."
+msgstr "subscription. Please open billing to review its status, deadline and applicable restrictions."
+
+msgid "Succès"
+msgstr "Success"
+
+msgid "Succès comptabilisé"
+msgstr "Recorded success"
+
+msgid "Suivant"
+msgstr "Next"
+
+msgid "Suivez chaque période et paiement commercial de votre organisation."
+msgstr "Track each period and commercial payment of your organization."
+
+msgid "Suivez les paiements, retraits et mouvements financiers."
+msgstr "Track payments, withdrawals, and financial movements."
+
+msgid "Sujet"
+msgstr "Subject"
+
+msgid "Super-administrateur"
+msgstr "Super administrator"
+
+msgid "Super-administration"
+msgstr "Super administration"
+
+msgid "Super-administration · lecture de contrôle"
+msgstr "Super administration · read control"
+
+msgid "Supervisez chaque parcours, ses blocages et les interventions PIVOT auditées."
+msgstr "Supervise each path, its blockages, and audited PIVOT interventions."
+
+msgid "Supervisez les contrats, échéances, quotas et interventions commerciales."
+msgstr "Supervise contracts, deadlines, quotas, and commercial interventions."
+
+msgid "Supervisez les espaces clients de la plateforme."
+msgstr "Supervise client spaces on the platform."
+
+msgid "Supervision administrative de"
+msgstr "Administrative oversight of"
+
+msgid "Supervision de l’assistant IA"
+msgstr "AI assistant supervision"
+
+msgid "Supervision sécurisée."
+msgstr "Secure supervision."
+
+msgid "Suppression indisponible :"
+msgstr "Deletion unavailable:"
+
+msgid "Supprimer"
+msgstr "Delete"
+
+msgid "Supprimer définitivement"
+msgstr "Permanently delete"
+
+msgid "Supprimer définitivement l’organisation"
+msgstr "Permanently delete the organization"
+
+msgid "Supprimer la photo"
+msgstr "Delete photo"
+
+msgid "Supprimer l’article"
+msgstr "Delete item"
+
+msgid "Supprimer l’étape"
+msgstr "Delete step"
+
+msgid "sur"
+msgstr "on"
+
+msgid "Sur devis"
+msgstr "On quote"
+
+msgid "sur les 10 dernières expériences"
+msgstr "on the last 10 experiences"
+
+msgid "survenu le"
+msgstr "occurred on"
+
+msgid "Suspendre"
+msgstr "Suspend"
+
+msgid "Suspendre le compte"
+msgstr "Suspend account"
+
+msgid "Suspendre l’organisation"
+msgstr "Suspend organization"
+
+msgid "Suspendu"
+msgstr "Suspended"
+
+msgid "suspendues"
+msgstr "suspended"
+
+msgid "suspendus"
+msgstr "suspended"
+
+msgid "Synthèse exécutive"
+msgstr "Executive summary"
+
+msgid "Sécurité"
+msgstr "Security"
+
+msgid "Sécurité du compte"
+msgstr "Account security"
+
+msgid "Sélectionner une plage existante"
+msgstr "Select an existing range"
+
+msgid "Sélectionnez les clients et responsables autorisés à accéder à"
+msgstr "Select clients and managers authorized to access"
+
+msgid "Sélectionnez les étapes critiques à contrôler physiquement. Une anomalie de progression impose également une inspection."
+msgstr "Select critical steps to physically check. A progression anomaly also requires an inspection."
+
+msgid "Sélectionnez l’organisation qui gère votre projet"
+msgstr "Select the organization managing your project"
+
+msgid "Sélectionnez un vérificateur PIVOT et confirmez l’affectation."
+msgstr "Select a PIVOT verifier and confirm the assignment."
+
+msgid "Sélectionnez une organisation active"
+msgstr "Select an active organization"
+
+msgid "Sélectionnez une ou plusieurs personnes à affecter dès la création."
+msgstr "Select one or more people to assign upon creation."
+
+msgid "Sélectionnez une version ou renseignez tous les champs d’une nouvelle version."
+msgstr "Select a version or fill in all fields of a new version."
+
+msgid "Séparés des finances et paiements de vos chantiers."
+msgstr "Separated from the finances and payments of your sites."
+
+msgid "Tableau de bord"
+msgstr "Dashboard"
+
+msgid "Tapez « %(name)s » pour confirmer"
+msgstr "Type ‘%(name)s’ to confirm"
+
+msgid "Tarif personnalisé"
+msgstr "Custom rate"
+
+msgid "Tarifs"
+msgstr "Rates"
+
+msgid "Tentative"
+msgstr "Attempt"
+
+msgid "Terminé"
+msgstr "Completed"
+
+msgid "Terminée"
+msgstr "Completed"
+
+msgid "Terminés"
+msgstr "Completed"
+
+msgid "terminés"
+msgstr "completed"
+
+msgid "Tester une hypothèse de prix"
+msgstr "Test a price hypothesis"
+
+msgid "Titre"
+msgstr "Title"
+
+msgid "Titre A–Z"
+msgstr "Title A–Z"
+
+msgid "Titre du document"
+msgstr "Document title"
+
+msgid "Tokens"
+msgstr "Tokens"
+
+msgid "total"
+msgstr "total"
+
+msgid "Total payé"
+msgstr "Total paid"
+
+msgid "TOTAL PAYÉ :"
+msgstr "TOTAL PAID:"
+
+msgid "Total projets"
+msgstr "Total projects"
+
+msgid "Tous les accès métier seront bloqués, mais les données et historiques seront conservés."
+msgstr "All business access will be blocked, but data and history will be retained."
+
+msgid "Tous les acteurs"
+msgstr "All stakeholders"
+
+msgid "Tous les champs de la nouvelle plage sont obligatoires."
+msgstr "All fields in the new range are required."
+
+msgid "Tous les forfaits"
+msgstr "All packages"
+
+msgid "Tous les projets"
+msgstr "All projects"
+
+msgid "Tous les projets accessibles"
+msgstr "All accessible projects"
+
+msgid "Tous les projets et leurs étapes restent consultables sans utiliser la grille."
+msgstr "All projects and their steps remain viewable without using the grid."
+
+msgid "Tous les responsables"
+msgstr "All managers"
+
+msgid "Tous les rôles"
+msgstr "All roles"
+
+msgid "Tous les statuts"
+msgstr "All statuses"
+
+msgid "Tous les statuts projet"
+msgstr "All project statuses"
+
+msgid "Tous les types"
+msgstr "All types"
+
+msgid "Tous les états d’onboarding"
+msgstr "All onboarding states"
+
+msgid "Tout confirmer"
+msgstr "Confirm all"
+
+msgid "Tout marquer comme lu"
+msgstr "Mark all as read"
+
+msgid "Toute ancienneté"
+msgstr "All seniority"
+
+msgid "Toute utilisation"
+msgstr "All usage"
+
+msgid "Toutes"
+msgstr "All"
+
+msgid "Toutes les actions"
+msgstr "All actions"
+
+msgid "Toutes les conditions d’entrée sont satisfaites. Cette action sera auditée."
+msgstr "All entry conditions are met. This action will be audited."
+
+msgid "Toutes les confirmations sont obligatoires."
+msgstr "All confirmations are required."
+
+msgid "Toutes les lignes ont été importées."
+msgstr "All lines have been imported."
+
+msgid "Toutes les organisations"
+msgstr "All organizations"
+
+msgid "Toutes les preuves doivent appartenir au même projet."
+msgstr "All proofs must belong to the same project."
+
+msgid "Toutes les preuves doivent appartenir à l'étape visitée."
+msgstr "All proofs must belong to the visited step."
+
+msgid "Toutes les ressources"
+msgstr "All resources"
+
+msgid "Toutes les routes"
+msgstr "All routes"
+
+msgid "Toutes les villes"
+msgstr "All cities"
+
+msgid "Toutes organisations confondues"
+msgstr "All organizations combined"
+
+msgid "Trace conservée"
+msgstr "Trace retained"
+
+msgid "Traitement de l’anomalie ·"
+msgstr "Anomaly processing ·"
+
+msgid "Traitement…"
+msgstr "Processing…"
+
+msgid "Traitez les opérations sensibles depuis une file centrale et auditée."
+msgstr "Handle sensitive operations from a central and audited queue."
+
+msgid "Traité"
+msgstr "Processed"
+
+msgid "Transfert d’organisation"
+msgstr "Organization transfer"
+
+msgid "Transférer l’utilisateur"
+msgstr "Transfer user"
+
+msgid "Transition invalide."
+msgstr "Invalid transition."
+
+msgid "Travaux réalisés"
+msgstr "Work completed"
+
+msgid "Traçabilité"
+msgstr "Traceability"
+
+msgid "Trier les projets"
+msgstr "Sort projects"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Type de ressource"
+msgstr "Resource type"
+
+msgid "type d’événement"
+msgstr "event type"
+
+msgid "Type et objet"
+msgstr "Type and subject"
+
+msgid "Téléchargement après approbation"
+msgstr "Download after approval"
+
+msgid "Téléchargement disponible après approbation"
+msgstr "Download available after approval"
+
+msgid "Téléchargements"
+msgstr "Downloads"
+
+msgid "Télécharger"
+msgstr "Download"
+
+msgid "Télécharger la version"
+msgstr "Download the version"
+
+msgid "Télécharger le modèle CSV"
+msgstr "Download the CSV template"
+
+msgid "Télécharger le PDF"
+msgstr "Download the PDF"
+
+msgid "Télécharger le rapport PDF"
+msgstr "Download the PDF report"
+
+msgid "Télécharger le reçu"
+msgstr "Download the receipt"
+
+msgid "Télécharger PDF"
+msgstr "Download PDF"
+
+msgid "Téléphone du payeur"
+msgstr "Payer's phone"
+
+msgid "Téléphone payeur"
+msgstr "Payer phone"
+
+msgid "Un abonnement annulé exige une date d’annulation."
+msgstr "A canceled subscription requires a cancellation date."
+
+msgid "Un abonnement d’essai exige ses dates de début et de fin."
+msgstr "A trial subscription requires start and end dates."
+
+msgid "Un administrateur va vérifier votre compte ingénieur. Vous pourrez vous connecter dès son activation."
+msgstr "An administrator will verify your engineer account. You will be able to log in once it is activated."
+
+msgid "Un autre compte utilise déjà cette adresse e-mail."
+msgstr "Another account is already using this email address."
+
+msgid "Un autre paiement incertain est déjà en cours sur ce chantier."
+msgstr "Another uncertain payment is already in progress on this site."
+
+msgid "Un compte utilise déjà cette adresse e-mail."
+msgstr "An account is already using this email address."
+
+msgid "Un e-mail contenant un lien sécurisé valable pendant 7 jours sera envoyé à cette adresse."
+msgstr "An email containing a secure link valid for 7 days will be sent to this address."
+
+msgid "Un lien sécurisé et temporaire sera envoyé à %(email)s. Aucun mot de passe ne sera communiqué."
+msgstr "A secure and temporary link will be sent to %(email)s. No password will be communicated."
+
+msgid "Un motif de 500 caractères maximum est obligatoire."
+msgstr "A reason of up to 500 characters is required."
+
+msgid "Un paiement disposant d'une référence opérateur doit d'abord être rapproché."
+msgstr "A payment with an operator reference must be reconciled first."
+
+msgid "Un paiement est déjà en cours. Sa vérification doit se terminer avant une nouvelle tentative."
+msgstr "A payment is already in progress. Its verification must complete before a new attempt."
+
+msgid "Un projet affecté apparaîtra ici."
+msgstr "An assigned project will appear here."
+
+msgid "Un responsable de la plateforme a été averti. Vous recevrez un second e-mail après activation."
+msgstr "A platform manager has been notified. You will receive a second email after activation."
+
+msgid "Un responsable de la plateforme a été averti. Vous recevrez un second e-mail dès que votre compte sera activé."
+msgstr "A platform manager has been notified. You will receive a second email once your account is activated."
+
+msgid "Un responsable, une preuve et un motif sont obligatoires."
+msgstr "A manager, proof, and reason are required."
+
+msgid "Un rôle incompatible avec les projets gérés ou les affectations existantes sera automatiquement refusé."
+msgstr "A role incompatible with managed projects or existing assignments will be automatically denied."
+
+msgid "Un super-administrateur ne peut pas être transféré."
+msgstr "A super administrator cannot be transferred."
+
+msgid "Une adresse e-mail et un compte actif sont requis."
+msgstr "An email address and an active account are required."
+
+msgid "Une base propre pour faire évoluer PIVOT."
+msgstr "A clean base to evolve PIVOT."
+
+msgid "Une demande autorisée ne déclenche jamais automatiquement un paiement."
+msgstr "An authorized request never automatically triggers a payment."
+
+msgid "Une demande de confirmation sera envoyée sur le téléphone indiqué."
+msgstr "A confirmation request will be sent to the specified phone."
+
+msgid "Une décision exige un validateur et un motif."
+msgstr "A decision requires a validator and a reason."
+
+msgid "Une erreur est survenue"
+msgstr "An error occurred"
+
+msgid "Une inspection doit référencer au moins une preuve."
+msgstr "An inspection must reference at least one proof."
+
+msgid "Une inspection PIVOT Site Verified est imposée par la règle de risque de cette étape."
+msgstr "A PIVOT Site Verified inspection is required by the risk rule of this step."
+
+msgid "Une invitation active existe déjà pour cette adresse."
+msgstr "An active invitation already exists for this address."
+
+msgid "Une invitation sans projet ne peut pas rattacher un compte externe."
+msgstr "An invitation without a project cannot link an external account."
+
+msgid "Une limite est atteinte. Libérez une place ou passez à un forfait supérieur."
+msgstr "A limit has been reached. Free up a spot or upgrade to a higher plan."
+
+msgid "Une localisation textuelle ou GPS est obligatoire."
+msgstr "A textual or GPS location is required."
+
+msgid "Une nouvelle version de la règle de risque est active."
+msgstr "A new version of the risk rule is active."
+
+msgid "Une nouvelle version des conditions exige désormais les confirmations ciblées."
+msgstr "A new version of the terms now requires targeted confirmations."
+
+msgid "Une organisation utilise déjà ce nom."
+msgstr "An organization is already using this name."
+
+msgid "Une plage publiée est immuable ; créez une nouvelle version."
+msgstr "A published range is immutable; create a new version."
+
+msgid "Une position autorisée exige le consentement et des coordonnées."
+msgstr "An authorized position requires consent and contact details."
+
+msgid "Une preuve approuvée est immuable."
+msgstr "An approved proof is immutable."
+
+msgid "Une preuve jointe appartient à un autre chantier."
+msgstr "An attached proof belongs to another site."
+
+msgid "Une preuve validée est immuable. Créez une correction versionnée."
+msgstr "A validated proof is immutable. Create a versioned correction."
+
+msgid "Une preuve validée ne peut pas être supprimée."
+msgstr "A validated proof cannot be deleted."
+
+msgid "Une proposition est déjà en attente de validation."
+msgstr "A proposal is already pending validation."
+
+msgid "Une résolution motivée et confirmée est obligatoire."
+msgstr "A motivated and confirmed resolution is mandatory."
+
+msgid "Une tentative existe déjà pour cette demande."
+msgstr "An attempt already exists for this request."
+
+msgid "Une transaction de paiement est immuable et ne peut pas être modifiée ou supprimée."
+msgstr "A payment transaction is immutable and cannot be modified or deleted."
+
+msgid "Une version plus récente existe déjà."
+msgstr "A newer version already exists."
+
+msgid "Une vue globale des organisations, des utilisateurs et des opérations sensibles de PIVOT."
+msgstr "A comprehensive view of organizations, users, and sensitive operations in PIVOT."
+
+msgid "Une vue simple, étape par étape"
+msgstr "A simple, step-by-step view"
+
+msgid "Une vérification numérique réussie est requise."
+msgstr "A successful digital verification is required."
+
+msgid "Une vérification technique signée, une checklist et une preuve sont obligatoires."
+msgstr "A signed technical verification, a checklist, and proof are mandatory."
+
+msgid "Unité"
+msgstr "Unit"
+
+msgid "Unité de stock :"
+msgstr "Stock unit:"
+
+msgid "Unité source"
+msgstr "Source unit"
+
+msgid "Username"
+msgstr "Username"
+
+msgid "Username du responsable"
+msgstr "Username of the manager"
+
+msgid "Utilisateur"
+msgstr "User"
+
+msgid "Utilisateur reprenant les affectations"
+msgstr "User resuming assignments"
+
+msgid "Utilisateurs"
+msgstr "Users"
+
+msgid "utilisateurs actifs affectés à un chantier activé et reconnectés pendant la période. C’est un indicateur d’usage, pas encore une rétention par cohorte mensuelle."
+msgstr "active users assigned to an active site and reconnected during the period. This is a usage indicator, not yet a monthly cohort retention."
+
+msgid "Utilisateurs autorisés sur ce projet"
+msgstr "Users authorized on this project"
+
+msgid "Utilisateurs de la plateforme"
+msgstr "Platform Users"
+
+msgid "Utilisateurs de l’organisation"
+msgstr "Organization Users"
+
+msgid "Utilisation"
+msgstr "Usage"
+
+msgid "Utilisation du forfait"
+msgstr "Package usage"
+
+msgid "v"
+msgstr "v"
+
+msgid "Valeur"
+msgstr "Value"
+
+msgid "Valeur contrôlée"
+msgstr "Controlled Value"
+
+msgid "Valeur suivie"
+msgstr "Tracked Value"
+
+msgid "Valeur totale du stock"
+msgstr "Total Stock Value"
+
+msgid "validation"
+msgstr "validation"
+
+msgid "Validation requise"
+msgstr "Validation Required"
+
+msgid "Validation réservée au vérificateur PIVOT."
+msgstr "Validation reserved for the PIVOT verifier."
+
+msgid "Validation réservée à l’ingénieur du projet."
+msgstr "Validation reserved for the project engineer."
+
+msgid "Validations en attente"
+msgstr "Pending Validations"
+
+msgid "Validations et finances"
+msgstr "Validations and Finances"
+
+msgid "Validations et supervision financière"
+msgstr "Validations and Financial Oversight"
+
+msgid "Validations à traiter"
+msgstr "Validations to Process"
+
+msgid "Validée"
+msgstr "Validated"
+
+msgid "Ven"
+msgstr "Fri"
+
+msgid "Verrouillé"
+msgstr "Locked"
+
+msgid "Version"
+msgstr "Version"
+
+msgid "Version utilisée"
+msgstr "Version in Use"
+
+msgid "Vidéo"
+msgstr "Video"
+
+msgid "Ville"
+msgstr "City"
+
+msgid "Visible au public"
+msgstr "Publicly Visible"
+
+msgid "visible dans le pricing"
+msgstr "visible in pricing"
+
+msgid "Visionneuse des photos du chantier"
+msgstr "Site photo viewer"
+
+msgid "visite"
+msgstr "visit"
+
+msgid "Voir"
+msgstr "View"
+
+msgid "Voir la fiche"
+msgstr "View the Sheet"
+
+msgid "Voir les contrôles, visites et détails"
+msgstr "View Controls, Visits, and Details"
+
+msgid "Voir les documents"
+msgstr "View Documents"
+
+msgid "Voir les forfaits →"
+msgstr "View Packages →"
+
+msgid "Volume encaissé"
+msgstr "Collected Volume"
+
+msgid "Vos données restent consultables, mais les contributions sont bloquées jusqu’au renouvellement."
+msgstr "Your data remains accessible, but contributions are blocked until renewal."
+
+msgid "Vos données sont rattachées à cet espace sécurisé."
+msgstr "Your data is linked to this secure space."
+
 msgid "Vos paiements comptabilisés sur les projets accessibles"
 msgstr "Your accounted payments on accessible projects"
+
+msgid "Votre compte est actif. Vous pouvez maintenant vous connecter."
+msgstr "Your account is active. You can now log in."
+
+msgid "Votre compte est prêt"
+msgstr "Your account is ready"
+
+msgid "Votre compte ingénieur PIVOT est maintenant actif."
+msgstr "Your PIVOT engineer account is now active."
+
+msgid "Votre compte PIVOT existe déjà. Confirmez simplement votre participation à ce chantier."
+msgstr "Your PIVOT account already exists. Just confirm your participation in this project."
+
+msgid "Votre demande de compte ingénieur pour %(organization)s a bien été enregistrée."
+msgstr "Your engineer account request for %(organization)s has been successfully recorded."
+
+msgid "Votre demande est envoyée"
+msgstr "Your request has been sent"
+
+msgid "Votre espace PIVOT a été créé. Définissez votre mot de passe avec ce lien :"
+msgstr "Your PIVOT space has been created. Set your password with this link:"
+
+msgid "Votre essai est actif jusqu’au"
+msgstr "Your trial is active until"
+
+msgid "Votre forfait n’inclut pas les rapports avancés."
+msgstr "Your plan does not include advanced reports."
+
+msgid "Votre inscription est en cours de validation"
+msgstr "Your registration is being validated"
+
+msgid "Votre message"
+msgstr "Your message"
+
+msgid "Votre nouveau mot de passe est actif. Vous pouvez maintenant vous connecter."
+msgstr "Your new password is active. You can now log in."
+
+msgid "Votre profil a été mis à jour."
+msgstr "Your profile has been updated."
+
+msgid "Votre qualité de propriétaire a été confirmée."
+msgstr "Your owner status has been confirmed."
+
+msgid "Votre réponse concerne les conditions v"
+msgstr "Your response concerns the conditions v"
+
+msgid "Voulez-vous vraiment supprimer cet élément ?"
+msgstr "Do you really want to delete this item?"
+
+msgid "Voulez-vous vraiment supprimer « {title} » ?"
+msgstr "Do you really want to delete \"{title}\"?"
+
+msgid "Vous autorisez précisément la version"
+msgstr "You precisely authorize the version"
+
+msgid "Vous avez déjà un compte ?"
+msgstr "Do you already have an account?"
+
+msgid "Vous avez rejoint le chantier."
+msgstr "You have joined the site."
+
+msgid "Vous avez utilisé au moins 80 % d’un quota."
+msgstr "You have used at least 80% of a quota."
+
+msgid "Vous avez utilisé au moins 80 %% d’un quota."
+msgstr "You have used at least 80% of a quota."
+
+msgid "Vous avez été invité(e) à rejoindre l’espace de travail"
+msgstr "You have been invited to join the workspace"
+
+msgid "Vous devez accepter les conditions avant de confirmer."
+msgstr "You must accept the terms before confirming."
+
+msgid "Vous devez accepter les conditions de propriété du chantier."
+msgstr "You must accept the site ownership terms."
+
+msgid "vous invite comme"
+msgstr "invites you as"
+
+msgid "Vous ne pouvez pas encore vous connecter. Aucune nouvelle inscription n’est nécessaire."
+msgstr "You cannot log in yet. No new registration is needed."
+
+msgid "Vous ne pouvez pas payer l’abonnement de cette organisation."
+msgstr "You cannot pay the subscription for this organization."
+
+msgid "Vous ne pouvez pas suspendre votre propre compte."
+msgstr "You cannot suspend your own account."
+
+msgid "Vous n’avez pas l’autorisation nécessaire pour consulter cette ressource."
+msgstr "You do not have the necessary permission to access this resource."
+
+msgid "Vous n’êtes pas à l’origine de cette demande ? Aucune action n’est nécessaire et votre mot de passe reste inchangé."
+msgstr "You did not initiate this request? No action is needed and your password remains unchanged."
+
+msgid "Vous seul accordez l’autorité finale à ce chantier."
+msgstr "You alone grant final authority to this project."
+
+msgid "Vous validez précisément la version"
+msgstr "You precisely validate the version"
+
+msgid "Vous êtes client ?"
+msgstr "Are you a client?"
+
+msgid "Vous êtes ingénieur ?"
+msgstr "Are you an engineer?"
+
+msgid "Vous êtes invité(e) à rejoindre %(organization_name)s comme %(role_name)s."
+msgstr "You are invited to join %(organization_name)s as %(role_name)s."
+
+msgid "Vous êtes à jour."
+msgstr "You're all caught up."
+
+msgid "Vue d’ensemble"
+msgstr "Overview"
+
+msgid "Vue d’ensemble de la plateforme"
+msgstr "Platform Overview"
+
+msgid "Vue globale par statut"
+msgstr "Overview by status"
+
+msgid "Vue opérationnelle de votre organisation."
+msgstr "Operational overview of your organization."
+
+msgid "Vérificateur PIVOT"
+msgstr "PIVOT Verifier"
+
+msgid "vérification"
+msgstr "verification"
+
+msgid "Vérification obligatoire"
+msgstr "Mandatory Verification"
+
+msgid "Vérification PIVOT du dossier à risque"
+msgstr "PIVOT Verification of Risk File"
+
+msgid "Vérification requise"
+msgstr "Verification Required"
+
+msgid "Vérification technique"
+msgstr "Technical Verification"
+
+msgid "Vérification technique signée"
+msgstr "Signed Technical Verification"
+
+msgid "Vérifier"
+msgstr "Verify"
+
+msgid "Vérifier le dossier"
+msgstr "Verify the File"
+
+msgid "Vérifier le statut"
+msgstr "Check the Status"
+
+msgid "Vérifiez la cible et les conséquences avant de confirmer. L’opération sera journalisée."
+msgstr "Check the target and consequences before confirming. The operation will be logged."
+
+msgid "Vérifiez le forfait, l’opérateur et le numéro de téléphone."
+msgstr "Check the plan, operator, and phone number."
+
+msgid "Vérifiez les informations du compte avant son activation."
+msgstr "Check the account information before activation."
+
+msgid "Vérifiez les informations et le rôle avant de confirmer."
+msgstr "Check the information and role before confirming."
+
+msgid "Vérifiez les nouvelles informations avant de confirmer."
+msgstr "Check the new information before confirming."
+
+msgid "Vérifiez l’adresse e-mail et le rôle sélectionné."
+msgstr "Check the email address and selected role."
+
+msgid "Vérifié"
+msgstr "Verified"
+
+msgid "Vérifié :"
+msgstr "Verified:"
+
+msgid "Vérifiée"
+msgstr "Verified"
+
+msgid "Workspace préliminaire"
+msgstr "Preliminary Workspace"
+
+msgid "XAF /"
+msgstr "XAF /"
+
+msgid "XAF ·"
+msgstr "XAF ·"
+
+msgid "XAF/mois"
+msgstr "XAF/month"
+
+msgid "· Agent PIVOT :"
+msgstr "· PIVOT Agent:"
+
+msgid "· aucune fusion automatique"
+msgstr "· no automatic merge"
+
+msgid "· autorité :"
+msgstr "· authority:"
+
+msgid "· bénéficiaire :"
+msgstr "· beneficiary:"
+
+msgid "· Conditions"
+msgstr "· Conditions"
+
+msgid "· Document généré depuis des données auditables."
+msgstr "· Document generated from auditable data."
+
+msgid "· dérogation par"
+msgstr "· exemption by"
+
+msgid "· Envoyée le"
+msgstr "· Sent on"
+
+msgid "· Expire le"
+msgstr "· Expires on"
+
+msgid "· initié par"
+msgstr "· initiated by"
+
+msgid "· Invitée par"
+msgstr "· Invited by"
+
+msgid "· jusqu’au"
+msgstr "· until"
+
+msgid "· MeSomb"
+msgstr "· MeSomb"
+
+msgid "· Opérateur"
+msgstr "· Operator"
+
+msgid "· PIVOT"
+msgstr "· PIVOT"
+
+msgid "· preuve :"
+msgstr "· proof:"
+
+msgid "· proposée par"
+msgstr "· proposed by"
+
+msgid "· remplace v"
+msgstr "· replaces v"
+
+msgid "· remplacée par"
+msgstr "· replaced by"
+
+msgid "· restant dérivé :"
+msgstr "· remaining derived:"
+
+msgid "· risque"
+msgstr "· risk"
+
+msgid "· règle v"
+msgstr "· rule v"
+
+msgid "· Réserves :"
+msgstr "· Reserves:"
+
+msgid "· source v"
+msgstr "· source v"
+
+msgid "· v"
+msgstr "· v"
+
+msgid "· validation du client requise"
+msgstr "· client validation required"
+
+msgid "· version"
+msgstr "· version"
+
+msgid "· échéance"
+msgstr "· deadline"
+
+msgid "» · Projet"
+msgstr "» · Project"
+
+msgid "×"
+msgstr "×"
+
+msgid "à"
+msgstr "to"
+
+msgid "à affecter"
+msgstr "to assign"
+
+msgid "À compléter"
+msgstr "To complete"
+
+msgid "à confirmer"
+msgstr "To confirm"
+
+msgid "À corriger"
+msgstr "To correct"
+
+msgid "À désigner"
+msgstr "To designate"
+
+msgid "À examiner"
+msgstr "To review"
+
+msgid "à faire"
+msgstr "to do"
+
+msgid "À surveiller"
+msgstr "To monitor"
+
+msgid "À valider"
+msgstr "To validate"
+
+msgid "Écarts de stock"
+msgstr "Stock discrepancies"
+
+msgid "Échanger"
+msgstr "Exchange"
+
+msgid "Échanges liés au chantier"
+msgstr "Site-related exchanges"
+
+msgid "Échec"
+msgstr "Failure"
+
+msgid "Échec de la vérification numérique"
+msgstr "Digital verification failed"
+
+msgid "Échoué"
+msgstr "Failed"
+
+msgid "Échéance"
+msgstr "Deadline"
+
+msgid "Échéance :"
+msgstr "Deadline:"
+
+msgid "Échéance avant"
+msgstr "Deadline before"
+
+msgid "Économie du pilote"
+msgstr "Pilot savings"
+
+msgid "Écriture protégée"
+msgstr "Protected writing"
+
+msgid "Écrivez votre message…"
+msgstr "Write your message..."
+
+msgid "élevé"
+msgstr "high"
+
+msgid "Équipe affectée"
+msgstr "Assigned team"
+
+msgid "Équipement"
+msgstr "Equipment"
+
+msgid "étape"
+msgstr "step"
+
+msgid "Étape"
+msgstr "Step"
+
+msgid "Étape / demande"
+msgstr "Step / request"
+
+msgid "Étape concernée"
+msgstr "Relevant step"
+
+msgid "Étape non rapprochée"
+msgstr "Unmatched step"
+
+msgid "Étape «"
+msgstr "Step \""
+
+msgid "Étape ·"
+msgstr "Step ·"
+
+msgid "étape(s) terminée(s)"
+msgstr "step(s) completed"
+
+msgid "Étapes"
+msgstr "Stages"
 
 msgid "Étapes actives"
 msgstr "Active stages"
@@ -316,70 +6064,59 @@ msgstr "Active stages"
 msgid "Étapes actuellement en exécution"
 msgstr "Stages currently in progress"
 
-msgid "Modifiez votre recherche ou vos filtres."
-msgstr "Change your search or filters."
+msgid "Étapes et vérifications"
+msgstr "Steps and checks"
 
-msgid "Pagination des projets"
-msgstr "Project pagination"
+msgid "État"
+msgstr "Status"
 
-msgid "Notifications"
-msgstr "Notifications"
+msgid "État de la plateforme"
+msgstr "Platform status"
 
-msgid "Activité"
-msgstr "Activity"
+msgid "État plateforme"
+msgstr "Platform state"
 
-msgid "Retrouvez les événements importants de vos projets."
-msgstr "Find the important events from your projects."
+msgid "Évaluer le risque"
+msgstr "Assess the risk"
 
-msgid "Tout marquer comme lu"
-msgstr "Mark all as read"
+msgid "Événement"
+msgstr "Event"
 
-msgid "Filtres des notifications"
-msgstr "Notification filters"
+msgid "événement d’abonnement"
+msgstr "subscription event"
 
-msgid "Toutes"
-msgstr "All"
+msgid "Événement d’audit"
+msgstr "audit event"
 
-msgid "Non lues"
-msgstr "Unread"
+msgid "Événement immuable"
+msgstr "immutable event"
 
-msgid "Nouveau"
-msgstr "New"
+msgid "événements"
+msgstr "events"
 
-msgid "Voir"
-msgstr "View"
+msgid "événements d’abonnement"
+msgstr "subscription events"
 
-msgid "Marquer comme lue"
-msgstr "Mark as read"
+msgid "＋ Ajouter"
+msgstr "＋ Add"
 
-msgid "Aucune notification"
-msgstr "No notifications"
+msgid "＋ Déposer"
+msgstr "＋ Submit"
 
-msgid "Vous êtes à jour."
-msgstr "You're all caught up."
+msgid "＋ Déposer une preuve"
+msgstr "＋ Submit proof"
 
-msgid "%(count)s notification non lue"
-msgid_plural "%(count)s notifications non lues"
-msgstr[0] "%(count)s unread notification"
-msgstr[1] "%(count)s unread notifications"
+msgid "＋ Lier une pièce"
+msgstr "＋ Link a document"
 
-msgid "Trier les projets"
-msgstr "Sort projects"
+msgid "＋ Nouveau forfait"
+msgstr "＋ New package"
 
-msgid "Modifiés récemment"
-msgstr "Recently updated"
+msgid "＋ Nouvel article"
+msgstr "＋ New item"
 
-msgid "Modifiés anciennement"
-msgstr "Least recently updated"
+msgid "＋ Nouvelle demande"
+msgstr "＋ New request"
 
-msgid "Nom A–Z"
-msgstr "Name A–Z"
-
-msgid "Nom Z–A"
-msgstr "Name Z–A"
-
-msgid "Date la plus récente"
-msgstr "Newest date"
-
-msgid "Budget le plus élevé"
-msgstr "Highest budget"
+msgid "＋ Nouvelle étape"
+msgstr "＋ New step"

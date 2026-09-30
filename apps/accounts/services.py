@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 from hashlib import sha256
 from secrets import token_urlsafe
 
@@ -38,7 +39,7 @@ def create_notification(
     notification is stored under the project's organization.
     """
     if recipient.organization_id is None:
-        raise ValidationError("Le destinataire doit appartenir à une organisation.")
+        raise ValidationError(_("Le destinataire doit appartenir à une organisation."))
     notification_organization_id = recipient.organization_id
     if project is not None:
         from apps.projects.models import ProjectMembership
@@ -98,7 +99,7 @@ def activate_engineer(*, actor: User, engineer: User) -> User:
     if not (is_platform_admin or is_organization_admin):
         raise PermissionDenied("Vous ne pouvez pas activer ce compte.")
     if engineer.role != User.Role.ENGINEER:
-        raise ValidationError("Seul un compte ingénieur peut être activé par ce workflow.")
+        raise ValidationError(_("Seul un compte ingénieur peut être activé par ce workflow."))
 
     if not engineer.is_active:
         from apps.subscriptions.quotas import ensure_internal_member_capacity
@@ -176,11 +177,11 @@ def accept_invitation_for_existing_user(*, invitation: Invitation, user: User) -
         "organization", "project"
     ).get(pk=invitation.pk)
     if not invitation.is_usable:
-        raise ValidationError("Cette invitation n'est plus valide.")
+        raise ValidationError(_("Cette invitation n'est plus valide."))
     if user.email.strip().lower() != invitation.email.strip().lower():
         raise PermissionDenied("Cette invitation est destinée à une autre adresse e-mail.")
     if not user.is_active:
-        raise ValidationError("Ce compte est désactivé.")
+        raise ValidationError(_("Ce compte est désactivé."))
     _attach_invited_user(invitation=invitation, user=user)
     invitation.accepted_at = timezone.now()
     invitation.save(update_fields=("accepted_at",))
@@ -239,7 +240,7 @@ def create_invitation(
     elif contractor_preliminary_invite:
         allowed_roles = {User.Role.CLIENT}
     if role not in allowed_roles:
-        raise ValidationError("Ce rôle ne peut pas être invité.")
+        raise ValidationError(_("Ce rôle ne peut pas être invité."))
     if project is not None:
         if not pivot_invite and not project.memberships.filter(user=actor).exists():
             raise PermissionDenied
@@ -250,20 +251,20 @@ def create_invitation(
             User.Role.ENGINEER: "engineer",
         }.get(role)
         if project_role != expected_project_role:
-            raise ValidationError("Le rôle projet invité est invalide.")
+            raise ValidationError(_("Le rôle projet invité est invalide."))
 
     target_organization = project.organization if project is not None else actor.organization
     normalized_email = email.strip().lower()
     existing_user = User.objects.filter(email__iexact=normalized_email).first()
     if existing_user:
         if not existing_user.is_active:
-            raise ValidationError("Le compte associé à cette adresse est désactivé.")
+            raise ValidationError(_("Le compte associé à cette adresse est désactivé."))
         if project is None:
             if existing_user.organization_id == target_organization.pk:
-                raise ValidationError("Ce compte appartient déjà à votre organisation.")
-            raise ValidationError("Une invitation sans projet ne peut pas rattacher un compte externe.")
+                raise ValidationError(_("Ce compte appartient déjà à votre organisation."))
+            raise ValidationError(_("Une invitation sans projet ne peut pas rattacher un compte externe."))
         if project.memberships.filter(user=existing_user).exists():
-            raise ValidationError("Cet utilisateur participe déjà à ce chantier.")
+            raise ValidationError(_("Cet utilisateur participe déjà à ce chantier."))
     else:
         from apps.subscriptions.quotas import ensure_internal_member_capacity
 
@@ -272,7 +273,7 @@ def create_invitation(
         organization=target_organization,
         email__iexact=normalized_email,
     ).exists():
-        raise ValidationError("Une invitation active existe déjà pour cette adresse.")
+        raise ValidationError(_("Une invitation active existe déjà pour cette adresse."))
 
     raw_token = token_urlsafe(32)
     invitation = Invitation.objects.create(

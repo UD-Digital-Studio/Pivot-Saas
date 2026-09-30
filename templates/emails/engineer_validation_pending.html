@@ -1,7 +1,8 @@
-{% extends "emails/base.html" %}{% block content %}
-<p style="margin:0 0 10px;color:#00157f;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;">Validation requise</p>
-<h1 style="margin:0 0 16px;font-size:29px;line-height:1.25;color:#111a31;">Nouvelle demande ingénieur</h1>
-<p style="margin:0 0 18px;color:#55627a;font-size:16px;line-height:1.7;"><strong>{{ engineer.get_full_name|default:engineer.username }}</strong> demande l’activation d’un compte ingénieur pour l’organisation <strong>{{ organization.name }}</strong>.</p>
-<table role="presentation" cellspacing="0" cellpadding="0" width="100%"><tr><td align="center" style="padding:4px 0 24px;"><a href="{{ action_url }}" style="display:block;background:#00157f;color:#fff;text-decoration:none;font-size:16px;font-weight:700;padding:16px 24px;border-radius:10px;">Examiner la demande</a></td></tr></table>
-<p style="margin:0;padding:14px 16px;background:#f4f6fc;border-radius:10px;color:#68748c;font-size:13px;line-height:1.6;">Vérifiez les informations du compte avant son activation.</p>
+{% extends "emails/base.html" %}{% load i18n %}
+{% block content %}
+<p style="margin:0 0 10px;color:#00157f;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;">{% translate "Validation requise" %}</p>
+<h1 style="margin:0 0 16px;font-size:29px;line-height:1.25;color:#111a31;">{% translate "Nouvelle demande ingénieur" %}</h1>
+<p style="margin:0 0 18px;color:#55627a;font-size:16px;line-height:1.7;"><strong>{{ engineer.get_full_name|default:engineer.username }}</strong> {% translate "demande l’activation d’un compte ingénieur pour l’organisation" %} <strong>{{ organization.name }}</strong>.</p>
+<table role="presentation" cellspacing="0" cellpadding="0" width="100%"><tr><td align="center" style="padding:4px 0 24px;"><a href="{{ action_url }}" style="display:block;background:#00157f;color:#fff;text-decoration:none;font-size:16px;font-weight:700;padding:16px 24px;border-radius:10px;">{% translate "Examiner la demande" %}</a></td></tr></table>
+<p style="margin:0;padding:14px 16px;background:#f4f6fc;border-radius:10px;color:#68748c;font-size:13px;line-height:1.6;">{% translate "Vérifiez les informations du compte avant son activation." %}</p>
 {% endblock %}

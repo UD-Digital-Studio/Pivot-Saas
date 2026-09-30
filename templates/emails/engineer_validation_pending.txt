@@ -1,4 +1,4 @@
-Nouvelle demande ingénieur
+{% load i18n %}{% translate "Nouvelle demande ingénieur" %}
 
-{{ engineer.get_full_name|default:engineer.username }} demande l’activation d’un compte pour {{ organization.name }}.
-Examiner la demande : {{ action_url }}
+{% blocktranslate with display_name=engineer.get_full_name|default:engineer.username organization_name=organization.name %}{{ display_name }} demande l’activation d’un compte pour {{ organization_name }}.{% endblocktranslate %}
+{% translate "Examiner la demande :" %} {{ action_url }}

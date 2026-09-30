@@ -1,4 +1,4 @@
-Bonjour {{ user.get_full_name|default:user.username }},
+{% load i18n %}{% blocktranslate with display_name=user.get_full_name|default:user.username %}Bonjour {{ display_name }},{% endblocktranslate %}
 
-Votre compte ingénieur PIVOT est maintenant actif.
-Connexion : {{ action_url }}
+{% translate "Votre compte ingénieur PIVOT est maintenant actif." %}
+{% translate "Connexion :" %} {{ action_url }}

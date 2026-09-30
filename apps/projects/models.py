@@ -12,7 +12,7 @@ from django.dispatch import receiver
 
 def validate_project_image_size(file):
     if file.size > 5 * 1024 * 1024:
-        raise ValidationError("L'image ne doit pas dépasser 5 Mo.")
+        raise ValidationError(_("L'image ne doit pas dépasser 5 Mo."))
 
 
 def project_cover_path(instance, filename):
@@ -150,7 +150,7 @@ class ProjectMembership(models.Model):
     def clean(self):
         super().clean()
         if self.project_id and self.organization_id != self.project.organization_id:
-            raise ValidationError("L'affectation doit appartenir à l'organisation du projet.")
+            raise ValidationError(_("L'affectation doit appartenir à l'organisation du projet."))
 
     def __str__(self):
         return f"{self.user} · {self.project}"
@@ -206,7 +206,7 @@ class ProjectOwnership(models.Model):
     def clean(self):
         super().clean()
         if self.project_id and self.organization_id != self.project.organization_id:
-            raise ValidationError("L'ownership doit appartenir à l'organisation du projet.")
+            raise ValidationError(_("L'ownership doit appartenir à l'organisation du projet."))
 
 
 class ProjectOwnershipHistory(models.Model):
@@ -338,7 +338,7 @@ class ProjectConciergeFollowUp(models.Model):
     def clean(self):
         super().clean()
         if self.onboarding_id and self.organization_id != self.onboarding.organization_id:
-            raise ValidationError("Le suivi concierge doit appartenir à l’organisation du projet.")
+            raise ValidationError(_("Le suivi concierge doit appartenir à l’organisation du projet."))
         if self.pivot_agent_id and not self.pivot_agent.is_superuser:
             raise ValidationError({"pivot_agent": "L’agent concierge doit être un super-administrateur PIVOT."})
         if self.updated_by_id and not self.updated_by.is_superuser:
@@ -570,7 +570,7 @@ class ProjectDispute(models.Model):
     def clean(self):
         super().clean()
         if self.project_id and self.organization_id != self.project.organization_id:
-            raise ValidationError("La contestation doit appartenir à l’organisation du projet.")
+            raise ValidationError(_("La contestation doit appartenir à l’organisation du projet."))
         if not self.reason.strip():
             raise ValidationError({"reason": "Le motif de contestation est obligatoire."})
 

@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 import uuid
 
 from django import forms
@@ -23,22 +24,22 @@ class StockItemForm(forms.ModelForm):
 
 
 class StockAdjustmentForm(forms.Form):
-    movement_type = forms.ChoiceField(label="Nature", choices=(
+    movement_type = forms.ChoiceField(label=_("Nature"), choices=(
         (StockMovement.Type.PURCHASED, "Acheté"),
         (StockMovement.Type.DELIVERED, "Livré sur le chantier"),
         (StockMovement.Type.CONSUMED, "Consommé"),
     ))
-    source_quantity = forms.DecimalField(label="Quantité source", max_digits=16, decimal_places=4, min_value=0.0001)
-    source_unit = forms.CharField(label="Unité source", max_length=30)
-    conversion_factor = forms.DecimalField(label="Facteur vers l'unité de stock", max_digits=16, decimal_places=6, min_value=0.000001, initial=1)
-    source_reference = forms.CharField(label="Source / référence", max_length=200)
+    source_quantity = forms.DecimalField(label=_("Quantité source"), max_digits=16, decimal_places=4, min_value=0.0001)
+    source_unit = forms.CharField(label=_("Unité source"), max_length=30)
+    conversion_factor = forms.DecimalField(label=_("Facteur vers l'unité de stock"), max_digits=16, decimal_places=6, min_value=0.000001, initial=1)
+    source_reference = forms.CharField(label=_("Source / référence"), max_length=200)
     evidence = forms.ModelChoiceField(
-        label="Facture ou bon existant", queryset=EvidenceRecord.objects.none(), required=False,
+        label=_("Facture ou bon existant"), queryset=EvidenceRecord.objects.none(), required=False,
     )
     stage = forms.ModelChoiceField(
-        label="Étape concernée", queryset=ProjectStage.objects.none(), required=False,
+        label=_("Étape concernée"), queryset=ProjectStage.objects.none(), required=False,
     )
-    reason = forms.CharField(label="Motif", max_length=500)
+    reason = forms.CharField(label=_("Motif"), max_length=500)
     idempotency_key = forms.UUIDField(widget=forms.HiddenInput)
 
     def __init__(self, *args, project=None, **kwargs):
@@ -53,33 +54,33 @@ class StockAdjustmentForm(forms.Form):
 
 
 class StockImportForm(forms.Form):
-    file = forms.FileField(label="Fichier CSV")
+    file = forms.FileField(label=_("Fichier CSV"))
 
     def clean_file(self):
         file = self.cleaned_data["file"]
         if not file.name.lower().endswith(".csv"):
-            raise forms.ValidationError("Le fichier doit être au format CSV.")
+            raise forms.ValidationError(_("Le fichier doit être au format CSV."))
         if file.size > 2 * 1024 * 1024:
-            raise forms.ValidationError("Le fichier ne doit pas dépasser 2 Mo.")
+            raise forms.ValidationError(_("Le fichier ne doit pas dépasser 2 Mo."))
         return file
 
 
 class ExpectedRangeAssignmentForm(forms.Form):
     existing_range = forms.ModelChoiceField(
-        label="Sélectionner une plage existante",
+        label=_("Sélectionner une plage existante"),
         queryset=InventoryExpectedRange.objects.none(), required=False,
     )
-    work_type = forms.CharField(label="Ouvrage", max_length=200, required=False)
-    unit = forms.CharField(label="Unité", max_length=30, required=False)
-    minimum_quantity = forms.DecimalField(label="Minimum attendu", min_value=0, required=False)
-    maximum_quantity = forms.DecimalField(label="Maximum attendu", min_value=0, required=False)
+    work_type = forms.CharField(label=_("Ouvrage"), max_length=200, required=False)
+    unit = forms.CharField(label=_("Unité"), max_length=30, required=False)
+    minimum_quantity = forms.DecimalField(label=_("Minimum attendu"), min_value=0, required=False)
+    maximum_quantity = forms.DecimalField(label=_("Maximum attendu"), min_value=0, required=False)
     assumptions = forms.CharField(
-        label="Hypothèses techniques", required=False,
+        label=_("Hypothèses techniques"), required=False,
         widget=forms.Textarea(attrs={"rows": 3}),
     )
 
     out_of_range_action = forms.ChoiceField(
-        label="Action en cas d'écart",
+        label=_("Action en cas d'écart"),
         choices=InventoryExpectedRange.OutOfRangeAction.choices,
         required=False,
         initial=InventoryExpectedRange.OutOfRangeAction.FLAG,
@@ -98,25 +99,25 @@ class ExpectedRangeAssignmentForm(forms.Form):
             "work_type", "unit", "minimum_quantity", "maximum_quantity", "assumptions"
         )]
         if not existing and any(value in (None, "") for value in definition):
-            raise forms.ValidationError("Tous les champs de la nouvelle plage sont obligatoires.")
+            raise forms.ValidationError(_("Tous les champs de la nouvelle plage sont obligatoires."))
         if existing and existing.unit != self.item.unit:
-            raise forms.ValidationError("L'unité de la plage doit correspondre à celle de l'article.")
+            raise forms.ValidationError(_("L'unité de la plage doit correspondre à celle de l'article."))
         if not existing and cleaned.get("unit") != self.item.unit:
-            raise forms.ValidationError("L'unité doit correspondre à celle de l'article.")
+            raise forms.ValidationError(_("L'unité doit correspondre à celle de l'article."))
         if not existing and cleaned.get("minimum_quantity") > cleaned.get("maximum_quantity"):
-            raise forms.ValidationError("Le minimum ne peut pas dépasser le maximum.")
+            raise forms.ValidationError(_("Le minimum ne peut pas dépasser le maximum."))
         if not existing and not cleaned.get("out_of_range_action"):
             self.add_error("out_of_range_action", "Choisissez l'action applicable en cas d'écart.")
         return cleaned
 
 
 class InventoryAnomalyResolutionForm(forms.Form):
-    responsible = forms.ModelChoiceField(label="Responsable", queryset=get_user_model().objects.none())
+    responsible = forms.ModelChoiceField(label=_("Responsable"), queryset=get_user_model().objects.none())
     evidence = forms.ModelMultipleChoiceField(
-        label="Preuves de résolution", queryset=EvidenceRecord.objects.none()
+        label=_("Preuves de résolution"), queryset=EvidenceRecord.objects.none()
     )
     reason = forms.CharField(
-        label="Motif et actions réalisées", max_length=3000,
+        label=_("Motif et actions réalisées"), max_length=3000,
         widget=forms.Textarea(attrs={"rows": 4}),
     )
 
@@ -131,11 +132,11 @@ class InventoryAnomalyResolutionForm(forms.Form):
 
 
 class InventoryAnomalyDecisionForm(forms.Form):
-    decision = forms.ChoiceField(label="Décision", choices=(
+    decision = forms.ChoiceField(label=_("Décision"), choices=(
         (InventoryAnomalyResolution.Status.APPROVED, "Valider la résolution"),
         (InventoryAnomalyResolution.Status.REJECTED, "Rejeter la résolution"),
     ))
     reason = forms.CharField(
-        label="Motif de la décision", max_length=3000,
+        label=_("Motif de la décision"), max_length=3000,
         widget=forms.Textarea(attrs={"rows": 3}),
     )

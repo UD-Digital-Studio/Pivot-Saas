@@ -1,60 +1,61 @@
+{% load i18n %}
 <section class="mt-5 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
   <div class="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
     <div>
-      <p class="text-xs font-black uppercase tracking-widest text-pivot-600">Économie du pilote</p>
-      <h2 class="mt-1 text-lg font-black">Rétention, recommandation et revenus</h2>
-      <p class="mt-1 text-xs text-slate-500">Mesures observables, sans extrapolation des données manquantes.</p>
+      <p class="text-xs font-black uppercase tracking-widest text-pivot-600">{% translate "Économie du pilote" %}</p>
+      <h2 class="mt-1 text-lg font-black">{% translate "Rétention, recommandation et revenus" %}</h2>
+      <p class="mt-1 text-xs text-slate-500">{% translate "Mesures observables, sans extrapolation des données manquantes." %}</p>
     </div>
     <div class="flex flex-wrap gap-2">
-      <button type="button" data-recommendation-open class="rounded-lg border border-pivot-200 px-3 py-2 text-xs font-black text-pivot-700 dark:border-pivot-800">Saisir une recommandation</button>
-      <button type="button" data-pricing-open class="rounded-lg bg-pivot-600 px-3 py-2 text-xs font-black text-white">Ajouter une hypothèse de prix</button>
+      <button type="button" data-recommendation-open class="rounded-lg border border-pivot-200 px-3 py-2 text-xs font-black text-pivot-700 dark:border-pivot-800">{% translate "Saisir une recommandation" %}</button>
+      <button type="button" data-pricing-open class="rounded-lg bg-pivot-600 px-3 py-2 text-xs font-black text-white">{% translate "Ajouter une hypothèse de prix" %}</button>
     </div>
   </div>
 
   <div class="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
     <article class="rounded-xl bg-slate-50 p-4 dark:bg-slate-800">
-      <p class="text-xs font-bold text-slate-500">Rétention clients</p>
+      <p class="text-xs font-bold text-slate-500">{% translate "Rétention clients" %}</p>
       <p class="mt-1 text-2xl font-black">{{ economy_metrics.retention.client.rate }} %</p>
-      <p class="mt-1 text-[11px] text-slate-500">{{ economy_metrics.retention.client.retained }} actifs sur {{ economy_metrics.retention.client.cohort }}</p>
+      <p class="mt-1 text-[11px] text-slate-500">{{ economy_metrics.retention.client.retained }} {% translate "actifs sur" %} {{ economy_metrics.retention.client.cohort }}</p>
     </article>
     <article class="rounded-xl bg-slate-50 p-4 dark:bg-slate-800">
-      <p class="text-xs font-bold text-slate-500">Rétention entrepreneurs</p>
+      <p class="text-xs font-bold text-slate-500">{% translate "Rétention entrepreneurs" %}</p>
       <p class="mt-1 text-2xl font-black">{{ economy_metrics.retention.contractor.rate }} %</p>
-      <p class="mt-1 text-[11px] text-slate-500">{{ economy_metrics.retention.contractor.retained }} actifs sur {{ economy_metrics.retention.contractor.cohort }}</p>
+      <p class="mt-1 text-[11px] text-slate-500">{{ economy_metrics.retention.contractor.retained }} {% translate "actifs sur" %} {{ economy_metrics.retention.contractor.cohort }}</p>
     </article>
     <article class="rounded-xl bg-blue-50 p-4 dark:bg-blue-950">
-      <p class="text-xs font-bold text-pivot-700 dark:text-blue-200">Score de recommandation</p>
-      {% if economy_metrics.nps is not None %}<p class="mt-1 text-2xl font-black">{{ economy_metrics.nps }}</p>{% else %}<p class="mt-1 text-sm font-black text-slate-500">Non mesuré</p>{% endif %}
-      <p class="mt-1 text-[11px] text-slate-500">{{ economy_metrics.recommendation_count }} réponse{{ economy_metrics.recommendation_count|pluralize }}</p>
+      <p class="text-xs font-bold text-pivot-700 dark:text-blue-200">{% translate "Score de recommandation" %}</p>
+      {% if economy_metrics.nps is not None %}<p class="mt-1 text-2xl font-black">{{ economy_metrics.nps }}</p>{% else %}<p class="mt-1 text-sm font-black text-slate-500">{% translate "Non mesuré" %}</p>{% endif %}
+      <p class="mt-1 text-[11px] text-slate-500">{{ economy_metrics.recommendation_count }} {% translate "réponse" %}{{ economy_metrics.recommendation_count|pluralize }}</p>
     </article>
     <article class="rounded-xl bg-emerald-50 p-4 dark:bg-emerald-950">
-      <p class="text-xs font-bold text-emerald-700">MRR confirmé</p>
+      <p class="text-xs font-bold text-emerald-700">{% translate "MRR confirmé" %}</p>
       <p class="mt-1 text-2xl font-black">{{ economy_metrics.mrr }} XAF</p>
-      <p class="mt-1 text-[11px] text-slate-500">{{ economy_metrics.paid_organization_count }} organisation{{ economy_metrics.paid_organization_count|pluralize }} payante{{ economy_metrics.paid_organization_count|pluralize }}</p>
+      <p class="mt-1 text-[11px] text-slate-500">{{ economy_metrics.paid_organization_count }} {% translate "organisation" %}{{ economy_metrics.paid_organization_count|pluralize }} {% translate "payante" %}{{ economy_metrics.paid_organization_count|pluralize }}</p>
     </article>
     <article class="rounded-xl bg-amber-50 p-4 dark:bg-amber-950">
-      <p class="text-xs font-bold text-amber-700">Hypothèses validées</p>
+      <p class="text-xs font-bold text-amber-700">{% translate "Hypothèses validées" %}</p>
       <p class="mt-1 text-2xl font-black">{{ economy_metrics.validated_hypothesis_count }}</p>
-      <p class="mt-1 text-[11px] text-slate-500">sur les 10 dernières expériences</p>
+      <p class="mt-1 text-[11px] text-slate-500">{% translate "sur les 10 dernières expériences" %}</p>
     </article>
   </div>
 
   {% if economy_metrics.pricing_hypotheses %}
   <div class="mt-4 overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-700">
     <table class="w-full min-w-[44rem] text-left text-xs">
-      <thead class="bg-slate-50 text-slate-500 dark:bg-slate-800"><tr><th class="px-4 py-3">Segment</th><th class="px-4 py-3">Forfait</th><th class="px-4 py-3">Prix testé</th><th class="px-4 py-3">Adhésion</th><th class="px-4 py-3">Décision</th></tr></thead>
-      <tbody class="divide-y divide-slate-100 dark:divide-slate-800">{% for hypothesis in economy_metrics.pricing_hypotheses %}<tr><td class="px-4 py-3 font-bold">{{ hypothesis.segment }}</td><td class="px-4 py-3">{{ hypothesis.plan.name }}</td><td class="px-4 py-3">{{ hypothesis.proposed_monthly_price }} XAF/mois</td><td class="px-4 py-3">{{ hypothesis.positive_responses }}/{{ hypothesis.sample_size }} · {{ hypothesis.positive_rate }} %</td><td class="px-4 py-3 font-bold">{{ hypothesis.get_status_display }}</td></tr>{% endfor %}</tbody>
+      <thead class="bg-slate-50 text-slate-500 dark:bg-slate-800"><tr><th class="px-4 py-3">{% translate "Segment" %}</th><th class="px-4 py-3">{% translate "Forfait" %}</th><th class="px-4 py-3">{% translate "Prix testé" %}</th><th class="px-4 py-3">{% translate "Adhésion" %}</th><th class="px-4 py-3">{% translate "Décision" %}</th></tr></thead>
+      <tbody class="divide-y divide-slate-100 dark:divide-slate-800">{% for hypothesis in economy_metrics.pricing_hypotheses %}<tr><td class="px-4 py-3 font-bold">{{ hypothesis.segment }}</td><td class="px-4 py-3">{{ hypothesis.plan.name }}</td><td class="px-4 py-3">{{ hypothesis.proposed_monthly_price }} {% translate "XAF/mois" %}</td><td class="px-4 py-3">{{ hypothesis.positive_responses }}/{{ hypothesis.sample_size }} · {{ hypothesis.positive_rate }} %</td><td class="px-4 py-3 font-bold">{{ hypothesis.get_status_display }}</td></tr>{% endfor %}</tbody>
     </table>
   </div>
   {% endif %}
 
   <details class="mt-4 rounded-xl border border-slate-100 px-4 py-3 text-xs text-slate-600 dark:border-slate-800">
-    <summary class="cursor-pointer font-black">Définitions et limites du pilote</summary>
+    <summary class="cursor-pointer font-black">{% translate "Définitions et limites du pilote" %}</summary>
     <div class="mt-2 space-y-1 leading-5">
-      <p><strong>Rétention :</strong> utilisateurs actifs affectés à un chantier activé et reconnectés pendant la période. C’est un indicateur d’usage, pas encore une rétention par cohorte mensuelle.</p>
-      <p><strong>Recommandation :</strong> NPS calculé sur des notes explicites de 0 à 10 : promoteurs (9–10) moins détracteurs (0–6).</p>
-      <p><strong>MRR :</strong> abonnements actifs uniquement ; un abonnement annuel est divisé par douze. Essais, grâce, lecture seule et paiements en attente sont exclus.</p>
-      <p><strong>Pricing :</strong> chaque prix reste une hypothèse documentée avec son échantillon. Aucune conclusion n’est inventée en l’absence de réponses.</p>
+      <p><strong>{% translate "Rétention :" %}</strong> {% translate "utilisateurs actifs affectés à un chantier activé et reconnectés pendant la période. C’est un indicateur d’usage, pas encore une rétention par cohorte mensuelle." %}</p>
+      <p><strong>{% translate "Recommandation :" %}</strong> {% translate "NPS calculé sur des notes explicites de 0 à 10 : promoteurs (9–10) moins détracteurs (0–6)." %}</p>
+      <p><strong>{% translate "MRR :" %}</strong> {% translate "abonnements actifs uniquement ; un abonnement annuel est divisé par douze. Essais, grâce, lecture seule et paiements en attente sont exclus." %}</p>
+      <p><strong>{% translate "Pricing :" %}</strong> {% translate "chaque prix reste une hypothèse documentée avec son échantillon. Aucune conclusion n’est inventée en l’absence de réponses." %}</p>
     </div>
   </details>
 </section>
@@ -62,18 +63,18 @@
 <div data-recommendation-modal class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/55 p-4" role="dialog" aria-modal="true" aria-labelledby="recommendation-title">
   <form method="post" action="{% url 'superadmin:pilot-recommendation-create' %}" class="w-full max-w-lg rounded-2xl bg-white p-6 shadow-2xl dark:bg-slate-900">
     {% csrf_token %}<input type="hidden" name="confirmed" value="yes">
-    <div class="flex items-start justify-between"><div><h3 id="recommendation-title" class="text-lg font-black">Saisir une recommandation</h3><p class="mt-1 text-xs text-slate-500">Réponse explicite d’un client ou entrepreneur.</p></div><button type="button" data-recommendation-close class="text-2xl text-slate-400" aria-label="Fermer">×</button></div>
+    <div class="flex items-start justify-between"><div><h3 id="recommendation-title" class="text-lg font-black">{% translate "Saisir une recommandation" %}</h3><p class="mt-1 text-xs text-slate-500">{% translate "Réponse explicite d’un client ou entrepreneur." %}</p></div><button type="button" data-recommendation-close class="text-2xl text-slate-400" aria-label="{% translate "Fermer" %}">{% translate "×" %}</button></div>
     <div class="mt-5 space-y-4 superadmin-form">{{ recommendation_form.as_p }}</div>
-    <div class="mt-6 flex justify-end gap-2"><button type="button" data-recommendation-close class="rounded-lg border px-4 py-2 text-sm font-bold">Annuler</button><button class="rounded-lg bg-pivot-600 px-4 py-2 text-sm font-black text-white">Confirmer</button></div>
+    <div class="mt-6 flex justify-end gap-2"><button type="button" data-recommendation-close class="rounded-lg border px-4 py-2 text-sm font-bold">{% translate "Annuler" %}</button><button class="rounded-lg bg-pivot-600 px-4 py-2 text-sm font-black text-white">{% translate "Confirmer" %}</button></div>
   </form>
 </div>
 
 <div data-pricing-modal class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/55 p-4" role="dialog" aria-modal="true" aria-labelledby="pricing-title">
   <form method="post" action="{% url 'superadmin:pilot-pricing-create' %}" class="max-h-[90vh] w-full max-w-xl overflow-y-auto rounded-2xl bg-white p-6 shadow-2xl dark:bg-slate-900">
     {% csrf_token %}<input type="hidden" name="confirmed" value="yes">
-    <div class="flex items-start justify-between"><div><h3 id="pricing-title" class="text-lg font-black">Tester une hypothèse de prix</h3><p class="mt-1 text-xs text-slate-500">Documentez le segment, le prix proposé et les réponses obtenues.</p></div><button type="button" data-pricing-close class="text-2xl text-slate-400" aria-label="Fermer">×</button></div>
+    <div class="flex items-start justify-between"><div><h3 id="pricing-title" class="text-lg font-black">{% translate "Tester une hypothèse de prix" %}</h3><p class="mt-1 text-xs text-slate-500">{% translate "Documentez le segment, le prix proposé et les réponses obtenues." %}</p></div><button type="button" data-pricing-close class="text-2xl text-slate-400" aria-label="{% translate "Fermer" %}">{% translate "×" %}</button></div>
     <div class="mt-5 space-y-4 superadmin-form">{{ pricing_hypothesis_form.as_p }}</div>
-    <div class="mt-6 flex justify-end gap-2"><button type="button" data-pricing-close class="rounded-lg border px-4 py-2 text-sm font-bold">Annuler</button><button class="rounded-lg bg-pivot-600 px-4 py-2 text-sm font-black text-white">Confirmer</button></div>
+    <div class="mt-6 flex justify-end gap-2"><button type="button" data-pricing-close class="rounded-lg border px-4 py-2 text-sm font-bold">{% translate "Annuler" %}</button><button class="rounded-lg bg-pivot-600 px-4 py-2 text-sm font-black text-white">{% translate "Confirmer" %}</button></div>
   </form>
 </div>
 

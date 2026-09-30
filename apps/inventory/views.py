@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 import csv
 import io
 import uuid
@@ -49,9 +50,9 @@ def item_create(request, project_pk):
                 source_reference="Stock initial", reason="Création de l'article",
                 idempotency_key=uuid.uuid4(),
             )
-        messages.success(request, "L'article a été ajouté au stock.")
+        messages.success(request, _("L'article a été ajouté au stock."))
     else:
-        messages.error(request, "L'article est invalide. Vérifiez les valeurs saisies.")
+        messages.error(request, _("L'article est invalide. Vérifiez les valeurs saisies."))
     return stock_redirect(project)
 
 
@@ -64,17 +65,17 @@ def item_adjust(request, project_pk, pk):
     form = StockAdjustmentForm(request.POST, project=project)
     if form.is_valid():
         try:
-            _, created = record_stock_movement(actor=request.user, item=item, **form.cleaned_data)
+            movement, created = record_stock_movement(actor=request.user, item=item, **form.cleaned_data)
             messages.success(
                 request,
-                "Le mouvement de stock a été enregistré."
+                _("Le mouvement de stock a été enregistré.")
                 if created
                 else "Cette opération avait déjà été enregistrée.",
             )
         except ValidationError as error:
             messages.error(request, error.messages[0])
     else:
-        messages.error(request, "Le mouvement demandé est invalide.")
+        messages.error(request, _("Le mouvement demandé est invalide."))
     return stock_redirect(project)
 
 
@@ -85,7 +86,7 @@ def item_verify(request, project_pk, pk):
     if request.method != "POST":
         raise PermissionDenied
     verify_stock_item(actor=request.user, item=item)
-    messages.success(request, "L'article a été vérifié.")
+    messages.success(request, _("L'article a été vérifié."))
     return stock_redirect(project)
 
 
@@ -98,9 +99,9 @@ def item_expected_range(request, project_pk, pk):
     form = ExpectedRangeAssignmentForm(request.POST, project=project, item=item)
     if form.is_valid():
         assign_expected_range(actor=request.user, item=item, **form.cleaned_data)
-        messages.success(request, "La plage attendue versionnée a été associée à l'article.")
+        messages.success(request, _("La plage attendue versionnée a été associée à l'article."))
     else:
-        messages.error(request, "La plage attendue est invalide. Vérifiez l'unité et les bornes.")
+        messages.error(request, _("La plage attendue est invalide. Vérifiez l'unité et les bornes."))
     return stock_redirect(project)
 
 
@@ -114,13 +115,13 @@ def anomaly_resolution_propose(request, project_pk, pk):
     if form.is_valid():
         try:
             propose_anomaly_resolution(actor=request.user, anomaly=anomaly, **form.cleaned_data)
-            messages.success(request, "La résolution a été soumise pour validation.")
+            messages.success(request, _("La résolution a été soumise pour validation."))
         except (PermissionDenied, ValidationError) as error:
             if isinstance(error, PermissionDenied):
                 raise
             messages.error(request, error.messages[0])
     else:
-        messages.error(request, "Le responsable, le motif et au moins une preuve sont obligatoires.")
+        messages.error(request, _("Le responsable, le motif et au moins une preuve sont obligatoires."))
     return stock_redirect(project)
 
 
@@ -135,9 +136,9 @@ def anomaly_resolution_decide(request, project_pk, pk):
     form = InventoryAnomalyDecisionForm(request.POST)
     if form.is_valid():
         decide_anomaly_resolution(actor=request.user, resolution=resolution, **form.cleaned_data)
-        messages.success(request, "La décision sur la résolution a été enregistrée.")
+        messages.success(request, _("La décision sur la résolution a été enregistrée."))
     else:
-        messages.error(request, "La décision et son motif sont obligatoires.")
+        messages.error(request, _("La décision et son motif sont obligatoires."))
     return stock_redirect(project)
 
 
@@ -172,7 +173,7 @@ def stock_import(request, project_pk):
                     try:
                         opening_quantity = Decimal(row["quantite"])
                         if opening_quantity < 0:
-                            raise ValidationError("La quantité initiale ne peut pas être négative.")
+                            raise ValidationError(_("La quantité initiale ne peut pas être négative."))
                         item = StockItem(
                             organization=project.organization,
                             project=project,

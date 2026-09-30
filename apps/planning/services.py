@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 from apps.accounts.models import User
 from apps.projects.models import Project, ProjectMembership
 from apps.projects.access import has_project_role, project_engineers
@@ -56,11 +57,11 @@ def verify_stage_progress(*, actor, stage, percent, evidence=None, note="", quan
         raise PermissionDenied
     declaration = stage.latest_declared_progress
     if not declaration or not hasattr(declaration, "digital_verification"):
-        raise ValidationError("Une vérification numérique réussie est requise.")
+        raise ValidationError(_("Une vérification numérique réussie est requise."))
     if declaration.digital_verification.result != StageDigitalVerification.Result.PASSED:
-        raise ValidationError("L'échec Digital Verified bloque la vérification de progression.")
+        raise ValidationError(_("L'échec Digital Verified bloque la vérification de progression."))
     if hasattr(declaration, "technical_verification"):
-        raise ValidationError("Cette déclaration possède déjà une vérification technique signée.")
+        raise ValidationError(_("Cette déclaration possède déjà une vérification technique signée."))
     quantities = quantities or []
     reservations = reservations or []
     signed_at = timezone.now()
@@ -109,7 +110,7 @@ def review_stage_progress(*, actor, declaration, decision, reason, corrective_ac
     ):
         raise PermissionDenied
     if hasattr(declaration, "technical_review"):
-        raise ValidationError("Cette déclaration possède déjà une décision technique.")
+        raise ValidationError(_("Cette déclaration possède déjà une décision technique."))
     review = StageTechnicalReview.objects.create(
         organization=declaration.organization, declaration=declaration, reviewer=actor,
         decision=decision, reason=reason.strip(), corrective_actions=corrective_actions.strip(),
@@ -142,7 +143,7 @@ def run_stage_digital_verification(*, actor, declaration):
     ):
         raise PermissionDenied
     if hasattr(declaration, "digital_verification"):
-        raise ValidationError("Cette version a déjà été contrôlée numériquement.")
+        raise ValidationError(_("Cette version a déjà été contrôlée numériquement."))
 
     evidence = declaration.evidence
     author_is_assigned = (
@@ -224,17 +225,17 @@ def complete_stage_site_verification(*, actor, visit, technical_verification, ch
     if visit.inspector_id != actor.pk and not actor.is_superuser:
         raise PermissionDenied("Seul l'inspecteur ayant enregistré la visite peut la conclure.")
     if hasattr(visit, "verification"):
-        raise ValidationError("Cette visite possède déjà une conclusion.")
+        raise ValidationError(_("Cette visite possède déjà une conclusion."))
     evidence = list(evidence)
     if not evidence:
-        raise ValidationError("Une inspection doit référencer au moins une preuve.")
+        raise ValidationError(_("Une inspection doit référencer au moins une preuve."))
     if any(
         item.organization_id != visit.organization_id
         or item.project_id != visit.stage.project_id
         or item.stage_id not in {None, visit.stage_id}
         for item in evidence
     ):
-        raise ValidationError("Toutes les preuves doivent appartenir à l'étape visitée.")
+        raise ValidationError(_("Toutes les preuves doivent appartenir à l'étape visitée."))
     inspection = StageSiteVerification(
         organization=visit.organization, visit=visit,
         technical_verification=technical_verification, inspector=actor,
@@ -283,7 +284,7 @@ def evaluate_stage_inspection_risk(*, actor, technical_verification):
         return technical_verification.risk_assessment
     rule = StageInspectionRiskRule.objects.filter(organization=stage.organization, is_active=True).first()
     if not rule:
-        raise ValidationError("Aucune règle de risque active n'est configurée pour cette organisation.")
+        raise ValidationError(_("Aucune règle de risque active n'est configurée pour cette organisation."))
     declaration = technical_verification.declaration
     variance = abs((declaration.percent if declaration else 0) - technical_verification.percent)
     anomaly = bool(variance > rule.maximum_progress_variance or technical_verification.reservations)

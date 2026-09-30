@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 import csv
 
 from django.contrib import messages
@@ -35,7 +36,7 @@ def expense_create(request, project_pk):
         else:
             messages.success(request, f"Demande de dépense créée : {expense_request.get_status_display()}.")
     else:
-        messages.error(request, "La demande de dépense est incomplète ou invalide.")
+        messages.error(request, _("La demande de dépense est incomplète ou invalide."))
     return expense_back(project)
 
 
@@ -54,7 +55,7 @@ def expense_transition(request, project_pk, pk):
         else:
             messages.success(request, f"Demande passée au statut {updated.get_status_display()}.")
     else:
-        messages.error(request, "Transition invalide.")
+        messages.error(request, _("Transition invalide."))
     return expense_back(project)
 
 
@@ -71,9 +72,9 @@ def expense_attachment_add(request, project_pk, pk):
         except ValidationError as error:
             messages.error(request, error.messages[0])
         else:
-            messages.success(request, "La pièce a été ajoutée au dossier.")
+            messages.success(request, _("La pièce a été ajoutée au dossier."))
     else:
-        messages.error(request, "La pièce sélectionnée est invalide.")
+        messages.error(request, _("La pièce sélectionnée est invalide."))
     return expense_back(project)
 
 
@@ -86,9 +87,9 @@ def expense_attachment_reject(request, project_pk, pk):
     form = ExpenseAttachmentDecisionForm(request.POST, project=project)
     if form.is_valid():
         reject_expense_attachment(actor=request.user, attachment=attachment, reason=form.cleaned_data["reason"])
-        messages.success(request, "La pièce a été rejetée sans supprimer son historique.")
+        messages.success(request, _("La pièce a été rejetée sans supprimer son historique."))
     else:
-        messages.error(request, "Le motif de rejet est obligatoire.")
+        messages.error(request, _("Le motif de rejet est obligatoire."))
     return expense_back(project)
 
 
@@ -105,9 +106,9 @@ def expense_attachment_replace(request, project_pk, pk):
         except ValidationError as error:
             messages.error(request, error.messages[0])
         else:
-            messages.success(request, "La nouvelle pièce remplace l’ancienne, conservée dans l’historique.")
+            messages.success(request, _("La nouvelle pièce remplace l’ancienne, conservée dans l’historique."))
     else:
-        messages.error(request, "La preuve de remplacement et le motif sont obligatoires.")
+        messages.error(request, _("La preuve de remplacement et le motif sont obligatoires."))
     return expense_back(project)
 
 
@@ -132,7 +133,7 @@ def expense_technical_opinion(request, project_pk, pk):
                 f"La demande est maintenant {updated.get_status_display().lower()}.",
             )
     else:
-        messages.error(request, "La décision technique et son motif sont obligatoires.")
+        messages.error(request, _("La décision technique et son motif sont obligatoires."))
     return expense_back(project)
 
 
@@ -160,7 +161,7 @@ def expense_pivot_verification(request, project_pk, pk):
                 f"La demande reste {updated.get_status_display().lower()}.",
             )
     else:
-        messages.error(request, "La décision PIVOT et sa motivation sont obligatoires.")
+        messages.error(request, _("La décision PIVOT et sa motivation sont obligatoires."))
     return expense_back(project)
 
 
@@ -185,7 +186,7 @@ def expense_owner_decision(request, project_pk, pk):
                 f"La demande est maintenant {updated.get_status_display().lower()}.",
             )
     else:
-        messages.error(request, "Le refus exige un motif et une version valide du dossier.")
+        messages.error(request, _("Le refus exige un motif et une version valide du dossier."))
     return expense_back(project)
 
 
@@ -205,15 +206,15 @@ def expense_pay(request, project_pk, pk):
             messages.error(request, error.messages[0])
         else:
             if not created:
-                messages.info(request, "Une tentative existe déjà pour cette demande.")
+                messages.info(request, _("Une tentative existe déjà pour cette demande."))
             elif tx.status == PaymentTransaction.Status.SUCCESS:
-                messages.success(request, "Paiement MeSomb confirmé et dépense comptabilisée.")
+                messages.success(request, _("Paiement MeSomb confirmé et dépense comptabilisée."))
             elif tx.status == PaymentTransaction.Status.PENDING:
-                messages.info(request, "Paiement transmis à MeSomb. La dépense ne sera comptabilisée qu’après confirmation.")
+                messages.info(request, _("Paiement transmis à MeSomb. La dépense ne sera comptabilisée qu’après confirmation."))
             else:
-                messages.error(request, "Le paiement a été refusé ou n’a pas abouti.")
+                messages.error(request, _("Le paiement a été refusé ou n’a pas abouti."))
     else:
-        messages.error(request, "Opérateur ou téléphone invalide.")
+        messages.error(request, _("Opérateur ou téléphone invalide."))
     return finance_back(project)
 
 
@@ -226,15 +227,15 @@ def pay(request, project_pk):
     if form.is_valid():
         tx, created = initiate_payment(actor=request.user, project=project, **form.cleaned_data)
         if not created:
-            messages.info(request, "Cette demande de paiement a déjà été enregistrée.")
+            messages.info(request, _("Cette demande de paiement a déjà été enregistrée."))
         elif tx.status == "success":
-            messages.success(request, "Paiement MeSomb confirmé.")
+            messages.success(request, _("Paiement MeSomb confirmé."))
         elif tx.status == "pending":
-            messages.info(request, "Paiement transmis à MeSomb et en attente de confirmation.")
+            messages.info(request, _("Paiement transmis à MeSomb et en attente de confirmation."))
         else:
-            messages.error(request, "Le paiement n’a pas abouti. Vérifiez le numéro et réessayez.")
+            messages.error(request, _("Le paiement n’a pas abouti. Vérifiez le numéro et réessayez."))
     else:
-        messages.error(request, "Informations de paiement invalides.")
+        messages.error(request, _("Informations de paiement invalides."))
     return finance_back(project)
 
 
@@ -247,7 +248,7 @@ def withdraw(request, project_pk):
     if form.is_valid():
         try:
             request_withdrawal(actor=request.user, project=project, **form.cleaned_data)
-            messages.success(request, "Demande de retrait créée.")
+            messages.success(request, _("Demande de retrait créée."))
         except ValidationError as e:
             messages.error(request, e.messages[0])
     return finance_back(project)
@@ -263,7 +264,7 @@ def payment_refresh(request, project_pk, pk):
     if changed:
         messages.success(request, f"Statut MeSomb actualisé : {tx.get_status_display()}.")
     else:
-        messages.info(request, "Aucun nouveau statut MeSomb n’est disponible.")
+        messages.info(request, _("Aucun nouveau statut MeSomb n’est disponible."))
     return finance_back(project)
 
 

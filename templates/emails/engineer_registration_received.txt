@@ -1,4 +1,4 @@
-Bonjour {{ user.get_full_name|default:user.username }},
+{% load i18n %}{% blocktranslate with display_name=user.get_full_name|default:user.username %}Bonjour {{ display_name }},{% endblocktranslate %}
 
-Votre demande de compte ingénieur pour {{ user.organization.name }} a bien été enregistrée.
-Un responsable de la plateforme a été averti. Vous recevrez un second e-mail après activation.
+{% blocktranslate with organization=user.organization.name %}Votre demande de compte ingénieur pour {{ organization }} a bien été enregistrée.{% endblocktranslate %}
+{% translate "Un responsable de la plateforme a été averti. Vous recevrez un second e-mail après activation." %}

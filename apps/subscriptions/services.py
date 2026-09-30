@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 import calendar
 import logging
 from datetime import datetime
@@ -34,7 +35,7 @@ def start_organization_trial(*, organization, actor=None, activated_at=None):
     try:
         plan = SubscriptionPlan.objects.get(code=plan_code, is_active=True)
     except SubscriptionPlan.DoesNotExist as exc:
-        raise ValidationError("Le forfait d’essai configuré est indisponible.") from exc
+        raise ValidationError(_("Le forfait d’essai configuré est indisponible.")) from exc
 
     started_at = activated_at or timezone.now()
     subscription = OrganizationSubscription(
@@ -116,13 +117,13 @@ def initiate_subscription_payment(*, actor, plan, billing_cycle, operator, phone
     from apps.finance.gateways import configured_gateway
 
     if actor.organization_id is None or actor.role not in {User.Role.ENGINEER, User.Role.ADMIN}:
-        raise ValidationError("Vous ne pouvez pas payer l’abonnement de cette organisation.")
+        raise ValidationError(_("Vous ne pouvez pas payer l’abonnement de cette organisation."))
     if billing_cycle not in OrganizationSubscription.BillingCycle.values or not plan.is_active:
-        raise ValidationError("Forfait ou périodicité invalide.")
+        raise ValidationError(_("Forfait ou périodicité invalide."))
     subscription = OrganizationSubscription.objects.get(organization=actor.organization)
     amount = plan.yearly_price if billing_cycle == OrganizationSubscription.BillingCycle.YEARLY else plan.monthly_price
     if amount <= 0:
-        raise ValidationError("Ce forfait est disponible uniquement sur devis et ne peut pas être payé directement.")
+        raise ValidationError(_("Ce forfait est disponible uniquement sur devis et ne peut pas être payé directement."))
     selected_gateway = gateway or configured_gateway()
     try:
         with transaction.atomic():
@@ -238,7 +239,7 @@ def reconcile_subscription_payment(*, actor, payment, gateway=None):
     from apps.finance.gateways import configured_gateway
 
     if actor.organization_id != payment.organization_id and not actor.is_superuser:
-        raise ValidationError("Paiement inaccessible.")
+        raise ValidationError(_("Paiement inaccessible."))
     if payment.status != SubscriptionPayment.Status.PENDING:
         return payment, False
     selected_gateway = gateway or configured_gateway()
@@ -285,7 +286,7 @@ def process_uncertain_subscription_payments(*, now=None, gateway=None):
         status=SubscriptionPayment.Status.PENDING, updated_at__lte=threshold
     ).select_related("requested_by")
     for payment in payments:
-        _, checked = reconcile_subscription_payment(
+        reconciled_payment, checked = reconcile_subscription_payment(
             actor=payment.requested_by, payment=payment, gateway=gateway
         )
         processed += int(checked)
@@ -309,7 +310,7 @@ def _deliver_subscription_notice(*, subscription, recipient, milestone, title, m
 
     billing_path = reverse("subscriptions:pricing")
     action_url = f"{settings.APP_BASE_URL}{billing_path}"
-    _, app_created = SubscriptionNoticeDelivery.objects.get_or_create(
+    app_delivery, app_created = SubscriptionNoticeDelivery.objects.get_or_create(
         subscription=subscription, recipient=recipient, milestone=milestone,
         channel=SubscriptionNoticeDelivery.Channel.IN_APP,
     )
@@ -388,9 +389,9 @@ def notify_subscription_payment_outcome(payment):
 @transaction.atomic
 def correct_subscription_period(*, actor, subscription, starts_at, ends_at, reason):
     if not actor.is_superuser:
-        raise ValidationError("Seul un super-administrateur peut corriger une période.")
+        raise ValidationError(_("Seul un super-administrateur peut corriger une période."))
     if not reason.strip() or ends_at <= starts_at:
-        raise ValidationError("La période et le motif de correction sont obligatoires.")
+        raise ValidationError(_("La période et le motif de correction sont obligatoires."))
     subscription = OrganizationSubscription.objects.select_for_update().get(pk=subscription.pk)
     previous = {
         "started_at": subscription.current_period_started_at.isoformat() if subscription.current_period_started_at else None,

@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 import json
 
 from django.conf import settings
@@ -52,9 +53,9 @@ def _json_body(request):
     try:
         value = json.loads(request.body or b"{}")
     except (TypeError, ValueError) as exc:
-        raise ValidationError("La requête est invalide.") from exc
+        raise ValidationError(_("La requête est invalide.")) from exc
     if not isinstance(value, dict):
-        raise ValidationError("La requête est invalide.")
+        raise ValidationError(_("La requête est invalide."))
     return value
 
 
@@ -100,7 +101,7 @@ def send_message(request):
         payload = _json_body(request)
         content = str(payload.get("message") or "").strip()
         if not content:
-            raise ValidationError("Le message ne peut pas être vide.")
+            raise ValidationError(_("Le message ne peut pas être vide."))
         conversation_id = payload.get("conversation_id")
         conversation = (
             conversation_for_user(request.user, conversation_id)

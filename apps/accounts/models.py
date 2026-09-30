@@ -155,7 +155,7 @@ class Invitation(models.Model):
 def validate_avatar_size(file):
     max_size = 3 * 1024 * 1024
     if file.size > max_size:
-        raise ValidationError("La photo ne doit pas dépasser 3 Mo.")
+        raise ValidationError(_("La photo ne doit pas dépasser 3 Mo."))
 
 
 def profile_avatar_path(instance, filename):

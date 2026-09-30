@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 from django import forms
 
 from apps.accounts.models import User
@@ -39,11 +40,11 @@ class ProjectForm(forms.ModelForm):
 
 class ProjectCreateForm(ProjectForm):
     members = forms.ModelMultipleChoiceField(
-        label="Clients et chefs de chantier",
+        label=_("Clients et chefs de chantier"),
         queryset=User.objects.none(),
         required=False,
         widget=forms.MultipleHiddenInput,
-        help_text="Sélectionnez une ou plusieurs personnes à affecter dès la création.",
+        help_text=_("Sélectionnez une ou plusieurs personnes à affecter dès la création."),
     )
 
     def __init__(self, *args, organization=None, **kwargs):
@@ -71,44 +72,44 @@ class ProjectCreateForm(ProjectForm):
 
 class ClientLedProjectForm(ProjectForm):
     financial_conditions = forms.CharField(
-        label="Conditions financières initiales",
+        label=_("Conditions financières initiales"),
         max_length=3000,
         widget=forms.Textarea(attrs={"rows": 4}),
-        help_text="Décrivez l'enveloppe, les modalités et les conditions initiales du chantier.",
+        help_text=_("Décrivez l'enveloppe, les modalités et les conditions initiales du chantier."),
     )
 
 
 class ContractorLedProjectForm(ClientLedProjectForm):
     financial_conditions = forms.CharField(
-        label="Conditions proposées au propriétaire",
+        label=_("Conditions proposées au propriétaire"),
         max_length=3000,
         widget=forms.Textarea(attrs={"rows": 4}),
-        help_text="Ces conditions resteront préliminaires jusqu'à la confirmation du client.",
+        help_text=_("Ces conditions resteront préliminaires jusqu'à la confirmation du client."),
     )
 
 
 class ContractorOnboardingConfirmationForm(forms.Form):
-    confirm_project = forms.BooleanField(label="Je confirme le projet présenté.")
-    confirm_ownership = forms.BooleanField(label="Je confirme être le propriétaire du chantier.")
-    confirm_contractor = forms.BooleanField(label="Je confirme l'entrepreneur proposé.")
-    confirm_conditions = forms.BooleanField(label="J'accepte les conditions initiales présentées.")
+    confirm_project = forms.BooleanField(label=_("Je confirme le projet présenté."))
+    confirm_ownership = forms.BooleanField(label=_("Je confirme être le propriétaire du chantier."))
+    confirm_contractor = forms.BooleanField(label=_("Je confirme l'entrepreneur proposé."))
+    confirm_conditions = forms.BooleanField(label=_("J'accepte les conditions initiales présentées."))
 
 
 class ProjectTermsRevisionForm(forms.Form):
-    budget_amount = forms.DecimalField(label="Budget", min_value=0, decimal_places=0)
-    currency = forms.ChoiceField(label="Devise", choices=(("XAF", "XAF"), ("EUR", "EUR"), ("USD", "USD")))
-    financial_conditions = forms.CharField(label="Conditions financières", max_length=3000, widget=forms.Textarea(attrs={"rows": 4}))
+    budget_amount = forms.DecimalField(label=_("Budget"), min_value=0, decimal_places=0)
+    currency = forms.ChoiceField(label=_("Devise"), choices=(("XAF", "XAF"), ("EUR", "EUR"), ("USD", "USD")))
+    financial_conditions = forms.CharField(label=_("Conditions financières"), max_length=3000, widget=forms.Textarea(attrs={"rows": 4}))
     targeted_roles = forms.MultipleChoiceField(
-        label="Nouvelles confirmations requises",
+        label=_("Nouvelles confirmations requises"),
         choices=(("contractor", "Entrepreneur"), ("engineer", "Ingénieur")),
         widget=forms.CheckboxSelectMultiple,
     )
 
 
 class ProjectActorInvitationForm(forms.Form):
-    email = forms.EmailField(label="Adresse e-mail")
+    email = forms.EmailField(label=_("Adresse e-mail"))
     role = forms.ChoiceField(
-        label="Rôle dans le projet",
+        label=_("Rôle dans le projet"),
         choices=(
             (User.Role.CLIENT, User.Role.CLIENT.label),
             (User.Role.CONTRACTOR, User.Role.CONTRACTOR.label),
@@ -127,7 +128,7 @@ class ProjectActorInvitationForm(forms.Form):
 
 
 class ProjectStatusForm(forms.Form):
-    status = forms.ChoiceField(label="Nouveau statut")
+    status = forms.ChoiceField(label=_("Nouveau statut"))
 
     def __init__(self, *args, choices=(), **kwargs):
         super().__init__(*args, **kwargs)
@@ -136,7 +137,7 @@ class ProjectStatusForm(forms.Form):
 
 class ProjectMembersForm(forms.Form):
     members = forms.ModelMultipleChoiceField(
-        label="Membres affectés",
+        label=_("Membres affectés"),
         queryset=User.objects.none(),
         required=False,
         widget=forms.CheckboxSelectMultiple,
@@ -179,13 +180,13 @@ class ProjectMembersForm(forms.Form):
 
 class OwnershipConfirmationForm(forms.Form):
     terms_accepted = forms.BooleanField(
-        label="Je confirme être le propriétaire du chantier et accepter les conditions applicables."
+        label=_("Je confirme être le propriétaire du chantier et accepter les conditions applicables.")
     )
 
 
 class ProjectOwnerChangeForm(forms.Form):
-    new_owner = forms.ModelChoiceField(label="Nouveau propriétaire", queryset=User.objects.none())
-    reason = forms.CharField(label="Motif du changement", max_length=500, widget=forms.Textarea)
+    new_owner = forms.ModelChoiceField(label=_("Nouveau propriétaire"), queryset=User.objects.none())
+    reason = forms.CharField(label=_("Motif du changement"), max_length=500, widget=forms.Textarea)
 
     def __init__(self, *args, project, **kwargs):
         super().__init__(*args, **kwargs)

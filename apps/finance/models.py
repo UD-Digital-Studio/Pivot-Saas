@@ -57,7 +57,7 @@ class ExpenseRequest(models.Model):
     def clean(self):
         super().clean()
         if self.project_id and self.project.organization_id != self.organization_id:
-            raise ValidationError("La demande doit appartenir à l’organisation du projet.")
+            raise ValidationError(_("La demande doit appartenir à l’organisation du projet."))
         if self.author_id and not self.author.is_superuser:
             from apps.projects.models import ProjectMembership
 
@@ -66,9 +66,9 @@ class ExpenseRequest(models.Model):
                 user_id=self.author_id,
                 project_role=ProjectMembership.Role.CONTRACTOR,
             ).exists():
-                raise ValidationError("L’auteur doit être un entrepreneur affecté au projet.")
+                raise ValidationError(_("L’auteur doit être un entrepreneur affecté au projet."))
         if self.project_id and self.milestone_id and (self.milestone.project_id != self.project_id or self.milestone.organization_id != self.organization_id):
-            raise ValidationError("Le jalon doit appartenir au même projet.")
+            raise ValidationError(_("Le jalon doit appartenir au même projet."))
 
     def save(self, *args, **kwargs):
         self.full_clean()
@@ -130,11 +130,11 @@ class ExpenseRequestAttachment(models.Model):
     def clean(self):
         super().clean()
         if self.request_id and self.request.organization_id != self.organization_id:
-            raise ValidationError("La pièce doit appartenir à l’organisation de la demande.")
+            raise ValidationError(_("La pièce doit appartenir à l’organisation de la demande."))
         if self.evidence_id and self.request_id and (self.evidence.project_id != self.request.project_id or self.evidence.organization_id != self.organization_id):
-            raise ValidationError("La preuve doit appartenir au même projet.")
+            raise ValidationError(_("La preuve doit appartenir au même projet."))
         if self.replaced_by_id and self.replaced_by.request_id != self.request_id:
-            raise ValidationError("La pièce de remplacement doit appartenir à la même demande.")
+            raise ValidationError(_("La pièce de remplacement doit appartenir à la même demande."))
 
     def save(self, *args, **kwargs):
         self.full_clean()
@@ -182,7 +182,7 @@ class ExpenseTechnicalOpinion(models.Model):
     def clean(self):
         super().clean()
         if self.request_id and self.request.organization_id != self.organization_id:
-            raise ValidationError("L’avis doit appartenir à l’organisation de la demande.")
+            raise ValidationError(_("L’avis doit appartenir à l’organisation de la demande."))
         if self.engineer_id and not self.engineer.is_superuser:
             from apps.projects.models import ProjectMembership
 
@@ -191,7 +191,7 @@ class ExpenseTechnicalOpinion(models.Model):
                 user_id=self.engineer_id,
                 project_role=ProjectMembership.Role.ENGINEER,
             ).exists():
-                raise ValidationError("L’ingénieur doit être affecté à ce projet.")
+                raise ValidationError(_("L’ingénieur doit être affecté à ce projet."))
         if not self.reason.strip():
             raise ValidationError({"reason": "Le motif de l’avis technique est obligatoire."})
 
@@ -244,7 +244,7 @@ class ExpensePivotVerification(models.Model):
     def clean(self):
         super().clean()
         if self.request_id and self.request.organization_id != self.organization_id:
-            raise ValidationError("La vérification doit appartenir à l’organisation de la demande.")
+            raise ValidationError(_("La vérification doit appartenir à l’organisation de la demande."))
         if not self.reason.strip():
             raise ValidationError({"reason": "La motivation de la vérification est obligatoire."})
 
@@ -288,7 +288,7 @@ class ExpenseOwnerDecision(models.Model):
     def clean(self):
         super().clean()
         if self.request_id and self.request.organization_id != self.organization_id:
-            raise ValidationError("La décision doit appartenir à l’organisation de la demande.")
+            raise ValidationError(_("La décision doit appartenir à l’organisation de la demande."))
         if self.decision == self.Decision.REJECTED and not self.reason.strip():
             raise ValidationError({"reason": "Le motif du refus est obligatoire."})
 

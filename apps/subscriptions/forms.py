@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 from django import forms
 
 from .models import OrganizationSubscription, SubscriptionPlan
@@ -16,7 +17,7 @@ class SubscriptionPaymentForm(forms.Form):
     def clean_phone(self):
         value = "".join(character for character in self.cleaned_data["phone"] if character.isdigit() or character == "+")
         if len(value.lstrip("+")) < 9:
-            raise forms.ValidationError("Saisissez un numéro de téléphone valide.")
+            raise forms.ValidationError(_("Saisissez un numéro de téléphone valide."))
         return value
 
     def clean(self):

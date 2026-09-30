@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 from django import forms
 from django.db import models
 
@@ -75,11 +76,11 @@ class StageProgressDeclarationForm(StageProgressForm):
 class StageProgressVerificationForm(StageProgressForm):
     quantities = forms.JSONField(
         initial=list, required=False, widget=forms.Textarea(attrs={"rows": 4}),
-        help_text='Liste JSON : [{"label":"Béton coulé","quantity":12,"unit":"m³"}]',
+        help_text=_('Liste JSON : [{"label":"Béton coulé","quantity":12,"unit":"m³"}]'),
     )
     reservations = forms.JSONField(
         initial=list, required=False, widget=forms.Textarea(attrs={"rows": 4}),
-        help_text='Liste JSON : [{"description":"Reprise nécessaire","status":"open"}]',
+        help_text=_('Liste JSON : [{"description":"Reprise nécessaire","status":"open"}]'),
     )
 
     class Meta(StageProgressForm.Meta):
@@ -115,8 +116,8 @@ class StageSiteVisitForm(forms.ModelForm):
 
 
 class StageSiteVerificationForm(forms.ModelForm):
-    checklist = forms.JSONField(widget=forms.Textarea(attrs={"rows": 5}), help_text='[{"item":"Fondations","result":"ok","comment":"Conforme"}]')
-    reservations = forms.JSONField(required=False, initial=list, widget=forms.Textarea(attrs={"rows": 4}), help_text='[{"description":"Correction","status":"open"}]')
+    checklist = forms.JSONField(widget=forms.Textarea(attrs={"rows": 5}), help_text=_('[{"item":"Fondations","result":"ok","comment":"Conforme"}]'))
+    reservations = forms.JSONField(required=False, initial=list, widget=forms.Textarea(attrs={"rows": 4}), help_text=_('[{"description":"Correction","status":"open"}]'))
 
     class Meta:
         model = StageSiteVerification

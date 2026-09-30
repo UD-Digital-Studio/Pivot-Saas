@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 from decimal import Decimal
 import hashlib
 import uuid
@@ -41,7 +42,7 @@ def assign_expected_range(*, actor, item, existing_range=None, work_type="", uni
             or existing_range.organization_id != item.organization_id
             or existing_range.unit != item.unit
         ):
-            raise ValidationError("Cette plage ne peut pas être appliquée à cet article.")
+            raise ValidationError(_("Cette plage ne peut pas être appliquée à cet article."))
         rule = existing_range
     else:
         previous = InventoryExpectedRange.objects.select_for_update().filter(
@@ -149,12 +150,12 @@ def propose_anomaly_resolution(*, actor, anomaly, responsible, evidence, reason)
     if not can_propose_anomaly_resolution(actor=actor, anomaly=anomaly):
         raise PermissionDenied
     if anomaly.resolutions.filter(status=InventoryAnomalyResolution.Status.PENDING).exists():
-        raise ValidationError("Une proposition est déjà en attente de validation.")
+        raise ValidationError(_("Une proposition est déjà en attente de validation."))
     proofs = list(evidence)
     if not proofs:
-        raise ValidationError("Au moins une preuve de résolution est obligatoire.")
+        raise ValidationError(_("Au moins une preuve de résolution est obligatoire."))
     if any(proof.project_id != anomaly.project_id or proof.organization_id != anomaly.organization_id for proof in proofs):
-        raise ValidationError("Toutes les preuves doivent appartenir au même projet.")
+        raise ValidationError(_("Toutes les preuves doivent appartenir au même projet."))
     resolution = InventoryAnomalyResolution.objects.create(
         anomaly=anomaly, responsible=responsible, reason=reason.strip(), proposed_by=actor,
     )
@@ -175,14 +176,14 @@ def decide_anomaly_resolution(*, actor, resolution, decision, reason):
         "anomaly__project"
     ).get(pk=resolution.pk)
     if resolution.status != InventoryAnomalyResolution.Status.PENDING:
-        raise ValidationError("Cette proposition a déjà reçu une décision.")
+        raise ValidationError(_("Cette proposition a déjà reçu une décision."))
     if not can_validate_anomaly_resolution(actor=actor, anomaly=resolution.anomaly):
         raise PermissionDenied
     if decision not in {
         InventoryAnomalyResolution.Status.APPROVED,
         InventoryAnomalyResolution.Status.REJECTED,
     } or not reason.strip():
-        raise ValidationError("La décision et son motif sont obligatoires.")
+        raise ValidationError(_("La décision et son motif sont obligatoires."))
     resolution.status = decision
     resolution.decided_by = actor
     resolution.decision_reason = reason.strip()
@@ -229,7 +230,7 @@ def record_stock_movement(*, actor, item, movement_type, source_quantity, source
     if conversion_factor <= 0 or (
         movement_type != StockMovement.Type.CORRECTION and source_quantity <= 0
     ):
-        raise ValidationError("La quantité et le facteur de conversion doivent être positifs.")
+        raise ValidationError(_("La quantité et le facteur de conversion doivent être positifs."))
     normalized = abs(source_quantity * conversion_factor)
     if movement_type == StockMovement.Type.PURCHASED:
         variation = Decimal("0")
@@ -240,10 +241,10 @@ def record_stock_movement(*, actor, item, movement_type, source_quantity, source
     elif movement_type == StockMovement.Type.CORRECTION:
         variation = source_quantity * conversion_factor
     else:
-        raise ValidationError("Nature de mouvement inconnue.")
+        raise ValidationError(_("Nature de mouvement inconnue."))
     resulting = locked.derived_remaining_quantity + variation
     if resulting < 0:
-        raise ValidationError("La quantité résultante ne peut pas être négative.")
+        raise ValidationError(_("La quantité résultante ne peut pas être négative."))
     locked.quantity = resulting
     locked.save(update_fields=("quantity", "updated_at"))
     movement = StockMovement(

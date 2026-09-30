@@ -1,4 +1,5 @@
 {% extends "base/app.html" %}
+{% load i18n %}
 
 {% block title %}Tableau de bord · PIVOT-SASS{% endblock %}
 {% block eyebrow %}Centre de commandement{% endblock %}
@@ -8,47 +9,47 @@
     <div class="absolute -right-20 -top-32 size-80 rounded-full bg-pivot-500/20 blur-3xl"></div>
     <div class="absolute -bottom-32 right-32 size-64 rounded-full bg-cyan-400/10 blur-3xl"></div>
     <div class="relative max-w-3xl">
-        <span class="inline-flex rounded-full bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-[.16em] text-cyan-200 ring-1 ring-white/10">Plateforme active</span>
-        <h1 class="mt-5 text-3xl font-black tracking-tight sm:text-5xl">Construisez mieux.<br><span class="bg-gradient-to-r from-pivot-500 to-cyan-300 bg-clip-text text-transparent">Pilotez chaque détail.</span></h1>
-        <p class="mt-5 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">Centralisez vos projets, équipes, finances, stocks et rapports de chantier dans un espace clair et sécurisé.</p>
+        <span class="inline-flex rounded-full bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-[.16em] text-cyan-200 ring-1 ring-white/10">{% translate "Plateforme active" %}</span>
+        <h1 class="mt-5 text-3xl font-black tracking-tight sm:text-5xl">{% translate "Construisez mieux." %}<br><span class="bg-gradient-to-r from-pivot-500 to-cyan-300 bg-clip-text text-transparent">{% translate "Pilotez chaque détail." %}</span></h1>
+        <p class="mt-5 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">{% translate "Centralisez vos projets, équipes, finances, stocks et rapports de chantier dans un espace clair et sécurisé." %}</p>
         <div class="mt-8 flex flex-wrap gap-3">
             {% if request.user.is_authenticated %}
-                <a href="{% url 'accounts:post-login' %}" class="rounded-xl bg-pivot-600 px-5 py-3 text-sm font-bold shadow-lg shadow-pivot-950/40 transition hover:-translate-y-0.5 hover:bg-pivot-500">Accéder à mon espace</a>
+                <a href="{% url 'accounts:post-login' %}" class="rounded-xl bg-pivot-600 px-5 py-3 text-sm font-bold shadow-lg shadow-pivot-950/40 transition hover:-translate-y-0.5 hover:bg-pivot-500">{% translate "Accéder à mon espace" %}</a>
             {% else %}
-                <a href="{% url 'accounts:login' %}" class="rounded-xl bg-pivot-600 px-5 py-3 text-sm font-bold shadow-lg shadow-pivot-950/40 transition hover:-translate-y-0.5 hover:bg-pivot-500">Se connecter</a>
-                <a href="{% url 'accounts:engineer-registration' %}" class="rounded-xl bg-white/10 px-5 py-3 text-sm font-bold ring-1 ring-white/20 transition hover:bg-white/15">Créer une entreprise</a>
+                <a href="{% url 'accounts:login' %}" class="rounded-xl bg-pivot-600 px-5 py-3 text-sm font-bold shadow-lg shadow-pivot-950/40 transition hover:-translate-y-0.5 hover:bg-pivot-500">{% translate "Se connecter" %}</a>
+                <a href="{% url 'accounts:engineer-registration' %}" class="rounded-xl bg-white/10 px-5 py-3 text-sm font-bold ring-1 ring-white/20 transition hover:bg-white/15">{% translate "Créer une entreprise" %}</a>
             {% endif %}
         </div>
     </div>
 </section>
 
-<section class="mt-8 grid gap-5 md:grid-cols-3" aria-label="État de la plateforme">
+<section class="mt-8 grid gap-5 md:grid-cols-3" aria-label="{% translate "État de la plateforme" %}">
     <article class="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-soft">
         <div class="flex items-center justify-between">
             <span class="grid size-11 place-items-center rounded-2xl bg-emerald-50 text-xl text-emerald-600">✓</span>
-            <span class="rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-black uppercase tracking-wider text-emerald-700">En ligne</span>
+            <span class="rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-black uppercase tracking-wider text-emerald-700">{% translate "En ligne" %}</span>
         </div>
-        <p class="mt-6 text-sm font-semibold text-slate-500">Application</p>
-        <p class="mt-1 text-2xl font-black tracking-tight text-slate-950">Opérationnelle</p>
-        <p class="mt-2 text-sm leading-6 text-slate-500">Le socle Django répond correctement.</p>
+        <p class="mt-6 text-sm font-semibold text-slate-500">{% translate "Application" %}</p>
+        <p class="mt-1 text-2xl font-black tracking-tight text-slate-950">{% translate "Opérationnelle" %}</p>
+        <p class="mt-2 text-sm leading-6 text-slate-500">{% translate "Le socle Django répond correctement." %}</p>
     </article>
     <article class="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-soft">
         <div class="flex items-center justify-between">
             <span class="grid size-11 place-items-center rounded-2xl bg-blue-50 text-xl text-pivot-600">▰</span>
-            <span class="rounded-full bg-blue-50 px-2.5 py-1 text-[10px] font-black uppercase tracking-wider text-pivot-700">Local</span>
+            <span class="rounded-full bg-blue-50 px-2.5 py-1 text-[10px] font-black uppercase tracking-wider text-pivot-700">{% translate "Local" %}</span>
         </div>
-        <p class="mt-6 text-sm font-semibold text-slate-500">Base de données</p>
-        <p class="mt-1 text-2xl font-black tracking-tight text-slate-950">SQLite3</p>
-        <p class="mt-2 text-sm leading-6 text-slate-500">Rapide et prête pour le développement.</p>
+        <p class="mt-6 text-sm font-semibold text-slate-500">{% translate "Base de données" %}</p>
+        <p class="mt-1 text-2xl font-black tracking-tight text-slate-950">{% translate "SQLite3" %}</p>
+        <p class="mt-2 text-sm leading-6 text-slate-500">{% translate "Rapide et prête pour le développement." %}</p>
     </article>
     <article class="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-soft">
         <div class="flex items-center justify-between">
             <span class="grid size-11 place-items-center rounded-2xl bg-amber-50 text-xl text-amber-600">◆</span>
-            <span class="rounded-full bg-amber-50 px-2.5 py-1 text-[10px] font-black uppercase tracking-wider text-amber-700">Modulaire</span>
+            <span class="rounded-full bg-amber-50 px-2.5 py-1 text-[10px] font-black uppercase tracking-wider text-amber-700">{% translate "Modulaire" %}</span>
         </div>
-        <p class="mt-6 text-sm font-semibold text-slate-500">Architecture</p>
-        <p class="mt-1 text-2xl font-black tracking-tight text-slate-950">10 domaines</p>
-        <p class="mt-2 text-sm leading-6 text-slate-500">Une base propre pour faire évoluer PIVOT.</p>
+        <p class="mt-6 text-sm font-semibold text-slate-500">{% translate "Architecture" %}</p>
+        <p class="mt-1 text-2xl font-black tracking-tight text-slate-950">{% translate "10 domaines" %}</p>
+        <p class="mt-2 text-sm leading-6 text-slate-500">{% translate "Une base propre pour faire évoluer PIVOT." %}</p>
     </article>
 </section>
 {% endblock %}

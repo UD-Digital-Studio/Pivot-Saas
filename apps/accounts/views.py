@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied, ValidationError
@@ -40,7 +41,7 @@ class EngineerRegistrationView(FormView):
         from apps.audit.models import PlatformConfiguration
 
         if not PlatformConfiguration.load().engineer_registration_enabled:
-            messages.error(request, "Les inscriptions ingénieur sont temporairement fermées.")
+            messages.error(request, _("Les inscriptions ingénieur sont temporairement fermées."))
             return redirect("accounts:login")
         return super().dispatch(request, *args, **kwargs)
 
@@ -87,7 +88,7 @@ class ClientRegistrationView(FormView):
         from apps.audit.models import PlatformConfiguration
 
         if not PlatformConfiguration.load().client_registration_enabled:
-            messages.error(request, "Les inscriptions client sont temporairement fermées.")
+            messages.error(request, _("Les inscriptions client sont temporairement fermées."))
             return redirect("accounts:login")
         return super().dispatch(request, *args, **kwargs)
 
@@ -133,7 +134,7 @@ def invite_member(request):
                     "logo_url": request.build_absolute_uri(static("images/Logo.png")),
                 },
             )
-            messages.success(request, "L'invitation a été envoyée.")
+            messages.success(request, _("L'invitation a été envoyée."))
             return redirect("accounts:dashboard", role=request.user.role)
 
     request._invitation_form = form
@@ -158,7 +159,7 @@ def accept_invitation(request, token):
             except (PermissionDenied, ValidationError) as error:
                 messages.error(request, str(error))
             else:
-                messages.success(request, "Vous avez rejoint le chantier.")
+                messages.success(request, _("Vous avez rejoint le chantier."))
                 if invitation.project_id:
                     return redirect(invitation.project.get_absolute_url())
                 return redirect("accounts:post-login")
@@ -170,7 +171,7 @@ def accept_invitation(request, token):
     form = InvitationAcceptanceForm(request.POST or None, invitation=invitation)
     if request.method == "POST" and form.is_valid():
         form.save()
-        messages.success(request, "Votre compte est actif. Vous pouvez maintenant vous connecter.")
+        messages.success(request, _("Votre compte est actif. Vous pouvez maintenant vous connecter."))
         return redirect("accounts:login")
     return render(
         request,
@@ -190,9 +191,9 @@ def cancel_invitation(request, pk):
         organization_id=request.user.organization_id,
     )
     if request.POST.get("confirmed") != "yes":
-        messages.error(request, "La confirmation est obligatoire pour annuler l’invitation.")
+        messages.error(request, _("La confirmation est obligatoire pour annuler l’invitation."))
     elif not invitation.is_usable:
-        messages.info(request, "Cette invitation n’est plus active.")
+        messages.info(request, _("Cette invitation n’est plus active."))
     else:
         invitation.canceled_at = timezone.now()
         invitation.save(update_fields=("canceled_at",))
@@ -202,7 +203,7 @@ def cancel_invitation(request, pk):
 
 @login_required
 def profile(request):
-    user_profile, _ = UserProfile.objects.get_or_create(user=request.user)
+    user_profile, profile_created = UserProfile.objects.get_or_create(user=request.user)
     account_form = UserAccountForm(request.POST or None, instance=request.user)
     profile_form = UserProfileForm(
         request.POST or None,
@@ -213,7 +214,7 @@ def profile(request):
         with transaction.atomic():
             account_form.save()
             profile_form.save()
-        messages.success(request, "Votre profil a été mis à jour.")
+        messages.success(request, _("Votre profil a été mis à jour."))
         return redirect("accounts:profile")
     return render(
         request,
