@@ -26,7 +26,9 @@ class ExpenseOwnerDecisionTests(TestCase):
         self.organization = Organization.objects.create(name="Décision owner", slug="decision-owner")
         self.engineer = User.objects.create_user(username="owner-engineer", organization=self.organization, role=User.Role.ENGINEER)
         self.contractor = User.objects.create_user(username="owner-contractor", organization=self.organization, role=User.Role.CONTRACTOR)
-        self.owner = User.objects.create_user(username="confirmed-owner", organization=self.organization, role=User.Role.CLIENT)
+        self.owner = User.objects.create_user(
+            username="confirmed-owner", role=User.Role.CLIENT
+        )
         self.reviewer = User.objects.create_user(username="owner-reviewer", organization=self.organization, role=User.Role.ADMIN)
         self.superuser = User.objects.create_superuser(username="owner-super", email="super-owner@pivot.test", password="pass")
         self.project = Project.objects.create(organization=self.organization, engineer=self.engineer, name="Chantier owner", location="Douala", project_date=date.today())

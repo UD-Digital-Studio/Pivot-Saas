@@ -38,8 +38,6 @@ def create_notification(
     project membership is therefore the authorization boundary and the
     notification is stored under the project's organization.
     """
-    if recipient.organization_id is None:
-        raise ValidationError(_("Le destinataire doit appartenir à une organisation."))
     notification_organization_id = recipient.organization_id
     if project is not None:
         from apps.projects.models import ProjectMembership
@@ -73,6 +71,8 @@ def create_notification(
         if actor and not is_project_actor(actor):
             raise PermissionDenied("L'acteur n'est pas autorisé sur ce projet.")
         notification_organization_id = project.organization_id
+    elif recipient.organization_id is None:
+        raise ValidationError(_("Cette notification doit être rattachée à un projet."))
     elif actor and actor.organization_id != recipient.organization_id and not actor.is_superuser:
         raise PermissionDenied(
             "L'acteur et le destinataire doivent appartenir à la même organisation."

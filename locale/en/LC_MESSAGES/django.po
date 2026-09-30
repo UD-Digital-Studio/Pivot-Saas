@@ -7,6 +7,45 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "Organisation gestionnaire du chantier"
+msgstr "Project managing organization"
+
+msgid "Choisissez l'organisation qui gérera ce chantier"
+msgstr "Choose the organization that will manage this project"
+
+msgid "Ce choix concerne uniquement ce projet et ne rattache pas votre compte client à l'organisation."
+msgstr "This choice only applies to this project and does not link your client account to the organization."
+
+msgid "Créez votre chantier et choisissez son organisation gestionnaire."
+msgstr "Create your project and choose its managing organization."
+
+msgid "À choisir dans le formulaire"
+msgstr "To be selected in the form"
+
+msgid "Le projet sera isolé dans l'espace de l'organisation gestionnaire."
+msgstr "The project will be isolated in the managing organization's workspace."
+
+msgid "Créez votre compte indépendant. Vos chantiers afficheront les organisations qui les gèrent."
+msgstr "Create your independent account. Your projects will show the organizations managing them."
+
+msgid "Espace client"
+msgstr "Client area"
+
+msgid "Suivez vos chantiers et les organisations qui les gèrent."
+msgstr "Track your projects and the organizations managing them."
+
+msgid "Compte client indépendant"
+msgstr "Independent client account"
+
+msgid "Les organisations responsables sont affichées séparément pour chacun de vos chantiers."
+msgstr "The responsible organizations are displayed separately for each of your projects."
+
+msgid "Organisation gestionnaire"
+msgstr "Managing organization"
+
+msgid "Cette notification doit être rattachée à un projet."
+msgstr "This notification must be linked to a project."
+
 msgid "% complété"
 msgstr "% completed"
 

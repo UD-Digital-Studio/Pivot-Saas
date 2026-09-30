@@ -24,7 +24,6 @@ class ClientLedOnboardingTests(TestCase):
             username="owner-e17",
             password="Client-owner-12345!",
             email="owner-e17@example.com",
-            organization=self.organization,
             role=get_user_model().Role.CLIENT,
         )
         self.client.force_login(self.client_user)
@@ -38,6 +37,7 @@ class ClientLedOnboardingTests(TestCase):
                 "location": "Douala",
                 "project_date": "2026-10-01",
                 "budget_amount": "12000000",
+                "managing_organization": self.organization.pk,
                 "financial_conditions": "30 % à la commande, solde par jalons validés.",
             },
         )
@@ -48,6 +48,8 @@ class ClientLedOnboardingTests(TestCase):
     def test_client_creation_initializes_owner_and_onboarding(self):
         project = self.create_project()
 
+        self.assertIsNone(self.client_user.organization)
+        self.assertEqual(project.organization, self.organization)
         self.assertIsNone(project.engineer)
         self.assertTrue(
             project.memberships.filter(

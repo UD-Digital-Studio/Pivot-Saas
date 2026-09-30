@@ -102,6 +102,35 @@ class ContextualProjectRoleTests(TestCase):
         self.assertEqual(list(projects_visible_to(self.foreign)), [self.project_a])
         self.assertNotIn(self.project_b, projects_visible_to(self.foreign))
 
+    def test_independent_client_can_access_projects_from_multiple_organizations(self):
+        client = get_user_model().objects.create_user(
+            username="independent-owner", role=get_user_model().Role.CLIENT
+        )
+        other_project = Project.objects.create(
+            organization=self.other_org,
+            name="Projet externe",
+            location="Bafoussam",
+            project_date=date.today(),
+        )
+        ProjectMembership.objects.create(
+            organization=self.org,
+            project=self.project_a,
+            user=client,
+            project_role=ProjectMembership.Role.OWNER,
+        )
+        ProjectMembership.objects.create(
+            organization=self.other_org,
+            project=other_project,
+            user=client,
+            project_role=ProjectMembership.Role.OWNER,
+        )
+
+        self.assertIsNone(client.organization)
+        self.assertEqual(
+            set(projects_visible_to(client)),
+            {self.project_a, other_project},
+        )
+
     def test_sensitive_management_matrix(self):
         expected = {
             ProjectMembership.Role.OWNER: False,

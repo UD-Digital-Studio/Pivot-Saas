@@ -277,7 +277,7 @@ def notifications_read_all(request):
 def dashboard(request, role):
     if role != request.user.role or role not in User.Role.values:
         raise Http404
-    from apps.projects.forms import ProjectCreateForm
+    from apps.projects.forms import ClientLedProjectForm, ProjectCreateForm
     from apps.projects.models import Project
     from apps.projects.selectors import projects_for_user
     from apps.subscriptions.quotas import quota_usage
@@ -363,14 +363,21 @@ def dashboard(request, role):
             "selected_status": selected_status,
             "project_statuses": Project.Status.choices,
             "role_metric": role_metric,
-            "project_form": ProjectCreateForm(organization=request.user.organization),
+            "project_form": (
+                ClientLedProjectForm()
+                if request.user.role == User.Role.CLIENT
+                else ProjectCreateForm(organization=request.user.organization)
+            ),
             "invitation_form": getattr(request, "_invitation_form", MemberInvitationForm()),
             "open_invitation_modal": getattr(request, "_open_invitation_modal", False),
             "can_invite": can_invite,
             "pending_invitations": pending_invitations,
             "invitation_history": invitation_history,
             "subscription_usage": subscription_usage,
-            "can_create_project": request.user.role == User.Role.ENGINEER
-            and not subscription_usage["projects"].reached,
+            "can_create_project": request.user.role == User.Role.CLIENT
+            or (
+                request.user.role == User.Role.ENGINEER
+                and not subscription_usage["projects"].reached
+            ),
         },
     )

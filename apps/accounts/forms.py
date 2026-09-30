@@ -22,7 +22,11 @@ class OrganizationAuthenticationForm(AuthenticationForm):
 
     def confirm_login_allowed(self, user):
         super().confirm_login_allowed(user)
-        if not user.is_superuser and user.organization.status != Organization.Status.ACTIVE:
+        if (
+            not user.is_superuser
+            and user.organization_id
+            and user.organization.status != Organization.Status.ACTIVE
+        ):
             raise ValidationError(
                 self.error_messages["organization_inactive"],
                 code="organization_inactive",
@@ -76,25 +80,17 @@ class EngineerRegistrationForm(UserCreationForm):
 
 
 class ClientRegistrationForm(UserCreationForm):
-    organization = forms.ModelChoiceField(
-        label=_("Entreprise / organisation"),
-        queryset=Organization.objects.none(),
-        empty_label=_("Sélectionnez l’organisation qui gère votre projet"),
-    )
     email = forms.EmailField(label=_("Adresse e-mail"))
 
     class Meta(UserCreationForm.Meta):
         model = User
-        fields = ("organization", "username", "email")
+        fields = ("username", "email")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["username"].help_text = None
         self.fields["password1"].help_text = None
         self.fields["password2"].help_text = None
-        self.fields["organization"].queryset = Organization.objects.filter(
-            status=Organization.Status.ACTIVE
-        ).order_by("name")
 
     def clean_email(self):
         email = self.cleaned_data["email"].strip().lower()
@@ -108,7 +104,7 @@ class ClientRegistrationForm(UserCreationForm):
             raise ValueError("L'inscription client doit être enregistrée atomiquement.")
         user = super().save(commit=False)
         user.email = self.cleaned_data["email"]
-        user.organization = self.cleaned_data["organization"]
+        user.organization = None
         user.role = User.Role.CLIENT
         user.is_active = True
         user.save()
@@ -155,7 +151,9 @@ class InvitationAcceptanceForm(UserCreationForm):
         )
         user = super().save(commit=False)
         user.email = invitation.email
-        user.organization = invitation.organization
+        user.organization = (
+            None if invitation.role == User.Role.CLIENT else invitation.organization
+        )
         user.role = invitation.role
         user.is_active = True
         user.save()

@@ -84,7 +84,7 @@ class RoleDashboardTests(TestCase):
 
         self.assertContains(response, "Client")
         self.assertContains(response, "Chantier Alpha")
-        self.assertNotContains(response, "Nouveau projet")
+        self.assertContains(response, "Nouveau projet")
 
     def test_site_manager_dashboard_contains_assigned_projects(self):
         self.assign(self.site_manager)

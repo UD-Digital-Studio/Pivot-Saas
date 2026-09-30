@@ -20,9 +20,17 @@ class UserOrganizationTests(TestCase):
         self.assertEqual(user.organization, self.alpha)
         self.assertEqual(user.role, get_user_model().Role.ENGINEER)
 
-    def test_business_user_without_organization_is_rejected_by_database(self):
+    def test_non_client_without_organization_is_rejected_by_database(self):
         with self.assertRaises(IntegrityError), transaction.atomic():
-            get_user_model().objects.create_user(username="orphan-user")
+            get_user_model().objects.create_user(
+                username="orphan-user", role=get_user_model().Role.ENGINEER
+            )
+
+    def test_client_can_exist_without_organization(self):
+        client = get_user_model().objects.create_user(
+            username="independent-client", role=get_user_model().Role.CLIENT
+        )
+        self.assertIsNone(client.organization)
 
     def test_organization_filter_does_not_return_other_tenant_users(self):
         user_alpha = get_user_model().objects.create_user(

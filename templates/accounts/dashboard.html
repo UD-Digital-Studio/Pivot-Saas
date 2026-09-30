@@ -1,11 +1,11 @@
 {% extends "base/app.html" %}{% load i18n %}
 {% block title %}Tableau de bord · PIVOT{% endblock %}
-{% block eyebrow %}{{ request.user.organization.name }}{% endblock %}
+{% block eyebrow %}{% if request.user.organization %}{{ request.user.organization.name }}{% else %}{% translate "Espace client" %}{% endif %}{% endblock %}
 {% block breadcrumbs %}<span>{% translate "Tableau de bord" %}</span>{% endblock %}
 
 {% block content %}
 <header class="flex flex-col gap-4 border-b border-slate-200 pb-6 sm:flex-row sm:items-center sm:justify-between">
-    <div><div class="flex items-center gap-3"><h1 class="text-2xl font-black tracking-tight text-slate-950">{% translate "Tableau de bord" %}</h1><span class="rounded-full bg-pivot-50 px-2.5 py-1 text-xs font-bold text-pivot-700 ring-1 ring-pivot-100">{{ role_label }}</span></div><p class="mt-1 text-sm text-slate-500">{% translate "Vue opérationnelle de votre organisation." %}</p></div>
+    <div><div class="flex items-center gap-3"><h1 class="text-2xl font-black tracking-tight text-slate-950">{% translate "Tableau de bord" %}</h1><span class="rounded-full bg-pivot-50 px-2.5 py-1 text-xs font-bold text-pivot-700 ring-1 ring-pivot-100">{{ role_label }}</span></div><p class="mt-1 text-sm text-slate-500">{% if request.user.role == 'client' %}{% translate "Suivez vos chantiers et les organisations qui les gèrent." %}{% else %}{% translate "Vue opérationnelle de votre organisation." %}{% endif %}</p></div>
     <div class="flex flex-wrap gap-2">
         {% if can_invite %}<button type="button" data-modal-open="modal-invitation" class="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-bold text-slate-700 shadow-sm hover:bg-slate-50"><span>＋</span> {% translate "Inviter" %}</button>{% endif %}
         {% if can_create_project %}<button type="button" data-modal-open="modal-project-create" class="rounded-lg bg-pivot-600 px-4 py-2.5 text-sm font-black text-white shadow-sm hover:bg-pivot-700">＋ {% translate "Nouveau projet" %}</button>{% endif %}

@@ -25,8 +25,8 @@
         </section>
         <section class="rounded-3xl bg-slate-950 p-6 text-white shadow-soft">
             <p class="text-xs font-bold uppercase tracking-widest text-slate-400">{% translate "Organisation" %}</p>
-            <p class="mt-2 text-lg font-black">{{ request.user.organization.name|default:"Administration PIVOT" }}</p>
-            <p class="mt-3 text-sm leading-6 text-slate-400">{% translate "Vos données sont rattachées à cet espace sécurisé." %}</p>
+            <p class="mt-2 text-lg font-black">{% if request.user.organization %}{{ request.user.organization.name }}{% elif request.user.is_superuser %}{% translate "Administration PIVOT" %}{% else %}{% translate "Compte client indépendant" %}{% endif %}</p>
+            <p class="mt-3 text-sm leading-6 text-slate-400">{% if request.user.organization %}{% translate "Vos données sont rattachées à cet espace sécurisé." %}{% else %}{% translate "Les organisations responsables sont affichées séparément pour chacun de vos chantiers." %}{% endif %}</p>
         </section>
     </aside>
 

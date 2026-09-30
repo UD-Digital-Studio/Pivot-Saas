@@ -30,11 +30,13 @@ def can_manage_project(*, actor: User, project: Project) -> bool:
 
 
 def ensure_can_create_project(actor: User) -> None:
+    if actor.role == User.Role.CLIENT:
+        return
     if actor.organization_id is None or actor.role not in {
         User.Role.ENGINEER, User.Role.CLIENT, User.Role.CONTRACTOR
     }:
         raise PermissionDenied(
-            "Seul un ingénieur ou un client rattaché à une organisation peut créer un projet."
+            "Seul un ingénieur, un client ou un entrepreneur autorisé peut créer un projet."
         )
     from apps.subscriptions.quotas import ensure_project_capacity
 

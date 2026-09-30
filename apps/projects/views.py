@@ -139,11 +139,14 @@ def project_list(request):
             "selected_status": status,
             "selected_sort": sort,
             "statuses": Project.Status,
-            "can_create": request.user.organization_id is not None
-            and request.user.role in {
+            "can_create": request.user.role == request.user.Role.CLIENT
+            or (
+                request.user.organization_id is not None
+                and request.user.role in {
                 request.user.Role.ENGINEER, request.user.Role.CLIENT, request.user.Role.CONTRACTOR
-            }
-            and not subscription_usage["projects"].reached,
+                }
+                and not subscription_usage["projects"].reached
+            ),
             "subscription_usage": subscription_usage,
             "project_form": (
                 ClientLedProjectForm()
@@ -178,7 +181,15 @@ def project_create(request):
     if request.method == "POST" and form.is_valid():
         with transaction.atomic():
             project = form.save(commit=False)
-            project.organization = request.user.organization
+            project.organization = (
+                form.cleaned_data["managing_organization"]
+                if client_led
+                else request.user.organization
+            )
+            if client_led:
+                from apps.subscriptions.quotas import ensure_project_capacity
+
+                ensure_project_capacity(project.organization)
             project.engineer = None if (client_led or contractor_led) else request.user
             project.full_clean()
             project.save()

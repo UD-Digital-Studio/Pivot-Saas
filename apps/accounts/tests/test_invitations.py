@@ -74,7 +74,7 @@ class InvitationFlowTests(TestCase):
         self.assertEqual(len(mail.outbox), 1)
         self.assertIn("images/Logo.png", mail.outbox[0].alternatives[0][0])
 
-    def test_invited_client_accepts_and_joins_correct_organization(self):
+    def test_invited_client_accepts_without_joining_the_organization(self):
         _, raw_token = self.send_invitation()
         self.client.logout()
 
@@ -90,7 +90,7 @@ class InvitationFlowTests(TestCase):
         self.assertRedirects(response, reverse("accounts:login"))
         user = get_user_model().objects.get(username="accepted-client")
         self.assertEqual(user.email, "client@invite.test")
-        self.assertEqual(user.organization, self.organization)
+        self.assertIsNone(user.organization)
         self.assertEqual(user.role, get_user_model().Role.CLIENT)
         self.assertTrue(user.is_active)
         invitation = Invitation.objects.get(email="client@invite.test")

@@ -36,7 +36,11 @@ class User(AbstractUser):
         verbose_name_plural = "utilisateurs"
         constraints = [
             models.CheckConstraint(
-                condition=models.Q(organization__isnull=False) | models.Q(is_superuser=True),
+                condition=(
+                    models.Q(organization__isnull=False)
+                    | models.Q(is_superuser=True)
+                    | models.Q(role="client")
+                ),
                 name="account_business_user_has_organization",
             )
         ]

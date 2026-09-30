@@ -2,6 +2,7 @@ from django.utils.translation import gettext_lazy as _
 from django import forms
 
 from apps.accounts.models import User
+from apps.organizations.models import Organization
 
 from .models import Project, ProjectMembership
 
@@ -71,12 +72,26 @@ class ProjectCreateForm(ProjectForm):
 
 
 class ClientLedProjectForm(ProjectForm):
+    managing_organization = forms.ModelChoiceField(
+        label=_("Organisation gestionnaire du chantier"),
+        queryset=Organization.objects.none(),
+        empty_label=_("Choisissez l'organisation qui gérera ce chantier"),
+        help_text=_(
+            "Ce choix concerne uniquement ce projet et ne rattache pas votre compte client à l'organisation."
+        ),
+    )
     financial_conditions = forms.CharField(
         label=_("Conditions financières initiales"),
         max_length=3000,
         widget=forms.Textarea(attrs={"rows": 4}),
         help_text=_("Décrivez l'enveloppe, les modalités et les conditions initiales du chantier."),
     )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["managing_organization"].queryset = Organization.objects.filter(
+            status=Organization.Status.ACTIVE
+        ).order_by("name")
 
 
 class ContractorLedProjectForm(ClientLedProjectForm):
@@ -86,6 +101,10 @@ class ContractorLedProjectForm(ClientLedProjectForm):
         widget=forms.Textarea(attrs={"rows": 4}),
         help_text=_("Ces conditions resteront préliminaires jusqu'à la confirmation du client."),
     )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields.pop("managing_organization", None)
 
 
 class ContractorOnboardingConfirmationForm(forms.Form):
